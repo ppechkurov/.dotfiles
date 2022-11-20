@@ -8,24 +8,17 @@ sh <(curl -L https://nixos.org/nix/install) --no-daemon
 nix-env -iA \
   nixpkgs.zsh \
   nixpkgs.git \
-  nixpkgs.antibody \
   nixpkgs.stow \
   nixpkgs.fzf \
   nixpkgs.ripgrep \
   nixpkgs.bat \
   nixpkgs.cmake \
-  nixpkgs.pkg-config \
-  nixpkgs.libfreetype6-dev \
-  nixpkgs.libfontconfig1-dev \
-  nixpkgs.libxcb-xfixes0-dev \
-  nixpkgs.libxkbcommon-dev \
-  nixpkgs.python3 \
   nixpkgs.lazygit \
-  nixpkgs.exa \
+  nixpkgs.exa
 
 # install docker
 # Update the apt package index and install packages to allow apt to use a repository over HTTPS:
-sudo apt-get update
+sudo apt-get update 
 sudo apt-get install ca-certificates curl gnupg lsb-release
 
 # Add Docker’s official GPG key:
@@ -46,17 +39,14 @@ sudo groupadd docker
 sudo usermod -aG docker $USER 
 newgrp docker
 
-# stow dotfiles
-stow git
-stow p10k
-stow zsh
-stow alacritty
-
 # add zsh as a login shell
 command -v zsh | sudo tee -a /etc/shells
 
 # use zsh as default shell
 sudo chsh -s $(which zsh) $USER
+
+# install ohmhzsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # zsh plugins
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -66,6 +56,12 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.o
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+
+# stow dotfiles
+stow git
+stow p10k
+stow zsh
+stow alacritty
 
 exec zsh
 
