@@ -25,6 +25,7 @@ nix-env -iA \
 stow git
 stow p10k
 stow zsh
+stow alacritty
 
 # add zsh as a login shell
 command -v zsh | sudo tee -a /etc/shells
@@ -34,3 +35,10 @@ sudo chsh -s $(which zsh) $USER
 
 # bundle zsh plugins
 antibody bundle <~/.zsh_plugins.txt >~/.zsh_plugins.sh
+
+exec zsh
+
+# node
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+nvm install node
+nvm install-latest-npm
