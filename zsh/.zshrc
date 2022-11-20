@@ -76,8 +76,10 @@ alias gcob='git branch | fzf | xargs git checkout'
 alias vimrc='vim ${HOME}/.config/nvim/init.vim'
 # cat -> bat
 alias cat='bat'
-# colored ls output
-alias ls='ls -al --color'
+# exa as ls
+alias ls='exa'
+alias ll='ls -l -g --icons'
+alias lla='ll -a'
 
 # nix
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi

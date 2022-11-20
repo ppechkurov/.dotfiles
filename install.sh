@@ -19,7 +19,8 @@ nix-env -iA \
   nixpkgs.libxcb-xfixes0-dev \
   nixpkgs.libxkbcommon-dev \
   nixpkgs.python3 \
-  nixpkgs.lazygit
+  nixpkgs.lazygit \
+  nixpkgs.exa
 
 # stow dotfiles
 stow git
