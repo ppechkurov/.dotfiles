@@ -20,9 +20,10 @@ nix-env -iA \
   nixpkgs.libxkbcommon-dev \
   nixpkgs.python3
 
-# # stow dotfiles
-# stow git
-# stow zsh
+# stow dotfiles
+stow git
+stow p10k
+stow zsh
 
 # add zsh as a login shell
 command -v zsh | sudo tee -a /etc/shells
