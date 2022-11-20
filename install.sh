@@ -18,7 +18,8 @@ nix-env -iA \
   nixpkgs.libfontconfig1-dev \
   nixpkgs.libxcb-xfixes0-dev \
   nixpkgs.libxkbcommon-dev \
-  nixpkgs.python3
+  nixpkgs.python3 \
+  nixpkgs.lazygit
 
 # stow dotfiles
 stow git
