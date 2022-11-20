@@ -7,6 +7,7 @@
 ### Current issues
 
 - Would like to improve the install script
+- Set up stow (commented atm)
 
 ### Future optimizations
 
