@@ -7,6 +7,7 @@ sh <(curl -L https://nixos.org/nix/install) --no-daemon
 # install packages
 nix-env -iA \
   nixpkgs.zsh \
+  nixpkgs.git \
   nixpkgs.antibody \
   nixpkgs.stow \
   nixpkgs.fzf \
