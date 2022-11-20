@@ -1,0 +1,10 @@
+[user]
+	name = Petr Pechkurov
+	email = petr.pechkurov@gmail.com
+[core]
+	excludesfile = ~/.gitignore_global
+    editor = nvim
+[pull]
+	ff = only
+[init]
+	defaultBranch = main
