@@ -15,7 +15,8 @@ nix-env -iA \
   nixpkgs.bat \
   nixpkgs.cmake \
   nixpkgs.lazygit \
-  nixpkgs.exa
+  nixpkgs.exa \
+  nixpkgs.xcape
 
 # add zsh as a login shell
 command -v zsh | sudo tee -a /etc/shells
