@@ -81,6 +81,9 @@ alias ls='exa'
 alias ll='ls -l -g --icons'
 alias lla='ll -a'
 
+# nix
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
+
 # keymaps
 # depends xmodmap xcape
 # https://github.com/alols/xcape
@@ -95,9 +98,6 @@ xmodmap -e 'add Control = Control_L'
 # make a fake escape key (so we can map it with xcape)
 xmodmap -e 'keycode 999 = Escape'
 xcape -e 'Control_L=Escape'
-
-# nix
-if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
