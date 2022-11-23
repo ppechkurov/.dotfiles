@@ -1,6 +1,7 @@
 set -e
 # install nix
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
+echo '======> nix installed'
 
 # source nix
 . ~/.nix-profile/etc/profile.d/nix.sh
@@ -17,17 +18,18 @@ nix-env -iA \
   nixpkgs.lazygit \
   nixpkgs.exa \
   nixpkgs.xcape
+echo '======> nix packages installed'
 
 # add zsh as a login shell
 command -v zsh | sudo tee -a /etc/shells
 
 # use zsh as default shell
 sudo chsh -s $(which zsh) $USER
-
-exec zsh
+echo '======> zsh as default shell'
 
 # install ohmhzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+echo '======> oh-my-zsh installed'
 
 # zsh plugins
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -37,15 +39,23 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.o
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+echo '======> plugins installed'
+
+rm -rf ~/.zshrc
 
 # stow dotfiles
 stow git
 stow p10k
 stow zsh
 stow alacritty
+echo '======> stowed'
 
+exec zsh
 
 # node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+
+exec zsh | nvm install node
 nvm install node
 nvm install-latest-npm
+echo '======> nvm installed'
