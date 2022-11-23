@@ -84,20 +84,20 @@ alias lla='ll -a'
 # nix
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 
-# keymaps
-# depends xmodmap xcape
-# https://github.com/alols/xcape
+# # keymaps
+# # depends xmodmap xcape
+# # https://github.com/alols/xcape
 
-# clear all mappings
-setxkbmap -option ''
+# # clear all mappings
+# setxkbmap -option ''
 
-# assign capslock to control on press, escape on release
-xmodmap -e 'clear Lock'
-xmodmap -e 'keycode 66 = Control_L'
-xmodmap -e 'add Control = Control_L'
-# make a fake escape key (so we can map it with xcape)
-xmodmap -e 'keycode 999 = Escape'
-xcape -e 'Control_L=Escape'
+# # assign capslock to control on press, escape on release
+# xmodmap -e 'clear Lock'
+# xmodmap -e 'keycode 66 = Control_L'
+# xmodmap -e 'add Control = Control_L'
+# # make a fake escape key (so we can map it with xcape)
+# xmodmap -e 'keycode 999 = Escape'
+# xcape -e 'Control_L=Escape'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

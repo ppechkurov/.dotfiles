@@ -54,8 +54,7 @@ exec zsh
 
 # node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-
-exec zsh | nvm install node
+. ~/.nvm/nvm.sh
 nvm install node
 nvm install-latest-npm
 echo '======> nvm installed'
