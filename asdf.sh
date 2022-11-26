@@ -17,7 +17,8 @@ nix-env -iA \
   nixpkgs.cmake \
   nixpkgs.lazygit \
   nixpkgs.exa \
-  nixpkgs.xcape
+  nixpkgs.xcape \
+  nixpkhs.postgresql
 echo '======> nix packages installed'
 
 # add zsh as a login shell
