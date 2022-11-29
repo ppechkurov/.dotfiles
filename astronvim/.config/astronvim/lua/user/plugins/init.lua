@@ -7,6 +7,17 @@ return {
 	-- Add plugins, the packer syntax without the "use"
 	{ "f-person/git-blame.nvim" },
 	{ "sainnhe/gruvbox-material" },
+
+	-- { "luisiacc/gruvbox-baby" },
+
+	-- Lsp signatures for functions
+	{
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("lsp_signature").setup()
+		end,
+	},
+
 	{
 		"ggandor/leap.nvim",
 		config = function()
