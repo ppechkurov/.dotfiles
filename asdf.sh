@@ -18,7 +18,8 @@ nix-env -iA \
   nixpkgs.lazygit \
   nixpkgs.exa \
   nixpkgs.xcape \
-  nixpkhs.postgresql
+  nixpkgs.neovim
+
 echo '======> nix packages installed'
 
 # add zsh as a login shell
@@ -51,11 +52,14 @@ stow zsh
 stow alacritty
 echo '======> stowed'
 
-exec zsh
-
 # node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
 nvm install-latest-npm
 echo '======> nvm installed'
+
+# AstroNvim
+git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+
+exec zsh
