@@ -28,7 +28,9 @@ local config = {
 	-- Set colorscheme to use
 	-- colorscheme = "gruvbox-material",
 	-- colorscheme = "gruvbox-baby",
-	-- colorscheme = "tokyonight",
+	-- colorscheme = "tokyonight-night",
+	-- colorscheme = "tundra",
+	colorscheme = "kanagawa",
 
 	-- Override highlight groups in any theme
 	highlights = {

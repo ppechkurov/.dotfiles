@@ -8,7 +8,8 @@ return {
 	{ "f-person/git-blame.nvim" },
 	{ "sainnhe/gruvbox-material" },
 
-	-- { "luisiacc/gruvbox-baby" },
+	{ "sam4llis/nvim-tundra" },
+	{ "rebelot/kanagawa.nvim" },
 
 	-- Lsp signatures for functions
 	{
