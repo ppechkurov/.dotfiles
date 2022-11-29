@@ -1,5 +1,7 @@
+set -e
 # install nix
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
+echo '======> nix installed'
 
 # source nix
 . ~/.nix-profile/etc/profile.d/nix.sh
@@ -14,39 +16,22 @@ nix-env -iA \
   nixpkgs.bat \
   nixpkgs.cmake \
   nixpkgs.lazygit \
-  nixpkgs.exa
+  nixpkgs.exa \
+  nixpkgs.xcape \
+  nixpkgs.neovim
 
-# install docker
-# Update the apt package index and install packages to allow apt to use a repository over HTTPS:
-sudo apt-get update 
-sudo apt-get install ca-certificates curl gnupg lsb-release
-
-# Add Docker’s official GPG key:
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-# Use the following command to set up the repository:
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-# To install the latest version, run:
-sudo apt-get update
-sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-# Post Install steps
-sudo groupadd docker
-sudo usermod -aG docker $USER 
-newgrp docker
+echo '======> nix packages installed'
 
 # add zsh as a login shell
 command -v zsh | sudo tee -a /etc/shells
 
 # use zsh as default shell
 sudo chsh -s $(which zsh) $USER
+echo '======> zsh as default shell'
 
 # install ohmhzsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+echo '======> oh-my-zsh installed'
 
 # zsh plugins
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -56,16 +41,26 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.o
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+echo '======> plugins installed'
+
+rm -rf ~/.zshrc
 
 # stow dotfiles
 stow git
 stow p10k
 stow zsh
 stow alacritty
-
-exec zsh
+stow astronvim
+echo '======> stowed'
 
 # node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+. ~/.nvm/nvm.sh
 nvm install node
 nvm install-latest-npm
+echo '======> nvm installed'
+
+# AstroNvim
+git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+
+exec zsh
