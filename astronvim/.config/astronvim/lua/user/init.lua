@@ -30,7 +30,8 @@ local config = {
 	-- colorscheme = "gruvbox-baby",
 	-- colorscheme = "tokyonight-night",
 	-- colorscheme = "tundra",
-	colorscheme = "kanagawa",
+	-- colorscheme = "kanagawa",
+	colorscheme = "darkplus",
 
 	-- Override highlight groups in any theme
 	highlights = {

@@ -8,6 +8,7 @@ return {
 	{ "f-person/git-blame.nvim" },
 	{ "sainnhe/gruvbox-material" },
 
+	{ "lunarvim/darkplus.nvim" },
 	{ "sam4llis/nvim-tundra" },
 	{ "rebelot/kanagawa.nvim" },
 
