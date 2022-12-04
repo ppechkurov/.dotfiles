@@ -16,7 +16,7 @@ return {
 	{
 		"ray-x/lsp_signature.nvim",
 		config = function()
-			require("lsp_signature").setup()
+			require("lsp_signature").setup({ floating_window = false, timer_interval = 600 })
 		end,
 	},
 
