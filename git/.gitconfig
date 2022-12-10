@@ -4,6 +4,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
     editor = nvim
+	commentChar = auto
 [pull]
 	ff = only
 [init]
