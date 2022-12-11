@@ -101,5 +101,5 @@ xmodmap -e 'add Control = Control_L'
 # make a fake escape key (so we can map it with xcape)
 xmodmap -e 'keycode 999 = Escape'
 xcape -e 'Control_L=Escape'
-xset r rate 500 50
+xset r rate 400 50
 

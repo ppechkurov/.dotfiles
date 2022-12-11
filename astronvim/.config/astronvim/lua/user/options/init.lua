@@ -17,9 +17,9 @@ return {
 	neovide_fullscreen = false,
 	neovide_remember_window_size = true,
 	neovide_profiler = false,
-	neovide_cursor_animation_length = 0.05,
-	neovide_cursor_trail_length = 0.01,
-	neovide_cursor_trail_size = 0.01,
+	neovide_cursor_animation_length = 0.15,
+	neovide_cursor_trail_length = 0.15,
+	neovide_cursor_trail_size = 0.15,
 	neovide_cursor_antialiasing = true,
 	neovide_cursor_vfx_mode = "railgun",
 }
