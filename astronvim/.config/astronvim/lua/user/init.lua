@@ -113,6 +113,12 @@ local config = {
 		servers = {
 			-- "pyright"
 		},
+		formatting = {
+			-- control auto formatting on save
+			format_on_save = {
+				enabled = false, -- enable or disable format on save globally
+			},
+		},
 		-- easily add or disable built in mappings added during LSP attaching
 		mappings = {
 			n = {

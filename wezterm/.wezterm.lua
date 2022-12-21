@@ -26,8 +26,6 @@ return {
   keys = {
     { key = "z", mods = "ALT", action = wezterm.action.ShowLauncher },
     { key = "h", mods = "ALT", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-    { key = "h", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Left") },
-    { key = "l", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Right") },
     { key = "w", mods = "CTRL", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
   },
 
