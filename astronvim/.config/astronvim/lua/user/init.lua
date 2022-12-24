@@ -165,6 +165,13 @@ local config = {
 						noremap = true,
 						desc = "Format Code",
 					})
+					-- highlight words in apex
+					vim.cmd([[
+								augroup highlight_current_word
+  							au!
+  							au CursorHold * :exec 'match Search /\V\<' . expand('<cword>') . '\>/'
+								augroup END
+					]])
 				end,
 				apex_enable_semantic_errors = true,
 			},
@@ -207,16 +214,16 @@ local config = {
 		["null-ls"] = require("user.plugins.config.null-ls"),
 
 		treesitter = { -- overrides `require("treesitter").setup(...)`
-			ensure_installed = { "lua", "typescript" },
+			ensure_installed = { "lua", "typescript", "javascript" },
 		},
 
 		-- use mason-lspconfig to configure LSP installations
 		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-			ensure_installed = { "sumneko_lua", "tsserver" },
+			ensure_installed = { "sumneko_lua", "tsserver", "apex_ls" },
 		},
 		-- use mason-tool-installer to configure DAP/Formatters/Linter installation
 		["mason-tool-installer"] = { -- overrides `require("mason-tool-installer").setup(...)`
-			ensure_installed = { "prettier", "stylua", "eslint_d" },
+			ensure_installed = { "prettier", "stylua", "eslint" },
 		},
 		packer = { -- overrides `require("packer").setup(...)`
 			compile_path = vim.fn.stdpath("data") .. "/packer_compiled.lua",
