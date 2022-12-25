@@ -89,6 +89,18 @@ return require("packer").startup(function(use)
 			"MunifTanjim/nui.nvim",
 		},
 	})
+
+	use({
+		"ggandor/leap.nvim",
+		config = function()
+			require("leap").add_default_mappings()
+		end,
+	})
+
+	use({ "Shatur/neovim-session-manager" })
+	use({ "f-person/git-blame.nvim" })
+	use({ "folke/which-key.nvim" })
+
 	-- use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "jose-elias-alvarez/null-ls.nvim", "jayp0521/mason-null-ls.nvim" })
 end)
