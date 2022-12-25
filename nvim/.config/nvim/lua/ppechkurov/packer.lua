@@ -53,6 +53,8 @@ return require("packer").startup(function(use)
 	use("nvim-tree/nvim-web-devicons")
 	use("petertriho/nvim-scrollbar")
 
+	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
+
 	use({
 		"VonHeikemen/lsp-zero.nvim",
 		requires = {
