@@ -21,13 +21,14 @@ return require("packer").startup(function(use)
 
 	-- TreeSitter
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
+	use("p00f/nvim-ts-rainbow")
+	use("windwp/nvim-ts-autotag")
+
+    -- Harpoon for files
+	use("ThePrimeagen/harpoon")
 
 	-- CMP icons
 	use("onsails/lspkind.nvim")
-
-	use("p00f/nvim-ts-rainbow")
-	use("windwp/nvim-ts-autotag")
-	use("ThePrimeagen/harpoon")
 
 	use({
 		"windwp/nvim-autopairs",
@@ -44,15 +45,21 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+    -- Lines between parenthasies
 	use("lukas-reineke/indent-blankline.nvim")
+
+    -- Highlight on hover
 	use("RRethy/vim-illuminate")
 
 	-- Status Line
 	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
 
 	use("nvim-tree/nvim-web-devicons")
+
+    -- Scorllbar
 	use("petertriho/nvim-scrollbar")
 
+    -- Buffers
 	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
 
 	use({
@@ -77,9 +84,9 @@ return require("packer").startup(function(use)
 		},
 	})
 
+    -- Neo Tree
 	-- Unless you are still migrating, remove the deprecated commands from v1.x
 	vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
 	use({
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
@@ -90,6 +97,7 @@ return require("packer").startup(function(use)
 		},
 	})
 
+    -- Leap navigation
 	use({
 		"ggandor/leap.nvim",
 		config = function()
@@ -98,11 +106,25 @@ return require("packer").startup(function(use)
 	})
 
 	use({ "Shatur/neovim-session-manager" })
+
 	use({ "f-person/git-blame.nvim" })
+
 	use({ "folke/which-key.nvim" })
 
+    -- Format only modifications
 	use({ "joechrisellis/lsp-format-modifications.nvim" })
+
+    -- Json schemas
 	use("b0o/schemastore.nvim")
 
+    -- Git shit
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
+
+    -- Formatting
 	use({ "jose-elias-alvarez/null-ls.nvim", "jayp0521/mason-null-ls.nvim" })
 end)
