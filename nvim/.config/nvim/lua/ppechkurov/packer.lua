@@ -101,6 +101,8 @@ return require("packer").startup(function(use)
 	use({ "f-person/git-blame.nvim" })
 	use({ "folke/which-key.nvim" })
 
-	-- use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
+	use({ "joechrisellis/lsp-format-modifications.nvim" })
+	use("b0o/schemastore.nvim")
+
 	use({ "jose-elias-alvarez/null-ls.nvim", "jayp0521/mason-null-ls.nvim" })
 end)

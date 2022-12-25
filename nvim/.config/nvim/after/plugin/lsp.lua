@@ -23,7 +23,6 @@ lsp.configure("sumneko_lua", {
 lsp.configure("tsserver", {
 	on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
-		client.server_capabilities.documentRangeFormattingProvider = false
 	end,
 })
 
@@ -45,6 +44,15 @@ lsp.configure("apex_ls", {
 	apex_enable_semantic_errors = true,
 })
 
+lsp.configure("jsonls", {
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
+		},
+	},
+})
+
 lsp.setup_nvim_cmp(require("ppechkurov.cmp"))
 
 lsp.set_preferences({
@@ -55,6 +63,10 @@ lsp.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 	if client.name ~= "apex_ls" then
 		require("illuminate").on_attach(client)
+	end
+
+	if client.server_capabilities.documentRangeFormattingProvider then
+		vim.keymap.set("v", "gma", vim.lsp.formatexpr, opts)
 	end
 
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
