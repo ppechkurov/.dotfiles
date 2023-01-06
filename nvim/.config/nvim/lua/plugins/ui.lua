@@ -297,7 +297,23 @@ return {
   "MunifTanjim/nui.nvim",
 
   -- scrollbar
-  { "petertriho/nvim-scrollbar", init = function()
+  { "petertriho/nvim-scrollbar", 
+    event = "VeryLazy",
+    init = function()
     require("scrollbar").setup() end
   },
+
+  {
+    "RRethy/vim-illuminate",
+    event = "VeryLazy",
+  },
+
+  -- git commit author
+  {"f-person/git-blame.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.g.gitblame_date_format = "%r"
+      vim.g.gitblame_message_template = "<author> • <date> • <summary>"
+    end
+  }
 }
