@@ -52,7 +52,7 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- lazy
-vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>")
+vim.keymap.set("n", "<leader>p", "<cmd>:Lazy<cr>")
 
 vim.keymap.set("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open Location List" })
 vim.keymap.set("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
