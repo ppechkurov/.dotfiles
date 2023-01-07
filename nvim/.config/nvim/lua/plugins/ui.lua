@@ -71,6 +71,10 @@ return {
     event = "VeryLazy",
     config = function()
       --local navic = require("nvim-navic")
+      local function clock()
+        return " " .. os.date("%H:%M")
+      end
+
       local lualine = require("lualine")
       local symbols = require("config.settings")
       lualine.setup({
@@ -97,7 +101,7 @@ return {
           },
           lualine_x = { "filetype"  },
           lualine_y = { "location" },
-          lualine_z = { "fileformat"},
+          lualine_z = { clock },
         }
       })
     end
@@ -108,8 +112,8 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
     config = {
-      char = "▏",
-      --char = "│",
+      --char = "▏",
+      char = "│",
       filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
       show_trailing_blankline_indent = false,
       show_current_context = false,
@@ -297,19 +301,36 @@ return {
   "MunifTanjim/nui.nvim",
 
   -- scrollbar
-  { "petertriho/nvim-scrollbar", 
-    event = "VeryLazy",
-    init = function()
-    require("scrollbar").setup() end
+  {
+    "petertriho/nvim-scrollbar",
+    event = "BufReadPost",
+    config = function()
+      local scrollbar = require("scrollbar")
+      local colors = require("tokyonight.colors").setup()
+      scrollbar.setup({
+        handle = { color = colors.bg_highlight },
+        excluded_filetypes = { "prompt", "TelescopePrompt", "noice", "notify" },
+        marks = {
+          Search = { color = colors.orange },
+          Error = { color = colors.error },
+          Warn = { color = colors.warning },
+          Info = { color = colors.info },
+          Hint = { color = colors.hint },
+          Misc = { color = colors.purple },
+        },
+      })
+    end,
   },
 
+  -- word highlighting
   {
     "RRethy/vim-illuminate",
     event = "VeryLazy",
   },
 
   -- git commit author
-  {"f-person/git-blame.nvim",
+  {
+    "f-person/git-blame.nvim",
     event = "VeryLazy",
     init = function()
       vim.g.gitblame_date_format = "%r"
