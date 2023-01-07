@@ -39,3 +39,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "AlphaReady",
+  callback = function()
+    print('asdjklsdjkl;dfkljasdkljfjklasdfkljasdjkl')
+  end,
+})

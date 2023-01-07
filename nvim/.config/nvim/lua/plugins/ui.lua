@@ -50,7 +50,7 @@ return {
         diagnostics_indicator = function(_, _, diag)
           local icons = require("config.settings").icons.diagnostics
           local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-            .. (diag.warning and icons.Warn .. diag.warning or "")
+              .. (diag.warning and icons.Warn .. diag.warning or "")
           return vim.trim(ret)
         end,
         offsets = {
@@ -70,7 +70,6 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     config = function()
-
       local function clock()
         return " " .. os.date("%H:%M")
       end
@@ -88,21 +87,30 @@ return {
             { "branch" },
             {
               "diff",
-              symbols = { added = symbols.icons.git.added, modified = symbols.icons.git.modified, removed = symbols.icons.git.removed }, -- changes diff symbols
+              symbols = {
+                added = symbols.icons.git.added,
+                modified = symbols.icons.git.modified,
+                removed = symbols.icons.git.removed,
+              }, -- changes diff symbols
             },
           },
           lualine_c = {
             {
               "diagnostics",
-              symbols = { error = symbols.icons.diagnostics.Error, warn = symbols.icons.diagnostics.Warn, info = symbols.icons.diagnostics.Info, hint = symbols.icons.diagnostics.Hint }
+              symbols = {
+                error = symbols.icons.diagnostics.Error,
+                warn = symbols.icons.diagnostics.Warn,
+                info = symbols.icons.diagnostics.Info,
+                hint = symbols.icons.diagnostics.Hint,
+              },
             },
           },
-          lualine_x = { "filetype"  },
+          lualine_x = { "filetype" },
           lualine_y = { "location" },
           lualine_z = { clock },
-        }
+        },
       })
-    end
+    end,
   },
 
   -- indent guides for Neovim
@@ -148,8 +156,8 @@ return {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
         },
-        signature = {enabled = false},
-        hover = {enabled = false}
+        signature = { enabled = false },
+        hover = { enabled = false },
       },
       presets = {
         bottom_search = true,
@@ -164,7 +172,8 @@ return {
       { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
       { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
       { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true },
-      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true },
+      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,
+        expr = true },
     },
   },
 
@@ -185,6 +194,7 @@ return {
 
       dashboard.section.header.val = vim.split(logo, "\n")
       dashboard.section.buttons.val = {
+        dashboard.button("s", " " .. " Load Session", ":lua require('persistence').load()<CR>"),
         dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
         dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
         dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
@@ -269,6 +279,6 @@ return {
     init = function()
       vim.g.gitblame_date_format = "%r"
       vim.g.gitblame_message_template = "<author> • <date> • <summary>"
-    end
-  }
+    end,
+  },
 }
