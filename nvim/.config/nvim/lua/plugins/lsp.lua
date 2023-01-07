@@ -2,42 +2,57 @@ return {
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     ensure_installed = {
-      "tsserver",
-      "prettierd",
+      "typescript-language-server",
+      "prettier",
       "stylua",
-      "luacheck",
       "eslint_d",
       "shellcheck",
     },
+
+    config = function(plugin)
+      require("mason").setup()
+      local mr = require("mason-registry")
+      for _, tool in ipairs(plugin.ensure_installed) do
+        local p = mr.get_package(tool)
+        if not p:is_installed() then
+          p:install()
+        end
+      end
+    end,
   },
+
   "onsails/lspkind.nvim",
+
+  "b0o/SchemaStore.nvim",
+
   {
     "VonHeikemen/lsp-zero.nvim",
-    dependencies = {
-      {'neovim/nvim-lspconfig'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
-
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
-
-      -- Snippets
-      {'L3MON4D3/LuaSnip'},
-      -- Snippet Collection (Optional)
-      {'rafamadriz/friendly-snippets'},
-    },
-
     event = "BufReadPost",
 
+    dependencies = {
+      { "neovim/nvim-lspconfig" },
+      { "williamboman/mason.nvim" },
+      { "williamboman/mason-lspconfig.nvim" },
+
+      -- Autocompletion
+      { "hrsh7th/nvim-cmp" },
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-nvim-lua" },
+
+      -- Snippets
+      { "L3MON4D3/LuaSnip" },
+      -- Snippet Collection (Optional)
+      { "rafamadriz/friendly-snippets" },
+    },
+
     config = function()
-      local lsp = require('lsp-zero')
-      lsp.preset('recommended')
+      local lsp = require("lsp-zero")
+      lsp.preset("recommended")
       lsp.ensure_installed({
         "tsserver",
         "eslint",
@@ -59,6 +74,15 @@ return {
 
       lsp.setup_nvim_cmp(require("config.cmp"))
 
+      lsp.configure("jsonls", {
+        settings = {
+          json = {
+            schemas = require("schemastore").json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      })
+
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
         if client.name ~= "apex_ls" then
@@ -71,6 +95,7 @@ return {
 
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "gh", vim.lsp.buf.signature_help, opts)
         vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
         vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
         vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
@@ -82,7 +107,30 @@ return {
       end)
 
       lsp.setup()
-    end,
-  }
-}
 
+      vim.diagnostic.config({
+        virtual_text = true,
+      })
+    end,
+  },
+
+  -- null-ls
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = "BufReadPre",
+    dependencies = { "mason.nvim" },
+    config = function()
+      local nls = require("null-ls")
+      nls.setup({
+        sources = {
+          nls.builtins.formatting.stylua,
+          nls.builtins.formatting.prettier,
+          nls.builtins.diagnostics.eslint,
+          nls.builtins.formatting.prettierd.with({
+            filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
+          }),
+        },
+      })
+    end,
+  },
+}

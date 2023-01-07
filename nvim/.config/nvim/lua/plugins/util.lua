@@ -20,6 +20,12 @@ return {
     },
   },
 
+  {
+    "smjonas/inc-rename.nvim",
+    cmd = "IncRename",
+    config = true,
+  },
+
   -- library used by other plugins
   "nvim-lua/plenary.nvim",
 }

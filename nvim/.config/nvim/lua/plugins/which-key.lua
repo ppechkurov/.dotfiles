@@ -14,12 +14,15 @@ return {
       },
       d = { "delete in no register" },
       e = { "<cmd>Neotree toggle<cr>", "explorer" },
-      ["f"] = {
+      f = {
         name = "find",
         b = { "<cmd>Telescope buffers<cr>", "buffer" },
         f = { "<cmd>Telescope find_files<cr>", "file" },
         g = { "<cmd>Telescope git_files<cr>", "git" },
         w = { "<cmd>Telescope live_grep<cr>", "word" },
+      },
+      r = {
+        n = { ":IncRename ", "inc rename" },
       },
       p = { "paste previous" },
       l = {

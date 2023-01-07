@@ -67,8 +67,8 @@ return {
 
   -- statusline
   {
-    event = "VeryLazy",
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     config = function()
 
       local function clock()
@@ -148,6 +148,8 @@ return {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
         },
+        signature = {enabled = false},
+        hover = {enabled = false}
       },
       presets = {
         bottom_search = true,
@@ -164,72 +166,6 @@ return {
       { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true },
       { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true },
     },
-  },
-
-  -- start screen
-  {
-    "echasnovski/mini.starter",
-    enabled = false,
-    version = false, -- wait till new 0.7.0 release to put it back on semver
-    event = "VimEnter",
-    config = function()
-      local logo = table.concat({
-        "██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z",
-        "██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z",
-        "██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z",
-        "██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z",
-        "███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║",
-        "╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝",
-      }, "\n")
-      local pad = string.rep(" ", 22)
-      local new_section = function(name, action, section)
-        return { name = name, action = action, section = pad .. section }
-      end
-
-      local starter = require("mini.starter")
-      --stylua: ignore
-      local config = {
-        evaluate_single = true,
-        header = logo,
-        items = {
-          new_section("Find file",    "Telescope find_files", "Telescope"),
-          new_section("Recent files", "Telescope oldfiles",   "Telescope"),
-          new_section("Grep text",    "Telescope live_grep",  "Telescope"),
-          new_section("init.lua",     "e $MYVIMRC",           "Config"),
-          new_section("Lazy",         "Lazy",                 "Config"),
-          new_section("New file",     "ene | startinsert",    "Built-in"),
-          new_section("Quit",         "qa",                   "Built-in"),
-        },
-        content_hooks = {
-          starter.gen_hook.adding_bullet(pad .. "░ ", false),
-          starter.gen_hook.aligning("center", "center"),
-        },
-      }
-
-      -- close Lazy and re-open when starter is ready
-      if vim.o.filetype == "lazy" then
-        vim.cmd.close()
-        vim.api.nvim_create_autocmd("User", {
-          pattern = "MiniStarterOpened",
-          callback = function()
-            require("lazy").show()
-          end,
-        })
-      end
-
-      starter.setup(config)
-
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "LazyVimStarted",
-        callback = function()
-          local stats = require("lazy").stats()
-          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          local pad_footer = string.rep(" ", 8)
-          MiniStarter.config.footer = pad_footer .. "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
-          pcall(MiniStarter.refresh)
-        end,
-      })
-    end,
   },
 
   -- dashboard

@@ -92,3 +92,7 @@ vim.keymap.set("n", "<leader>bb", "<cmd>:e #<cr>", { desc = "Switch to Other Buf
 vim.keymap.set("n", "H", "<cmd>:BufferLineCyclePrev<CR>", { desc = "Previous Buffer" })
 vim.keymap.set("n", "<leader>`", "<cmd>:e #<cr>", { desc = "Switch to Other Buffer" })
 
+-- disable select mode
+vim.keymap.set("n", "gh", "<Nop>", { desc = "disbled" })
+vim.keymap.set("n", "gH", "<Nop>", { desc = "disbled" })
+
