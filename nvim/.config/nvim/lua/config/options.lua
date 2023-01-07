@@ -5,7 +5,7 @@ vim.g.maplocalleader = " "
 
 vim.opt.autowrite = true -- enable auto write
 vim.opt.clipboard = "unnamedplus" -- sync with system clipboard
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
 vim.opt.confirm = true -- confirm to save changes before exiting modified buffer

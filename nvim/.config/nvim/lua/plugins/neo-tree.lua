@@ -1,9 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   cmd = "Neotree",
-  keys = {
-    { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "NeoTree (cwd)" },
-  },
   init = function()
     vim.g.neo_tree_remove_legacy_commands = 1
   end,

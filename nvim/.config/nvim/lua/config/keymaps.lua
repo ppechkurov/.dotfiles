@@ -47,23 +47,12 @@ vim.keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true })
 vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true })
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true })
 
--- Add undo break-points
-vim.keymap.set("i", ",", ",<c-g>u")
-vim.keymap.set("i", ".", ".<c-g>u")
-vim.keymap.set("i", ";", ";<c-g>u")
-
--- save in insert mode
-vim.keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>")
-
 -- better indenting
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- lazy
 vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>")
-
--- new file
-vim.keymap.set("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 vim.keymap.set("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open Location List" })
 vim.keymap.set("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
@@ -98,8 +87,8 @@ vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<CR>", { desc = "Close" })
 vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<CR>", { desc = "Previous" })
 
 -- buffers
-vim.keymap.set("n", "<leader>b]", "<cmd>:BufferLineCycleNext<CR>", { desc = "Next Buffer" })
+vim.keymap.set("n", "L", "<cmd>:BufferLineCycleNext<CR>", { desc = "Next Buffer" })
 vim.keymap.set("n", "<leader>bb", "<cmd>:e #<cr>", { desc = "Switch to Other Buffer" })
-vim.keymap.set("n", "<leader>b[", "<cmd>:BufferLineCyclePrev<CR>", { desc = "Previous Buffer" })
+vim.keymap.set("n", "H", "<cmd>:BufferLineCyclePrev<CR>", { desc = "Previous Buffer" })
 vim.keymap.set("n", "<leader>`", "<cmd>:e #<cr>", { desc = "Switch to Other Buffer" })
 

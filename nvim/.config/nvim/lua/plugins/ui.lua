@@ -67,10 +67,10 @@ return {
 
   -- statusline
   {
-    "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    "nvim-lualine/lualine.nvim",
     config = function()
-      --local navic = require("nvim-navic")
+
       local function clock()
         return " " .. os.date("%H:%M")
       end
@@ -96,8 +96,6 @@ return {
               "diagnostics",
               symbols = { error = symbols.icons.diagnostics.Error, warn = symbols.icons.diagnostics.Warn, info = symbols.icons.diagnostics.Info, hint = symbols.icons.diagnostics.Hint }
             },
-            { "filename", padding = { left = 1, right = 1 } },
-            --{ navic.get_location, cond = navic.is_available }
           },
           lualine_x = { "filetype"  },
           lualine_y = { "location" },
@@ -112,8 +110,8 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
     config = {
-      --char = "▏",
-      char = "│",
+      char = "▏",
+      --char = "│",
       filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
       show_trailing_blankline_indent = false,
       show_current_context = false,
@@ -133,8 +131,8 @@ return {
         end,
       })
       require("mini.indentscope").setup({
-        -- symbol = "▏",
-        symbol = "│",
+        symbol = "▏",
+        -- symbol = "│",
         options = { try_as_border = true },
       })
     end,
