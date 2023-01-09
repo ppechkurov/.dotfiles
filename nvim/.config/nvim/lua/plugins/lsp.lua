@@ -83,6 +83,24 @@ return {
         },
       })
 
+      lsp.configure("apex_ls", {
+        filetypes = { "st" },
+        on_attach = function(client, bufnr)
+          require("nvim-treesitter.parsers").filetype_to_parsername.st = "java"
+          vim.cmd.TSEnable("highlight")
+          vim.cmd.TSEnable("indent")
+          vim.cmd.TSEnable("rainbow")
+
+          vim.cmd([[
+				augroup highlight_current_word
+  				au!
+  				au CursorHold * :exec 'match Search /\V\<' . expand('<cword>') . '\>/'
+				augroup END
+			]]      )
+        end,
+        apex_enable_semantic_errors = true,
+      })
+
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
         if client.name ~= "apex_ls" then
@@ -103,6 +121,7 @@ return {
         vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
         vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
         vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
         vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
       end)
 
@@ -125,6 +144,7 @@ return {
         sources = {
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.prettier,
+          nls.builtins.formatting.prettier.with({ filetypes = { "st" } }),
           nls.builtins.diagnostics.eslint,
           nls.builtins.formatting.prettierd.with({
             filetypes = { "markdown" }, -- only runs `deno fmt` for markdown

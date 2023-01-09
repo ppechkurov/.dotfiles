@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.opt.autowrite = true -- enable auto write
+vim.opt.colorcolumn = "80"
 vim.opt.clipboard = "unnamedplus" -- sync with system clipboard
 vim.opt.cmdheight = 0
 vim.opt.completeopt = "menu,menuone,noinsert,noselect"
