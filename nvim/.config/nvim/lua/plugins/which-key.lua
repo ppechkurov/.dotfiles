@@ -25,6 +25,10 @@ return {
         n = { ":IncRename ", "inc rename" },
       },
       p = { "paste previous" },
+      s = {
+        name = "SFDX",
+        d = { "<cmd>Deploy<cr>", "deploy" },
+      },
       l = {
         name = "LSP",
         a = { "action" },
@@ -32,8 +36,6 @@ return {
         r = { "rename" },
       },
       x = { "chmod +x" },
-    },
-    { prefix = "<leader>" }
-  )
+    }, { prefix = "<leader>" })
   end,
 }

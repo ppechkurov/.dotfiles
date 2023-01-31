@@ -43,6 +43,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd("User", {
   pattern = "AlphaReady",
   callback = function()
-    print('asdjklsdjkl;dfkljasdkljfjklasdfkljasdjkl')
+    print("asdjklsdjkl;dfkljasdkljfjklasdfkljasdjkl")
   end,
 })
+
+vim.api.nvim_create_user_command("Deploy", function()
+  vim.cmd("!sfdx force:source:deploy -p " .. vim.fn.expand("%"))
+end, {})
+
+vim.api.nvim_create_user_command("OpenOrg", function()
+  vim.cmd("!sfdx force:org:open")
+end, {})
