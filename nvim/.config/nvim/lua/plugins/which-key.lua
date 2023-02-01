@@ -28,6 +28,7 @@ return {
       s = {
         name = "SFDX",
         d = { "<cmd>Deploy<cr>", "deploy" },
+        o = { "<cmd>OpenOrg<cr>", "open default org" },
       },
       l = {
         name = "LSP",

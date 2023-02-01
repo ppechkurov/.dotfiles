@@ -26,34 +26,34 @@ local kind_icons = {
   TypeParameter = "",
 }
 
-local lspkind = require('lspkind')
-local cmp = require('cmp')
+local lspkind = require("lspkind")
+local cmp = require("cmp")
 
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 return {
   enabled = true,
 
   sources = {
-    { name = 'path' },
-    { name = 'nvim_lsp' },
-    { name = 'buffer', keyword_length = 5 }
+    { name = "path" },
+    { name = "nvim_lsp" },
+    { name = "buffer", keyword_length = 5 },
   },
 
   completion = {
-    completeopt = 'menu,menuone,noinsert,noselect'
+    completeopt = "menu,menuone,noinsert,noselect",
   },
 
   formatting = {
     format = lspkind.cmp_format({
-      mode = 'symbol_text',
+      mode = "symbol_text",
       maxwidth = 50,
-      ellipsis_char = '...',
-    })
-  }, 
+      ellipsis_char = "...",
+    }),
+  },
 
   mapping = {
     ["<Tab>"] = cmp.mapping(function(fallback)
@@ -64,7 +64,7 @@ return {
       else
         fallback()
       end
-    end, { "i", "s", }),
+    end, { "i", "s" }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -72,12 +72,12 @@ return {
         fallback()
       end
     end, {
-        "i",
-        "s",
-      }),
-    ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-    ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+      "i",
+      "s",
+    }),
+    ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<CR>"] = cmp.mapping.confirm(),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-  }
+  },
 }
