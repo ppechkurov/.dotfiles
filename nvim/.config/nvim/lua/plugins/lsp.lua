@@ -121,7 +121,9 @@ return {
         vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
         vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
         vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
-        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
+        vim.keymap.set("n", "<leader>lf", function()
+          vim.lsp.buf.format({ timeout_ms = 2000 })
+        end, opts)
         vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
       end)
 
