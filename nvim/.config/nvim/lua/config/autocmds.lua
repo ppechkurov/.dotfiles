@@ -48,27 +48,23 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 vim.api.nvim_create_user_command("Deploy", function()
-  -- vim.cmd("!sfdx force:source:deploy -p " .. vim.fn.expand("%"))
   vim.fn.jobstart("sfdx force:source:deploy -p" .. vim.fn.expand("%"), {
     on_stdout = function(id, data)
       print(vim.fn.join(data))
     end,
     on_stderr = function(id, data)
-      error(vim.fn.join(data))
+      print(vim.fn.join(data))
     end,
     on_exit = function() end,
   })
 end, {})
 
 vim.api.nvim_create_user_command("OpenOrg", function()
-  local output = ""
   vim.fn.jobstart("sfdx force:org:open", {
     on_stdout = function(id, data)
-      -- output = output .. vim.fn.join(data)
       print(vim.fn.join(data))
     end,
     on_stderr = function(id, data)
-      -- output = output .. vim.fn.join(data)
       print(vim.fn.join(data))
     end,
     on_exit = function()
