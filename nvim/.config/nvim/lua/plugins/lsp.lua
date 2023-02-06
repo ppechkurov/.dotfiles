@@ -3,6 +3,7 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "apex-language-server",
         "typescript-language-server",
         "prettier",
         "stylua",
@@ -29,8 +30,10 @@ return {
             vim.cmd.TSEnable("indent")
             vim.cmd.TSEnable("rainbow")
           end,
-          settings = {},
         },
+      },
+      format = {
+        timeout_ms = 2000,
       },
     },
   },

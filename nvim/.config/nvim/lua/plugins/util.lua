@@ -1,10 +1,5 @@
 return {
-  {
-    "echasnovski/mini.indentscope",
-    opts = {
-      symbol = "▏",
-    },
-  },
+  { "echasnovski/mini.indentscope", opts = { symbol = "▏" } },
   {
     "petertriho/nvim-scrollbar",
     event = "BufReadPost",
