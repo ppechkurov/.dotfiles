@@ -5,6 +5,7 @@ return {
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     ensure_installed = {
       "typescript-language-server",
+      "apex-language-server",
       "prettier",
       "stylua",
       "eslint_d",
@@ -91,21 +92,19 @@ return {
           vim.cmd.TSEnable("indent")
           vim.cmd.TSEnable("rainbow")
 
-          vim.cmd([[
-				augroup highlight_current_word
-  				au!
-  				au CursorHold * :exec 'match Search /\V\<' . expand('<cword>') . '\>/'
-				augroup END
-			]]      )
+          --        vim.cmd([[
+          -- 	augroup highlight_current_word
+          -- 			au!
+          -- 			au CursorHold * :exec 'match Search /\V\<' . expand('<cword>') . '\>/'
+          -- 	augroup END
+          -- ]]      )
         end,
         apex_enable_semantic_errors = true,
       })
 
       lsp.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
-        if client.name ~= "apex_ls" then
-          require("illuminate").on_attach(client)
-        end
+        require("illuminate").on_attach(client)
 
         if client.server_capabilities.documentRangeFormattingProvider then
           vim.keymap.set("v", "gma", vim.lsp.formatexpr, opts)
