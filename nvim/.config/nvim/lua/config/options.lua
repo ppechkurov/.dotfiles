@@ -5,7 +5,8 @@ local opt = vim.opt
 
 opt.scrolloff = 8
 opt.sidescroll = 8
-opt.tabstop = 2
-opt.shiftwidth = 2
+opt.tabstop = 8
+opt.shiftwidth = 4
+opt.softtabstop = 4
 opt.smarttab = true
 opt.smartindent = true
