@@ -3,7 +3,7 @@ return {
 	"AstroNvim/astrocommunity",
 	{ import = "astrocommunity.colorscheme.nightfox" },
 	{ import = "astrocommunity.motion.leap-nvim" },
-	{ import = "astrocommunity.pack.typescript" },
+	-- { import = "astrocommunity.pack.typescript" },
 	{ import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
 	{ import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
 	{ import = "astrocommunity.scrolling.satellite-nvim" },
