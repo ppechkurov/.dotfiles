@@ -1,8 +1,3 @@
 return {
-  {
-    "williamboman/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = { "lua_ls", "jsonls", "tsserver" },
-    },
-  }
+	{ "lvimuser/lsp-inlayhints.nvim", config = true },
 }

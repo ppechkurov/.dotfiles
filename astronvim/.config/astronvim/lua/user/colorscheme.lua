@@ -1,2 +1,1 @@
--- return "nightfox"
 return "darkplus"
