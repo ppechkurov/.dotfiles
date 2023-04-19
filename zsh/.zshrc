@@ -46,10 +46,10 @@ plugins=(
   git-extras
   node
   z
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-history-substring-search
   zsh-vi-mode
+  zsh-autosuggestions
+  zsh-history-substring-search
+  zsh-syntax-highlighting
 )
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
