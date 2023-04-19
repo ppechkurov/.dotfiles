@@ -9,17 +9,17 @@ echo '======> nix installed'
 
 # install packages
 nix-env -iA \
-  nixpkgs.zsh \
-  nixpkgs.git \
-  nixpkgs.stow \
-  nixpkgs.fzf \
-  nixpkgs.ripgrep \
-  nixpkgs.bat \
-  nixpkgs.cmake \
-  nixpkgs.lazygit \
-  nixpkgs.exa \
-  nixpkgs.xcape \
-  nixpkgs.neovim
+	nixpkgs.zsh \
+	nixpkgs.git \
+	nixpkgs.stow \
+	nixpkgs.fzf \
+	nixpkgs.ripgrep \
+	nixpkgs.bat \
+	nixpkgs.cmake \
+	nixpkgs.lazygit \
+	nixpkgs.exa \
+	nixpkgs.xcape \
+	nixpkgs.neovim
 
 echo '======> nix packages installed'
 
@@ -45,6 +45,7 @@ git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:-${ZSH:-$HO
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 git clone https://github.com/zsh-users/zsh-history-substring-search "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-history-substring-search"
 git clone https://github.com/lukechilds/zsh-nvm "$HOME/.oh-my-zsh/custom/plugins/zsh-nvm"
+git clone https://github.com/jeffreytse/zsh-vi-mode "$ZSH_CUSTOM/plugins/zsh-vi-mode"
 echo '======> plugins installed'
 
 rm -rf ~/.zshrc
