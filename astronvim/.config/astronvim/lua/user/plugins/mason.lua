@@ -5,6 +5,6 @@ return {
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
-		opts = { ensure_installed = { "stylua", "prettierd", "eslint_d" } },
+		opts = { ensure_installed = { "stylua", "prettier", "eslint-lsp" } },
 	},
 }
