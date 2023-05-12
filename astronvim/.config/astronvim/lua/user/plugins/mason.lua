@@ -1,7 +1,7 @@
 return {
 	{
 		"williamboman/mason-lspconfig.nvim",
-		opts = { ensure_installed = { "jsonls", "lua_ls", "tsserver" } },
+		opts = { ensure_installed = { "jsonls", "lua_ls" } },
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",

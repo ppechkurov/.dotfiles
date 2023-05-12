@@ -47,6 +47,7 @@ plugins=(
   node
   z
   vi-mode
+  docker
   zsh-autosuggestions
   zsh-history-substring-search
   zsh-syntax-highlighting
