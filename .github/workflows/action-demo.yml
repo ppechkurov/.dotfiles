@@ -1,12 +1,14 @@
-name: Hello world
-on: [ push ]
+name: "Assert Branch Naming Convention"
+on: pull_request
 
 jobs:
-  build:
+  branch-naming-rules:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Write a multi-line message
-        run: |
-          echo This demo file shows a 
-          echo very basic and easy-to-understand workflow.
+      - uses: deepakputhraya/action-branch-name@master
+        with:
+          regex: '([a-z])+\/([a-z])+' # Regex the branch should match. This example enforces grouping
+          allowed_prefixes: "feature,stable,fix" # All branches should start with the given prefix
+          ignore: master,develop # Ignore exactly matching branch names from convention
+          min_length: 5 # Min length of the branch name
+          max_length: 20 # Max length of the branch name
