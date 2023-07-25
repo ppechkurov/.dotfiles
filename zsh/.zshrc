@@ -111,6 +111,9 @@ alias ls='exa'
 alias ll='ls -l -g --icons'
 alias lla='ll -a'
 
+# aws
+alias tunnel-backupdb-prod='ssh -N -L 3307:backup-and-recovery.cip5jz6wczib.us-east-2.rds.amazonaws.com:3306 ubuntu@ec2-3-142-18-254.us-east-2.compute.amazonaws.com -i .ssh/prod_key &'
+
 # nix
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 
@@ -133,3 +136,6 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile
 # xcape -e 'Control_L=Escape'
 xset r rate 400 50
 
+
+# Created by `pipx` on 2023-07-24 10:56:11
+export PATH="$PATH:/home/ppechkurov/.local/bin"
