@@ -11,21 +11,30 @@ pcall(telescope.load_extension, 'fzf')
 
 -- [[ Keymaps ]]
 -- See `:help telescope.builtin`
-local map = vim.keymap.set
+local nmap = function(keys, func, desc)
+	if desc then
+		desc = 'lsp: ' .. desc
+	end
 
-map('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-map('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-map('n', '<leader>/', function()
+	vim.keymap.set('n', keys, func, { desc = desc })
+end
+
+nmap('<leader>?', require('telescope.builtin').oldfiles, '[?] Find recently opened files')
+nmap('<leader><space>', require('telescope.builtin').buffers, '[ ] Find existing buffers')
+nmap('<leader>/', function()
 	-- You can pass additional configuration to telescope to change theme, layout, etc.
 	require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
 		winblend = 10,
 		previewer = false,
 	})
-end, { desc = '[/] Fuzzily search in current buffer' })
+end, '[/] Fuzzily search in current buffer')
 
-map('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-map('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-map('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-map('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-map('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-map('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+nmap('<leader>gf', require('telescope.builtin').git_files, 'Search [G]it [F]iles')
+nmap('<leader>sf', require('telescope.builtin').find_files, '[S]earch [F]iles')
+nmap('<leader>sh', require('telescope.builtin').help_tags, '[S]earch [H]elp')
+nmap('<leader>sw', require('telescope.builtin').grep_string, '[S]earch current [W]ord')
+nmap('<leader>sg', require('telescope.builtin').live_grep, '[S]earch by [G]rep')
+nmap('<leader>sd', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
+
+nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
