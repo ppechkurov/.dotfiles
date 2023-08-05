@@ -1,8 +1,6 @@
 require 'config.options'
 require 'setup'
 
-require 'plugins.telescope.config'
-require 'plugins.treesitter.config'
 require 'config.lsp'
 
 require 'keymaps'
