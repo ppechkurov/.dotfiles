@@ -2,6 +2,7 @@ require 'vimopts'
 require 'setup'
 
 require 'plugins.telescope.config'
+require 'plugins.treesitter.config'
 
 require 'keymaps'
 require 'autocommands'
