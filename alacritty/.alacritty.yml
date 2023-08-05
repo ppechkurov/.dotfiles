@@ -1,6 +1,6 @@
 window:
-  #startup_mode: Maximized #Fullscreen
-  # decorations: none
+  startup_mode: Maximized #Fullscreen
+  decorations: none
 
   class:
     # Application instance name
@@ -101,6 +101,9 @@ selection:
 cursor:
   style:
     shape: Block
+    blinking: Always
+  blink_interval: 400
+  blink_timeout: 0
   unfocused_hollow: true
 # Live config reload (changes require restart)
 live_config_reload: true
