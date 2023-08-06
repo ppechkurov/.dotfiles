@@ -12,26 +12,26 @@ local on_attach = function(client, bufnr)
 	-- for lsp related items. it sets the mode, buffer and description for us each time.
 	local nmap = function(keys, func, desc)
 		if desc then
-			desc = 'lsp: ' .. desc
+			desc = desc
 		end
 
 		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	nmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
-	nmap('<leader>ca', vim.lsp.buf.code_action, '[c]ode [a]ction')
 
-	nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-	nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-	nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-	nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-	nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+	nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
+	nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
+	nmap('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
+	nmap('gI', vim.lsp.buf.implementation, '[g]oto [I]mplementation')
 
 	-- See `:help K` for why this keymap
 	nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
 	nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-	nmap('<leader>f', vim.lsp.buf.format, '[F]ormat current buffer with LSP')
+	nmap('<leader>lr', vim.lsp.buf.rename, '[r]ename')
+	nmap('<leader>lc', vim.lsp.buf.code_action, '[a]ction')
+	nmap('<leader>lD', vim.lsp.buf.type_definition, 'type [D]efinition')
+	nmap('<leader>lf', vim.lsp.buf.format, '[f]ormat')
 end
 
 return on_attach

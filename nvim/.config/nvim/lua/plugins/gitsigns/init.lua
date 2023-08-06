@@ -20,7 +20,7 @@ return {
 
 			map('n', '<leader>gp', signs.prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
 			map('n', '<leader>gn', signs.next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-			map('n', '<leader>ph', signs.preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+			map('n', '<leader>ghp', signs.preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
 			map("n", "<leader>ghb", function() signs.blame_line({ full = true }) end, "Blame Line")
 		end,
 	},
