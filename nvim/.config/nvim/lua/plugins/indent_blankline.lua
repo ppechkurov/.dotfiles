@@ -5,7 +5,8 @@ return {
   -- See `:help indent_blankline.txt`
   opts = {
     -- char = '┊',
-    char = '▎',
+    -- char = '▎',
+    char = '▏',
     show_trailing_blankline_indent = false,
   },
 }
