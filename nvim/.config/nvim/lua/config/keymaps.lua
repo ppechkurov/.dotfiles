@@ -60,11 +60,12 @@ map('n', '<leader>oo', function()
 end, { noremap = true, desc = 'Explorer' })
 
 -- MiniFiles
-local minifiles_toggle = function(...)
-  if not MiniFiles.close() then
-    MiniFiles.open(...)
-  end
-end
+map('n', '<leader>e', function()
+  print(vim.api.nvim_buf_get_name(0))
+  require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
+end, { noremap = true, desc = 'Open mini.files (directory of current file)' })
 
--- Use different left hand side for your liking
-vim.keymap.set('n', '<leader>e', minifiles_toggle)
+map('n', '<leader>E', function()
+  print(vim.loop.cwd())
+  require('mini.files').open(vim.loop.cwd(), true)
+end, { noremap = true, desc = 'Open mini.files (cwd)' })
