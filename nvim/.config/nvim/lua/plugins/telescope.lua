@@ -59,7 +59,7 @@ return {
       nmap('<leader>sd', builtin.diagnostics, '[S]earch [D]iagnostics')
 
       nmap('<leader>ds', builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
-      nmap('<leader>ws', builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+      -- nmap('<leader>ws', builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
     end,
   },
 

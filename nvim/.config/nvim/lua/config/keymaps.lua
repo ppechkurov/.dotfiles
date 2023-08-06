@@ -69,3 +69,6 @@ map('n', '<leader>E', function()
   print(vim.loop.cwd())
   require('mini.files').open(vim.loop.cwd(), true)
 end, { noremap = true, desc = 'Open mini.files (cwd)' })
+
+map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
+map({ 'i', 'v', 'n', 's' }, '<leader>w', '<cmd>w<cr><esc>', { desc = 'Save file' })
