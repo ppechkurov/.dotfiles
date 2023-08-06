@@ -2,9 +2,19 @@
 -- keeping track of open buffers, window arrangement, and more.
 -- You can restore sessions when returning through the dashboard.
 return {
-	"folke/persistence.nvim",
-	event = "BufReadPre",
-	opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp" } },
+  'folke/persistence.nvim',
+  event = 'BufReadPre',
+  opts = {
+    options = {
+      'buffers',
+      'curdir',
+      'tabpages',
+      'winsize',
+      'help',
+      'globals',
+      'skiprtp',
+    },
+  },
 	-- stylua: ignore
 	keys = {
 		{ "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
