@@ -51,10 +51,20 @@ map('v', '>', '>gv')
 
 -- telescope filebrowser
 map('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true }) -- open file_browser with the path of the current buffer
--- map('n', '<leader>fB', ':Telescope file_browser<CR>', { noremap = true })
+map('n', '<leader>fB', ':Telescope file_browser<CR>', { noremap = true })
 
 -- Oil
 local oil = require 'oil'
-map('n', '<leader>e', function()
+map('n', '<leader>oo', function()
   oil.toggle_float(oil.get_current_dir())
 end, { noremap = true, desc = 'Explorer' })
+
+-- MiniFiles
+local minifiles_toggle = function(...)
+  if not MiniFiles.close() then
+    MiniFiles.open(...)
+  end
+end
+
+-- Use different left hand side for your liking
+vim.keymap.set('n', '<leader>e', minifiles_toggle)
