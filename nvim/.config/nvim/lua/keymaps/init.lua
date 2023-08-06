@@ -43,3 +43,8 @@ map('n', '<leader>`', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 -- better indenting
 map('v', '<', '<gv')
 map('v', '>', '>gv')
+
+-- telescope filebrowser
+
+map('n', '<space>fb', ':Telescope file_browser<CR>', { noremap = true })
+map('n', '<space>fB', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true }) -- open file_browser with the path of the current buffer
