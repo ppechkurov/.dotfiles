@@ -5,6 +5,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 local opt = vim.opt
+opt.cmdheight = 0                    -- Remove bottom cmdline
 opt.clipboard = 'unnamedplus'        -- Sync clipboard between OS and Neovim.
 opt.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
 opt.confirm = true
@@ -36,6 +37,7 @@ opt.spelllang = { "en" }
 opt.splitbelow = true      -- Put new windows below current
 opt.splitright = true      -- Put new windows right of current
 opt.tabstop = 2            -- Number of spaces tabs count for
+opt.softtabstop = 2
 opt.termguicolors = true   -- True color support
 opt.timeoutlen = 300
 opt.undofile = true
@@ -48,7 +50,3 @@ opt.wrap = false                   -- Disable line wrap
 local o = vim.o
 o.hlsearch = false   -- Remove highlight on search
 o.breakindent = true -- Enable break indent
-
--- Case-insensitive searching UNLESS \C or capital in search
-o.ignorecase = true
-o.smartcase = true
