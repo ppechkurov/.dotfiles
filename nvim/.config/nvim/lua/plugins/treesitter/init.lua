@@ -1,7 +1,39 @@
 return {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
-  dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    {
+      'HiPhish/nvim-ts-rainbow2',
+      config = function()
+        ---@diagnostic disable-next-line: missing-fields
+        require('nvim-treesitter.configs').setup {
+          rainbow = {
+            enable = true,
+            -- list of languages you want to disable the plugin for
+            -- disable = { "jsx", "cpp" },
+            -- Which query to use for finding delimiters
+            query = 'rainbow-parens',
+            -- Highlight the entire buffer all at once
+            strategy = require 'ts-rainbow.strategy.global',
+          },
+        }
+
+        vim.api.nvim_create_autocmd({ 'BufWritePost', 'FocusGained' }, {
+          callback = function()
+            vim.cmd 'TSDisable rainbow'
+            vim.cmd 'TSEnable rainbow'
+          end,
+        })
+      end,
+    },
+    {
+      'Wansmer/treesj',
+      opts = {
+        use_default_keymaps = false,
+      },
+    },
+  },
   build = ':TSUpdate',
   opts = {
     -- add languages to be installed here that you want installed for treesitter
@@ -12,6 +44,7 @@ return {
       'rust',
       'tsx',
       'typescript',
+      'javascript',
       'vimdoc',
       'vim',
     },
