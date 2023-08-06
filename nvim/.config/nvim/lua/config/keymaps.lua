@@ -10,7 +10,12 @@ map('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
 map('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'', { expr = true, silent = true })
 
 -- Show filetree
-map('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Explorer' })
+map(
+  'n',
+  '<leader>e',
+  ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
+  { noremap = true, desc = 'Explorer' }
+)
 
 -- Move to window using the <ctrl> hjkl keys
 map('n', '<C-h>', '<C-w>h', { desc = 'Go to left window', remap = true })
@@ -45,6 +50,5 @@ map('v', '<', '<gv')
 map('v', '>', '>gv')
 
 -- telescope filebrowser
-
-map('n', '<space>fb', ':Telescope file_browser<CR>', { noremap = true })
-map('n', '<space>fB', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true }) -- open file_browser with the path of the current buffer
+map('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true }) -- open file_browser with the path of the current buffer
+map('n', '<leader>fB', ':Telescope file_browser<CR>', { noremap = true })
