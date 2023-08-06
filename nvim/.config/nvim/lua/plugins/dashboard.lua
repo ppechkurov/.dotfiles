@@ -1,5 +1,5 @@
 -- Dashboard. This runs when neovim starts, and is what displays
--- the "LAZYVIM" banner.
+-- the "LAZYVIM" ranner.
 return {
   'goolord/alpha-nvim',
   event = 'VimEnter',
@@ -17,6 +17,7 @@ return {
     dashboard.section.header.val = vim.split(logo, '\n')
     dashboard.section.buttons.val = {
       dashboard.button('f', ' ' .. ' Find file', ':Telescope find_files <CR>'),
+      dashboard.button('b', '󱏒 ' .. ' Browse files', ':Telescope file_browser<CR>'),
       dashboard.button('n', ' ' .. ' New file', ':ene <BAR> startinsert <CR>'),
       dashboard.button('r', ' ' .. ' Recent files', ':Telescope oldfiles <CR>'),
       dashboard.button('g', ' ' .. ' Find text', ':Telescope live_grep <CR>'),
