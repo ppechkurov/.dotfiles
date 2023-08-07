@@ -100,7 +100,10 @@ selection:
 #window.dynamic_title: true
 cursor:
   style:
+    blinking: Always
     shape: Block
+  blink_interval: 400
+  blink_timeout: 0
   unfocused_hollow: true
 # Live config reload (changes require restart)
 live_config_reload: true
