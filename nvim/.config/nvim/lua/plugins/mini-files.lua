@@ -2,15 +2,15 @@ return {
   'echasnovski/mini.files',
   opts = {
     windows = {
-      max_number = 3,     -- maximum number of windows to show side by side
-      preview = true,     -- whether to show preview of file/directory under cursor
-      width_focus = 25,   -- width of focused window
+      max_number = 3, -- maximum number of windows to show side by side
+      preview = true, -- whether to show preview of file/directory under cursor
+      width_focus = 25, -- width of focused window
       width_nofocus = 15, -- width of non-focused window
       width_preview = 80, -- width of preview window
     },
     mappings = {
-      go_in = 'L',
-      go_in_plus = 'l',
+      go_in = 'l',
+      go_in_plus = 'L',
     },
   },
 
