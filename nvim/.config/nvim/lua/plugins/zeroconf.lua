@@ -13,11 +13,22 @@ return {
   -- buffer remove
   {
     'echasnovski/mini.bufremove',
-		-- stylua: ignore
-		keys = {
-			{ "<leader>c", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
-			{ "<leader>C", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
-		},
+    keys = {
+      {
+        '<leader>c',
+        function()
+          require('mini.bufremove').delete(0, false)
+        end,
+        desc = 'Delete Buffer',
+      },
+      {
+        '<leader>C',
+        function()
+          require('mini.bufremove').delete(0, true)
+        end,
+        desc = 'Delete Buffer (Force)',
+      },
+    },
   },
 
   -- auto pairs
@@ -28,4 +39,8 @@ return {
   },
 
   'b0o/schemastore.nvim',
+  {
+    'theHamsta/nvim-dap-virtual-text',
+    opts = {},
+  },
 }
