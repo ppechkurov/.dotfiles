@@ -9,8 +9,8 @@ return {
       width_preview = 80, -- width of preview window
     },
     mappings = {
-      go_in = 'l',
-      go_in_plus = 'L',
+      go_in = 'L',
+      go_in_plus = 'l',
     },
   },
 
