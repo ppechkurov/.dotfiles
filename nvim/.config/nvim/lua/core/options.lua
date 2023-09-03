@@ -1,4 +1,5 @@
 local opt = vim.opt
+
 opt.cmdheight = 0 -- Remove bottom cmdline
 opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
 opt.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
@@ -17,13 +18,15 @@ opt.number = true -- Print line number
 opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.relativenumber = true -- Relative line numbers
-opt.scrolloff = 8 -- Lines of context
 opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize' }
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 2 -- Size of an indent
 opt.shortmess:append { W = true, I = true, c = true }
 opt.showmode = false -- Dont show mode since we have a statusline
+
+opt.scrolloff = 8 -- Lines of context
 opt.sidescrolloff = 8 -- Columns of context
+
 opt.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smartcase = true -- Don't ignore case with capitals
 opt.smartindent = true -- Insert indents automatically
@@ -36,11 +39,11 @@ opt.termguicolors = true -- True color support
 opt.timeoutlen = 300
 opt.undofile = true
 opt.undolevels = 10000
-opt.updatetime = 200 -- Save swap file and trigger CursorHold
+opt.swapfile = false
 opt.wildmode = 'longest:full,full' -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 
 local o = vim.o
-o.hlsearch = false -- Remove highlight on search
+o.hlsearch = true -- Remove highlight on search
 o.breakindent = true -- Enable break indent

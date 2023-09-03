@@ -3,14 +3,12 @@
 -- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
 require 'setup'
 
 require 'config.lsp'
 
-require 'config.options'
-require 'config.keymaps'
-
-require 'autocommands'
+require 'core'
 
 -- require 'config.dap'
 
