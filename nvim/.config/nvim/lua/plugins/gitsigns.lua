@@ -11,7 +11,7 @@ return {
       changedelete = { text = '▎' },
       untracked = { text = '▎' },
     },
-    current_line_blame = true,
+    current_line_blame = true, -- enable blame of the current line
     on_attach = function(bufnr)
       local signs = require 'gitsigns'
 

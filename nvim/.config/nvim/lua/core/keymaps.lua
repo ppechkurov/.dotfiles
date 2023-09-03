@@ -72,3 +72,6 @@ end, { noremap = true, desc = 'Open mini.files (cwd)' })
 
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
 map('n', '<leader>w', '<cmd>w<cr><esc>', { desc = 'Save file' })
+
+-- Lspsaga
+map('n', '<leader>sd', ':Lspsaga diagnostic_jump_next<CR>', { desc = 'diagnostics' })

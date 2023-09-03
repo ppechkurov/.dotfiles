@@ -33,6 +33,10 @@ return {
         p = { '[p]revious hunk' },
         n = { '[n]ext hunk' },
       },
+      s = {
+        name = 'search',
+        d = { 'diagnostics' },
+      },
     }, { prefix = '<leader>' })
 
     wk.setup(opts)

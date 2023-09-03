@@ -9,23 +9,51 @@ return {
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       local telescope = require 'telescope'
+      local actions = require 'telescope.actions'
 
       telescope.setup {
         defaults = {
-          mappings = { i = { ['<C-u>'] = false, ['<C-d>'] = false } },
+          mappings = {
+            i = {
+              ['<M-d>'] = actions.preview_scrolling_down,
+              ['<M-f>'] = actions.preview_scrolling_up,
+              ['<C-d>'] = actions.move_selection_next,
+              ['<C-f>'] = actions.move_selection_previous,
+            },
+          },
+          git_worktrees = vim.g.git_worktrees,
+          winblend = 5,
+          prompt_prefix = ' ',
+          selection_caret = ' ',
+          initial_mode = 'insert',
+          selection_strategy = 'reset',
+          sorting_strategy = 'ascending',
+          layout_strategy = 'horizontal',
+          layout_config = {
+            horizontal = {
+              prompt_position = 'top',
+              preview_width = 0.55,
+              results_width = 0.8,
+            },
+            vertical = {
+              mirror = false,
+            },
+            width = 0.87,
+            height = 0.80,
+            preview_cutoff = 120,
+          },
+          file_sorter = require('telescope.sorters').get_fuzzy_file,
+          file_ignore_patterns = { 'node_modules' },
+          generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
+          path_display = { 'truncate' },
+          color_devicons = true,
+          set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
         },
         extensions = {
           file_browser = {
             -- disables netrw and use telescope-file-browser in its place
             hijack_netrw = true,
-            mappings = {
-              ['i'] = {
-                -- your custom insert mode mappings
-              },
-              ['n'] = {
-                -- your custom normal mode mappings
-              },
-            },
+            git_status = false,
           },
         },
       }
@@ -56,7 +84,7 @@ return {
       nmap('<leader>sh', builtin.help_tags, '[S]earch [H]elp')
       nmap('<leader>sw', builtin.grep_string, '[S]earch current [W]ord')
       nmap('<leader>sg', builtin.live_grep, '[S]earch by [G]rep')
-      nmap('<leader>sd', builtin.diagnostics, '[S]earch [D]iagnostics')
+      -- nmap('<leader>sd', builtin.diagnostics, '[S]earch [D]iagnostics')
 
       nmap('<leader>ds', builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
       -- nmap('<leader>ws', builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')

@@ -6,8 +6,8 @@ return {
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
 
-    -- Adds LSP completion capabilities
-    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lsp', -- adds LSP completion capabilities
+    'hrsh7th/cmp-cmdline', -- command line Completion
 
     -- Adds a number of user-friendly snippets
     'rafamadriz/friendly-snippets',
@@ -23,6 +23,10 @@ return {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
+      },
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       },
       mapping = cmp.mapping.preset.insert {
         ['<C-f>'] = cmp.mapping.scroll_docs(-4),
