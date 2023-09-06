@@ -4,6 +4,11 @@ return {
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
+  -- Databases
+  'tpope/vim-dadbod',
+  'kristijanhusak/vim-dadbod-ui',
+  'kristijanhusak/vim-dadbod-completion',
+
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 

@@ -2,21 +2,21 @@
 --  this function gets run when an lsp connects to a particular buffer.
 local on_attach = function(client, bufnr)
   -- formatting on save
-  if client.supports_method 'textDocument/formatting' then
-    local format_on_save = vim.api.nvim_create_augroup('LspFormatting', { clear = true })
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      group = format_on_save,
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format {
-          bufnr = bufnr,
-          filter = function(_client)
-            return _client.name == 'null-ls'
-          end,
-        }
-      end,
-    })
-  end
+  -- if client.supports_method 'textDocument/formatting' then
+  --   local format_on_save = vim.api.nvim_create_augroup('LspFormatting', { clear = true })
+  --   vim.api.nvim_create_autocmd('BufWritePre', {
+  --     group = format_on_save,
+  --     buffer = bufnr,
+  --     callback = function()
+  --       vim.lsp.buf.format {
+  --         bufnr = bufnr,
+  --         filter = function(_client)
+  --           return _client.name == 'vtsls'
+  --         end,
+  --       }
+  --     end,
+  --   })
+  -- end
 
   if client.server_capabilities.documentSymbolProvider then
     require('nvim-navic').attach(client, bufnr)
