@@ -124,6 +124,7 @@ return {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         always_divide_middle = true,
+        disabled_filetypes = { 'alpha' },
       },
       sections = {
         lualine_a = { modes },
