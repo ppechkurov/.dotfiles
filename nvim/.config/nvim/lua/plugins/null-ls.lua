@@ -1,3 +1,4 @@
+local on_attach = require 'config.lsp.on_attach'
 -- formatters
 return {
   'jose-elias-alvarez/null-ls.nvim',
@@ -10,17 +11,11 @@ return {
       sources = {
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.shfmt,
-        nls.builtins.formatting.prettierd.with {
-          condition = function(utils)
-            return true
-          end,
-        },
-        nls.builtins.diagnostics.eslint_d.with {
-          condition = function(utils)
-            return true
-          end,
-        },
+        nls.builtins.formatting.prettierd,
+        nls.builtins.diagnostics.eslint_d,
+        nls.builtins.code_actions.eslint_d,
       },
+      on_attach = on_attach,
     }
   end,
 }
