@@ -56,24 +56,10 @@ return {
         end, { 'i', 's' }),
       },
       sources = cmp.config.sources {
-        { name = 'nvim_lsp', priority = 8 },
-        { name = 'luasnip', priority = 7 },
-        { name = 'path', priority = 7 },
-        { name = 'buffer', priority = 7 }, -- first for locality sorting?
-        {
-          name = 'spell',
-          keyword_length = 3,
-          priority = 5,
-          keyword_pattern = [[\w\+]],
-        },
-        {
-          name = 'dictionary',
-          keyword_length = 3,
-          priority = 5,
-          keyword_pattern = [[\w\+]],
-        }, -- from uga-rosa/cmp-dictionary plug
-        { name = 'nvim_lua', priority = 5 },
-        { name = 'calc', priority = 3 },
+        { name = 'nvim_lsp', priority = 8, keyword_length = 2, group_index = 1, max_item_count = 30 },
+        { name = 'luasnip', keyword_length = 4, priority = 7 },
+        { name = 'path', priority = 6 },
+        { name = 'buffer', keyword_length = 4, group_index = 1, max_item_count = 30, priority = 5 }, -- first for locality sorting?
       },
       formatting = {
         format = function(_, item)
@@ -83,6 +69,11 @@ return {
           end
           return item
         end,
+      },
+      performance = {
+        trigger_debounce_time = 500,
+        throttle = 550,
+        fetching_timeout = 80,
       },
     }
   end,

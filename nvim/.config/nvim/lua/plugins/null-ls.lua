@@ -10,7 +10,16 @@ return {
       sources = {
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.shfmt,
-        nls.builtins.formatting.prettierd,
+        nls.builtins.formatting.prettierd.with {
+          condition = function(utils)
+            return true
+          end,
+        },
+        nls.builtins.diagnostics.eslint_d.with {
+          condition = function(utils)
+            return true
+          end,
+        },
       },
     }
   end,
