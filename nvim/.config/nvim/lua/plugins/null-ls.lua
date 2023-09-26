@@ -12,8 +12,6 @@ return {
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.shfmt,
         nls.builtins.formatting.prettierd,
-        nls.builtins.diagnostics.eslint_d,
-        nls.builtins.code_actions.eslint_d,
       },
       on_attach = on_attach,
     }

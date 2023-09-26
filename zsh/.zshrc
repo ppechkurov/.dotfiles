@@ -17,6 +17,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # this is for the ranger
 export VISUAL=nvim;
 export EDITOR=nvim;
+export SUDO_EDITOR=$(which nvim);
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -134,3 +135,5 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile
 # xcape -e 'Control_L=Escape'
 xset r rate 400 50
 
+
+if [ -e /home/ppechkurov/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ppechkurov/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
