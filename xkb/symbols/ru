@@ -1078,6 +1078,7 @@ xkb_symbols "programmer_ru" {
     key <AE11> { [  exclam, percent       ] };
     key <AE12> { [  bar,    grave         ] };
 
+    key <AB10> { [      period,       comma  ] };
     key <AC12> { [ Cyrillic_hardsign, Cyrillic_HARDSIGN  ] };
     key <AD12> { [  slash,  question      ] };
 };
