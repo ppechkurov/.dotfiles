@@ -1,38 +1,34 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if opts.ensure_installed ~= "all" then
-        opts.ensure_installed = require("astronvim.utils").list_insert_unique(
-          opts.ensure_installed,
-          { "bash", "markdown", "markdown_inline", "regex", "vim" }
-        )
-      end
-    end,
-  },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
+    dependencies = {
+      {
+        "andymass/vim-matchup",
+        init = function()
+          vim.g.matchup_matchparen_deferred = 1
+        end,
+      },
+      {
+        "HiPhish/rainbow-delimiters.nvim",
+        opts = function()
+          return {
+            strategy = {
+              [""] = function()
+                if not vim.b.large_buf then
+                  return require("rainbow-delimiters").strategy.global
+                end
+              end,
+            },
+          }
+        end,
+        config = function(_, opts)
+          require("rainbow-delimiters.setup")(opts)
+        end,
+      },
+    },
     opts = {
-      messages = { view_search = false },
-      lsp = {
-        progress = { enabled = false },
-        hover = { enabled = false },
-        signature = { enabled = false },
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-        inc_rename = true,
-      },
-      routes = {
-        { filter = { event = "msg_show", min_height = 20 }, view = "messages" }, -- send long messages to split
-        { filter = { event = "msg_show", find = "%d+L,%s%d+B" }, opts = { skip = true } }, -- skip save notifications
-        { filter = { event = "msg_show", find = "^%d+ more lines$" }, opts = { skip = true } }, -- skip paste notifications
-        { filter = { event = "msg_show", find = "^%d+ fewer lines$" }, opts = { skip = true } }, -- skip delete notifications
-        { filter = { event = "msg_show", find = "^%d+ lines yanked$" }, opts = { skip = true } }, -- skip yank notifications
-      },
+      auto_install = vim.fn.executable("tree-sitter") == 1,
+      matchup = { enable = true },
     },
   },
 }
