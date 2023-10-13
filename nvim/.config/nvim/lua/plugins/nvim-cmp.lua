@@ -7,7 +7,7 @@ return {
     'saadparwaiz1/cmp_luasnip',
 
     'hrsh7th/cmp-nvim-lsp', -- adds LSP completion capabilities
-    'hrsh7th/cmp-cmdline', -- command line Completion
+    'hrsh7th/cmp-cmdline',  -- command line Completion
 
     -- Adds a number of user-friendly snippets
     'rafamadriz/friendly-snippets',
@@ -56,10 +56,10 @@ return {
         end, { 'i', 's' }),
       },
       sources = cmp.config.sources {
-        { name = 'nvim_lsp', priority = 8, keyword_length = 2, group_index = 1, max_item_count = 30 },
-        { name = 'luasnip', keyword_length = 4, priority = 7 },
-        { name = 'path', priority = 6 },
-        { name = 'buffer', keyword_length = 4, group_index = 1, max_item_count = 30, priority = 5 }, -- first for locality sorting?
+        { name = 'nvim_lsp', priority = 8,       keyword_length = 2, group_index = 1 },
+        { name = 'luasnip',  keyword_length = 4, priority = 7 },
+        { name = 'path',     priority = 6 },
+        { name = 'buffer',   keyword_length = 4, group_index = 1,    priority = 5 }, -- first for locality sorting?
       },
       formatting = {
         format = function(_, item)

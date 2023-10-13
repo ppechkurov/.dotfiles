@@ -17,8 +17,8 @@ nix-env -iA \
 	nixpkgs.bat \
 	nixpkgs.cmake \
 	nixpkgs.lazygit \
-	nixpkgs.exa \
-	nixpkgs.xcape \
+	nixpkgs.eza \
+	nixpkgs.tmux \
 	nixpkgs.neovim
 
 echo '======> nix packages installed'

@@ -1,5 +1,10 @@
 local opt = vim.opt
 
+vim.g.neovide_scroll_animation_length = 0.1
+vim.g.neovide_cursor_animation_length = 0.17
+vim.g.neovide_cursor_trail_size = 0.2
+
+opt.guifont = 'CaskaydiaCove Nerd Font:h18'
 opt.cmdheight = 0 -- Remove bottom cmdline
 opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
 opt.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
