@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # init homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 autoload -Uz compinit
 compinit
@@ -18,6 +18,11 @@ export ZSH="$HOME/.oh-my-zsh"
 export VISUAL=nvim;
 export EDITOR=nvim;
 export SUDO_EDITOR=$(which nvim);
+
+# FZF
+export FZF_BASE=$(which fzf)
+export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -52,6 +57,7 @@ plugins=(
   zsh-autosuggestions
   zsh-history-substring-search
   zsh-syntax-highlighting
+  fzf
 )
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
@@ -89,6 +95,7 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 # FZF
+export FZF_BASE=$(which fzf)
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1"
 
@@ -137,3 +144,5 @@ xset r rate 400 50
 
 
 if [ -e /home/ppechkurov/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ppechkurov/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+eval 
+SF_AC_ZSH_SETUP_PATH=/home/ppechkurov/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
