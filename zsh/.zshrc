@@ -20,9 +20,9 @@ export EDITOR=nvim;
 export SUDO_EDITOR=$(which nvim);
 
 # FZF
-export FZF_BASE=$(which fzf)
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
-export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1"
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1 --bind=tab:down,shift-tab:up"
+export FZF_BASE=$(which fzf)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -95,9 +95,9 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 # FZF
-export FZF_BASE=$(which fzf)
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1 --bind=tab:down,shift-tab:up"
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
-export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1"
+export FZF_BASE=$(which fzf)
 
 export BAT_THEME="gruvbox-dark"
 
