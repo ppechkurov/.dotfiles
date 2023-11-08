@@ -8,7 +8,7 @@ return {
         init_options = {
           preferences = {
             importModuleSpecifierPreference = "relative", -- relative path import
-            -- importModuleSpecifierEnding = "minimal", -- remove .js from import
+            -- importModuleSpecifierEnding = "minimal",   -- remove .js from import
           },
         },
       },
