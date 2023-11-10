@@ -19,6 +19,7 @@ nix-env -iA \
 	nixpkgs.lazygit \
 	nixpkgs.eza \
 	nixpkgs.tmux \
+	nixpkgs.mycli \
 	nixpkgs.neovim
 
 echo '======> nix packages installed'
