@@ -11,6 +11,7 @@ fi
 autoload -Uz compinit
 compinit
 
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -142,6 +143,8 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile
 # xcape -e 'Control_L=Escape'
 xset r rate 400 50
 
+#
+complete -C $(which aws_completer) aws
 
 if [ -e /home/ppechkurov/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ppechkurov/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 eval 
