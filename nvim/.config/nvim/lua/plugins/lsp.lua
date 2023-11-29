@@ -3,10 +3,8 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "apex-language-server",
         "typescript-language-server",
         "prettier",
-        "stylua",
         "eslint_d",
         "shfmt",
       },
@@ -21,16 +19,6 @@ return {
         tsserver = {},
         eslint = {},
         html = {},
-        apex_ls = {
-          filetypes = { "st" },
-          apex_enable_semantic_errors = true,
-          on_attach = function(client, bufnr)
-            require("nvim-treesitter.parsers").filetype_to_parsername.st = "java"
-            vim.cmd.TSEnable("highlight")
-            vim.cmd.TSEnable("indent")
-            vim.cmd.TSEnable("rainbow")
-          end,
-        },
       },
       format = {
         timeout_ms = 2000,
@@ -46,7 +34,6 @@ return {
         save_after_format = false,
         sources = {
           nls.builtins.formatting.prettier,
-          nls.builtins.formatting.prettier.with({ filetypes = { "st" } }),
           nls.builtins.formatting.stylua,
           -- nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
           -- nls.builtins.formatting.eslint_d,
