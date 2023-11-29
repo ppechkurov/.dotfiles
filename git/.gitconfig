@@ -3,9 +3,13 @@
 	email = petr.pechkurov@gmail.com
 [core]
 	excludesfile = ~/.gitignore_global
-    editor = nvim
+  editor = nvim
 	commentChar = auto
 [pull]
 	ff = only
+[push]
+	autoSetupRemote = true
 [init]
 	defaultBranch = main
+[http]
+	sslVerify = false

@@ -5,11 +5,18 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# init homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 autoload -Uz compinit
 compinit
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# this is for the ranger
+export VISUAL=nvim;
+export EDITOR=nvim;
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -39,9 +46,10 @@ plugins=(
   git-extras
   node
   z
+  vi-mode
   zsh-autosuggestions
-  zsh-syntax-highlighting
   zsh-history-substring-search
+  zsh-syntax-highlighting
 )
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
@@ -55,6 +63,28 @@ export LANG=en_US.UTF-8
 # Note: This must be exported before the plugin is bundled
 export NVM_DIR=${HOME}/.nvm
 export NVM_COMPLETION=true
+#
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 # FZF
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
@@ -81,6 +111,9 @@ alias ls='exa'
 alias ll='ls -l -g --icons'
 alias lla='ll -a'
 
+# aws
+alias tunnel-backupdb-prod='ssh -N -L 3307:backup-and-recovery.cip5jz6wczib.us-east-2.rds.amazonaws.com:3306 ubuntu@ec2-3-142-18-254.us-east-2.compute.amazonaws.com -i .ssh/prod_key &'
+
 # nix
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 
@@ -90,16 +123,19 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile
 # # keymaps
 # # depends xmodmap xcape
 # # https://github.com/alols/xcape
-
-# clear all mappings
-setxkbmap -option ''
-
-# assign capslock to control on press, escape on release
-xmodmap -e 'clear Lock'
-xmodmap -e 'keycode 66 = Control_L'
-xmodmap -e 'add Control = Control_L'
-# make a fake escape key (so we can map it with xcape)
-xmodmap -e 'keycode 999 = Escape'
-xcape -e 'Control_L=Escape'
+#
+# # clear all mappings
+# setxkbmap -option ''
+#
+# # assign capslock to control on press, escape on release
+# xmodmap -e 'clear Lock'
+# xmodmap -e 'keycode 66 = Control_L'
+# xmodmap -e 'add Control = Control_L'
+# # make a fake escape key (so we can map it with xcape)
+# xmodmap -e 'keycode 999 = Escape'
+# xcape -e 'Control_L=Escape'
 xset r rate 400 50
 
+
+# Created by `pipx` on 2023-07-24 10:56:11
+export PATH="$PATH:/home/ppechkurov/.local/bin"
