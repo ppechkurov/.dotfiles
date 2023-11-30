@@ -1,0 +1,43 @@
+layout {
+    tab name="server & client" focus=true cwd="/home/ppechkurov/projects/flosum/backupV2" {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+
+        pane name="server" focus=true {
+            command "npm"
+            args "run" "dev:server"
+        }
+
+        pane name="client" size=6 {
+            command "npm"
+            args "run" "dev:client"
+        }
+
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="master & security" {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+
+        pane name="master" {
+            cwd "/home/ppechkurov/projects/flosum/backup-master-service"
+            command "npm"
+            args "run" "dev"
+        }
+
+        pane name="security" {
+            cwd "/home/ppechkurov/projects/flosum/backup-security-service"
+            command "npm"
+            args "run" "dev"
+        }
+
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+}
