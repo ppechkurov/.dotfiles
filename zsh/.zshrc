@@ -61,6 +61,11 @@ plugins=(
   fzf
 )
 
+# Export nvm completion settings for lukechilds/zsh-nvm plugin
+# Note: This must be exported before the plugin is bundled
+export NVM_DIR=${HOME}/.nvm
+export NVM_COMPLETION=true
+
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
@@ -68,10 +73,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Export nvm completion settings for lukechilds/zsh-nvm plugin
-# Note: This must be exported before the plugin is bundled
-export NVM_DIR=${HOME}/.nvm
-export NVM_COMPLETION=true
 #
 # place this after nvm initialization!
 autoload -U add-zsh-hook
