@@ -108,6 +108,13 @@ cursor:
 # Live config reload (changes require restart)
 live_config_reload: true
 
+shell:
+  program: zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+
 # Map the keys (British keyboard layout)
 key_bindings:
   - { key: Key0, mods: Alt, chars: "º" }
