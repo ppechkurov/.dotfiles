@@ -71,9 +71,9 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# NIX
+export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 
-#
 # place this after nvm initialization!
 autoload -U add-zsh-hook
 load-nvmrc() {
