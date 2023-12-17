@@ -346,7 +346,7 @@ tmux_conf_theme_clock_style="24"
 #   - disabled
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel, xclip or wl-copy
-tmux_conf_copy_to_os_clipboard=false
+tmux_conf_copy_to_os_clipboard=true
 
 
 # -- user customizations -------------------------------------------------------
@@ -363,12 +363,22 @@ tmux_conf_copy_to_os_clipboard=false
 #set -g status-keys vi
 #set -g mode-keys vi
 
-# replace C-b by C-a instead of using both prefixes
-# set -gu prefix2
-# unbind C-a
-# unbind C-b
-# set -g prefix C-a
-# bind C-a send-prefix
+# unbind C-a as prefix2
+set -gu prefix2
+unbind-key C-a
+
+# horizontal split
+bind | split-window -h
+
+# Use Alt-arrow keys without prefix key to switch panes
+bind -n M-h select-pane -L
+bind -n M-l select-pane -R
+bind -n M-k select-pane -U
+bind -n M-j select-pane -D
+
+# Shift Alt vim keys to switch windows
+bind -n M-H previous-window
+bind -n M-L next-window
 
 # if you don't want Oh my tmux! to alter a binding, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
@@ -419,11 +429,6 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @continuum-restore 'on'
 # set -g @resurrect-processes 'watch "npm run dev:client"'
 set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
-
-# My custom
-set -gu prefix2
-unbind-key C-a
-bind | split-window -h
 
 # -- custom variables ----------------------------------------------------------
 
