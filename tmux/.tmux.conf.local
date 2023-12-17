@@ -420,6 +420,11 @@ set -g @continuum-restore 'on'
 # set -g @resurrect-processes 'watch "npm run dev:client"'
 set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
 
+# My custom
+set -gu prefix2
+unbind-key C-a
+bind | split-window -h
+
 # -- custom variables ----------------------------------------------------------
 
 # to define a custom #{foo} variable, define a POSIX shell function between the
