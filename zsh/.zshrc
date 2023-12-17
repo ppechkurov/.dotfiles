@@ -15,6 +15,10 @@ compinit
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# bun
+export BUN_HOME="$HOME/.bun"
+export PATH="$BUN_HOME/bin:$PATH"
+
 # this is for the ranger
 export VISUAL=nvim;
 export EDITOR=nvim;
@@ -49,6 +53,7 @@ plugins=(
   zsh-nvm
   colored-man-pages
   command-not-found
+  pass
   git
   git-extras
   node
