@@ -54,16 +54,18 @@ plugins=(
   colored-man-pages
   command-not-found
   pass
+  gh
   git
   git-extras
   node
+  npm
   z
   vi-mode
   docker
+  fzf
   zsh-autosuggestions
   zsh-history-substring-search
   zsh-syntax-highlighting
-  fzf
 )
 
 # Export nvm completion settings for lukechilds/zsh-nvm plugin
@@ -133,94 +135,9 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# # keymaps
-# # depends xmodmap xcape
-# # https://github.com/alols/xcape
-#
-# # clear all mappings
-# setxkbmap -option ''
-#
-# # assign capslock to control on press, escape on release
-# xmodmap -e 'clear Lock'
-# xmodmap -e 'keycode 66 = Control_L'
-# xmodmap -e 'add Control = Control_L'
-# # make a fake escape key (so we can map it with xcape)
-# xmodmap -e 'keycode 999 = Escape'
-# xcape -e 'Control_L=Escape'
 xset r rate 400 50
 
-#
 complete -C $(which aws_completer) aws
 
-if [ -e /home/ppechkurov/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ppechkurov/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-eval 
-SF_AC_ZSH_SETUP_PATH=/home/ppechkurov/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
-###-begin-npm-completion-###
-#
-# npm command completion script
-#
-# Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
-# Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
-#
-
-if type complete &>/dev/null; then
-  _npm_completion () {
-    local words cword
-    if type _get_comp_words_by_ref &>/dev/null; then
-      _get_comp_words_by_ref -n = -n @ -n : -w words -i cword
-    else
-      cword="$COMP_CWORD"
-      words=("${COMP_WORDS[@]}")
-    fi
-
-    local si="$IFS"
-    if ! IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           npm completion -- "${words[@]}" \
-                           2>/dev/null)); then
-      local ret=$?
-      IFS="$si"
-      return $ret
-    fi
-    IFS="$si"
-    if type __ltrim_colon_completions &>/dev/null; then
-      __ltrim_colon_completions "${words[cword]}"
-    fi
-  }
-  complete -o default -F _npm_completion npm
-elif type compdef &>/dev/null; then
-  _npm_completion() {
-    local si=$IFS
-    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                 COMP_LINE=$BUFFER \
-                 COMP_POINT=0 \
-                 npm completion -- "${words[@]}" \
-                 2>/dev/null)
-    IFS=$si
-  }
-  compdef _npm_completion npm
-elif type compctl &>/dev/null; then
-  _npm_completion () {
-    local cword line point words si
-    read -Ac words
-    read -cn cword
-    let cword-=1
-    read -l line
-    read -ln point
-    si="$IFS"
-    if ! IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       npm completion -- "${words[@]}" \
-                       2>/dev/null)); then
-
-      local ret=$?
-      IFS="$si"
-      return $ret
-    fi
-    IFS="$si"
-  }
-  compctl -K _npm_completion npm
-fi
-###-end-npm-completion-###
+if [ -e ${HOME}.nix-profile/etc/profile.d/nix.sh ]; then . ${HOME}/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+eval SF_AC_ZSH_SETUP_PATH=/home/ppechkurov/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
