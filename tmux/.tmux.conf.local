@@ -429,6 +429,7 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @continuum-restore 'on'
 # set -g @resurrect-processes 'watch "npm run dev:client"'
 set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
+set -g @plugin 'wfxr/tmux-fzf-url'
 
 # -- custom variables ----------------------------------------------------------
 
