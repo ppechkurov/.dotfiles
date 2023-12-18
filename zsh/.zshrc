@@ -8,9 +8,6 @@ fi
 # init homebrew
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-autoload -Uz compinit
-compinit
-
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -66,7 +63,12 @@ plugins=(
   zsh-autosuggestions
   zsh-history-substring-search
   zsh-syntax-highlighting
+  zsh-completions
 )
+
+source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+
+autoload -Uz compinit && compinit
 
 # Export nvm completion settings for lukechilds/zsh-nvm plugin
 # Note: This must be exported before the plugin is bundled
