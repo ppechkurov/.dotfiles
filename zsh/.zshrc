@@ -59,14 +59,12 @@ plugins=(
   z
   vi-mode
   docker
-  fzf
   zsh-autosuggestions
   zsh-history-substring-search
   zsh-syntax-highlighting
   zsh-completions
+  fzf
 )
-
-source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 
 autoload -Uz compinit && compinit
 
@@ -78,6 +76,7 @@ export NVM_COMPLETION=true
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 
 # You may need to manually set your language environment
 # NIX
@@ -102,8 +101,8 @@ load-nvmrc() {
     nvm use default
   fi
 }
+
 add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
 # FZF
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1 --bind=tab:down,shift-tab:up"
