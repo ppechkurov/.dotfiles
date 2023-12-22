@@ -27,6 +27,7 @@ return {
       filtered_items = {
         always_show = {
           ".config",
+          ".github",
         },
       },
     },

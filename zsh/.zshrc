@@ -62,8 +62,8 @@ plugins=(
   zsh-history-substring-search
   zsh-syntax-highlighting
   zsh-completions
-  fzf
   vi-mode
+  fzf
 )
 
 autoload -Uz compinit && compinit
@@ -141,3 +141,6 @@ if [ -e ${HOME}.nix-profile/etc/profile.d/nix.sh ]; then . ${HOME}/.nix-profile/
 
 # SF autocompletions
 eval SF_AC_ZSH_SETUP_PATH=${HOME}/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k/.p10k.zsh.
+[[ ! -f ~/.dotfiles/p10k/.p10k.zsh ]] || source ~/.dotfiles/p10k/.p10k.zsh
