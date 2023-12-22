@@ -130,6 +130,42 @@ alias ls='exa'
 alias ll='ls -l -g --icons'
 alias lla='ll -a'
 
+aws-job-logs() {
+	local queue=$1
+	local region=${2:-us-east-2}
+	local since=${3:-10m}
+
+	if [ ! $queue ]; then
+		queue=$(aws batch describe-job-queues --region $region | jq '.jobQueues[].jobQueueName' -r | fzf)
+	fi
+
+	local job_id=$(aws batch list-jobs \
+		--job-queue "$queue" \
+		--region "$region" \
+		--output json \
+		--no-cli-pager |
+		jq '.jobSummaryList[].jobId' -r | fzf)
+
+	local stream_name=$(aws batch describe-jobs \
+		--jobs $job_id \
+		--region $region \
+		--query 'jobs[*]' |
+		jq '.[].container.logStreamName' -r)
+
+	if [ ! $stream_name ]; then
+		echo "Stream not found. Check region and queue."
+		return 1
+	fi
+
+	aws logs tail \
+		/aws/batch/job \
+		--log-stream-names $stream_name \
+		--region $region \
+		--since $since \
+		--format short \
+		--follow
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
