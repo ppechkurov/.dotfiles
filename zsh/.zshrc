@@ -8,7 +8,6 @@ fi
 # init homebrew
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -17,13 +16,13 @@ export BUN_HOME="$HOME/.bun"
 export PATH="$BUN_HOME/bin:$PATH"
 
 # this is for the ranger
-export VISUAL=nvim;
-export EDITOR=nvim;
-export SUDO_EDITOR=$(which nvim);
+export VISUAL=nvim
+export EDITOR=nvim
+export SUDO_EDITOR=$(which nvim)
 
 # FZF
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
-export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1 --bind=tab:down,shift-tab:up"
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1 --bind=tab:down,shift-tab:up --cycle"
 export FZF_BASE=$(which fzf)
 
 # Set name of the theme to load --- if set to "random", it will
@@ -47,23 +46,23 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh-nvm
-  colored-man-pages
-  command-not-found
-  pass
-  gh
-  git
-  git-extras
-  node
-  npm
-  z
-  docker
-  zsh-autosuggestions
-  zsh-history-substring-search
-  zsh-syntax-highlighting
-  zsh-completions
-  vi-mode
-  fzf
+	zsh-nvm
+	colored-man-pages
+	command-not-found
+	pass
+	gh
+	git
+	git-extras
+	node
+	npm
+	z
+	docker
+	zsh-autosuggestions
+	zsh-history-substring-search
+	zsh-syntax-highlighting
+	zsh-completions
+	vi-mode
+	fzf
 )
 
 autoload -Uz compinit && compinit
@@ -85,27 +84,27 @@ export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 # place this after nvm initialization!
 autoload -U add-zsh-hook
 load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+	local node_version="$(nvm version)"
+	local nvmrc_path="$(nvm_find_nvmrc)"
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+	if [ -n "$nvmrc_path" ]; then
+		local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
+		if [ "$nvmrc_node_version" = "N/A" ]; then
+			nvm install
+		elif [ "$nvmrc_node_version" != "$node_version" ]; then
+			nvm use
+		fi
+	elif [ "$node_version" != "$(nvm version default)" ]; then
+		echo "Reverting to nvm default version"
+		nvm use default
+	fi
 }
 
 add-zsh-hook chpwd load-nvmrc
 
 # FZF
-export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1 --bind=tab:down,shift-tab:up"
+export FZF_DEFAULT_OPTS="--height=40% --cycle --layout=reverse --border --margin=1 --padding=1 --bind=tab:down,shift-tab:up"
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_BASE=$(which fzf)
 
@@ -131,12 +130,18 @@ alias ll='ls -l -g --icons'
 alias lla='ll -a'
 
 aws-job-logs() {
-	local queue=$1
-	local region=${2:-us-east-2}
+	local region=${1:-us-east-2}
+	local queue=$2
 	local since=${3:-10m}
 
 	if [ ! $queue ]; then
-		queue=$(aws batch describe-job-queues --region $region | jq '.jobQueues[].jobQueueName' -r | fzf)
+		queue=$(aws batch \
+			describe-job-queues \
+			--region $region |
+			jq '.jobQueues[].jobQueueName' -r |
+			fzf --border-label="QUEUE")
+
+		[ ! $queue ] && return 0
 	fi
 
 	local job_id=$(aws batch list-jobs \
@@ -144,7 +149,10 @@ aws-job-logs() {
 		--region "$region" \
 		--output json \
 		--no-cli-pager |
-		jq '.jobSummaryList[].jobId' -r | fzf)
+		jq '.jobSummaryList[].jobId' -r |
+    fzf --border-label="JOB ID")
+
+	[ ! $job_id ] && return 0
 
 	local stream_name=$(aws batch describe-jobs \
 		--jobs $job_id \
@@ -176,7 +184,7 @@ complete -C $(which aws_completer) aws
 if [ -e ${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then . ${HOME}/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # SF autocompletions
-eval SF_AC_ZSH_SETUP_PATH=${HOME}/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
+eval SF_AC_ZSH_SETUP_PATH=${HOME}/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH # sf autocomplete setup
 
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k/.p10k.zsh.
 [[ ! -f ~/.dotfiles/p10k/.p10k.zsh ]] || source ~/.dotfiles/p10k/.p10k.zsh
