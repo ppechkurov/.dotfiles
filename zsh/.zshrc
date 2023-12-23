@@ -137,8 +137,9 @@ aws-job-logs() {
 	if [ ! $queue ]; then
 		queue=$(aws batch \
 			describe-job-queues \
-			--region $region |
-			jq '.jobQueues[].jobQueueName' -r |
+			--region $region \
+			--query 'jobQueues[].jobQueueName' |
+			jq '.[]' -r |
 			fzf --border-label="QUEUE")
 
 		[ ! $queue ] && return 0
@@ -147,21 +148,20 @@ aws-job-logs() {
 	local job_id=$(aws batch list-jobs \
 		--job-queue "$queue" \
 		--region "$region" \
-		--output json \
-		--no-cli-pager |
-		jq '.jobSummaryList[].jobId' -r |
-    fzf --border-label="JOB ID")
+		--query 'jobSummaryList[].jobId' |
+		jq '.[]' -r |
+		fzf --border-label="JOB ID")
 
 	[ ! $job_id ] && return 0
 
 	local stream_name=$(aws batch describe-jobs \
 		--jobs $job_id \
 		--region $region \
-		--query 'jobs[*]' |
-		jq '.[].container.logStreamName' -r)
+		--query 'jobs[0].container.logStreamName' \
+		--output text)
 
 	if [ ! $stream_name ]; then
-		echo "Stream not found. Check region and queue."
+		echo "Stream not found. Check selected region and queue."
 		return 1
 	fi
 
