@@ -173,7 +173,7 @@ xset r rate 400 50
 
 complete -C $(which aws_completer) aws
 
-if [ -e ${HOME}.nix-profile/etc/profile.d/nix.sh ]; then . ${HOME}/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e ${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then . ${HOME}/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # SF autocompletions
 eval SF_AC_ZSH_SETUP_PATH=${HOME}/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
