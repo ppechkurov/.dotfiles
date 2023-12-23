@@ -129,10 +129,11 @@ alias ls='exa'
 alias ll='ls -l -g --icons'
 alias lla='ll -a'
 
-aws-job-logs() {
-	local region=${1:-us-east-2}
+abl() {
+	local region="${1:-us-east-2}"
 	local queue=$2
 	local since=${3:-10m}
+	local border_label="AWS BATCH LOGS ${region:u}"
 
 	if [ ! $queue ]; then
 		queue=$(aws batch \
@@ -140,19 +141,21 @@ aws-job-logs() {
 			--region $region \
 			--query 'jobQueues[].jobQueueName' |
 			jq '.[]' -r |
-			fzf --border-label="QUEUE")
-
-		[ ! $queue ] && return 0
+			fzf \
+				--header=$'Select queue:\n\n' \
+				--border-label="$border_label") || return $?
 	fi
 
-	local job_id=$(aws batch list-jobs \
+	local jobs_list=$(aws batch list-jobs \
 		--job-queue "$queue" \
 		--region "$region" \
-		--query 'jobSummaryList[].jobId' |
+		--query 'jobSummaryList[].[jobId,status,startedAt,stoppedAt]' |
 		jq '.[]' -r |
-		fzf --border-label="JOB ID")
+		fzf \
+			--border-label="$border_label" \
+			--header=$'Select job:\n\n')
 
-	[ ! $job_id ] && return 0
+	[ ! $job_id ] && return $?
 
 	local stream_name=$(aws batch describe-jobs \
 		--jobs $job_id \
