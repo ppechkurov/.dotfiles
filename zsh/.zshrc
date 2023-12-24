@@ -104,7 +104,7 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 
 # FZF
-export FZF_DEFAULT_OPTS="--height=40% --cycle --layout=reverse --border --margin=1 --padding=1 --bind=tab:down,shift-tab:up"
+export FZF_DEFAULT_OPTS="--height=40% --cycle --layout=reverse --border sharp --bind=tab:down,shift-tab:up"
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_BASE=$(which fzf)
 
@@ -129,53 +129,7 @@ alias ls='exa'
 alias ll='ls -l -g --icons'
 alias lla='ll -a'
 
-abl() {
-	local region="${1:-us-east-2}"
-	local queue=$2
-	local since=${3:-10m}
-	local border_label="AWS BATCH LOGS ${region:u}"
-
-	if [ ! $queue ]; then
-		queue=$(aws batch \
-			describe-job-queues \
-			--region $region \
-			--query 'jobQueues[].jobQueueName' |
-			jq '.[]' -r |
-			fzf \
-				--header=$'Select queue:\n\n' \
-				--border-label="$border_label") || return $?
-	fi
-
-	local jobs_list=$(aws batch list-jobs \
-		--job-queue "$queue" \
-		--region "$region" \
-		--query 'jobSummaryList[].[jobId,status,startedAt,stoppedAt]' |
-		jq '.[]' -r |
-		fzf \
-			--border-label="$border_label" \
-			--header=$'Select job:\n\n')
-
-	[ ! $job_id ] && return $?
-
-	local stream_name=$(aws batch describe-jobs \
-		--jobs $job_id \
-		--region $region \
-		--query 'jobs[0].container.logStreamName' \
-		--output text)
-
-	if [ ! $stream_name ]; then
-		echo "Stream not found. Check selected region and queue."
-		return 1
-	fi
-
-	aws logs tail \
-		/aws/batch/job \
-		--log-stream-names $stream_name \
-		--region $region \
-		--since $since \
-		--format short \
-		--follow
-}
+source ~/.aws.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
