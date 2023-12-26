@@ -63,6 +63,7 @@ plugins=(
 	zsh-completions
 	vi-mode
 	fzf
+	jq
 )
 
 autoload -Uz compinit && compinit
