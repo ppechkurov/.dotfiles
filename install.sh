@@ -17,6 +17,7 @@ nix-env -iA \
 	nixpkgs.bat \
 	nixpkgs.cmake \
 	nixpkgs.lazygit \
+	nixpkgs.lazydocker \
 	nixpkgs.eza \
 	nixpkgs.tmux \
 	nixpkgs.mycli \
@@ -52,9 +53,9 @@ rm -rf ~/.zshrc
 stow git
 stow p10k
 stow zsh
-# stow alacritty
-stow astronvim
-stow wezterm
+stow alacritty
+# stow astronvim
+# stow wezterm
 echo '======> stowed'
 
 # node
@@ -65,6 +66,6 @@ nvm install-latest-npm
 echo '======> nvm installed'
 
 # AstroNvim
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+# git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 
 exec zsh
