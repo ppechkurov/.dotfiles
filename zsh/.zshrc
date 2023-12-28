@@ -130,6 +130,12 @@ alias ls='exa'
 alias ll='ls -l -g --icons'
 alias lla='ll -a'
 
+alias :e=$EDITOR
+alias :q=exit
+alias :wq=exit
+
+bindkey '^j' jq-complete
+
 source ~/.aws.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
