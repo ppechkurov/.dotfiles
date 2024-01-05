@@ -7,6 +7,8 @@ echo '======> nix installed'
 # source nix
 . ~/.nix-profile/etc/profile.d/nix.sh
 
+# TODO: replace with brew, since nixpkgs has some issues
+
 # install packages
 nix-env -iA \
 	nixpkgs.zsh \

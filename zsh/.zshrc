@@ -126,7 +126,7 @@ alias vimrc='vim ${HOME}/.config/nvim/init.vim'
 # cat -> bat
 alias cat='bat'
 # exa as ls
-alias ls='exa'
+alias ls='eza'
 alias ll='ls -l -g --icons'
 alias lla='ll -a'
 
