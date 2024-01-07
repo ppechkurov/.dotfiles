@@ -25,6 +25,9 @@ export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border --margin=1 --padding=1 --bind=tab:down,shift-tab:up --cycle"
 export FZF_BASE=$(which fzf)
 
+# VIM as man pager
+export MANPAGER="nvim -c 'Man!' -o -"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
