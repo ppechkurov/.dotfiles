@@ -5,6 +5,7 @@
 vim.g.neovide_transparency = 0.8
 
 vim.o.colorcolumn = "80,100,120"
+vim.o.conceallevel = 2 -- for obsidian nvim additional features
 
 vim.o.guifont = "CaskaydiaCove Nerd Font:h18"
 vim.o.scrolloff = 8
