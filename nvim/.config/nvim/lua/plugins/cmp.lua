@@ -32,23 +32,28 @@ return {
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<C-f>"] = cmp.mapping.scroll_docs(-4),
+
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
+
         ["<C-Space>"] = cmp.mapping.complete({}),
+
         ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
+
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
+          -- elseif has_words_before() then
+          --   cmp.complete()
           else
             fallback()
           end
         end, { "i", "s" }),
+
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -58,6 +63,23 @@ return {
             fallback()
           end
         end, { "i", "s" }),
+
+        ["<C-k>"] = cmp.mapping({
+          i = function()
+            if cmp.visible() then
+              cmp.abort()
+            else
+              cmp.complete()
+            end
+          end,
+          c = function()
+            if cmp.visible() then
+              cmp.close()
+            else
+              cmp.complete()
+            end
+          end,
+        }),
       })
       -- opts.mapping = vim.tbl_extend("force", opts.mapping, {
       --   ["<Tab>"] = cmp.mapping(function(fallback)
