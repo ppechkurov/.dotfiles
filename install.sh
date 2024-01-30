@@ -1,32 +1,25 @@
 set -e
 
-echo '======> installing nix...'
-sh <(curl -L https://nixos.org/nix/install) --no-daemon
+echo '======> installing brew...'
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# source nix
-. ~/.nix-profile/etc/profile.d/nix.sh
-
-echo '======> nix installed'
-
-# TODO: replace with brew, since nixpkgs has some issues
 echo '======> installing packages...'
+brew install zsh \
+	git \
+	stow \
+	fzf \
+	ripgrep \
+	bat \
+	cmake \
+	lazygit \
+	lazydocker \
+	eza \
+	tmux \
+	mycli \
+	neovim
 
-nix-env -iA \
-	nixpkgs.zsh \
-	nixpkgs.git \
-	nixpkgs.stow \
-	nixpkgs.fzf \
-	nixpkgs.ripgrep \
-	nixpkgs.bat \
-	nixpkgs.cmake \
-	nixpkgs.lazygit \
-	nixpkgs.lazydocker \
-	nixpkgs.eza \
-	nixpkgs.tmux \
-	nixpkgs.mycli \
-	nixpkgs.neovim
-
-echo '======> nix packages installed'
+echo '======> brew packages installed'
 
 # add zsh as a login shell
 command -v zsh | sudo tee -a /etc/shells
@@ -44,14 +37,14 @@ echo '======> installing zsh plugins...'
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
-git clone git@github.com:zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-git clone git@github.com:zsh-users/zsh-completions "${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions"
-git clone git@github.com:zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-git clone git@github.com:zsh-users/zsh-history-substring-search "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-history-substring-search"
-git clone git@github.com:lukechilds/zsh-nvm "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/.oh-my-zsh/custom/plugins/zsh-nvm"
-git clone git@github.com:jeffreytse/zsh-vi-mode "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/.oh-my-zsh/custom/plugins/zsh-vi-mode"
-git clone git@github.com:lincheney/fzf-tab-completion "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab-completion"
-git clone git@github.com:reegnz/jq-zsh-plugin.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/jq"
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+git clone https://github.com/zsh-users/zsh-history-substring-search "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-history-substring-search"
+git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/.oh-my-zsh/custom/plugins/zsh-nvm"
+git clone https://github.com/jeffreytse/zsh-vi-mode "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/.oh-my-zsh/custom/plugins/zsh-vi-mode"
+git clone https://github.com/lincheney/fzf-tab-completion "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab-completion"
+git clone https://github.com/reegnz/jq-zsh-plugin.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/jq"
 
 rm -rf ~/.zshrc
 
