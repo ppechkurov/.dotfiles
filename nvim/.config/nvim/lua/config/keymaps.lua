@@ -1,6 +1,5 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.keymap.set(
   "n",
@@ -12,15 +11,3 @@ vim.keymap.set(
 vim.keymap.set("n", "n", "nzz", { silent = true, desc = "Center screen after n" })
 vim.keymap.set("n", "N", "Nzz", { silent = true, desc = "Center screen after N" })
 
-vim.keymap.set(
-  "n",
-  "k",
-  ":<C-U>execute 'normal!' (v:count > 1 ? \"m'\" . v:count : '') . 'k'<CR>",
-  { silent = true, desc = "Relative line number jumps to the jumplist" }
-)
-vim.keymap.set(
-  "n",
-  "j",
-  ":<C-U>execute 'normal!' (v:count > 1 ? \"m'\" . v:count : '') . 'j'<CR>",
-  { silent = true, desc = "Relative line number jumps to the jumplist" }
-)

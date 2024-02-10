@@ -1,5 +1,5 @@
 layout {
-    cwd "/home/ppechkurov/projects/flosum/backup"
+    cwd "/home/pp/projects/flosum-service/backup"
 
     tab name="server & client" focus=true {
         pane size=1 borderless=true {
