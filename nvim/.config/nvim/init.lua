@@ -13,6 +13,8 @@ spec('plugins.lspconfig')
 spec('plugins.cmp')
 spec('plugins.telescope')
 spec('plugins.comment')
+spec('plugins.neotree')
+spec('plugins.whichkey')
 
 spec('plugins.conform')
 
