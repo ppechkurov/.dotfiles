@@ -25,5 +25,6 @@ spec('plugins.ui.top.breadcrumbs')
 spec('plugins.ui.top.navic')
 spec('plugins.ui.tree.neotree')
 spec('plugins.ui.illuminate')
+spec('plugins.ui.ufo')
 
 require('config.lazy')

@@ -1,8 +1,8 @@
 vim.g.neovide_transparency = 0.8
-vim.o.guifont = "CaskaydiaCove Nerd Font:h18"
+vim.o.guifont = 'CaskaydiaCove Nerd Font:h18'
 
 vim.o.conceallevel = 2 -- for obsidian nvim additional features
-vim.o.colorcolumn = "80,100,120"
+vim.o.colorcolumn = '80,100,120'
 
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
@@ -15,12 +15,12 @@ vim.opt.writebackup = false -- if a file is being edited by another program (or 
 vim.opt.splitbelow = true -- force all horizontal splits to go below current window
 vim.opt.splitright = true -- force all vertical splits to go to the right of current window
 
-vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+vim.opt.clipboard = 'unnamedplus' -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
-vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
+vim.opt.completeopt = { 'menuone', 'noselect' } -- mostly just for cmp
 vim.opt.hlsearch = true -- highlight all matches on previous search pattern
 vim.opt.ignorecase = true -- ignore case in search patterns
-vim.opt.mouse = "a" -- allow the mouse to be used in neovim
+vim.opt.mouse = 'a' -- allow the mouse to be used in neovim
 vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.pumblend = 10
 vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
@@ -40,15 +40,16 @@ vim.opt.showcmd = false
 vim.opt.ruler = false
 vim.opt.relativenumber = true -- set relative numbered lines
 vim.opt.numberwidth = 4 -- set number column width to 2 {default 4}
-vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
+vim.opt.signcolumn = 'yes' -- always show the sign column, otherwise it would shift the text each time
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.title = false
-vim.opt.fillchars = vim.opt.fillchars + "eob: "
-vim.opt.fillchars:append { stl = " " }
-vim.opt.shortmess:append "c"
+vim.opt.fillchars = vim.opt.fillchars + 'eob: '
+vim.opt.fillchars:append({ stl = ' ' })
+vim.opt.shortmess:append('c')
+vim.cmd('set whichwrap+=<,>,[,],h,l')
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
+--vim.cmd([[set iskeyword+=-]])
+--vim.cmd([[set iskeyword+=_]])
 
 vim.g.netrw_banner = 0
 vim.g.netrw_mouse = 2
