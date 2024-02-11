@@ -3,19 +3,27 @@ require('config.options')
 require('config.keymaps')
 require('config.autocmds')
 
-spec('config.colorscheme')
-
-spec('plugins.devicons')
 spec('plugins.treesitter')
-spec('plugins.mason')
-spec('plugins.schemastore')
-spec('plugins.lspconfig')
-spec('plugins.cmp')
+
+spec('plugins.lsp.cmp')
+spec('plugins.lsp.lspconfig')
+spec('plugins.lsp.mason')
+spec('plugins.lsp.schemastore')
+
+spec('plugins.formatters.conform')
+
 spec('plugins.telescope')
 spec('plugins.comment')
-spec('plugins.neotree')
 spec('plugins.whichkey')
 
-spec('plugins.conform')
+spec('plugins.ui.bottom.lualine')
+spec('plugins.ui.colorscheme')
+spec('plugins.ui.devicons')
+spec('plugins.ui.oil')
+spec('plugins.ui.tabs.tabby')
+spec('plugins.ui.top.breadcrumbs')
+spec('plugins.ui.top.navic')
+spec('plugins.ui.tree.neotree')
+spec('plugins.ui.illuminate')
 
 require('config.lazy')
