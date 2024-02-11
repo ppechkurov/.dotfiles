@@ -2,6 +2,16 @@ return {
   'lewis6991/gitsigns.nvim',
   event = 'BufEnter',
   cmd = 'Gitsigns',
+  opts = {
+    signs = {
+      add = { text = '▎' },
+      change = { text = '▎' },
+      delete = { text = '' },
+      topdelete = { text = '' },
+      changedelete = { text = '▎' },
+      untracked = { text = '▎' },
+    },
+  },
   config = function()
     local icons = require('config.icons')
 
