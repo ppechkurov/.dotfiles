@@ -7,24 +7,53 @@ return {
   config = function()
     local wk = require('which-key')
     wk.register({
-      ['<leader>bb'] = { '<cmd>Telescope buffers previewer=false<cr>', 'Find' },
-      ['<leader>fb'] = { '<cmd>Telescope git_branches<cr>', 'Checkout branch' },
-      ['<leader>fc'] = { '<cmd>Telescope colorscheme<cr>', 'Colorscheme' },
+      -- quick find
+      ['<leader><space>'] = { '<cmd>Telescope buffers previewer=false<cr>', 'Buffers' },
+      ['<leader>/'] = { '<cmd>Telescope live_grep<cr>', 'Grep' },
+      ['<leader>:'] = { '<cmd>Telescope command_history<cr>', 'Command History' },
+      -- files
       ['<leader>ff'] = { '<cmd>Telescope find_files<cr>', 'Find files' },
-      ['<leader>fp'] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", 'Projects' },
       ['<leader>fg'] = { '<cmd>Telescope live_grep<cr>', 'Find Grep' },
+      ['<leader>fo'] = { '<cmd>Telescope oldfiles<cr>', 'Old Files' },
+      -- misc
+      ['<leader>fp'] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", 'Projects' },
+      ['<leader>fr'] = { '<cmd>Telescope resume<cr>', 'Resume' },
       ['<leader>fh'] = { '<cmd>Telescope help_tags<cr>', 'Help' },
-      ['<leader>fl'] = { '<cmd>Telescope resume<cr>', 'Last Search' },
-      ['<leader>fr'] = { '<cmd>Telescope oldfiles<cr>', 'Recent File' },
+      -- git
+      ['<leader>gb'] = { '<cmd>Telescope git_branches<cr>', 'Git Branch' },
+      ['<leader>gc'] = { '<cmd>Telescope git_commits<cr>', 'Git Commits' },
+      ['<leader>gf'] = { '<cmd>Telescope git_commits<cr>', 'Git Files' },
     })
 
     local icons = require('config.icons')
     local actions = require('telescope.actions')
 
-    require('telescope').setup({
+    local find_files_with_hidden = function()
+      local action_state = require('telescope.actions.state')
+      local line = action_state.get_current_line()
+      require('telescope.builtin').find_files({ hidden = true, default_text = line })
+    end
+
+    local Layout = require('nui.layout')
+    local Popup = require('nui.popup')
+
+    local telescope = require('telescope')
+    local TSLayout = require('telescope.pickers.layout')
+
+    local function make_popup(options)
+      local popup = Popup(options)
+      function popup.border:change_title(title)
+        popup.border.set_text(popup.border, 'top', title)
+      end
+      return TSLayout.Window(popup)
+    end
+
+    telescope.setup({
       defaults = {
-        prompt_prefix = icons.ui.Telescope .. ' ',
-        selection_caret = icons.ui.Forward .. ' ',
+        prompt_prefix = ' _: ',
+        selection_caret = ' ',
+        -- prompt_prefix = icons.ui.Telescope .. ' ',
+        -- selection_caret = icons.ui.Forward .. ' ',
         entry_prefix = '   ',
         initial_mode = 'insert',
         selection_strategy = 'reset',
@@ -49,6 +78,8 @@ return {
 
             ['<C-j>'] = actions.move_selection_next,
             ['<C-k>'] = actions.move_selection_previous,
+
+            ['<C-h>'] = find_files_with_hidden,
           },
           n = {
             ['<esc>'] = actions.close,
@@ -69,7 +100,8 @@ return {
 
         find_files = {
           theme = 'dropdown',
-          previewer = false,
+          -- hidden = true,
+          -- previewer = false,
         },
 
         buffers = {
