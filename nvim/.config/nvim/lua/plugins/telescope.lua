@@ -3,12 +3,13 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
+    -- 'nvim-telescope/telescope-ui-select.nvim',
   },
   config = function()
     local wk = require('which-key')
     wk.register({
       -- quick find
-      ['<leader><space>'] = { '<cmd>Telescope buffers previewer=false<cr>', 'Buffers' },
+      ['<leader><space>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
       ['<leader>/'] = { '<cmd>Telescope live_grep<cr>', 'Grep' },
       ['<leader>:'] = { '<cmd>Telescope command_history<cr>', 'Command History' },
       -- files
@@ -19,6 +20,9 @@ return {
       ['<leader>fp'] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", 'Projects' },
       ['<leader>fr'] = { '<cmd>Telescope resume<cr>', 'Resume' },
       ['<leader>fh'] = { '<cmd>Telescope help_tags<cr>', 'Help' },
+      -- diagnostics
+      ['<leader>fd'] = { '<cmd>Telescope diagnostics bufnr=0<cr>', 'Find diagnostics(buffer)' },
+      ['<leader>fD'] = { '<cmd>Telescope diagnostics<cr>', 'Find diagnostics(workspase)' },
       -- git
       ['<leader>gb'] = { '<cmd>Telescope git_branches<cr>', 'Git Branch' },
       ['<leader>gc'] = { '<cmd>Telescope git_commits<cr>', 'Git Commits' },
@@ -34,19 +38,7 @@ return {
       require('telescope.builtin').find_files({ hidden = true, default_text = line })
     end
 
-    local Layout = require('nui.layout')
-    local Popup = require('nui.popup')
-
     local telescope = require('telescope')
-    local TSLayout = require('telescope.pickers.layout')
-
-    local function make_popup(options)
-      local popup = Popup(options)
-      function popup.border:change_title(title)
-        popup.border.set_text(popup.border, 'top', title)
-      end
-      return TSLayout.Window(popup)
-    end
 
     telescope.setup({
       defaults = {
@@ -99,7 +91,8 @@ return {
         },
 
         find_files = {
-          theme = 'dropdown',
+          -- layout_config = { height = 0.85, width = 0.85 },
+          -- theme = 'dropdown',
           -- hidden = true,
           -- previewer = false,
         },

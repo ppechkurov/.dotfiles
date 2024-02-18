@@ -36,7 +36,7 @@ return {
         },
       },
       window = {
-        border = 'rounded',
+        border = 'none',
         position = 'bottom',
         padding = { 2, 2, 2, 2 },
       },

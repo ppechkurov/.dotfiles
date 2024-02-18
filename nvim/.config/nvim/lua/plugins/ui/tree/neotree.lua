@@ -10,7 +10,7 @@ return {
   config = function(_, opts)
     local wk = require('which-key')
     wk.register({
-      ['<leader>et'] = { ':Neotree<cr>', 'File Tree' },
+      ['<leader>e'] = { ':Neotree focus reveal<cr>', 'File Tree' },
     })
     opts.event_handlers = opts.event_handlers or {}
     vim.list_extend(opts.event_handlers, {

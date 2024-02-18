@@ -10,3 +10,5 @@ vim.keymap.set(
 
 vim.keymap.set('n', 'n', 'nzz', { silent = true, desc = 'Center screen after n' })
 vim.keymap.set('n', 'N', 'Nzz', { silent = true, desc = 'Center screen after N' })
+
+vim.keymap.set('n', '<esc>', ':noh<cr>', { silent = true, desc = 'Center screen after N' })

@@ -13,19 +13,20 @@ local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
   keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  keymap(bufnr, 'n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
   keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   keymap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
+  keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 end
 
 M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
 
-  if client.supports_method('textDocument/inlayHint') then
-    vim.lsp.inlay_hint.enable(bufnr, true)
-  end
+  -- if client.supports_method('textDocument/inlayHint') then
+  --   vim.lsp.inlay_hint.enable(bufnr, true)
+  -- end
 end
 
 function M.common_capabilities()
@@ -47,6 +48,10 @@ function M.config()
   local wk = require('which-key')
   wk.register({
     ['<leader>la'] = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action' },
+    ['<leader>lA'] = {
+      '<cmd>lua vim.lsp.buf.code_action({ context = { only = { "source" } }, diagnostics = {}})<cr>',
+      'Code Action',
+    },
     ['<leader>lf'] = { "<cmd> lua require('conform').format()<cr>", 'Format' },
     ['<leader>li'] = { '<cmd>LspInfo<cr>', 'Info' },
     ['<leader>lj'] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Next Diagnostic' },
@@ -60,17 +65,6 @@ function M.config()
   local lspconfig = require('lspconfig')
   local icons = require('config.icons')
 
-  local servers = {
-    'lua_ls',
-    'html',
-    'tsserver',
-    'eslint',
-    'tsserver',
-    'bashls',
-    'jsonls',
-    'yamlls',
-  }
-
   local default_diagnostic_config = {
     signs = {
       active = true,
@@ -81,14 +75,18 @@ function M.config()
         { name = 'DiagnosticSignInfo', text = icons.diagnostics.Information },
       },
     },
-    virtual_text = false,
+    virtual_text = {
+      spacing = 4,
+      source = 'if_many',
+      prefix = '●',
+    },
     update_in_insert = false,
-    underline = true,
+    -- underline = true,
     severity_sort = true,
     float = {
       focusable = true,
       style = 'minimal',
-      border = 'rounded',
+      border = 'none',
       source = 'always',
       header = '',
       prefix = '',
@@ -101,9 +99,19 @@ function M.config()
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
   end
 
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
-  require('lspconfig.ui.windows').default_options.border = 'rounded'
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'none' })
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'none' })
+  require('lspconfig.ui.windows').default_options.border = 'none'
+
+  local servers = {
+    'lua_ls',
+    'html',
+    -- 'tsserver',
+    'eslint',
+    'bashls',
+    'jsonls',
+    'yamlls',
+  }
 
   for _, server in pairs(servers) do
     local opts = {
