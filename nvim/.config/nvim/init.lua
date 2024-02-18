@@ -9,7 +9,7 @@ spec('plugins.lsp.cmp')
 spec('plugins.lsp.lspconfig')
 spec('plugins.lsp.mason')
 spec('plugins.lsp.schemastore')
-spec('plugins.lsp.typescript-tools')
+-- spec('plugins.lsp.typescript-tools')
 
 spec('plugins.formatters.conform')
 

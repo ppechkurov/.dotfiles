@@ -25,6 +25,7 @@ return {
           'NvimTree',
           'neogitstatus',
           'notify',
+          'noice',
           'startify',
           'toggleterm',
           'Trouble',
