@@ -29,11 +29,12 @@ function M.config()
 
   dashboard.section.buttons.val = {
     button('f', icons.ui.Files .. ' Find file', ':Telescope find_files <CR>'),
-    button('n', icons.ui.NewFile .. ' New file', ':ene <BAR> startinsert <CR>'),
+    button('g', icons.ui.Text .. ' Grep text', ':Telescope live_grep <CR>'),
     button('p', icons.git.Repo .. ' Find project', ":lua require('telescope').extensions.projects.projects()<CR>"),
     button('r', icons.ui.History .. ' Recent files', ':Telescope oldfiles <CR>'),
-    button('t', icons.ui.Text .. ' Find text', ':Telescope live_grep <CR>'),
     button('c', icons.ui.Gear .. ' Config', ':e ~/.config/nvim/init.lua <CR>'),
+    button('s', icons.ui.CloudDownload .. ' Last session', ':lua require("persistence").load()<CR>'),
+    button('n', icons.ui.NewFile .. ' New file', ':ene <BAR> startinsert <CR>'),
     button('q', icons.ui.SignOut .. ' Quit', ':qa<CR>'),
   }
   local function footer()

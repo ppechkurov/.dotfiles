@@ -6,6 +6,11 @@ return {
     presets = {
       command_palette = true,
     },
+    lsp = {
+      progress = {
+        enabled = false,
+      },
+    },
   },
   dependencies = {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
