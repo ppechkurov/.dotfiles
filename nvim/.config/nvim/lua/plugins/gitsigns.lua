@@ -19,7 +19,7 @@ return {
     wk.register({
       ['<leader>gj'] = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", 'Next Hunk' },
       ['<leader>gk'] = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", 'Prev Hunk' },
-      ['<leader>gp'] = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", 'Preview Hunk' },
+      ['<leader>gp'] = { "<cmd>lua require 'gitsigns'.preview_hunk_inline()<cr>", 'Preview Hunk' },
       ['<leader>gr'] = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", 'Reset Hunk' },
       ['<leader>gl'] = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", 'Blame' },
       ['<leader>gR'] = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", 'Reset Buffer' },
@@ -38,13 +38,13 @@ return {
       signs = {
         add = {
           hl = 'GitSignsAdd',
-          text = icons.ui.BoldLineMiddle,
+          text = icons.ui.BoldLineDashedMiddle,
           numhl = 'GitSignsAddNr',
           linehl = 'GitSignsAddLn',
         },
         change = {
           hl = 'GitSignsChange',
-          text = icons.ui.BoldLineDashedMiddle,
+          text = icons.ui.BoldLineMiddle,
           numhl = 'GitSignsChangeNr',
           linehl = 'GitSignsChangeLn',
         },
@@ -62,7 +62,7 @@ return {
         },
         changedelete = {
           hl = 'GitSignsChange',
-          text = icons.ui.BoldLineMiddle,
+          text = icons.ui.BoldLineDashedMiddle,
           numhl = 'GitSignsChangeNr',
           linehl = 'GitSignsChangeLn',
         },
@@ -77,7 +77,7 @@ return {
       update_debounce = 200,
       max_file_length = 40000,
       preview_config = {
-        border = 'rounded',
+        border = 'none',
         style = 'minimal',
         relative = 'cursor',
         row = 0,
