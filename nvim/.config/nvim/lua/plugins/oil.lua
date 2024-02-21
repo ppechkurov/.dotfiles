@@ -1,7 +1,7 @@
-vim.keymap.set("n", "-", "<cmd>Oil --float<cr>", { desc = "Open parent directory" })
+vim.keymap.set('n', '-', '<cmd>Oil --float<cr>', { desc = 'Open parent directory' })
 
 return {
-  "stevearc/oil.nvim",
+  'stevearc/oil.nvim',
   opts = {
     float = {
       max_height = 20,
@@ -9,5 +9,5 @@ return {
     },
   },
   -- Optional dependencies
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
 }
