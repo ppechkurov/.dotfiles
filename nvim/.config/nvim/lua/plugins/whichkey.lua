@@ -3,7 +3,11 @@ return {
   config = function()
     local mappings = {
       q = { '<cmd>confirm q<CR>', 'Quit' },
-      b = { name = 'buffers' },
+      c = {
+        name = 'Close Buffers',
+        o = { '<cmd>%bd|e#|bd#<CR>', 'Others' },
+        c = { '<cmd>bd<CR>', 'Current' },
+      },
       -- d = { name = "Debug" },
       f = { name = 'find' },
       -- g = { name = "Git" },
