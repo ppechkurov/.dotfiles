@@ -1,3 +1,12 @@
+local function foreground(name)
+  ---@type {foreground?:number}?
+  ---@diagnostic disable-next-line: deprecated
+  local hl = vim.api.nvim_get_hl and vim.api.nvim_get_hl(0, { name = name }) or vim.api.nvim_get_hl_by_name(name, true)
+  ---@diagnostic disable-next-line: undefined-field
+  local fg = hl and (hl.fg or hl.foreground)
+  return fg and { fg = string.format('#%06x', fg) } or nil
+end
+
 return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy',
@@ -32,42 +41,42 @@ return {
 
         lualine_c = {
           -- Util.lualine.root_dir(),
-          -- {
-          --   'diagnostics',
-          --   symbols = {
-          --     error = icons.diagnostics.Error,
-          --     warn = icons.diagnostics.Warn,
-          --     info = icons.diagnostics.Info,
-          --     hint = icons.diagnostics.Hint,
-          --   },
-          -- },
+          {
+            'diagnostics',
+            symbols = {
+              error = icons.diagnostics.Error,
+              warn = icons.diagnostics.Warn,
+              info = icons.diagnostics.Info,
+              hint = icons.diagnostics.Hint,
+            },
+          },
           -- { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
           -- { Util.lualine.pretty_path() },
         },
         lualine_x = {
             -- stylua: ignore
-            -- {
-            --   function() return require("noice").api.status.command.get() end,
-            --   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            --   color = Util.ui.fg("Statement"),
-            -- },
+            {
+              function() return require("noice").api.status.command.get() end,
+              cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+              color = foreground("Statement"),
+            },
             -- stylua: ignore
-            -- {
-            --   function() return require("noice").api.status.mode.get() end,
-            --   cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            --   color = Util.ui.fg("Constant"),
-            -- },
+            {
+              function() return require("noice").api.status.mode.get() end,
+              cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+              color = foreground("Constant"),
+            },
             -- stylua: ignore
-            -- {
-            --   function() return "  " .. require("dap").status() end,
-            --   cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
-            --   color = Util.ui.fg("Debug"),
-            -- },
-          -- {
-          --   require('lazy.status').updates,
-          --   cond = require('lazy.status').has_updates,
-          --   color = Util.ui.fg('Special'),
-          -- },
+            {
+              function() return "  " .. require("dap").status() end,
+              cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
+              color = foreground("Debug"),
+            },
+          {
+            require('lazy.status').updates,
+            cond = require('lazy.status').has_updates,
+            color = foreground('Special'),
+          },
           {
             'diff',
             symbols = {

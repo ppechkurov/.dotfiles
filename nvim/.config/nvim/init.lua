@@ -39,8 +39,8 @@ spec('plugins.flash')
 spec('plugins.noice')
 spec('plugins.persistence')
 spec('plugins.codeium')
+spec('plugins.dap')
 
 spec('plugins.dressing')
 spec('plugins.colorizer')
-
 require('config.lazy')

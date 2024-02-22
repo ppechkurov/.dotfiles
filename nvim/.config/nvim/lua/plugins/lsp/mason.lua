@@ -1,31 +1,31 @@
 local M = {
-  "williamboman/mason-lspconfig.nvim",
+  'williamboman/mason-lspconfig.nvim',
   dependencies = {
-    "williamboman/mason.nvim",
+    'williamboman/mason.nvim',
   },
 }
 
-
 function M.config()
   local servers = {
-    "lua_ls",
-    "cssls",
-    "html",
-    "tsserver",
-    "pyright",
-    "bashls",
-    "jsonls",
+    'lua_ls',
+    'cssls',
+    'html',
+    'tsserver',
+    'eslint',
+    'pyright',
+    'bashls',
+    'jsonls',
   }
 
-  require("mason").setup {
+  require('mason').setup({
     ui = {
-      border = "rounded",
+      border = 'single',
     },
-  }
+  })
 
-  require("mason-lspconfig").setup {
+  require('mason-lspconfig').setup({
     ensure_installed = servers,
-  }
+  })
 end
 
 return M
@@ -54,7 +54,7 @@ return M
 --       "yaml-language-server",
 --     },
 --   },
--- 
+--
 --   ---@param opts MasonSettings | {ensure_installed: string[]}
 --   config = function(_, opts)
 --     require("mason").setup(opts)
