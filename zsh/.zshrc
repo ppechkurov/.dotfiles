@@ -12,7 +12,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 export ZSH="$HOME/.oh-my-zsh"
 
 # bun
-export BUN_HOME="$HOME/.bun"
+export BUN_HOME="$(brew --prefix)/bin/bun"
 export PATH="$BUN_HOME/bin:$PATH"
 
 # this is for the ranger
