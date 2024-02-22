@@ -139,6 +139,7 @@ alias cat='bat'
 alias ls='eza'
 alias ll='ls -l -g --icons'
 alias lla='ll -a'
+alias xclip='xclip -selection clipboard'
 
 alias :e=$EDITOR
 alias :q=exit

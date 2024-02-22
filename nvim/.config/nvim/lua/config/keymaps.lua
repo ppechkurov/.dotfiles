@@ -12,15 +12,15 @@ vim.keymap.set(
 vim.keymap.set("n", "n", "nzz", { silent = true, desc = "Center screen after n" })
 vim.keymap.set("n", "N", "Nzz", { silent = true, desc = "Center screen after N" })
 
-vim.keymap.set(
-  "n",
-  "k",
-  ":<C-U>execute 'normal!' (v:count > 1 ? \"m'\" . v:count : '') . 'k'<CR>",
-  { silent = true, desc = "Relative line number jumps to the jumplist" }
-)
-vim.keymap.set(
-  "n",
-  "j",
-  ":<C-U>execute 'normal!' (v:count > 1 ? \"m'\" . v:count : '') . 'j'<CR>",
-  { silent = true, desc = "Relative line number jumps to the jumplist" }
-)
+-- vim.keymap.set(
+--   "n",
+--   "k",
+--   ":<C-U>execute 'normal!' (v:count > 1 ? \"m'\" . v:count : '') . 'k'<CR>",
+--   { silent = true, desc = "Relative line number jumps to the jumplist" }
+-- )
+-- vim.keymap.set(
+--   "n",
+--   "j",
+--   ":<C-U>execute 'normal!' (v:count > 1 ? \"m'\" . v:count : '') . 'j'<CR>",
+--   { silent = true, desc = "Relative line number jumps to the jumplist" }
+-- )
