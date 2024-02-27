@@ -7,6 +7,8 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       zsh = { 'shfmt' },
+      sh = { 'shfmt' },
+      markdown = { 'markdownlint' },
       sql = { 'sql_formatter' },
       typescript = { 'prettierd' },
       javascript = { 'prettierd' },

@@ -60,7 +60,7 @@ vim.cmd('set whichwrap+=<,>,[,],h,l')
 vim.opt.foldlevel = 99
 vim.o.foldmethod = 'indent'
 
---vim.cmd([[set iskeyword+=-]])
+-- vim.cmd([[set iskeyword+=-]])
 --vim.cmd([[set iskeyword+=_]])
 
 vim.g.netrw_banner = 0
