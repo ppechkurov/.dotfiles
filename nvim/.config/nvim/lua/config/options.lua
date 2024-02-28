@@ -1,6 +1,3 @@
-vim.o.guifont = 'ShureTechMono Nerd Font:h18'
--- vim.g.neovide_transparency = 0.95
-
 vim.o.colorcolumn = '80,100,120'
 vim.o.conceallevel = 2 -- for obsidian nvim additional features
 -- vim.o.guifont = 'CaskaydiaCove Nerd Font:h18'
@@ -65,3 +62,15 @@ vim.o.foldmethod = 'indent'
 
 vim.g.netrw_banner = 0
 vim.g.netrw_mouse = 2
+
+if vim.g.neovide then
+  vim.o.guifont = 'ShureTechMono Nerd Font:h18'
+  vim.g.neovide_fullscreen = true
+  vim.g.neovide_cursor_vfx_mode = 'pixiedust'
+  vim.g.neovide_confirm_quit = true
+
+  vim.o.scrolloff = 10
+  vim.o.sidescrolloff = 10
+
+  -- vim.g.neovide_transparency = 0.95
+end
