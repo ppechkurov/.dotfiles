@@ -12,6 +12,7 @@ return {
       sql = { 'sql_formatter' },
       typescript = { 'prettierd' },
       javascript = { 'prettierd' },
+      json = { 'prettierd' },
     },
   },
 }

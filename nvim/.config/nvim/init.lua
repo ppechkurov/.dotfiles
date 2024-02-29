@@ -41,6 +41,7 @@ spec('plugins.todo')
 spec('plugins.persistence')
 spec('plugins.codeium')
 spec('plugins.dap')
+spec('plugins.octo')
 
 spec('plugins.dressing')
 spec('plugins.colorizer')

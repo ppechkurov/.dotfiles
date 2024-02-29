@@ -121,28 +121,8 @@ export FZF_BASE=$(which fzf)
 
 export BAT_THEME="gruvbox-dark"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-# List out all globally installed npm packages
-alias list-npm-globals='npm list -g --depth=0'
-# use neovim instead of vim
-alias vim='nvim'
-# checkout branch using fzf
-alias gcob='git branch | fzf | xargs git checkout'
-# open vim config from anywhere
-alias vimrc='vim ${HOME}/.config/nvim/init.vim'
-# cat -> bat
-alias cat='bat'
-# eza as ls
-alias ls='eza'
-alias ll='ls -l -g --icons'
-alias lla='ll -a'
-
-alias :e=$EDITOR
-alias :q=exit
-alias :wq=exit
+# aliases
+. $HOME/.zsh_aliases
 
 bindkey '^j' jq-complete
 
