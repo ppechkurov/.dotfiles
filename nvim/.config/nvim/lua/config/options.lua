@@ -63,6 +63,12 @@ vim.o.foldmethod = 'indent'
 vim.g.netrw_banner = 0
 vim.g.netrw_mouse = 2
 
+-- Sets how neovim will display certain whitespace in the editor.
+--  See :help 'list'
+--  and :help 'listchars'
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
 if vim.g.neovide then
   vim.o.guifont = 'ShureTechMono Nerd Font:h18'
   vim.g.neovide_fullscreen = true

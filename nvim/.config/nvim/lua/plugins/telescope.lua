@@ -13,16 +13,18 @@ return {
       ['<leader>/'] = { '<cmd>Telescope live_grep<cr>', 'Grep' },
       ['<leader>:'] = { '<cmd>Telescope command_history<cr>', 'Command History' },
       -- files
-      ['<leader>ff'] = { '<cmd>Telescope find_files<cr>', 'Find files' },
-      ['<leader>fg'] = { '<cmd>Telescope live_grep<cr>', 'Find Grep' },
-      ['<leader>fo'] = { '<cmd>Telescope oldfiles<cr>', 'Old Files' },
-      -- misc
-      ['<leader>fp'] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", 'Projects' },
-      ['<leader>fr'] = { '<cmd>Telescope resume<cr>', 'Resume' },
-      ['<leader>fh'] = { '<cmd>Telescope help_tags<cr>', 'Help' },
+      ['<leader>sf'] = { '<cmd>Telescope find_files<cr>', '[f]iles' },
+      ['<leader>sF'] = { '<cmd>Telescope git_files<cr>', '[F]iles(.git)' },
+      ['<leader>sg'] = { '<cmd>Telescope live_grep<cr>', '[g]rep' },
+      ['<leader>s.'] = { '<cmd>Telescope oldfiles<cr>', '[.]oldfiles' },
+      ['<leader>sr'] = { '<cmd>Telescope resume<cr>', '[r]esume' },
       -- diagnostics
-      ['<leader>fd'] = { '<cmd>Telescope diagnostics bufnr=0<cr>', 'Find diagnostics(buffer)' },
-      ['<leader>fD'] = { '<cmd>Telescope diagnostics<cr>', 'Find diagnostics(workspase)' },
+      ['<leader>sd'] = { '<cmd>Telescope diagnostics bufnr=0<cr>', '[d]iagnostics(buffer)' },
+      ['<leader>sD'] = { '<cmd>Telescope diagnostics<cr>', '[D]iagnostics(workspace)' },
+      -- misc
+      ['<leader>sp'] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", '[p]rojects' },
+      ['<leader>sh'] = { '<cmd>Telescope help_tags<cr>', '[h]elp' },
+      ['<leader>sk'] = { '<cmd>Telescope keymaps<cr>', '[k]eymaps' },
       -- git
       ['<leader>gb'] = { '<cmd>Telescope git_branches<cr>', 'Git Branch' },
       ['<leader>gc'] = { '<cmd>Telescope git_commits<cr>', 'Git Commits' },
