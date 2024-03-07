@@ -9,7 +9,8 @@ return {
     local wk = require('which-key')
     wk.register({
       -- quick find
-      ['<leader><space>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
+      -- ['<leader><space>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
+      ['<Tab>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
       ['<leader>/'] = { '<cmd>Telescope live_grep<cr>', 'Grep' },
       ['<leader>:'] = { '<cmd>Telescope command_history<cr>', 'Command History' },
       -- files
