@@ -9,23 +9,23 @@ return {
     local wk = require('which-key')
     wk.register({
       -- quick find
-      -- ['<leader><space>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
-      ['<Tab>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
+      ['<leader><space>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
+      -- ['<Tab>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
       ['<leader>/'] = { '<cmd>Telescope live_grep<cr>', 'Grep' },
       ['<leader>:'] = { '<cmd>Telescope command_history<cr>', 'Command History' },
       -- files
-      ['<leader>sf'] = { '<cmd>Telescope find_files<cr>', '[f]iles' },
-      ['<leader>sF'] = { '<cmd>Telescope git_files<cr>', '[F]iles(.git)' },
-      ['<leader>sg'] = { '<cmd>Telescope live_grep<cr>', '[g]rep' },
-      ['<leader>s.'] = { '<cmd>Telescope oldfiles<cr>', '[.]oldfiles' },
-      ['<leader>sr'] = { '<cmd>Telescope resume<cr>', '[r]esume' },
+      ['<leader>ff'] = { '<cmd>Telescope find_files<cr>', '[f]iles' },
+      ['<leader>fF'] = { '<cmd>Telescope git_files<cr>', '[F]iles(.git)' },
+      ['<leader>fg'] = { '<cmd>Telescope live_grep<cr>', '[g]rep' },
+      ['<leader>f.'] = { '<cmd>Telescope oldfiles<cr>', '[.]oldfiles' },
+      ['<leader>fr'] = { '<cmd>Telescope resume<cr>', '[r]esume' },
       -- diagnostics
-      ['<leader>sd'] = { '<cmd>Telescope diagnostics bufnr=0<cr>', '[d]iagnostics(buffer)' },
-      ['<leader>sD'] = { '<cmd>Telescope diagnostics<cr>', '[D]iagnostics(workspace)' },
+      ['<leader>fd'] = { '<cmd>Telescope diagnostics bufnr=0<cr>', '[d]iagnostics(buffer)' },
+      ['<leader>fD'] = { '<cmd>Telescope diagnostics<cr>', '[D]iagnostics(workspace)' },
       -- misc
-      ['<leader>sp'] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", '[p]rojects' },
-      ['<leader>sh'] = { '<cmd>Telescope help_tags<cr>', '[h]elp' },
-      ['<leader>sk'] = { '<cmd>Telescope keymaps<cr>', '[k]eymaps' },
+      ['<leader>fp'] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", '[p]rojects' },
+      ['<leader>fh'] = { '<cmd>Telescope help_tags<cr>', '[h]elp' },
+      ['<leader>fk'] = { '<cmd>Telescope keymaps<cr>', '[k]eymaps' },
       -- git
       ['<leader>gb'] = { '<cmd>Telescope git_branches<cr>', 'Git Branch' },
       ['<leader>gc'] = { '<cmd>Telescope git_commits<cr>', 'Git Commits' },

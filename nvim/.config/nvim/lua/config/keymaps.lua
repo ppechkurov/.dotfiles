@@ -8,6 +8,14 @@ vim.keymap.set(
   { silent = true, desc = 'Console: Log variable under cursor' }
 )
 
+vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
+vim.keymap.set('n', '<Tab>', '<Tab>', { silent = true, noremap = true, expr = false, desc = 'Center screen after n' })
+vim.keymap.set('n', '<C-i>', '<C-i>', { silent = true, noremap = true, expr = false, desc = 'Center screen after n' })
+
 vim.keymap.set('n', 'n', 'nzz', { silent = true, desc = 'Center screen after n' })
 vim.keymap.set('n', 'N', 'Nzz', { silent = true, desc = 'Center screen after N' })
 
