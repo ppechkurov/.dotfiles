@@ -3,6 +3,7 @@ return {
   config = function()
     local mappings = {
       q = { '<cmd>confirm q<CR>', 'Quit' },
+      w = { '<cmd>:w<CR>', 'Write' },
       c = {
         name = '[c]lose buffers',
         o = { '<cmd>%bd|e#|bd#<CR>', '[o]thers' },

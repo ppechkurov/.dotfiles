@@ -16,6 +16,7 @@ spec('plugins.formatters.conform')
 spec('plugins.telescope')
 spec('plugins.comment')
 spec('plugins.whichkey')
+spec('plugins.harpoon')
 
 spec('plugins.colorscheme')
 spec('plugins.ui.bottom.lualine')

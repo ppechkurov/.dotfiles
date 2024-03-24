@@ -14,8 +14,9 @@ return {
       keymaps = {
         ['<esc>'] = 'actions.close',
         ['<S-h>'] = 'actions.toggle_hidden',
+        ['<BS>'] = 'actions.parent',
       },
     })
-    vim.keymap.set('n', '-', '<CMD>Oil --float<CR>', { desc = 'Open parent directory' })
+    vim.keymap.set('n', '<BS>', '<CMD>Oil --float<CR>', { desc = 'Open parent directory' })
   end,
 }

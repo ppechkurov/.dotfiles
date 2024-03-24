@@ -1063,7 +1063,7 @@ xkb_symbols "programmer_ru" {
     include "ru(common)"
     name[Group1]= "Russian (Real Programmers Dvorak)";
 
-    key <TLDE> { [ dollar, asciitilde, dead_grave, dead_tilde ] };
+    key <TLDE> { [  Cyrillic_io, Cyrillic_IO ] }; // Combining grave, double grave
 
     key <AE01> { [  1,      plus          ] };
     key <AE02> { [  2,      bracketleft   ] };
