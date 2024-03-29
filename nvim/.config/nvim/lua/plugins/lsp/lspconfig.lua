@@ -101,6 +101,7 @@ function M.config()
 
   vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'none' })
   vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'none' })
+
   require('lspconfig.ui.windows').default_options.border = 'none'
 
   local servers = {
@@ -111,6 +112,8 @@ function M.config()
     'bashls',
     'jsonls',
     'yamlls',
+    'ansiblels',
+    'marksman',
   }
 
   for _, server in pairs(servers) do

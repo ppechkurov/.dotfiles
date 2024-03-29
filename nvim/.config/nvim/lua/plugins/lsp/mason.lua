@@ -13,12 +13,12 @@ function M.config()
     'eslint',
     'bashls',
     'jsonls',
+    'ansiblels',
+    'marksman',
   }
 
   require('mason').setup({
-    ui = {
-      border = 'single',
-    },
+    ui = { border = 'single' },
   })
 
   require('mason-lspconfig').setup({

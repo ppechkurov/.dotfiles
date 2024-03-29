@@ -4,6 +4,7 @@ return {
   dependencies = {
     'rcarriga/nvim-dap-ui',
     'mxsdev/nvim-dap-vscode-js',
+    'nvim-neotest/nvim-nio',
     {
       'microsoft/vscode-js-debug',
       version = '1.x',
