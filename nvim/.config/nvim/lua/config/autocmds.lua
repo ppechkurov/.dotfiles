@@ -121,3 +121,17 @@ end
 vim.api.nvim_command([[
     autocmd ModeChanged * lua leave_snippet()
 ]])
+
+-- autodetect ansible files
+vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+  pattern = {
+    '*/playbooks/*.yml',
+    '*/playbooks/*.yaml',
+    '*/roles/*/tasks/*.yml',
+    '*/roles/*/tasks/*.yaml',
+    '*/roles/*/handlers/*.yml',
+    '*/roles/*/handlers/*.yaml',
+  },
+  desc = 'autodetect ansible',
+  command = 'set filetype=yaml.ansible',
+})
