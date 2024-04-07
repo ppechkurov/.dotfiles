@@ -113,6 +113,7 @@ function M.config()
     'jsonls',
     'yamlls',
     'ansiblels',
+    'nil_ls',
     'marksman',
   }
 

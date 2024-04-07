@@ -2,9 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
-{
+let
+  unstable = with pkgs-unstable; [
+    neovim
+  ];
+  stable = with pkgs; [
+    cargo
+    gcc
+    gh
+    stow
+  ];
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -43,16 +53,11 @@
     layout = "us-prog";
     xkb = {
       extraLayouts = {
-        us-greek = {
-          description = "US Greek";
-          languages = [ "eng" ];
-          symbolsFile = ./us-greek;
-	};
-	us-prog = {
+        us-prog = {
           description = "US Prog";
           languages = [ "eng" ];
           symbolsFile = ./us-prog;
-	}; 
+        }; 
       };
     };
   };
@@ -80,18 +85,21 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs.zsh.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nixtest = {
     isNormalUser = true;
     description = "nix-test";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
+    packages = unstable ++ stable;
+    shell = pkgs.zsh;
   };
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "nixtest";
+
+  services.gnome.core-utilities.enable = false;
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
@@ -105,11 +113,23 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     curl
-    neovim
     git
     alacritty
     xorg.xkbcomp
   ];
+
+  environment.shellAliases = {
+    ls = "ls -l";
+    ll = "ls -l";
+    lla = "ls -latch";
+    ".." = "cd ..";
+    "..." = "cd ../..";
+    vim = "nvim";
+  };
+
+  environment.variables.EDITOR = "nvim";
+  environment.variables.VISUAL = "nvim";
+  environment.variables.SUDO_EDITOR = "nvim";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
