@@ -1,0 +1,5 @@
+services.xserver.xkb.extraLayouts.us-greek = {
+  description = "US layout with alt-gr greek";
+  languages   = [ "eng" ];
+  symbolsFile = /yourpath/symbols/us-greek;
+};
