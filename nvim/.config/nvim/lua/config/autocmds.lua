@@ -125,6 +125,8 @@ vim.api.nvim_command([[
 -- autodetect ansible files
 vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   pattern = {
+    '*/ansible/**/*.yml',
+    '*/ansible/**/*.yaml',
     '*/playbooks/*.yml',
     '*/playbooks/*.yaml',
     '*/roles/*/tasks/*.yml',

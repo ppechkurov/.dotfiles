@@ -6,9 +6,9 @@ return {
         -- this plugin and its advanced options like `ignore`.
         enable = false,
         -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-        url = "",
+        url = '',
       },
-      schemas = require("schemastore").yaml.schemas(),
+      schemas = require('schemastore').yaml.schemas(),
     },
   },
 }
