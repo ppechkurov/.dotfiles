@@ -1,5 +1,5 @@
 {
-  description = "test";
+  description = "NixOS configuration";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
@@ -7,8 +7,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... } @ inputs:
   let
+    inherit (self) outputs;
     system = "x86_64-linux";
     lib = nixpkgs.lib;
     pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
@@ -17,19 +18,10 @@
       nixos = lib.nixosSystem {
         inherit system;
         modules = [ 
-          ./configuration.nix
-
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.nixtest = import ./home.nix;
-
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
+          ./nixos/configuration.nix
         ];
         specialArgs = {
-          inherit pkgs-unstable;
+          inherit pkgs-unstable inputs outputs;
         };
       };
     };
