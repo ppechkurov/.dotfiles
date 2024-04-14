@@ -14,10 +14,11 @@
       input = {
         kb_layout = "us";
         follow_mouse = 1;
-        sensitivity = 0;
         touchpad = {
           natural_scroll = false;
         };
+        repeat_delay = 200;
+        repeat_rate = 50;
       };
 
       general = {
@@ -90,22 +91,20 @@
 
       bind = [
         # keybindings
-        "$mainMod, Return, exec, kitty"
-        "ALT, Return, exec, kitty --title float_kitty"
+        "$mainMod, Return, exec, foot"
+        "ALT, Return, exec, foot"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, V, togglefloating,"
         "$mainMod, F, exec, firefox"
-        "$mainMod, R, exec, pkill wofi || wofi --show drun"
-        "$mainMod SHIFT, D, exec, hyprctl dispatch exec '[workspace 4 silent] discord'"
-        "$mainMod SHIFT, S, exec, hyprctl dispatch exec '[workspace 5 silent] spotify'"
+        "$mainMod, D, exec, pkill wofi || wofi --show drun"
         "$mainMod, E, exec, thunar"
 
         # switch focus
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
+        "$mainMod, h, movefocus, l"
+        "$mainMod, l, movefocus, r"
+        "$mainMod, k, movefocus, u"
+        "$mainMod, j, movefocus, d"
 
         # switch workspace
         "$mainMod, 1, workspace, 1"
@@ -211,7 +210,7 @@
     };
 
     extraConfig = "
-      monitor=eDP-1,highres,0x0,1
+      monitor=Virtual-1,1680x1050,0x0,1
       monitor=HDMI-1,preferred,auto,1,mirror,eDP-1
 
       xwayland {

@@ -38,8 +38,9 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+
   console = {
-    useXkbConfig = true;
+    keyMap = "dvorak";
     font = "Lat2-Terminus16";
   };
 
@@ -95,7 +96,6 @@
     isNormalUser = true;
     description = "petrp";
     extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" ];
-    packages = with pkgs; [];
     shell = pkgs.zsh;
   };
 
@@ -125,6 +125,8 @@
    vim
    wget
   ];
+
+  environment.pathsToLink = [ "/share/zsh" ];
 
   # xdg
   xdg.portal = {

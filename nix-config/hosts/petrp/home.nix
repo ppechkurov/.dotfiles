@@ -16,6 +16,24 @@
     };
   };
 
+  programs.git = {
+    enable = true;
+    userEmail = "petr.pechkurov@gmail.com";
+    userName = "Petr Pechkurov";
+  };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    defaultKeymap = "viins";
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell";
+    };
+  };
+
   home.username = "petrp";
   home.homeDirectory = "/home/petrp";
 
@@ -24,7 +42,7 @@
 
   home.packages = with pkgs; [
     alacritty
-    git
+    foot
   ];
 
   nixpkgs.config.allowUnfree = true;
