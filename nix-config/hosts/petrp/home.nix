@@ -23,7 +23,8 @@
 
 
   home.packages = with pkgs; [
-    
+    alacritty
+    git
   ];
 
   nixpkgs.config.allowUnfree = true;
