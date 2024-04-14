@@ -7,6 +7,10 @@
       inputs.home-manager.nixosModules.default
     ];
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   # Enable Experimental Features and Package Management
   nix = {
     settings = {
@@ -37,7 +41,6 @@
   console = {
     useXkbConfig = true;
     font = "Lat2-Terminus16";
-    keyMap = "us";
   };
 
   # Services

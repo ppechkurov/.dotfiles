@@ -11,7 +11,7 @@
     enable = true;
     configFile.xkb = {
       enable = true;
-      source = ./us-prog;
+      source = ../../../xkb/symbols/us;
       target = "xkb/symbols/us";
     };
   };
