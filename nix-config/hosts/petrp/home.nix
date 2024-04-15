@@ -30,8 +30,14 @@
     defaultKeymap = "viins";
     oh-my-zsh = {
       enable = true;
-      theme = "robbyrussell";
+      theme = "powerlevel10k";
     };
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    vimAlias = true;
   };
 
   home.username = "petrp";
@@ -41,13 +47,17 @@
 
 
   home.packages = with pkgs; [
-    alacritty
     foot
   ];
 
   nixpkgs.config.allowUnfree = true;
   home.file = {
-
+    nvim = {
+      enable = true;
+      source = ../../../nvim/.config/nvim;
+      target = ".config/nvim";
+      recursive = true;
+    };
   };
 
   home.sessionVariables = {

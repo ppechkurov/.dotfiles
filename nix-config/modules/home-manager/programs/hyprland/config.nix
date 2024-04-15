@@ -17,8 +17,8 @@
         touchpad = {
           natural_scroll = false;
         };
-        repeat_delay = 200;
-        repeat_rate = 50;
+        repeat_delay = 250;
+        repeat_rate = 40;
       };
 
       general = {
@@ -210,7 +210,7 @@
     };
 
     extraConfig = "
-      monitor=Virtual-1,1680x1050,0x0,1
+      monitor=Virtual-1,1920x1080,0x0,1
       monitor=HDMI-1,preferred,auto,1,mirror,eDP-1
 
       xwayland {

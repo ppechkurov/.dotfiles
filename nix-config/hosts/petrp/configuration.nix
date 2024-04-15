@@ -40,7 +40,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   console = {
-    keyMap = "dvorak";
+    keyMap = "real-prog-dvorak";
     font = "Lat2-Terminus16";
   };
 
@@ -88,6 +88,7 @@
       font-awesome
       powerline-fonts
       powerline-symbols
+      neovim
     ];
   };
 
