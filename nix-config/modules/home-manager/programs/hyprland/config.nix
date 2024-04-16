@@ -2,21 +2,17 @@
 {
   wayland.windowManager.hyprland = {
     settings = {
-      
+
       # autostart
       exec-once = [
         "waybar &"
         "hyprpaper &"
-        # "discord &"
-        
       ];
 
       input = {
         kb_layout = "us";
         follow_mouse = 1;
-        touchpad = {
-          natural_scroll = false;
-        };
+        touchpad = { natural_scroll = false; };
         repeat_delay = 250;
         repeat_rate = 40;
       };
@@ -27,9 +23,8 @@
         gaps_in = 3;
         gaps_out = 7;
         border_size = 2;
-        "col.active_border" = "rgb(b4befe)";
+        "col.active_border" = "rgba(0063918c)";
         "col.inactive_border" = "0x00000000";
-
       };
 
       misc = {
@@ -47,7 +42,7 @@
       };
 
       decoration = {
-        rounding = 9;
+        rounding = 5;
         active_opacity = 0.90;
         inactive_opacity = 0.90;
         fullscreen_opacity = 1.0;
@@ -82,23 +77,22 @@
         ];
 
         animation = [
-          "windows, 1, 4, overshot, slide"
+          "windows, 1, 2, overshot, slide"
           "border, 1, 14, default"
-          "fade, 1, 4, default"
-          "workspaces, 1, 4, overshot, slide"
+          "fade, 1, 2, default"
+          "workspaces, 1, 2, overshot, slide"
         ];
       };
 
       bind = [
         # keybindings
         "$mainMod, Return, exec, foot"
-        "ALT, Return, exec, foot"
+        "ALT, Return, exec, [float] foot"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, V, togglefloating,"
         "$mainMod, F, exec, firefox"
         "$mainMod, D, exec, pkill wofi || wofi --show drun"
-        "$mainMod, E, exec, thunar"
 
         # switch focus
         "$mainMod, h, movefocus, l"
@@ -132,10 +126,10 @@
         "$mainMod CTRL, c, movetoworkspace, empty"
 
         # window control
-        "$mainMod SHIFT, left, movewindow, l"
-        "$mainMod SHIFT, right, movewindow, r"
-        "$mainMod SHIFT, up, movewindow, u"
-        "$mainMod SHIFT, down, movewindow, d"
+        "$mainMod SHIFT, h, movewindow, l"
+        "$mainMod SHIFT, l, movewindow, r"
+        "$mainMod SHIFT, k, movewindow, u"
+        "$mainMod SHIFT, j, movewindow, d"
         "$mainMod CTRL, left, resizeactive, -80 0"
         "$mainMod CTRL, right, resizeactive, 80 0"
         "$mainMod CTRL, up, resizeactive, 0 -80"
@@ -170,9 +164,9 @@
 
       # windowrule
       windowrule = [
-        "float,title:^(float_kitty)$"
-        "center,title:^(float_kitty)$"
-        "size 950 600,title:^(float_kitty)$"
+        "float,title:^(float_foot)$"
+        "center,title:^(float_foot)$"
+        "size 950 600,title:^(float_foot)$"
         "workspace 4 silent, discord"
         "pin,wofi"
         "float,wofi"

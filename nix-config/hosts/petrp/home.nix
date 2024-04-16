@@ -32,6 +32,9 @@
       enable = true;
       plugins = [ "romkatv/powerlevel10k" ];
     };
+    oh-my-zsh = {
+      enable = true;
+    };
     initExtra = ''
     source ~/.p10k.zsh
     '';
