@@ -30,7 +30,7 @@
     defaultKeymap = "viins";
     oh-my-zsh = {
       enable = true;
-      theme = "powerlevel10k";
+      theme = "robbyrussell";
     };
   };
 
@@ -58,10 +58,6 @@
       target = ".config/nvim";
       recursive = true;
     };
-  };
-
-  home.sessionVariables = {
-    EDITOR = "vim";
   };
 
   # Let Home Manager install and manage itself.
