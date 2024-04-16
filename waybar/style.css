@@ -1,311 +1,100 @@
+@import "colors.css";
+
 * {
-  font-family: Material Design Icons, JetBrainsMono Nerd Font;
-  font-size: 10px;
-  font-weight: bolder;
+  border: none;
+  border-radius: 0;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 14px;
+  min-height: 0px;
 }
 
 window#waybar {
-  background-color: transparent;
-  color: #ffffff;
-
-}
-
-window#waybar.hidden {
-  opacity: 0.1;
-}
-
-#window {
-  color: #64727d;
-}
-
-#clock,
-#tray,
-#mode,
-#custom-lock,
-#idle_inhibitor,
-#backlight,
-#pulseaudio,
-#mpd,
-#mpris,
-#custom-weather{
-  border-radius: 8px 8px 8px 8px;
-}
-
-#cpu {
-  color: #6c71c4;
-  border-radius: 8px 8px 8px 8px;
-}
-
-#backlight {
-  color: #2aa198;
-  border-radius: 8px 8px 8px 8px;
-}
-
-#memory,
-#cpu,
-#backlight,
-#pulseaudio,
-#network {
-  font-size: 16px;
-}
-
-@keyframes button_activate {
-  from {
-    opacity: .3
-  }
-
-  to {
-    opacity: 1.;
-  }
+  background: @bg0;
+  color: #cdd6f4;
 }
 
 #workspaces button {
-  border: none;
-  color: #268bd2;
-  font-weight: bolder;
-  padding: 3px;
-  background: transparent;
-  box-shadow: none;
+  padding: 5px;
+  color: #ffffff;
+  margin: 3px;
+  border-radius: 30px;
 }
 
 #workspaces button.active {
-  color: #268bd2;
-  animation: button_activate .2s ease-in-out;
+  background: @accent;
+  color: @bg0;
 }
 
-#workspaces button.urgent {
-  color: #ff8873;
-  background: radial-gradient(circle, rgba(25, 79, 255, 0.3) 20%, rgba(132, 129, 156, 0) 30%);
-}
-
-#workspaces button.persistent {
-  color: #a9ac88;
-}
-
-#workspaces button.active:hover,
-#workspaces button.urgent:hover {
-  background: inherit;
-}
-
-
-
-#workspaces,
-#custom-ibus,
-#clock,
-#backlight,
-#battery,
-#cpu,
-#memory,
-#pulseaudio,
-#custom-launcher,
-#custom-powermenu,
-#tray,
-#network,
-#mpd,
-#mpris,
-#custom-weather{
-  background-color: #040404;
-  padding: 0em 2em;
-  padding-left: 7.5px;
-  padding-right: 7.5px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  margin-top: 5px;
-  margin-bottom: 0px;
-  margin-right: 10px;
-  font-size: 13px;
-}
-
-#workspaces {
-  padding-right: 10px;
-  border-radius: 0px 8px 8px 0px;
-  margin-left: -10px;
-}
-
-#custom-launcher {
-  padding-right: 7px;
-  padding-left: 7px;
-  margin-left: 5px;
-  font-size: 15px;
-  border-radius: 8px 0px 0px 8px;
-  color: #1793d1;
-}
-
-#pulseaudio {
-  /*color: #268bd2;*/
-  color: #a55377;
-  padding-left: 12px;
-  padding-right: 12px;
-  font-size: 13px;
-  border-radius: 6px 8px 8px 6px;
-  /*margin-left: -5px;*/
-}
-#mpris{
-  color: #d9c793;
-  padding-left: 12px;
-  padding-right: 12px;
-  font-size: 13px;
-  border-radius: 6px 8px 8px 6px;
-}
-#custom-weather{
-  padding-left: 12px;
-  padding-right: 12px;
-  font-size: 13px;
-  border-radius: 6px 8px 8px 6px;
-}
-#mpd{
-  color: #d9c793;
-  padding-left: 12px;
-  padding-right: 12px;
-  font-size: 13px;
-  border-radius: 6px 8px 8px 6px;
-}
-
-#pulseaudio.muted {
-  color: #fb958b;
-  padding-left: 10px;
-  font-size: 13px;
-  border-radius: 6px 8px 8px 6px;
-}
-
-#backlight {
-  /*color: #8a909e;*/
-  padding-right: 12px;
-  padding-left: 12px;
-  border-radius: 8px 6px 6px 8px;
-  
-  font-size: 13px;
-}
-
-#network {
-  padding-left: 0.2em;
-  color: #268bd2;
-  border-radius: 8px 6px 6px 8px;
-  padding-left: 12px;
-  padding-right: 14px;
-  font-size: 13px;
-  /*margin-right: -5px;*/
-}
-
-#network.disconnected {
-  color: #fb958b;
-}
-
-#custom-powermenu {
-  color: #e78284;
-  margin-left: -12px;
-  margin-right: 5px;
-  padding-left: 12px;
-  padding-right: 12px;
-  border-radius: 0px 8px 8px 0px;
-}
-
-#battery {
-  color: #8fbcbb;
-  border-radius: 8px 0px 0px 8px;
-  padding-right: 8px;
-  padding-left: 12px;
-  font-size: 14px;
-}
-
-#battery.critical,
-#battery.warning,
-#battery.full,
-#battery.plugged {
-  color: #91ffc3;
-  padding-left: 6px;
-  padding-right: 12px;
-  font-size: 14px;
-}
-
-#battery.charging {
-  color: #87bb82;
-  font-size: 14px;
-  padding-right: 13px;
-  padding-left: 8px;
-}
-
-#battery.full,
-#battery.plugged {
-  font-size: 14px;
-  padding-right: 10px;
-}
-
-@keyframes blink {
-  to {
-    background-color: rgba(30, 34, 42, 0.5);
-    color: #abb2bf;
-  }
-}
-
-#battery.warning {
-  color: #ecd3a0;
-}
-
-#battery.critical:not(.charging) {
-  color: #fb958b;
-}
-
-#custom-lock {
-  color: #ecd3a0;
-  padding: 0 15px 0 15px;
-  margin-left: 7px;
-  margin-top: 7px;
-  margin-bottom: 7px;
-}
-
-#clock {
-  color: #ffffff;
-  font-family: JetBrainsMono Nerd Font;
-  font-size: 12px;
-  font-weight: bolder;
-  margin-right: 10px;
-  border-radius: 8px;
+#workspaces button:hover {
+  background: @bg0;
+  color: @bg1;
 }
 
 tooltip {
-  border-radius: 8px;
-  padding: 15px;
-  background-color: #131822;
+  background: @tip;
+  border-radius: 10px;
+  border: 3px solid @bg1;
 }
 
-tooltip label {
-  padding: 5px;
-  background-color: #131822;
+#custom-language, #custom-spotify, #custom-updates, #custom-caffeine, #clock, #battery, #pulseaudio, #network, #tray, #backlight, #custom-wl-gammarelay-brightness, #custom-wl-gammarelay-temperature, #workspaces, #window {
+  background: @bg1;
+  color: @text;
+  padding: 0px 10px;
+  margin: 7px 0px;
+  border-radius: 5px;
 }
 
-label:focus {
-  background-color: #131822;
+#custom-menu, #custom-power {
+  background: @accent;
+  font-family: monospace;
+  color: @bg1;
+  padding: 0px 10px;
+  margin: 7px 0px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+#custom-power {
+    font-weight: normal;
 }
 
 #tray {
-  margin-right: 10px;
-  padding-left: 10px;
+	margin-left: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	transition: none;
+}
+
+#window {
+    margin-left: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: none;
+}
+
+#workspaces {
+  background: @bg1;
   padding-right: 10px;
-  font-size: 20px;
-  border-radius: 8px 8px 8px 8px;
+  padding-left: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-#tray>.passive {
-  -gtk-icon-effect: dim;
+#clock {
+  color: @text;
+  border-radius: 5px;
+  margin-left: 5px;
 }
 
-#tray>.needs-attention {
-  -gtk-icon-effect: highlight;
-  background-color: #eb4d4b;
+#network {
+  color: @text;
+  margin-left: 10px;
+  margin-right: 5px;
 }
 
-#idle_inhibitor {
-  background-color: #131822;
+#pulseaudio, #battery, #custom-wl-gammarelay-brightness, #custom-wl-gammarelay-temperature #custom-spotify {
+  color: @text;
+  margin-right: 5px;
+  margin-left: 5px;
 }
-
-#idle_inhibitor.activated {
-  background-color: #ecf0f1;
-  color: #2d3436;
-}
-
-
-/*My Configs*/
-#backlight{
-}
-

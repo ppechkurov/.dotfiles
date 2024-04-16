@@ -14,11 +14,11 @@
       source = ../../../xkb/symbols/us;
       target = "xkb/symbols/us";
     };
-    configFile.waybar = {
-      enable = true;
-      source = ../../../waybar;
-      recursive = true;
-    };
+    # configFile.waybar = {
+    #   enable = true;
+    #   source = ../../../waybar;
+    #   recursive = true;
+    # };
   };
 
   services.mpd = {
