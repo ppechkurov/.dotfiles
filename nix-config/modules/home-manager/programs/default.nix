@@ -6,7 +6,7 @@
     ./sway
     ./neovim
     # ./misc
-    ./waybar
+    # ./waybar
     ./wofi
   ];
 }

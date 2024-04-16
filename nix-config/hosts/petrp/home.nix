@@ -14,6 +14,11 @@
       source = ../../../xkb/symbols/us;
       target = "xkb/symbols/us";
     };
+    configFile.waybar = {
+      enable = true;
+      source = ../../../waybar;
+      recursive = true;
+    };
   };
 
   services.mpd = {
@@ -27,6 +32,10 @@
     enable = true;
     userEmail = "petr.pechkurov@gmail.com";
     userName = "Petr Pechkurov";
+  };
+
+  programs.waybar = {
+    enable = true;
   };
 
   programs.zsh = {
