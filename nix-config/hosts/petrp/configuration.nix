@@ -113,8 +113,10 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    useGlobalPkgs = true;
+    useUserPackages = true;
     users = {
-      petrp = import ./home.nix;
+      petrp = import ./home.nix { inherit pkgs; username = "petrp"; };
     };
   };
 

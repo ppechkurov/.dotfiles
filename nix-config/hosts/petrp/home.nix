@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   
@@ -28,27 +28,22 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
-    oh-my-zsh = {
+    antidote = {
       enable = true;
-      theme = "robbyrussell";
+      plugins = [ "romkatv/powerlevel10k" ];
     };
+    initExtra = ''
+    source ~/.p10k.zsh
+    '';
   };
 
-  programs.neovim = {
-    enable = true;
-    withNodeJs = true;
-    defaultEditor = true;
-    vimAlias = true;
-  };
-
-  home.username = "petrp";
-  home.homeDirectory = "/home/petrp";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   home.stateVersion = "23.11"; 
 
-
   home.packages = with pkgs; [
-    foot
+    gh
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -58,6 +53,10 @@
       source = ../../../nvim/.config/nvim;
       target = ".config/nvim";
       recursive = true;
+    };
+    ".p10k.zsh" = {
+      enable = true;
+      source = ../../../p10k/.p10k.zsh;
     };
   };
 
