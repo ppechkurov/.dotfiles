@@ -114,7 +114,7 @@ function M.config()
     'yamlls',
     'ansiblels',
     'marksman',
-    'nil',
+    'nil_ls',
   }
 
   for _, server in pairs(servers) do

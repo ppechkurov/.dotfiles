@@ -36,6 +36,7 @@
 
   programs.neovim = {
     enable = true;
+    withNodeJs = true;
     defaultEditor = true;
     vimAlias = true;
   };

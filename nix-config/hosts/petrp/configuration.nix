@@ -95,11 +95,11 @@
     };
     packages = with pkgs; [
       (nerdfonts.override { fonts = [ "Meslo" "JetBrainsMono" "Agave" ]; })
+      cargo
       font-awesome
+      neovim
       powerline-fonts
       powerline-symbols
-      neovim
-      nil
     ];
   };
 
