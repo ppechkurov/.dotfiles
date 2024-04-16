@@ -16,6 +16,13 @@
     };
   };
 
+  services.mpd = {
+    enable = true;
+    musicDirectory = "/home/${username}/music";
+  };
+
+  programs.ncmpcpp.enable = true;
+
   programs.git = {
     enable = true;
     userEmail = "petr.pechkurov@gmail.com";
@@ -39,6 +46,8 @@
     source ~/.p10k.zsh
     '';
   };
+
+  programs.chromium.enable = true;
 
   home.username = username;
   home.homeDirectory = "/home/${username}";

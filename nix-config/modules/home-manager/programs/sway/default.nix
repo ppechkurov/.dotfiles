@@ -29,7 +29,7 @@
       input = {
         "type:keyboard" = {
           xkb_layout = "us,ru";
-          xkb_variant = "real-prog-dvorak,"
+          xkb_variant = "real-prog-dvorak,";
           repeat_delay = "200";
           repeat_rate = "30";
         };
@@ -55,7 +55,7 @@
         "${mod}+o" = "exec ${lib.getExe pkgs.hyprpicker} -a -n";
 
         "${mod}+Return" = "exec foot";
-        "${mod}+d" = "exec firefox";
+        "${mod}+d" = "exec chromium-browser";
 
         "XF86AudioMute" = "exec amixer sset Master toggle";
         "XF86AudioRaiseVolume" = "exec amixer sset Master 5%+";
@@ -97,7 +97,9 @@
       };
       seat = { "*".hide_cursor = "when-typing enable"; };
       output = {
-        "eDP-1".scale = "1";
+        "Virtual-1" = {
+          mode = "1920x1080@59.963Hz";
+        };
       };
     };
   };
