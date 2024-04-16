@@ -2,7 +2,8 @@
   imports = [
     # ./alactritty
     ./foot
-    ./hyprland
+    # ./hyprland
+    ./sway
     ./neovim
     # ./misc
     ./waybar
