@@ -7,7 +7,7 @@
     ./neovim
     # ./misc
     # ./waybar
-    ./waybar-nix
+    # ./waybar-nix
     ./wofi
   ];
 }

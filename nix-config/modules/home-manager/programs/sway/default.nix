@@ -22,10 +22,17 @@
     wrapperFeatures.gtk = true;
     config = {
       bindkeysToCode = true;
+
       window = {
         titlebar = false;
-        border = 0;
+        border = 2;
       };
+
+      gaps = {
+        outer = 5;
+        inner = 10;
+      };
+
       input = {
         "type:keyboard" = {
           xkb_layout = "us,ru";
@@ -42,6 +49,12 @@
         position = "top";
         command = "waybar";
       }];
+
+      floating = {
+        criteria = [ { app_id = "float_htop"; } ];
+        border = 2;
+      };
+
       defaultWorkspace = "workspace 1";
       keybindings = let
         mod = "Mod4";

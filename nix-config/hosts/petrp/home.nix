@@ -14,11 +14,11 @@
       source = ../../../xkb/symbols/us;
       target = "xkb/symbols/us";
     };
-    # configFile.waybar = {
-    #   enable = true;
-    #   source = ../../../waybar;
-    #   recursive = true;
-    # };
+    configFile.waybar = {
+      enable = true;
+      source = ../../../waybar;
+      recursive = true;
+    };
   };
 
   services.mpd = {
@@ -33,6 +33,8 @@
     userEmail = "petr.pechkurov@gmail.com";
     userName = "Petr Pechkurov";
   };
+
+  programs.htop.enable = true;
 
   programs.waybar = {
     enable = true;
@@ -66,6 +68,10 @@
   home.packages = with pkgs; [
     gh
   ];
+  
+  home.sessionVariables = {
+    TERMINAL = "foot";
+  };
 
   nixpkgs.config.allowUnfree = true;
   home.file = {
