@@ -1,100 +1,163 @@
+/* -----------------------------------------------------
+ *                      General
+ * ----------------------------------------------------- */
+/* Colors */
 @import "colors.css";
 
 * {
-  border: none;
-  border-radius: 0;
-  font-family: monospace;
-  font-weight: bold;
-  font-size: 14px;
-  min-height: 0px;
+    font-family: JetBrains Mono, Symbols Nerd Font,sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
 }
 
-window#waybar {
-  background: @bg0;
-  color: #cdd6f4;
-}
-
-#workspaces button {
-  padding: 5px;
-  color: #ffffff;
-  margin: 3px;
-  border-radius: 30px;
-}
-
-#workspaces button.active {
-  background: @accent;
-  color: @bg0;
-}
-
-#workspaces button:hover {
-  background: @bg0;
-  color: @bg1;
-}
+/* -----------------------------------------------------
+ *                      Tooltip
+ * ----------------------------------------------------- */
 
 tooltip {
-  background: @tip;
-  border-radius: 10px;
-  border: 3px solid @bg1;
+    background: @bg;
+  border: solid 1px @bg2;
+}
+tooltip label {
+  color: @fg;
 }
 
-#custom-language, #custom-spotify, #custom-updates, #custom-caffeine, #clock, #battery, #pulseaudio, #network, #tray, #backlight, #custom-wl-gammarelay-brightness, #custom-wl-gammarelay-temperature, #workspaces, #window {
-  background: @bg1;
-  color: @text;
-  padding: 0px 10px;
-  margin: 7px 0px;
-  border-radius: 5px;
+/* -----------------------------------------------------
+ *                      Window
+ * ----------------------------------------------------- */
+
+window#waybar {
+   /* background-color: rgba(16, 20, 25,0.5); */
+    background-color: @bg;
+
 }
 
-#custom-menu, #custom-power {
-  background: @accent;
-  font-family: monospace;
-  color: @bg1;
-  padding: 0px 10px;
-  margin: 7px 0px;
-  border-radius: 5px;
-  font-size: 18px;
-}
-
-#custom-power {
-    font-weight: normal;
-}
-
-#tray {
-	margin-left: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
-	transition: none;
+window#waybar.hidden {
+    opacity: 0.2;
 }
 
 #window {
-    margin-left: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    transition: none;
+    color: @fg;
+    padding: 0 10px;
 }
+
+/* -----------------------------------------------------
+ *                  Workspaces
+ * ----------------------------------------------------- */
 
 #workspaces {
-  background: @bg1;
-  padding-right: 10px;
-  padding-left: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
+  background-color: @bg;
+  padding: 0 10px;
 }
 
-#clock {
-  color: @text;
-  border-radius: 5px;
-  margin-left: 5px;
+#workspaces button {
+    min-width: 20px;
+    color: @fg2;
+    border-radius: 2px;
+    padding: 0 5px;
+    margin: 2px 2px 2px 2px;
+}
+
+#workspaces button.focused {
+    color: @bg;
+    background-color: @blue;
+}
+
+#workspaces button.urgent {
+    color: @purple;
+    background-color: @bg;
+}
+
+#workspaces button:hover {
+    background-color: @bg2;
+
+}
+
+/* -----------------------------------------------------
+ *                      Modules
+ * ----------------------------------------------------- */
+
+#cpu,
+#memory {
+    color: @fg;
+    padding: 0 5px;
+}
+
+#battery,
+#pulseaudio,
+#custom-mako,
+#custom-clipboard,
+#pulseaudio.muted,
+#pulseaudio.mic {
+    color: @fg;
+    padding: 0 5px;
 }
 
 #network {
-  color: @text;
-  margin-left: 10px;
-  margin-right: 5px;
+    color: @fg;
+    padding-right: 5px;
+    padding-left: 10px;
 }
 
-#pulseaudio, #battery, #custom-wl-gammarelay-brightness, #custom-wl-gammarelay-temperature #custom-spotify {
-  color: @text;
-  margin-right: 5px;
-  margin-left: 5px;
+#network.disconnected {
+    color: @red;
+}
+
+#clock {
+    color: @blue;
+    padding: 0 5px;
+    font-size: 16px;
+}
+
+#mode {
+    color: @yellow;
+    background-color: @bg;
+    padding: 0 10px;
+    margin: 2px 2px 2px 2px;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.charging, #battery.plugged {
+    color: @fg;
+    padding: 0 5px;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @fg;
+    margin: 2px 2px 2px 2px;
+}
+
+/* -----------------------------------------------------
+ *                      Custom
+ * ----------------------------------------------------- */
+#custom-swayidle {
+    padding: 0 5px;
+    color: @fg2;
+}
+
+#custom-useless {
+    color: @fg;
+    padding-left: 10px;
+}
+
+#custom-power {
+    color: @bg4;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+#custom-sep,
+#custom-sep2,
+#custom-sep3 {
+    color: @fg2;
 }
