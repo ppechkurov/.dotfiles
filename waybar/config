@@ -1,159 +1,160 @@
 {
-    "layer": "bottom",
-        "position": "top",
-        "height": 30, // (Remove for auto height)
+  "layer": "bottom",
+  "position": "top",
+  "height": 30, // (Remove for auto height)
 
-        // Modules
-        "modules-left": ["custom/useless","sway/workspaces"],
-        "modules-center": ["sway/mode"],
-        "modules-right": ["cpu", "memory", "network", "custom/mako","custom/clipboard", "pulseaudio", "pulseaudio#mic", "custom/swayidle", "clock", "custom/power"],
+  // Modules
+  "modules-left": ["custom/useless","sway/workspaces"],
+  "modules-center": ["sway/mode","sway/window"],
+  "modules-right": ["cpu", "memory", "network", "custom/mako","custom/clipboard", "pulseaudio", "pulseaudio#mic", "custom/swayidle", "clock", "custom/power"],
 
-        // Modules configuration
-        "sway/workspaces": {
-            "disable-scroll": true
-        },
+  // Modules configuration
+  "sway/workspaces": {
+      "disable-scroll": true
+  },
 
-        "battery": {
-            "bat": "BAT0",
-            "interval": 60,
-            "states": {
-                "warning": 30,
-                "critical": 15
-            },
-            "format": "{capacity}% {icon}",
-            "format-icons": ["", "", "", "", ""],
-            "max-length": 25
-        },
+  "battery": {
+      "bat": "BAT0",
+      "interval": 60,
+      "states": {
+          "warning": 30,
+          "critical": 15
+      },
+      "format": "{capacity}% {icon}",
+      "format-icons": ["", "", "", "", ""],
+      "max-length": 25
+  },
 
-        "sway/window": {
-            "max-length": 80,
-            "tooltip": false
+  "sway/window": {
+      "max-length": 80,
+      "tooltip": false
+  },
 
-        },
+  "cpu": {
+      "format": "CPU: {usage}%",
+      "tooltip": false,
+      "on-click": "$TERMINAL -a float_htop -e htop",
+      "on-click-right": "~/.config/waybar/custom/usage.sh cpu"
+  },
 
-        "cpu": {
-            "format": "CPU: {usage}%",
-            "tooltip": false,
-            "on-click": "foot -a float_htop -e htop",
-            "on-click-right": "~/.config/waybar/custom/usage.sh cpu"
-        },
+  "memory": {
+      "format": "RAM: {used:0.1f}GB",
+      "tooltip": false,
+      "on-click": "$TERMINAL -a float_htop -e htop",
+      "on-click-right": "~/.config/waybar/custom/usage.sh ram"
+  },
 
-        "memory": {
-            "format": "RAM: {used:0.1f}GB",
-            "tooltip": false,
-            "on-click": "foot -a float_htop -e htop",
-            "on-click-right": "~/.config/waybar/custom/usage.sh ram"
-        },
+  "network": {
+      // "interface": "wlp2*", // (Optional) To force the use of this interface
+      "format-wifi": "({signalStrength}%) ",
+      "format-ethernet": "󰈀",
+      "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+      "format-linked": "{ifname} (No IP) ?",
+      "format-disconnected": "x",
+      "on-click": "~/.local/bin/dmenu_network"
+  },
 
-        "network": {
-            // "interface": "wlp2*", // (Optional) To force the use of this interface
-            "format-wifi": "({signalStrength}%) ",
-            "format-ethernet": "󰈀",
-            "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
-            "format-linked": "{ifname} (No IP) ?",
-            "format-disconnected": "x",
-            "on-click": "~/.local/bin/dmenu_network"
-        },
+  "pulseaudio": {
+      "format": "{icon}",
+      "format-bluetooth": "{volume}% {icon}",
+      "format-muted": "Muted",
+      "format-icons": {
+          "default": [""]
+      },
+      "on-click": "pavucontrol"
+  },
 
-        "pulseaudio": {
-            "format": "{icon}",
-            "format-bluetooth": "{volume}% {icon}",
-            "format-muted": "Muted",
-            "format-icons": {
-                "default": [""]
-            },
-            "on-click": "pavucontrol"
-        },
+  "pulseaudio#mic": {
+      "format": "{format_source}",
+      "format-source": "",
+      "format-source-muted": "",
+      "format-bluetooth": "{format_source}",
+      "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+  },
 
-        "pulseaudio#mic": {
-            "format": "{format_source}",
-            "format-source": "",
-            "format-source-muted": "",
-            "format-bluetooth": "{format_source}",
-            "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
-        },
+  "clock": {
+      "interval": 1,
+      "format": "{:%H:%M:%S}",
+      "format-alt": "{:%d.%m %H:%M}",
+      "tooltip": false,
+      "on-click-right": "~/.config/mako/scripts/mako_calendar"
+  },
 
-        "clock": {
-            "format": "{:%H:%M}",
-            "format-alt": "{:%d.%m %H:%M}",
-            "tooltip": false,
-            "on-click-right": "~/.config/mako/scripts/mako_calendar"
-        },
+  "custom/power": {
+      "interval": "once",
+      "format": "",
+      "tooltip": false,
+      "on-click": "~/.config/sway/scripts/power_thing",
+      "on-click-right": "$TERMINAL -a floatterm -e ~/.local/bin/popupgrade"
+  },
 
-        "custom/power": {
-            "interval": "once",
-            "format": "",
-            "tooltip": false,
-            "on-click": "~/.config/sway/scripts/power_thing",
-            "on-click-right": "$TERMINAL -a floatterm -e ~/.local/bin/popupgrade"
-        },
+  "custom/swayidle": {
+      "interval": "once",
+      "format": "{}",
+      "exec": "~/.config/sway/scripts/swayidle-toggle status",
+      "signal": 8,
+      "on-click": "~/.config/sway/scripts/swayidle-toggle toggle"
+  },
 
-        "custom/swayidle": {
-            "interval": "once",
-            "format": "{}",
-            "exec": "~/.config/sway/scripts/swayidle-toggle status",
-            "signal": 8,
-            "on-click": "~/.config/sway/scripts/swayidle-toggle toggle"
-        },
+  "custom/mako": {
+      "interval": "once",
+      "return-type": "json",
+      "format": "{}{icon}",
+      "format-icons": {
+          "default": "󰂚",
+          "dnd": "󰂛"
+      },
+      "on-click": "makoctl mode | grep 'dnd' && makoctl mode -r dnd || makoctl mode -a dnd; pkill -RTMIN+7 waybar",
+      "exec": "printf '{\"alt\":\"%s\",\"tooltip\":\"mode: %s\"}' $(makoctl mode | grep -q 'dnd' && echo dnd || echo default) $(makoctl mode | tail -1)",
+      "signal": 7
+  },
 
-        "custom/mako": {
-            "interval": "once",
-            "return-type": "json",
-            "format": "{}{icon}",
-            "format-icons": {
-                "default": "󰂚",
-                "dnd": "󰂛"
-            },
-            "on-click": "makoctl mode | grep 'dnd' && makoctl mode -r dnd || makoctl mode -a dnd; pkill -RTMIN+7 waybar",
-            "exec": "printf '{\"alt\":\"%s\",\"tooltip\":\"mode: %s\"}' $(makoctl mode | grep -q 'dnd' && echo dnd || echo default) $(makoctl mode | tail -1)",
-            "signal": 7
-        },
+  "custom/clipboard": {
+      "format": "󰅍",
+      "interval": "once",
+      "return-type": "json",
+      "on-click": "~/.local/bin/fzf_clipboard; pkill -RTMIN+9 waybar",
+      "on-click-right": "~/.local/bin/fzf_clipboard wipe; pkill -RTMIN+9 waybar",
+      "exec": "printf '{\"tooltip\":\"%s\"}' $(cliphist list | wc -l)' item(s) in the clipboard\rClick <b>left</b> to open clipboard\rClick <b>right</b> to clear'",
+      "signal": 9
+  },
 
-        "custom/clipboard": {
-            "format": "󰅍",
-            "interval": "once",
-            "return-type": "json",
-            "on-click": "~/.local/bin/fzf_clipboard; pkill -RTMIN+9 waybar",
-            "on-click-right": "~/.local/bin/fzf_clipboard wipe; pkill -RTMIN+9 waybar",
-            "exec": "printf '{\"tooltip\":\"%s\"}' $(cliphist list | wc -l)' item(s) in the clipboard\rClick <b>left</b> to open clipboard\rClick <b>right</b> to clear'",
-            "signal": 9
-        },
+  "custom/pipe": {
+      "interval": "once",
+      "format": "|",
+      "tooltip": false
+  },
 
-        "custom/pipe": {
-            "interval": "once",
-            "format": "|",
-            "tooltip": false
-        },
-        "custom/bracket": {
-            "interval": "once",
-            "format": "[",
-            "tooltip": false
-        },
+  "custom/bracket": {
+      "interval": "once",
+      "format": "[",
+      "tooltip": false
+  },
 
-        "custom/bracket1": {
-            "interval": "once",
-            "format": "]",
-            "tooltip": false
-        },
+  "custom/bracket1": {
+      "interval": "once",
+      "format": "]",
+      "tooltip": false
+  },
 
-        "custom/slash": {
-            "interval": "once",
-            "format": "]",
-            "tooltip": false
-        },
+  "custom/slash": {
+      "interval": "once",
+      "format": "]",
+      "tooltip": false
+  },
 
-        "custom/useless": {
-            "interval": "once",
-            "format": "",
-            "tooltip": false,
-            "on-click": "~/.config/sway/scripts/settings",
-            "on-click-right": "~/.config/mako/scripts/mako_sysnfo"
-        },
+  "custom/useless": {
+      "interval": "once",
+      "format": " ",
+      "tooltip": false,
+      "on-click": "~/.config/sway/scripts/settings",
+      "on-click-right": "~/.config/mako/scripts/mako_sysnfo"
+  },
 
-        "custom/weather": {
-            "restart-interval": "3600",
-            "format": "{}",
-            "exec": "~/.config/waybar/custom/weather",
-            "on-click": "~/.local/bin/weather_notify"
-        },
+  "custom/weather": {
+      "restart-interval": "3600",
+      "format": "{}",
+      "exec": "~/.config/waybar/custom/weather",
+      "on-click": "~/.local/bin/weather_notify"
+  },
 }

@@ -67,15 +67,6 @@
     };
   };
 
-  # Enable Window Manager
-  programs = {
-    hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-      xwayland.enable = true;
-    };
-  };
-
   # pipewire
   security.rtkit.enable = true;
   
@@ -95,9 +86,7 @@
     };
     packages = with pkgs; [
       (nerdfonts.override { fonts = [ "Meslo" "JetBrainsMono" "Agave" ]; })
-      cargo
       font-awesome
-      neovim
       powerline-fonts
       powerline-symbols
     ];
@@ -128,23 +117,22 @@
     # Shell
     zsh.enable = true;
   };
-
-  
-
   
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
-
   environment.systemPackages = with pkgs; [
    vim
-   wget
+   curl
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];
+  environment.sessionVariables = {
+    TERMINAL = "foot";
+  };
 
   # xdg
   xdg.portal = {
     enable = true;
+    config.common.default = [ "gtk" ];
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
       # xdg-desktop-portal-hyprland
@@ -166,5 +154,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

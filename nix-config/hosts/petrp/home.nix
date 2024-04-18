@@ -66,12 +66,13 @@
   home.stateVersion = "23.11"; 
 
   home.packages = with pkgs; [
+    cliphist
+    gcc
     gh
+    lazygit
+    mako
+    ripgrep
   ];
-  
-  home.sessionVariables = {
-    TERMINAL = "foot";
-  };
 
   nixpkgs.config.allowUnfree = true;
   home.file = {

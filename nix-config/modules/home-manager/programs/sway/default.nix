@@ -1,6 +1,12 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   home = {
-    packages = with pkgs; [ wf-recorder wl-clipboard xdg-utils ];
+    packages = with pkgs; [ 
+      wf-recorder
+      wl-clipboard
+      xdg-utils 
+    ];
+
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       DISABLE_QT5_COMPAT = "0";
@@ -29,22 +35,24 @@
       };
 
       gaps = {
-        outer = 5;
-        inner = 10;
+        top = 3;
+        bottom = 3;
+        inner = 12;
       };
 
       input = {
         "type:keyboard" = {
           xkb_layout = "us,ru";
           xkb_variant = "real-prog-dvorak,";
-          repeat_delay = "200";
-          repeat_rate = "30";
+          repeat_delay = "250";
+          repeat_rate = "45";
         };
         "type:mouse" = {
           dwt = "disabled";
           accel_profile = "flat";
         };
       };
+
       bars = [{
         position = "top";
         command = "waybar";
