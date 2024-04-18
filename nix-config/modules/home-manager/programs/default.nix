@@ -4,6 +4,7 @@
     ./foot
     # ./hyprland
     ./sway
+    ./yazi
     ./neovim
     # ./misc
     # ./waybar

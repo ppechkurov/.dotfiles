@@ -145,7 +145,7 @@
 
   "custom/useless": {
       "interval": "once",
-      "format": " ",
+      "format": "\uf313 ",
       "tooltip": false,
       "on-click": "~/.config/sway/scripts/settings",
       "on-click-right": "~/.config/mako/scripts/mako_sysnfo"
