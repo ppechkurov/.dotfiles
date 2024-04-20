@@ -46,7 +46,6 @@
 
   # Services
   services = {
-    xserver.enable = true;
     # Sound with pipewire
     pipewire = {
       enable = true;
@@ -70,6 +69,7 @@
 
   # pipewire
   security.rtkit.enable = true;
+  security.polkit.enable = true;
   
   # OpenGL
   hardware.opengl = {
@@ -129,6 +129,7 @@
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables = {
     TERMINAL = "foot";
+    NIXOS_OZONE_WL = "1";
   };
 
   # xdg

@@ -4,19 +4,20 @@
     packages = with pkgs; [ 
       wf-recorder
       wl-clipboard
-      xdg-utils 
+      xdg-utils
+      playerctl
     ];
 
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-      DISABLE_QT5_COMPAT = "0";
-      QT_QPA_PLATFORM = "wayland;xcb";
-      GDK_BACKEND = "wayland";
-      MOZ_ENABLE_WAYLAND = "1";
-      XDG_SESSION_TYPE = "wayland";
-      SDL_VIDEODRIVER = "wayland";
-      CLUTTER_BACKEND = "wayland";
-    };
+    # sessionVariables = {
+    #   NIXOS_OZONE_WL = "1";
+    #   DISABLE_QT5_COMPAT = "0";
+    #   QT_QPA_PLATFORM = "wayland;xcb";
+    #   GDK_BACKEND = "wayland";
+    #   MOZ_ENABLE_WAYLAND = "1";
+    #   XDG_SESSION_TYPE = "wayland";
+    #   SDL_VIDEODRIVER = "wayland";
+    #   CLUTTER_BACKEND = "wayland";
+    # };
   };
 
   wayland.windowManager.sway = {
@@ -42,7 +43,7 @@
         "type:keyboard" = {
           xkb_layout = "us,ru";
           xkb_variant = "real-prog-dvorak,";
-          xkb_options = "grp:ctrl_shift_toggle"; # switch layout
+          xkb_options = "grp:alt_shift_toggle"; # switch layout
           repeat_delay = "250";
           repeat_rate = "45";
         };
@@ -72,10 +73,9 @@
             "exec 'swaymsg move container to workspace ${toString i}'";
         }) (lib.range 0 9));
       in tagBinds // {
-        "${mod}+o" = "exec ${lib.getExe pkgs.hyprpicker} -a -n";
-
-        "${mod}+Return" = "exec foot";
-        "${mod}+d" = "exec chromium-browser";
+        "${mod}+Return" = "exec footclient";
+        "${mod}+b" = "exec ${lib.getExe pkgs.chromium}";
+        "${mod}+r" = "exec wofi";
 
         "XF86AudioMute" = "exec amixer sset Master toggle";
         "XF86AudioRaiseVolume" = "exec amixer sset Master 5%+";
@@ -97,7 +97,7 @@
           "exec ${lib.getExe pkgs.brightnessctl} s 1%+";
 
         "${mod}+q" = "kill";
-        "${mod}+r" = ''mode "resize"'';
+        "${mod}+Shift+r" = ''mode "resize"'';
         "${mod}+h" = "focus left";
         "${mod}+j" = "focus down";
         "${mod}+k" = "focus up";

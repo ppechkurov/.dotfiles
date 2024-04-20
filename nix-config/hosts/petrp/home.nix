@@ -58,12 +58,20 @@
     '';
   };
 
-  programs.chromium.enable = true;
+  programs.chromium = {
+    enable = true;
+  };
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
   home.stateVersion = "23.11"; 
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.simp1e-cursors;
+    name = "Simp1e-Gruvbox-Dark";
+  };
 
   home.packages = with pkgs; [
     cliphist
