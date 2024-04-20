@@ -4,13 +4,34 @@
   "height": 30, // (Remove for auto height)
 
   // Modules
-  "modules-left": ["custom/useless","sway/workspaces"],
-  "modules-center": ["sway/mode","sway/window"],
-  "modules-right": ["cpu", "memory", "network", "custom/mako","custom/clipboard", "pulseaudio", "pulseaudio#mic", "custom/swayidle", "clock", "custom/power"],
+  "modules-left": ["custom/useless", "custom/pipe", "sway/workspaces", "custom/pipe", "disk"],
+  "modules-center": ["sway/mode", "clock"],
+  "modules-right": ["network", "custom/pipe", "cpu", "custom/pipe", "memory", "custom/pipe", "custom/mako", "custom/clipboard", "pulseaudio", "pulseaudio#mic", "custom/swayidle", "custom/pipe", "sway/language", "custom/pipe", "custom/power"],
 
   // Modules configuration
   "sway/workspaces": {
-      "disable-scroll": true
+      "disable-scroll": true,
+      "format": "{icon} ",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "urgent": "",
+        "focused": "",
+        "default": "",
+      },
+      "persistent-workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+      }
+  },
+
+  "sway/language": {
+    "format": "{shortDescription}",
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
   },
 
   "battery": {
@@ -43,12 +64,17 @@
       "on-click": "$TERMINAL -a float_htop -e htop",
       "on-click-right": "~/.config/waybar/custom/usage.sh ram"
   },
+ 
+  "disk": {
+    "format": "󰋊 {percentage_free}%"
+  },
 
   "network": {
       // "interface": "wlp2*", // (Optional) To force the use of this interface
       "format-wifi": "({signalStrength}%) ",
-      "format-ethernet": "󰈀",
-      "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+      "format-ethernet": "  {bandwidthUpBytes} |   {bandwidthDownBytes} 󰈀 ",
+      "interval": 2,
+      "tooltip-format": "󱘖 {ipaddr}",
       "format-linked": "{ifname} (No IP) ?",
       "format-disconnected": "x",
       "on-click": "~/.local/bin/dmenu_network"
@@ -74,8 +100,7 @@
 
   "clock": {
       "interval": 1,
-      "format": "{:%H:%M:%S}",
-      "format-alt": "{:%d.%m %H:%M}",
+      "format": "{:%a %d %b %H:%M:%S}",
       "tooltip": false,
       "on-click-right": "~/.config/mako/scripts/mako_calendar"
   },
@@ -145,16 +170,9 @@
 
   "custom/useless": {
       "interval": "once",
-      "format": "\uf313 ",
+      "format": "",
       "tooltip": false,
       "on-click": "~/.config/sway/scripts/settings",
       "on-click-right": "~/.config/mako/scripts/mako_sysnfo"
-  },
-
-  "custom/weather": {
-      "restart-interval": "3600",
-      "format": "{}",
-      "exec": "~/.config/waybar/custom/weather",
-      "on-click": "~/.local/bin/weather_notify"
   },
 }

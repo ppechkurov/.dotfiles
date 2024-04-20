@@ -11,8 +11,8 @@
     enable = true;
     configFile.xkb = {
       enable = true;
-      source = ../../../xkb/symbols/us;
-      target = "xkb/symbols/us";
+      source = ../../../xkb;
+      recursive = true;
     };
     configFile.waybar = {
       enable = true;

@@ -4,7 +4,7 @@
   programs.foot = {
     enable = true;
     settings = {
-      main = { font = "JetBrainsMono Nerd Font:size=14"; };
+      main = { font = "IosevkaTerm Nerd Font:size=16"; };
       mouse = { hide-when-typing = "yes"; };
       cursor = { blink = "yes"; };
     };

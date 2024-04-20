@@ -5,8 +5,8 @@
 @import "colors.css";
 
 * {
-    font-family: JetBrains Mono, Symbols Nerd Font,sans-serif;
-    font-size: 14px;
+    font-family: IosevkaTerm Nerd Font, Symbols Nerd Font,sans-serif;
+    font-size: 18px;
     font-weight: normal;
     border-radius: 0;
     border: none;
@@ -19,10 +19,11 @@
 
 tooltip {
     background: @bg;
-  border: solid 1px @bg2;
+    border: solid 1px @bg2;
 }
+
 tooltip label {
-  color: @fg;
+    color: @fg;
 }
 
 /* -----------------------------------------------------
@@ -32,7 +33,6 @@ tooltip label {
 window#waybar {
    /* background-color: rgba(16, 20, 25,0.5); */
     background-color: @bg;
-
 }
 
 window#waybar.hidden {
@@ -42,6 +42,7 @@ window#waybar.hidden {
 #window {
     color: @fg;
     padding: 0 10px;
+    font-weight: bold;
 }
 
 /* -----------------------------------------------------
@@ -50,7 +51,7 @@ window#waybar.hidden {
 
 #workspaces {
   background-color: @bg;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 #workspaces button {
@@ -59,11 +60,13 @@ window#waybar.hidden {
     border-radius: 2px;
     padding: 0 5px;
     margin: 2px 2px 2px 2px;
+    font-size: 16px;
 }
 
 #workspaces button.focused {
-    color: @bg;
-    background-color: @blue;
+    /* color: @bg; */
+    color: @blue;
+    /* background-color: @blue; */
 }
 
 #workspaces button.urgent {
@@ -73,7 +76,6 @@ window#waybar.hidden {
 
 #workspaces button:hover {
     background-color: @bg2;
-
 }
 
 /* -----------------------------------------------------
@@ -81,6 +83,7 @@ window#waybar.hidden {
  * ----------------------------------------------------- */
 
 #cpu,
+#disk,
 #memory {
     color: @fg;
     padding: 0 5px;
@@ -108,8 +111,9 @@ window#waybar.hidden {
 
 #clock {
     color: @blue;
-    padding: 0 5px;
-    font-size: 16px;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 #mode {
@@ -146,18 +150,23 @@ window#waybar.hidden {
 }
 
 #custom-useless {
-    color: @fg;
+    color: #fff;
     padding-left: 10px;
+    padding-right: 15px;
 }
 
 #custom-power {
-    color: @bg4;
+    color: @red2;
     padding-left: 5px;
-    padding-right: 10px;
+    padding-right: 15px;
 }
 
 #custom-sep,
 #custom-sep2,
 #custom-sep3 {
+    color: @fg2;
+}
+
+#custom-pipe {
     color: @fg2;
 }

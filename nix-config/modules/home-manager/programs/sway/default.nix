@@ -35,15 +35,14 @@
       };
 
       gaps = {
-        top = 3;
-        bottom = 3;
-        inner = 12;
+        inner = 10;
       };
 
       input = {
         "type:keyboard" = {
           xkb_layout = "us,ru";
           xkb_variant = "real-prog-dvorak,";
+          xkb_options = "grp:ctrl_shift_toggle"; # switch layout
           repeat_delay = "250";
           repeat_rate = "45";
         };
@@ -119,7 +118,8 @@
       seat = { "*".hide_cursor = "when-typing enable"; };
       output = {
         "Virtual-1" = {
-          mode = "1920x1080@59.963Hz";
+          # mode = "1920x1080@59.963Hz";
+          mode = "1680x1050@59.954Hz";
         };
       };
     };

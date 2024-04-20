@@ -46,6 +46,7 @@
 
   # Services
   services = {
+    xserver.enable = true;
     # Sound with pipewire
     pipewire = {
       enable = true;
@@ -85,7 +86,7 @@
       };
     };
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Meslo" "JetBrainsMono" "Agave" ]; })
+      (nerdfonts.override { fonts = [ "Iosevka" "IosevkaTerm" "ShareTechMono" ]; })
       font-awesome
       powerline-fonts
       powerline-symbols
@@ -122,6 +123,7 @@
   environment.systemPackages = with pkgs; [
    vim
    curl
+   git
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];
