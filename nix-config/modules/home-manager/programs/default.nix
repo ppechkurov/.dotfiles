@@ -4,7 +4,7 @@
     ./foot
     ./git
     ./github
-    ./neovim
+    ./nvim
     ./sway
     ./tofi
     ./waybar

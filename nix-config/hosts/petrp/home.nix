@@ -36,14 +36,6 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
-  home.file = {
-    nvim = {
-      enable = true;
-      source = ../../../nvim/.config/nvim;
-      target = ".config/nvim";
-      recursive = true;
-    };
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
