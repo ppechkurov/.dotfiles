@@ -39,10 +39,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  console = {
-    keyMap = "dvorak";
-    font = "Lat2-Terminus16";
-  };
+  console.keyMap = "dvorak";
 
   # Services
   services = {
@@ -56,6 +53,7 @@
       };
     };
 
+    # TTY login
     greetd = {
       enable = true;
       settings = {
@@ -94,6 +92,7 @@
   };
 
   # User account
+  programs.zsh.enable = true;
   users.users.petrp = {
     isNormalUser = true;
     description = "petrp";
@@ -113,17 +112,10 @@
   # Allow unfree packages and insecure packages
   nixpkgs.config.allowUnfree = true;
 
-  # Configure programs
-  programs = {
-    # Shell
-    zsh.enable = true;
-  };
-  
-  # List packages installed in system profile. To search, run:
+  # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
-   vim
-   curl
-   git
+    vim
+    curl
   ];
 
   environment.pathsToLink = [ "/share/zsh" ];

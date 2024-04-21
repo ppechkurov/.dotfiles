@@ -75,7 +75,9 @@
       in tagBinds // {
         "${mod}+Return" = "exec footclient";
         "${mod}+b" = "exec ${lib.getExe pkgs.chromium}";
-        "${mod}+r" = "exec wofi";
+        "${mod}+r" = "exec tofi-launcher";
+        "${mod}+t" = "exec tofi-calc";
+        "${mod}+Shift+t" = "exec tofi-emoji";
 
         "XF86AudioMute" = "exec amixer sset Master toggle";
         "XF86AudioRaiseVolume" = "exec amixer sset Master 5%+";
@@ -96,7 +98,7 @@
         "${mod}+XF86MonBrightnessUp" =
           "exec ${lib.getExe pkgs.brightnessctl} s 1%+";
 
-        "${mod}+q" = "kill";
+        "${mod}+d" = "kill";
         "${mod}+Shift+r" = ''mode "resize"'';
         "${mod}+h" = "focus left";
         "${mod}+j" = "focus down";
@@ -113,7 +115,7 @@
         "${mod}+Shift+space" = "focus mode_toggle";
         "${mod}+a" = "focus parent";
         "${mod}+Shift+c" = "reload";
-        "${mod}+Shift+q" = "exit";
+        "${mod}+Shift+q" = "exec tofi-powermenu";
       };
       seat = { "*".hide_cursor = "when-typing enable"; };
       output = {

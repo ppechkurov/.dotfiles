@@ -172,7 +172,8 @@ in
         interval = "once";
         format = "";
         tooltip = false;
-        on-click = "~/.config/sway/scripts/power_thing";
+        # on-click = "~/.config/sway/scripts/power_thing";
+        on-click = "tofi-powermenu";
         on-click-right = "$TERMINAL -a floatterm -e ~/.local/bin/popupgrade";
     };
   };

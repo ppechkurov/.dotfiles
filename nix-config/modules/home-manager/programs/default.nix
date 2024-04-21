@@ -1,15 +1,14 @@
 {
   imports = [
-    # ./alactritty
-    ./foot
-    # ./hyprland
-    ./sway
-    ./yazi
-    ./neovim
-    ./tofi
-    # ./rofi
     # ./misc
+    ./foot
+    ./git
+    ./github
+    ./neovim
+    ./sway
+    ./tofi
     ./waybar
-    ./wofi
+    ./yazi
+    ./zsh
   ];
 }
