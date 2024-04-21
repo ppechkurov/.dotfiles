@@ -6,9 +6,10 @@
     ./sway
     ./yazi
     ./neovim
+    ./tofi
+    # ./rofi
     # ./misc
-    # ./waybar
-    # ./waybar-nix
+    ./waybar
     ./wofi
   ];
 }

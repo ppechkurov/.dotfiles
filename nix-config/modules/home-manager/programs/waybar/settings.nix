@@ -1,163 +1,179 @@
 { ... }:
+let modules = {
+  os-icon = "custom/os-icon";
+  pipe = "custom/pipe";
+  workspaces = "sway/workspaces";
+  disk = "disk";
+  mode = "sway/mode";
+  clock = "clock";
+  network = "network";
+  cpu = "cpu";
+  memory = "memory";
+  mako = "custom/mako";
+  clipboard = "custom/clipboard";
+  sound = "pulseaudio";
+  idle = "custom/swayidle";
+  language = "sway/language";
+  power = "custom/power";
+};
+in
 {
-  programs.waybar.settings.mainBar = {
+  programs.waybar.settings.mainBar = with modules; {
+    layer= "bottom";
     position= "top";
-    layer= "top";
-    height= 35;
-    margin-top= 10;
-    margin-bottom= 0;
-    margin-left= 10;
-    margin-right= 10;
+    height= 30; # Remove for auto height
 
-    modules-left= [
-        "custom/icon" 
-        "custom/separator"
-        "cpu"
-        "memory"
-        "temperature"
-        "custom/separator"
-        "custom/window-icon"
-        "custom/window-name"
-        "tray"
+    modules-left = [
+      "${os-icon}"
+      "${pipe}"
+      "${workspaces}"
+      "${pipe}"
+      "${disk}"
     ];
 
-    modules-center= [
-        "hyprland/workspaces"
+    modules-center = [
+      "${mode}"
+      "${clock}"
     ];
 
     modules-right= [
-        "network"
-        "backlight"
-        "pulseaudio"
-        "custom/right-arr" 
-        "battery"
-        "clock"
+      "${network}"
+      "${pipe}"
+      "${cpu}"
+      "${pipe}" 
+      "${memory}"
+      "${pipe}" 
+      "${mako}"
+      "${clipboard}"
+      "${sound}"
+      "${sound}#mic"
+      "${idle}"
+      "${pipe}" 
+      "${language}"
+      "${pipe}" 
+      "${power}" 
     ];
 
-    "custom/window-name" = {
-        format = "<b>{}</b>";
-        exec = "hyprctl activewindow | grep class | awk '{print $2}'";
-        separate-outputs = true;
-        max-length = 35;
+    "${os-icon}" = {
+      format = "";
+      interval = "once";
+      tooltip = false;
+      #TODO: update these scripts
+      on-click = "~/.config/sway/scripts/settings";
+      on-click-right = "~/.config/mako/scripts/mako_sysnfo";
     };
 
-    clock= {
-        calendar = {
-          format = { today = "<span color='#b4befe'><b>{}</b></span>"; };
-        };
-        format = " {:%H:%M}";
-        tooltip= "true";
-        tooltip-format= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        format-alt= " {:%d/%m}";
+    "${pipe}"= {
+      interval = "once";
+      format = "|";
+      tooltip = false;
     };
 
-    "hyprland/workspaces"= {
-        format = "{icon}";
-        format-icons= {
-            "1"= "󰈹";
-            "2"= "";
-            "3"= "󰘙";
-            "4"= "󰙯";
-            "5"= "";
-            urgent= "";
-            default = "";
-            sort-by-number= true;
-        };
-        on-scroll-up = "hyprctl dispatch workspace e-1";
-        on-scroll-down = "hyprctl dispatch workspace e+1";
-        on-click = "activate";
+    "${workspaces}" = {
+      disable-scroll = true;
+      format = "{icon} ";
+      format-icons = {
+        "1" = "";
+        "2" = "";
+        "3" = "";
+        "4" = "";
+        "urgent" = "";
+        "focused" = "";
+        "default" = "";
+      };
+      "persistent-workspaces" = {
+        "1" = [];
+        "2" = [];
+        "3" = [];
+        "4" = [];
+      };
     };
 
-    memory= {
-        format= " {}%";
-        interval= 2;
+    "${disk}" = {
+      format = "󰋊 {percentage_free}%";
     };
 
-    cpu= {
-        format= "  {usage}%";
-        format-alt= "  {avg_frequency} GHz";
-        interval= 2;
+    "${clock}" = {
+      interval = 1;
+      format = "{:%a %d %b %H:%M:%S}";
+      tooltip = false;
+      #TODO: update this script
+      on-click-right = "~/.config/mako/scripts/mako_calendar";
     };
 
-    network = {
-        format-wifi = " {bandwidthTotalBytes}";
-        format-ethernet = "";
-        tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
-        format-linked = "{ifname} (No IP)";
-        format-disconnected = "󰖪 ";
+    "${network}" = {
+      # interface = "wlp2*"; # (Optional) To force the use of this interface
+      format-wifi = "({signalStrength}%) ";
+      format-ethernet = "  {bandwidthUpBytes} |   {bandwidthDownBytes} 󰈀 ";
+      interval = 2;
+      tooltip-format = "󱘖 {ipaddr}";
+      format-linked = "{ifname} (No IP) ?";
+      format-disconnected = "x";
+      #TODO: update this script
+      on-click = "~/.local/bin/dmenu_network";
     };
 
-    backlight = {
-        format = "{icon} {percent}%";
-        format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-        ];
-        interval = 2;
+    "${cpu}" = {
+      format= "  {usage}%";
+      tooltip = false;
+      interval= 2;
+      format-alt= "  {avg_frequency} GHz";
+      on-click = "$TERMINAL -a float_htop -e htop";
     };
 
-    "custom/right-arr" = {
-        format = "  ";
+    "${memory}" = {
+      format= "  {used:0.1f}GB";
+      interval= 2;
+      tooltip = false;
+      on-click = "$TERMINAL -a float_htop -e htop";
     };
 
-    battery = {
-      format = "{icon} {capacity}%";
-      format-alt = "{icon} {time}";
-      format-charging = "󰚥 {capacity}%";
-      format-icons = [" " " " " " " "];
-      
-    };
-
-    tray= {
+    tray = {
         icon-size= 20;
         spacing= 8;
     };
 
-    pulseaudio= {
-        format= "{icon} <b>{volume}</b> {format_source}";
-        format-source = "{volume}%  ";
-        format-source-muted = "  ";
-        format-bluetooth = " ᛒ <b>{volume}</b> ";
-        format-bluetooth-muted = " ";
-        format-muted= " {format_source}";
-        format-icons= {
-            default= ["" "" ""];
-        };
-        scroll-step= 5;
-        
-    };
-    
-    temperature = {
-        critical-threshold = 40;
-        format = "{icon} {temperatureC}°C";
-        format-critical = "{icon} {temperatureC}°C";
-        format-icons = [
-            ""
-            ""
-            ""
-        ];
-        interval = 2;
+    "${sound}" = {
+      format= "{icon} <b>{volume}</b> {format_source}";
+      format-source = "{volume}%  ";
+      format-source-muted = "  ";
+      format-bluetooth = " ᛒ <b>{volume}</b> ";
+      format-bluetooth-muted = " ";
+      format-muted= " {format_source}";
+      format-icons= {
+          default= ["" "" ""];
+      };
+      scroll-step= 5;
+      on-click = "pavucontrol";
     };
 
-    "custom/icon"= {
-        format= "";
-        
+    "${sound}#mic" = {
+      format = "{format_source}";
+      format-source = "";
+      format-source-muted = "";
+      format-bluetooth = "{format_source}";
+      on-click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
     };
 
-    "custom/separtor" = {
-      format = " ";
+    "${idle}" = {
+      interval = "once";
+      format = "{}";
+      exec = "~/.config/sway/scripts/swayidle-toggle status";
+      signal = 8;
+      on-click = "~/.config/sway/scripts/swayidle-toggle toggle";
     };
 
-    "custom/window-icon" = {
-      # to be added
+    "${language}" = {
+      format = "{shortDescription}";
+      on-click = "swaymsg input type:keyboard xkb_switch_layout next";
     };
 
+    "${power}" = {
+        interval = "once";
+        format = "";
+        tooltip = false;
+        on-click = "~/.config/sway/scripts/power_thing";
+        on-click-right = "$TERMINAL -a floatterm -e ~/.local/bin/popupgrade";
+    };
   };
 }

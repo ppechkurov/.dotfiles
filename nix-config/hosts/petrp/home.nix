@@ -14,11 +14,6 @@
       source = ../../../xkb;
       recursive = true;
     };
-    configFile.waybar = {
-      enable = true;
-      source = ../../../waybar;
-      recursive = true;
-    };
   };
 
   services.mpd = {
@@ -35,10 +30,6 @@
   };
 
   programs.htop.enable = true;
-
-  programs.waybar = {
-    enable = true;
-  };
 
   programs.zsh = {
     enable = true;

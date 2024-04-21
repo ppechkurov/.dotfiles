@@ -1,0 +1,198 @@
+/* -----------------------------------------------------
+ *                      General
+ * ----------------------------------------------------- */
+/* Colors */
+@define-color bg  #1B1B1B;
+@define-color bg2 #323232;
+@define-color bg4 #535353;
+@define-color bg5 #665C54;
+@define-color bg6 #7C6F64;
+
+@define-color fg  #A89984;
+@define-color fg2 #928374;
+@define-color red #CC241D;
+@define-color red2 #a31d17;
+@define-color green #98971A;
+@define-color green2 #B8BB26;
+@define-color yellow #D79921;
+@define-color yellow2 #FABD2F;
+@define-color blue #458588;
+@define-color blue2 #83A598;
+@define-color purple #B16286;
+@define-color purple2 #D3869B;
+@define-color cyan #689D6A;
+@define-color cyan2 #4e635b;
+@define-color orange #d65d0c;
+@define-color nix #716BB5;
+
+
+* {
+    font-family: IosevkaTerm Nerd Font, Symbols Nerd Font,sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* -----------------------------------------------------
+ *                      Tooltip
+ * ----------------------------------------------------- */
+
+tooltip {
+    background: @bg;
+    border: solid 1px @bg2;
+}
+
+tooltip label {
+    color: @fg;
+}
+
+/* -----------------------------------------------------
+ *                      Window
+ * ----------------------------------------------------- */
+
+window#waybar {
+   /* background-color: rgba(16, 20, 25,0.5); */
+    background-color: @bg;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#window {
+    color: @fg;
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+/* -----------------------------------------------------
+ *                  Workspaces
+ * ----------------------------------------------------- */
+
+#workspaces {
+  background-color: @bg;
+  padding: 0 5px;
+}
+
+#workspaces button {
+    min-width: 20px;
+    color: @fg2;
+    border-radius: 2px;
+    padding: 0 5px;
+    margin: 2px 2px 2px 2px;
+    font-size: 16px;
+}
+
+#workspaces button.focused {
+    /* color: @bg; */
+    color: @blue;
+    /* background-color: @blue; */
+}
+
+#workspaces button.urgent {
+    color: @purple;
+    background-color: @bg;
+}
+
+#workspaces button:hover {
+    background-color: @bg2;
+}
+
+/* -----------------------------------------------------
+ *                      Modules
+ * ----------------------------------------------------- */
+
+#cpu,
+#disk,
+#memory {
+    color: @fg;
+    padding: 0 5px;
+}
+
+#battery,
+#pulseaudio,
+#custom-mako,
+#custom-clipboard,
+#pulseaudio.muted,
+#pulseaudio.mic {
+    color: @fg;
+    padding: 0 5px;
+}
+
+#network {
+    color: @fg;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+#clock {
+    color: @blue;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#mode {
+    color: @yellow;
+    background-color: @bg;
+    padding: 0 10px;
+    margin: 2px 2px 2px 2px;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.charging, #battery.plugged {
+    color: @fg;
+    padding: 0 5px;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @fg;
+    margin: 2px 2px 2px 2px;
+}
+
+/* -----------------------------------------------------
+ *                      Custom
+ * ----------------------------------------------------- */
+#custom-swayidle {
+    padding: 0 5px;
+    color: @fg2;
+}
+
+#custom-os-icon {
+    color: @nix;
+    padding-left: 10px;
+    padding-right: 15px;
+}
+
+#custom-power {
+    color: @red2;
+    padding-left: 5px;
+    padding-right: 15px;
+}
+
+#custom-sep,
+#custom-sep2,
+#custom-sep3 {
+    color: @fg2;
+}
+
+#custom-pipe {
+    color: @fg2;
+}
+
+#language {
+    color: @fg2;
+}
