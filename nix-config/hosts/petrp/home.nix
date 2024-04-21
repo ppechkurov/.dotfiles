@@ -14,6 +14,9 @@
     musicDirectory = "/home/${username}/music";
   };
 
+  programs.cava.enable = true;
+  services.mpdris2.enable = true;
+
   programs.ncmpcpp.enable = true;
   programs.htop.enable = true;
   programs.chromium.enable = true;
@@ -29,6 +32,7 @@
     gcc
     mako
     ripgrep
+    pavucontrol
   ];
 
   nixpkgs.config.allowUnfree = true;

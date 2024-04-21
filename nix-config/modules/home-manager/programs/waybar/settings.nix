@@ -1,20 +1,25 @@
 { ... }:
 let modules = {
-  os-icon = "custom/os-icon";
-  pipe = "custom/pipe";
-  workspaces = "sway/workspaces";
-  disk = "disk";
-  mode = "sway/mode";
-  clock = "clock";
-  network = "network";
-  cpu = "cpu";
-  memory = "memory";
-  mako = "custom/mako";
+  cava = "cava";
   clipboard = "custom/clipboard";
-  sound = "pulseaudio";
+  clock = "clock";
+  cpu = "cpu";
+  disk = "disk";
   idle = "custom/swayidle";
   language = "sway/language";
+  mako = "custom/mako";
+  memory = "memory";
+  mode = "sway/mode";
+  network = "network";
+  os-icon = "custom/os-icon";
+  pipe = "custom/pipe";
   power = "custom/power";
+  sound = "pulseaudio";
+  workspaces = "sway/workspaces";
+};
+bars = {
+  small = "4e635b"; # cyan2
+  high = "a31d17"; # red2
 };
 in
 {
@@ -29,7 +34,35 @@ in
       "${workspaces}"
       "${pipe}"
       "${disk}"
+      "${pipe}"
+      "${cava}"
     ];
+
+    cava = {
+      framerate = 30;
+      autosens = 1;
+      bars = 18;
+      lower_cutoff_freq = 50;
+      higher_cutoff_freq = 10000;
+      method = "pipewire";
+      source = "auto";
+      stereo = true;
+      reverse = false;
+      bar_delimiter = 0;
+      monstercat = false;
+      waves = false;
+      input_delay = 1;
+      format-icons = with bars; [
+        "<span foreground='#${small}'>▁</span>"
+        "<span foreground='#${small}'>▂</span>"
+        "<span foreground='#${small}'>▃</span>"
+        "<span foreground='#${small}'>▄</span>"
+        "<span foreground='#${small}'>▅</span>"
+        "<span foreground='#${small}'>▆</span>"
+        "<span foreground='#${small}'>▇</span>"
+        "<span foreground='#${small}'>█</span>"
+      ];
+    };
 
     modules-center = [
       "${mode}"
@@ -134,10 +167,8 @@ in
     };
 
     "${sound}" = {
-      format= "{icon} <b>{volume}</b> {format_source}";
-      format-source = "{volume}%  ";
-      format-source-muted = "  ";
-      format-bluetooth = " ᛒ <b>{volume}</b> ";
+      format= "{icon} <b>{volume}</b>%";
+      format-bluetooth = " ᛒ <b>{volume}</b>";
       format-bluetooth-muted = " ";
       format-muted= " {format_source}";
       format-icons= {
@@ -150,7 +181,7 @@ in
     "${sound}#mic" = {
       format = "{format_source}";
       format-source = "";
-      format-source-muted = "";
+      format-source-muted = "  ";
       format-bluetooth = "{format_source}";
       on-click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
     };
