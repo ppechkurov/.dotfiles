@@ -1,11 +1,11 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -14,7 +14,7 @@
   # Enable Experimental Features and Package Management
   nix = {
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
     };
     gc = {
@@ -59,11 +59,10 @@
     # TTY login
     greetd = {
       enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
-          user = "greeter";
-        };
+      settings.default_session = {
+        user = "greeter";
+        command =
+          "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
       };
     };
   };
@@ -71,7 +70,7 @@
   # pipewire
   security.rtkit.enable = true;
   security.polkit.enable = true;
-  
+
   # OpenGL
   hardware.opengl = {
     enable = true;
@@ -82,12 +81,12 @@
   fonts = {
     fontconfig = {
       enable = true;
-      defaultFonts = {
-        monospace = [ "VictorMono Nerd Font" ];
-      };
+      defaultFonts = { monospace = [ "VictorMono Nerd Font" ]; };
     };
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "VictorMono" "JetBrainsMono" "ShareTechMono" ]; })
+      (nerdfonts.override {
+        fonts = [ "VictorMono" "JetBrainsMono" "ShareTechMono" ];
+      })
       font-awesome
       powerline-fonts
       powerline-symbols
@@ -103,23 +102,25 @@
     shell = pkgs.zsh;
   };
 
-  home-manager = {
+  home-manager = let user = "petrp";
+  in {
+    users = {
+      ${user} = import ./home.nix {
+        inherit pkgs;
+        inherit user;
+      };
+    };
     extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
     useUserPackages = true;
-    users = {
-      petrp = import ./home.nix { inherit pkgs; username = "petrp"; };
-    };
   };
 
   # Allow unfree packages and insecure packages
   nixpkgs.config.allowUnfree = true;
+  services.xserver.enable = true;
 
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    vim
-    curl
-  ];
+  environment.systemPackages = with pkgs; [ vim curl ];
 
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables = {
@@ -127,6 +128,7 @@
     NIXOS_OZONE_WL = "1";
     DISABLE_QT5_COMPAT = "0";
     QT_QPA_PLATFORM = "wayland;xcb";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
     GDK_BACKEND = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
     XDG_SESSION_TYPE = "wayland";
@@ -139,10 +141,7 @@
     enable = true;
     config.common.default = [ "gtk" ];
     xdgOpenUsePortal = true;
-    extraPortals = with pkgs; [
-      # xdg-desktop-portal-hyprland
-      # xdg-desktop-portal-gtk
-    ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     wlr.enable = true;
   };
 

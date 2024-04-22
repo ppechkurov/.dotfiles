@@ -1,17 +1,15 @@
-{ pkgs, username, ... }:
+{ pkgs, user, ... }:
 
 {
-  imports = [
-    ../../modules/home-manager/programs
-    ../../modules/home-manager/keyboard
-  ];
+  imports =
+    [ ../../modules/home-manager/programs ../../modules/home-manager/keyboard ];
 
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
+  home.username = user;
+  home.homeDirectory = "/home/${user}";
 
   services.mpd = {
     enable = true;
-    musicDirectory = "/home/${username}/music";
+    musicDirectory = "/home/${user}/music";
   };
 
   programs.cava.enable = true;
@@ -27,18 +25,11 @@
     name = "Simp1e-Gruvbox-Dark";
   };
 
-  home.packages = with pkgs; [
-    cliphist
-    gcc
-    mako
-    ripgrep
-    pavucontrol
-    telegram-desktop
-  ];
+  home.packages = with pkgs; [ cliphist gcc mako pavucontrol ripgrep ];
 
   nixpkgs.config.allowUnfree = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  home.stateVersion = "23.11"; 
+  home.stateVersion = "23.11";
 }

@@ -1,32 +1,32 @@
 { ... }:
-let modules = {
-  cava = "cava";
-  clipboard = "custom/clipboard";
-  clock = "clock";
-  cpu = "cpu";
-  disk = "disk";
-  idle = "custom/swayidle";
-  language = "sway/language";
-  mako = "custom/mako";
-  memory = "memory";
-  mode = "sway/mode";
-  network = "network";
-  os-icon = "custom/os-icon";
-  pipe = "custom/pipe";
-  power = "custom/power";
-  sound = "pulseaudio";
-  workspaces = "sway/workspaces";
-};
-bars = {
-  small = "4e635b"; # cyan2
-  high = "a31d17"; # red2
-};
-in
-{
+let
+  modules = {
+    cava = "cava";
+    clipboard = "custom/clipboard";
+    clock = "clock";
+    cpu = "cpu";
+    disk = "disk";
+    idle = "custom/swayidle";
+    language = "sway/language";
+    mako = "custom/mako";
+    memory = "memory";
+    mode = "sway/mode";
+    network = "network";
+    os-icon = "custom/os-icon";
+    pipe = "custom/pipe";
+    power = "custom/power";
+    sound = "pulseaudio";
+    workspaces = "sway/workspaces";
+  };
+  bars = {
+    small = "4e635b"; # cyan2
+    high = "a31d17"; # red2
+  };
+in {
   programs.waybar.settings.mainBar = with modules; {
-    layer= "bottom";
-    position= "top";
-    height= 30; # Remove for auto height
+    layer = "bottom";
+    position = "top";
+    height = 30; # Remove for auto height
 
     modules-left = [
       "${os-icon}"
@@ -36,6 +36,8 @@ in
       "${disk}"
       "${pipe}"
       "${cava}"
+      "${pipe}"
+      "tray"
     ];
 
     cava = {
@@ -64,27 +66,24 @@ in
       ];
     };
 
-    modules-center = [
-      "${mode}"
-      "${clock}"
-    ];
+    modules-center = [ "${mode}" "${clock}" ];
 
-    modules-right= [
+    modules-right = [
       "${network}"
       "${pipe}"
       "${cpu}"
-      "${pipe}" 
+      "${pipe}"
       "${memory}"
-      "${pipe}" 
+      "${pipe}"
       "${mako}"
       "${clipboard}"
       "${sound}"
       "${sound}#mic"
       "${idle}"
-      "${pipe}" 
+      "${pipe}"
       "${language}"
-      "${pipe}" 
-      "${power}" 
+      "${pipe}"
+      "${power}"
     ];
 
     "${os-icon}" = {
@@ -96,7 +95,7 @@ in
       on-click-right = "~/.config/mako/scripts/mako_sysnfo";
     };
 
-    "${pipe}"= {
+    "${pipe}" = {
       interval = "once";
       format = "|";
       tooltip = false;
@@ -115,16 +114,14 @@ in
         "default" = "";
       };
       "persistent-workspaces" = {
-        "1" = [];
-        "2" = [];
-        "3" = [];
-        "4" = [];
+        "1" = [ ];
+        "2" = [ ];
+        "3" = [ ];
+        "4" = [ ];
       };
     };
 
-    "${disk}" = {
-      format = "󰋊 {percentage_free}%";
-    };
+    "${disk}" = { format = "󰋊 {percentage_free}%"; };
 
     "${clock}" = {
       interval = 1;
@@ -147,34 +144,32 @@ in
     };
 
     "${cpu}" = {
-      format= "  {usage}%";
+      format = "  {usage}%";
       tooltip = false;
-      interval= 2;
-      format-alt= "  {avg_frequency} GHz";
+      interval = 2;
+      format-alt = "  {avg_frequency} GHz";
       on-click = "$TERMINAL -a float_htop -e htop";
     };
 
     "${memory}" = {
-      format= "  {used:0.1f}GB";
-      interval= 2;
+      format = "  {used:0.1f}GB";
+      interval = 2;
       tooltip = false;
       on-click = "$TERMINAL -a float_htop -e htop";
     };
 
     tray = {
-        icon-size= 20;
-        spacing= 8;
+      icon-size = 20;
+      spacing = 8;
     };
 
     "${sound}" = {
-      format= "{icon} <b>{volume}</b>%";
+      format = "{icon} <b>{volume}</b>%";
       format-bluetooth = " ᛒ <b>{volume}</b>";
       format-bluetooth-muted = " ";
-      format-muted= " {format_source}";
-      format-icons= {
-          default= ["" "" ""];
-      };
-      scroll-step= 5;
+      format-muted = " {format_source}";
+      format-icons = { default = [ "" "" "" ]; };
+      scroll-step = 5;
       on-click = "pavucontrol";
     };
 
@@ -200,12 +195,12 @@ in
     };
 
     "${power}" = {
-        interval = "once";
-        format = "";
-        tooltip = false;
-        # on-click = "~/.config/sway/scripts/power_thing";
-        on-click = "tofi-powermenu";
-        on-click-right = "$TERMINAL -a floatterm -e ~/.local/bin/popupgrade";
+      interval = "once";
+      format = "";
+      tooltip = false;
+      # on-click = "~/.config/sway/scripts/power_thing";
+      on-click = "tofi-powermenu";
+      on-click-right = "$TERMINAL -a floatterm -e ~/.local/bin/popupgrade";
     };
   };
 }
