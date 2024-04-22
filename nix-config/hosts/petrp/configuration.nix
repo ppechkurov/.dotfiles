@@ -80,11 +80,11 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = [ "Iosevka NF" ];
+        monospace = [ "VictorMono Nerd Font" ];
       };
     };
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Iosevka" "IosevkaTerm" "ShareTechMono" ]; })
+      (nerdfonts.override { fonts = [ "VictorMono" "JetBrainsMono" "ShareTechMono" ]; })
       font-awesome
       powerline-fonts
       powerline-symbols

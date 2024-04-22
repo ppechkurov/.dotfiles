@@ -3,7 +3,7 @@ text-cursor = true
 text-cursor-style = underscore
 text-cursor-thickness = 2
 
-font = Iosevka NF
+font = "VictorMono Nerd Font"
 fuzzy-match = true
 
 # Full screen no border

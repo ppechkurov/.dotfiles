@@ -120,8 +120,8 @@
       seat = { "*".hide_cursor = "when-typing enable"; };
       output = {
         "Virtual-1" = {
-          # mode = "1920x1080@59.963Hz";
-          mode = "1680x1050@59.954Hz";
+          mode = "1920x1080@59.963Hz";
+          # mode = "1680x1050@59.954Hz";
         };
       };
     };
