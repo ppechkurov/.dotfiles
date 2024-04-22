@@ -4,7 +4,14 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    extraPackages = [ pkgs.nil pkgs.shfmt ];
+    extraPackages = with pkgs; [
+      lua
+      lua-language-server
+      nil
+      nixfmt-classic
+      shfmt
+      stylua
+    ];
     vimAlias = true;
     withNodeJs = true;
   };

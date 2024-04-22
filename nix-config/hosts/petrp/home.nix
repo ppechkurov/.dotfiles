@@ -33,6 +33,7 @@
     mako
     ripgrep
     pavucontrol
+    telegram-desktop
   ];
 
   nixpkgs.config.allowUnfree = true;

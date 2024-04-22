@@ -13,6 +13,7 @@ return {
       typescript = { 'prettierd' },
       javascript = { 'prettierd' },
       json = { 'prettierd' },
+      nix = { 'nixfmt' },
     },
   },
 }

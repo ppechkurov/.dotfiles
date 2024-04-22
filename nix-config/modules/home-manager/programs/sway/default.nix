@@ -7,17 +7,6 @@
       xdg-utils
       playerctl
     ];
-
-    # sessionVariables = {
-    #   NIXOS_OZONE_WL = "1";
-    #   DISABLE_QT5_COMPAT = "0";
-    #   QT_QPA_PLATFORM = "wayland;xcb";
-    #   GDK_BACKEND = "wayland";
-    #   MOZ_ENABLE_WAYLAND = "1";
-    #   XDG_SESSION_TYPE = "wayland";
-    #   SDL_VIDEODRIVER = "wayland";
-    #   CLUTTER_BACKEND = "wayland";
-    # };
   };
 
   wayland.windowManager.sway = {

@@ -20,10 +20,10 @@ function M.config()
   require('mason').setup({
     ui = { border = 'single' },
   })
-
-  require('mason-lspconfig').setup({
-    ensure_installed = servers,
-  })
+  --
+  -- require('mason-lspconfig').setup({
+  --   ensure_installed = servers,
+  -- })
 end
 
 return M
