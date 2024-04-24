@@ -12,9 +12,9 @@
     musicDirectory = "/home/${user}/music";
   };
 
-  programs.cava.enable = true;
   services.mpdris2.enable = true;
 
+  programs.cava.enable = true;
   programs.ncmpcpp.enable = true;
   programs.htop.enable = true;
   programs.chromium.enable = true;
@@ -25,7 +25,30 @@
     name = "Simp1e-Gruvbox-Dark";
   };
 
-  home.packages = with pkgs; [ cliphist gcc mako pavucontrol ripgrep ];
+  xdg = {
+    enable = true;
+    mime.enable = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/http" = [ "chromium-browser.desktop" ];
+        "x-scheme-handler/https" = "chromium-browser.desktop";
+      };
+    };
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
+  };
+
+  home.packages = with pkgs; [
+    cliphist
+    gcc
+    mako
+    pavucontrol
+    ripgrep
+    telegram-desktop
+  ];
 
   nixpkgs.config.allowUnfree = true;
 

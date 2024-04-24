@@ -117,32 +117,30 @@
 
   # Allow unfree packages and insecure packages
   nixpkgs.config.allowUnfree = true;
-  services.xserver.enable = true;
+  services.upower.enable = true;
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [ vim curl ];
 
   environment.pathsToLink = [ "/share/zsh" ];
   environment.sessionVariables = {
-    TERMINAL = "foot";
-    NIXOS_OZONE_WL = "1";
+    CLUTTER_BACKEND = "wayland";
     DISABLE_QT5_COMPAT = "0";
-    QT_QPA_PLATFORM = "wayland;xcb";
-    QT_QPA_PLATFORMTHEME = "qt5ct";
     GDK_BACKEND = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
-    XDG_SESSION_TYPE = "wayland";
+    NIXOS_OZONE_WL = "1";
+    QT_QPA_PLATFORM = "wayland";
     SDL_VIDEODRIVER = "wayland";
-    CLUTTER_BACKEND = "wayland";
+    TERMINAL = "foot";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    XDG_SESSION_TYPE = "wayland";
   };
 
-  # xdg
   xdg.portal = {
     enable = true;
-    config.common.default = [ "gtk" ];
-    xdgOpenUsePortal = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
+    config = { common.default = [ "gtk" "wlr" ]; };
   };
 
   # Open ports in the firewall.

@@ -1,12 +1,6 @@
-{ pkgs, lib, ... }:
-{
+{ pkgs, lib, ... }: {
   home = {
-    packages = with pkgs; [ 
-      wf-recorder
-      wl-clipboard
-      xdg-utils
-      playerctl
-    ];
+    packages = with pkgs; [ wf-recorder wl-clipboard xdg-utils playerctl ];
   };
 
   wayland.windowManager.sway = {
@@ -24,9 +18,7 @@
         border = 2;
       };
 
-      gaps = {
-        inner = 10;
-      };
+      gaps = { inner = 10; };
 
       input = {
         "type:keyboard" = {
@@ -39,6 +31,7 @@
         "type:mouse" = {
           dwt = "disabled";
           accel_profile = "flat";
+          pointer_accel = "0.5";
         };
       };
 
@@ -48,7 +41,7 @@
       }];
 
       floating = {
-        criteria = [ { app_id = "float_htop"; } ];
+        criteria = [{ app_id = "float_htop"; }];
         border = 2;
       };
 

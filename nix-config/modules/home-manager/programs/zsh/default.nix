@@ -4,18 +4,16 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion.enable = true;
+    enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
     antidote = {
       enable = true;
       plugins = [ "romkatv/powerlevel10k" ];
     };
-    oh-my-zsh = {
-      enable = true;
-    };
+    oh-my-zsh = { enable = true; };
     initExtra = ''
-    source ~/.p10k.zsh
+      source ~/.p10k.zsh
     '';
   };
 

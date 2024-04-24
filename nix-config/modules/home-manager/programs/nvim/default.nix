@@ -8,7 +8,7 @@
       lua
       lua-language-server
       nil
-      nixfmt-classic
+      nixfmt
       shfmt
       stylua
     ];
