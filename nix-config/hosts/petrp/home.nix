@@ -18,6 +18,10 @@
   programs.ncmpcpp.enable = true;
   programs.htop.enable = true;
   programs.chromium.enable = true;
+  programs.chromium.extensions = [
+    { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock
+    { id = "gfbliohnnapiefjpjlpjnehglfpaknnc"; } # surfingkeys
+  ];
 
   home.pointerCursor = {
     gtk.enable = true;
