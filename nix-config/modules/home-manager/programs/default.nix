@@ -2,6 +2,7 @@
   imports = [
     # ./misc
     ./foot
+    ./fzf
     ./git
     ./github
     ./nvim

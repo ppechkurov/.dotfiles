@@ -1,17 +1,29 @@
-{ ... }:
+{ pkgs, ... }: {
+  home = { packages = with pkgs; [ bat eza ]; };
 
-{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
-    defaultKeymap = "viins";
+    defaultKeymap = "emacs";
     antidote = {
       enable = true;
       plugins = [ "romkatv/powerlevel10k" ];
     };
-    oh-my-zsh = { enable = true; };
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "vi-mode" "fzf" ];
+    };
+
+    history = { ignoreAllDups = true; };
+    shellAliases = {
+      cat = "bat";
+      ls = "eza";
+      ll = "ls -l -g --icons=auto";
+      lla = "ll -a";
+    };
+
     initExtra = ''
       source ~/.p10k.zsh
     '';
