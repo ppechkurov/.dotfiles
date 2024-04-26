@@ -1,9 +1,11 @@
-{ config, lib, pkgs, inputs, ... }: {
+{ config, lib, pkgs, ... }:
+with lib; {
   options = {
-    username = lib.mkOption {
-      type = lib.types.str;
+    username = mkOption {
+      type = types.str;
       default = "petrp";
     };
+    monitor = mkOption { type = types.attrsOf types.anything; };
   };
 
   config = {
@@ -75,7 +77,7 @@
     fonts = {
       fontconfig = {
         enable = true;
-        defaultFonts = { monospace = [ "VictorMono Nerd Font" ]; };
+        defaultFonts = { monospace = [ "JetBrainsMono Nerd Font" ]; };
       };
       packages = with pkgs; [
         (nerdfonts.override {
@@ -84,6 +86,15 @@
         font-awesome
         powerline-fonts
         powerline-symbols
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        liberation_ttf
+        fira-code
+        fira-code-symbols
+        mplus-outline-fonts.githubRelease
+        dina-font
+        proggyfonts
       ];
     };
 
@@ -103,7 +114,7 @@
     services.upower.enable = true;
 
     # List packages installed in system profile.
-    environment.systemPackages = with pkgs; [ vim curl ];
+    environment.systemPackages = with pkgs; [ git vim curl ];
 
     environment.pathsToLink = [ "/share/zsh" ];
     environment.sessionVariables = {
@@ -125,18 +136,6 @@
       extraPortals =
         [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
       config = { common.default = [ "gtk" "wlr" ]; };
-    };
-
-    home-manager = {
-      users = {
-        ${config.username} = import ./home.nix {
-          inherit config;
-          inherit pkgs;
-        };
-      };
-      extraSpecialArgs = { inherit inputs; };
-      useGlobalPkgs = true;
-      useUserPackages = true;
     };
 
     # Open ports in the firewall.

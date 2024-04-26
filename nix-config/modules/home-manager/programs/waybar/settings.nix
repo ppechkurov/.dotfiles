@@ -23,184 +23,186 @@ let
     high = "a31d17"; # red2
   };
 in {
-  programs.waybar.settings.mainBar = with modules; {
-    layer = "bottom";
-    position = "top";
-    height = 30; # Remove for auto height
+  config = {
+    programs.waybar.settings.mainBar = with modules; {
+      layer = "bottom";
+      position = "top";
+      height = 30; # Remove for auto height
 
-    modules-left = [
-      "${os-icon}"
-      "${pipe}"
-      "${workspaces}"
-      "${pipe}"
-      "${disk}"
-      "${pipe}"
-      "tray"
-      "${pipe}"
-      "${cava}"
-    ];
-
-    cava = {
-      framerate = 30;
-      autosens = 1;
-      bars = 18;
-      lower_cutoff_freq = 50;
-      higher_cutoff_freq = 10000;
-      method = "pipewire";
-      source = "auto";
-      stereo = true;
-      reverse = false;
-      bar_delimiter = 0;
-      monstercat = false;
-      waves = false;
-      input_delay = 1;
-      format-icons = with bars; [
-        "<span foreground='#${small}'>▁</span>"
-        "<span foreground='#${small}'>▂</span>"
-        "<span foreground='#${small}'>▃</span>"
-        "<span foreground='#${small}'>▄</span>"
-        "<span foreground='#${small}'>▅</span>"
-        "<span foreground='#${small}'>▆</span>"
-        "<span foreground='#${small}'>▇</span>"
-        "<span foreground='#${small}'>█</span>"
+      modules-left = [
+        "${os-icon}"
+        "${pipe}"
+        "${workspaces}"
+        "${pipe}"
+        "${disk}"
+        "${pipe}"
+        "tray"
+        "${pipe}"
+        "${cava}"
       ];
-    };
 
-    modules-center = [ "${mode}" "${clock}" ];
-
-    modules-right = [
-      "${network}"
-      "${pipe}"
-      "${cpu}"
-      "${pipe}"
-      "${memory}"
-      "${pipe}"
-      "${mako}"
-      "${clipboard}"
-      "${sound}"
-      "${sound}#mic"
-      "${idle}"
-      "${pipe}"
-      "${language}"
-      "${pipe}"
-      "${power}"
-    ];
-
-    "${os-icon}" = {
-      format = "";
-      interval = "once";
-      tooltip = false;
-      #TODO: update these scripts
-      on-click = "~/.config/sway/scripts/settings";
-      on-click-right = "~/.config/mako/scripts/mako_sysnfo";
-    };
-
-    "${pipe}" = {
-      interval = "once";
-      format = "|";
-      tooltip = false;
-    };
-
-    "${workspaces}" = {
-      disable-scroll = true;
-      format = "{icon} ";
-      format-icons = {
-        "1" = "";
-        "2" = "";
-        "3" = "";
-        "4" = "";
-        "urgent" = "";
-        "focused" = "";
-        "default" = "";
+      cava = {
+        framerate = 30;
+        autosens = 1;
+        bars = 18;
+        lower_cutoff_freq = 50;
+        higher_cutoff_freq = 10000;
+        method = "pipewire";
+        source = "auto";
+        stereo = true;
+        reverse = false;
+        bar_delimiter = 0;
+        monstercat = false;
+        waves = false;
+        input_delay = 1;
+        format-icons = with bars; [
+          "<span foreground='#${small}'>▁</span>"
+          "<span foreground='#${small}'>▂</span>"
+          "<span foreground='#${small}'>▃</span>"
+          "<span foreground='#${small}'>▄</span>"
+          "<span foreground='#${small}'>▅</span>"
+          "<span foreground='#${small}'>▆</span>"
+          "<span foreground='#${small}'>▇</span>"
+          "<span foreground='#${small}'>█</span>"
+        ];
       };
-      "persistent-workspaces" = {
-        "1" = [ ];
-        "2" = [ ];
-        "3" = [ ];
-        "4" = [ ];
+
+      modules-center = [ "${mode}" "${clock}" ];
+
+      modules-right = [
+        "${network}"
+        "${pipe}"
+        "${cpu}"
+        "${pipe}"
+        "${memory}"
+        "${pipe}"
+        "${mako}"
+        "${clipboard}"
+        "${sound}"
+        "${sound}#mic"
+        "${idle}"
+        "${pipe}"
+        "${language}"
+        "${pipe}"
+        "${power}"
+      ];
+
+      "${os-icon}" = {
+        format = "";
+        interval = "once";
+        tooltip = false;
+        #TODO: update these scripts
+        on-click = "~/.config/sway/scripts/settings";
+        on-click-right = "~/.config/mako/scripts/mako_sysnfo";
       };
-    };
 
-    "${disk}" = { format = "󰋊 {percentage_free}%"; };
+      "${pipe}" = {
+        interval = "once";
+        format = "|";
+        tooltip = false;
+      };
 
-    "${clock}" = {
-      interval = 1;
-      format = "{:%a %d %b %H:%M:%S}";
-      tooltip = false;
-      #TODO: update this script
-      on-click-right = "~/.config/mako/scripts/mako_calendar";
-    };
+      "${workspaces}" = {
+        disable-scroll = true;
+        format = "{icon} ";
+        format-icons = {
+          "1" = "";
+          "2" = "";
+          "3" = "";
+          "4" = "";
+          "urgent" = "";
+          "focused" = "";
+          "default" = "";
+        };
+        "persistent-workspaces" = {
+          "1" = [ ];
+          "2" = [ ];
+          "3" = [ ];
+          "4" = [ ];
+        };
+      };
 
-    "${network}" = {
-      # interface = "wlp2*"; # (Optional) To force the use of this interface
-      format-wifi = "({signalStrength}%) ";
-      format-ethernet = "  {bandwidthUpBytes} |   {bandwidthDownBytes} 󰈀 ";
-      interval = 2;
-      tooltip-format = "󱘖 {ipaddr}";
-      format-linked = "{ifname} (No IP) ?";
-      format-disconnected = "x";
-      #TODO: update this script
-      on-click = "~/.local/bin/dmenu_network";
-    };
+      "${disk}" = { format = "󰋊 {percentage_free}%"; };
 
-    "${cpu}" = {
-      format = "  {usage}%";
-      tooltip = false;
-      interval = 2;
-      format-alt = "  {avg_frequency} GHz";
-      on-click = "$TERMINAL -a float_htop -e htop";
-    };
+      "${clock}" = {
+        interval = 1;
+        format = "{:%a %d %b %H:%M:%S}";
+        tooltip = false;
+        #TODO: update this script
+        on-click-right = "~/.config/mako/scripts/mako_calendar";
+      };
 
-    "${memory}" = {
-      format = "  {used:0.1f}GB";
-      interval = 2;
-      tooltip = false;
-      on-click = "$TERMINAL -a float_htop -e htop";
-    };
+      "${network}" = {
+        # interface = "wlp2*"; # (Optional) To force the use of this interface
+        format-wifi = "({signalStrength}%) ";
+        format-ethernet = "  {bandwidthUpBytes} |   {bandwidthDownBytes} 󰈀 ";
+        interval = 2;
+        tooltip-format = "󱘖 {ipaddr}";
+        format-linked = "{ifname} (No IP) ?";
+        format-disconnected = "x";
+        #TODO: update this script
+        on-click = "~/.local/bin/dmenu_network";
+      };
 
-    tray = {
-      icon-size = 20;
-      spacing = 8;
-    };
+      "${cpu}" = {
+        format = "  {usage}%";
+        tooltip = false;
+        interval = 2;
+        format-alt = "  {avg_frequency} GHz";
+        on-click = "$TERMINAL -a float_htop -e htop";
+      };
 
-    "${sound}" = {
-      format = "{icon} <b>{volume}</b>%";
-      format-bluetooth = " ᛒ <b>{volume}</b>";
-      format-bluetooth-muted = " ";
-      format-muted = " {format_source}";
-      format-icons = { default = [ "" "" "" ]; };
-      scroll-step = 5;
-      on-click = "pavucontrol";
-    };
+      "${memory}" = {
+        format = "  {used:0.1f}GB";
+        interval = 2;
+        tooltip = false;
+        on-click = "$TERMINAL -a float_htop -e htop";
+      };
 
-    "${sound}#mic" = {
-      format = "{format_source}";
-      format-source = "";
-      format-source-muted = "  ";
-      format-bluetooth = "{format_source}";
-      on-click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-    };
+      tray = {
+        icon-size = 20;
+        spacing = 8;
+      };
 
-    "${idle}" = {
-      interval = "once";
-      format = "{}";
-      exec = "~/.config/sway/scripts/swayidle-toggle status";
-      signal = 8;
-      on-click = "~/.config/sway/scripts/swayidle-toggle toggle";
-    };
+      "${sound}" = {
+        format = "{icon} <b>{volume}</b>%";
+        format-bluetooth = " ᛒ <b>{volume}</b>";
+        format-bluetooth-muted = " ";
+        format-muted = " {format_source}";
+        format-icons = { default = [ "" "" "" ]; };
+        scroll-step = 5;
+        on-click = "pavucontrol";
+      };
 
-    "${language}" = {
-      format = "{shortDescription}";
-      on-click = "swaymsg input type:keyboard xkb_switch_layout next";
-    };
+      "${sound}#mic" = {
+        format = "{format_source}";
+        format-source = "";
+        format-source-muted = "  ";
+        format-bluetooth = "{format_source}";
+        on-click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+      };
 
-    "${power}" = {
-      interval = "once";
-      format = "";
-      tooltip = false;
-      # on-click = "~/.config/sway/scripts/power_thing";
-      on-click = "tofi-powermenu";
-      on-click-right = "$TERMINAL -a floatterm -e ~/.local/bin/popupgrade";
+      "${idle}" = {
+        interval = "once";
+        format = "{}";
+        exec = "~/.config/sway/scripts/swayidle-toggle status";
+        signal = 8;
+        on-click = "~/.config/sway/scripts/swayidle-toggle toggle";
+      };
+
+      "${language}" = {
+        format = "{shortDescription}";
+        on-click = "swaymsg input type:keyboard xkb_switch_layout next";
+      };
+
+      "${power}" = {
+        interval = "once";
+        format = "";
+        tooltip = false;
+        # on-click = "~/.config/sway/scripts/power_thing";
+        on-click = "tofi-powermenu";
+        on-click-right = "$TERMINAL -a floatterm -e ~/.local/bin/popupgrade";
+      };
     };
   };
 }

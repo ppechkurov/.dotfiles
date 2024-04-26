@@ -1,4 +1,3 @@
-{...}:
 {
   xdg = {
     configFile.xkb = {

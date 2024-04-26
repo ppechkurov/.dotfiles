@@ -15,7 +15,22 @@
       work = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/work/configuration.nix
-          inputs.home-manager.nixosModules.default
+          inputs.home-manager.nixosModule
+          ({ ... }: {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          })
+        ];
+        specialArgs = { inherit inputs; };
+      };
+      home = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/home/configuration.nix
+          inputs.home-manager.nixosModule
+          ({ ... }: {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          })
         ];
         specialArgs = { inherit inputs; };
       };

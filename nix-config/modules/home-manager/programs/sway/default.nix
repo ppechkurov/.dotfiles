@@ -1,7 +1,5 @@
-{ pkgs, lib, ... }: {
-  home = {
-    packages = with pkgs; [ wf-recorder wl-clipboard xdg-utils playerctl ];
-  };
+{ pkgs, lib, osConfig, ... }: {
+  home.packages = with pkgs; [ wf-recorder wl-clipboard xdg-utils playerctl ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -23,7 +21,7 @@
       input = {
         "type:keyboard" = {
           xkb_layout = "us,ru";
-          xkb_variant = "real-prog-dvorak,programmer_ru";
+          #xkb_variant = "real-prog-dvorak,programmer_ru";
           xkb_options = "grp:alt_shift_toggle"; # switch layout
           repeat_delay = "250";
           repeat_rate = "45";
@@ -100,12 +98,7 @@
         "${mod}+Shift+q" = "exec tofi-powermenu";
       };
       seat = { "*".hide_cursor = "when-typing enable"; };
-      output = {
-        "Virtual-1" = {
-          mode = "1920x1080@59.963Hz";
-          # mode = "1680x1050@59.954Hz";
-        };
-      };
+      output = osConfig.monitor;
     };
   };
 }
