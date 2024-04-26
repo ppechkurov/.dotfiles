@@ -12,12 +12,12 @@
 
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+      work = nixpkgs.lib.nixosSystem {
         modules = [
-          ./hosts/petrp/configuration.nix
+          ./hosts/work/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
+        specialArgs = { inherit inputs; };
       };
     };
   };
