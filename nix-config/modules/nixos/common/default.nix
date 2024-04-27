@@ -114,7 +114,7 @@ with lib; {
     services.upower.enable = true;
 
     # List packages installed in system profile.
-    environment.systemPackages = with pkgs; [ git vim curl ];
+    environment.systemPackages = with pkgs; [ git vim curl jq alsa-utils ];
 
     environment.pathsToLink = [ "/share/zsh" ];
     environment.sessionVariables = {
