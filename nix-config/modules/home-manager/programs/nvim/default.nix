@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   config = {
@@ -17,9 +17,12 @@
       withNodeJs = true;
     };
 
-    xdg.configFile.nvim = {
+    xdg.configFile.nvim = let
+      nvim_config_dir =
+        "${config.home.homeDirectory}/.dotfiles/nix-config/modules/home-manager/programs/nvim";
+    in {
       enable = true;
-      source = ./config;
+      source = config.lib.file.mkOutOfStoreSymlink "${nvim_config_dir}/config";
       recursive = true;
     };
   };
