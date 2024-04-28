@@ -70,6 +70,7 @@ with lib; {
     # OpenGL
     hardware.opengl = {
       enable = true;
+      driSupport = true;
       driSupport32Bit = true;
     };
 
@@ -114,7 +115,14 @@ with lib; {
     services.upower.enable = true;
 
     # List packages installed in system profile.
-    environment.systemPackages = with pkgs; [ git vim curl jq alsa-utils ];
+    environment.systemPackages = with pkgs; [
+      git
+      vim
+      curl
+      jq
+      alsa-utils
+      xkeyboard_config
+    ];
 
     environment.pathsToLink = [ "/share/zsh" ];
     environment.sessionVariables = {

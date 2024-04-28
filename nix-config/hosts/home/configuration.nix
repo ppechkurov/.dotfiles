@@ -3,6 +3,12 @@
 
   # declare hostname
   config.networking.hostName = "home";
+  config.environment.systemPackages = [
+    (import inputs.nixpkgs-unstable {
+      system = "x86_64-linux";
+      config = { allowUnfree = true; };
+    }).codeium
+  ];
 
   config.monitor = {
     "Virtual-1" = {

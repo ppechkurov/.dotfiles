@@ -1,4 +1,7 @@
 return {
-  "Exafunction/codeium.vim",
-  event = "BufEnter",
+  'Exafunction/codeium.nvim',
+  event = 'BufEnter',
+  config = function()
+    require('codeium').setup({})
+  end,
 }
