@@ -25,7 +25,7 @@ in {
   mainBar = with modules; {
     layer = "bottom";
     position = "top";
-    height = 30; # Remove for auto height
+    # height = 30; # Remove for auto height
 
     modules-left = [
       "${os-icon}"

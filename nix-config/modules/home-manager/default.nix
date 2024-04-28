@@ -13,14 +13,7 @@ with osConfig; {
       package = pkgs.simp1e-cursors;
       name = "Simp1e-Gruvbox-Dark";
     };
-    packages = with pkgs; [
-      cliphist
-      gcc
-      mako
-      pavucontrol
-      ripgrep
-      telegram-desktop
-    ];
+    packages = with pkgs; [ cliphist gcc pavucontrol ripgrep telegram-desktop ];
   };
 
   home.stateVersion = "23.11";
@@ -31,6 +24,7 @@ with osConfig; {
       musicDirectory = "/home/${username}/music";
     };
     mpdris2.enable = true;
+    mako.enable = true;
   };
 
   # Let Home Manager install and manage itself.
