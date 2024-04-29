@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 with lib; {
   options = {
     username = mkOption {
@@ -122,6 +122,11 @@ with lib; {
       jq
       alsa-utils
       xkeyboard_config
+
+      (import inputs.nixpkgs-unstable {
+        system = "x86_64-linux";
+        config = { allowUnfree = true; };
+      }).codeium
     ];
 
     environment.pathsToLink = [ "/share/zsh" ];
