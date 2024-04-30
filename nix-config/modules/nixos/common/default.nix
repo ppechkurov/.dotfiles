@@ -122,6 +122,7 @@ with lib; {
       jq
       alsa-utils
       xkeyboard_config
+      nodejs_20
 
       (import inputs.nixpkgs-unstable {
         system = "x86_64-linux";

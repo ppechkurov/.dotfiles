@@ -10,6 +10,7 @@
     ./tofi
     ./waybar
     ./yazi
+    ./zoxide
     ./zsh
   ];
 }

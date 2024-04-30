@@ -32,6 +32,10 @@ with osConfig; {
 
   programs.password-store.enable = true;
   programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "gnome3";
+  };
 
   programs.cava.enable = true;
   programs.htop.enable = true;
