@@ -114,6 +114,8 @@ with lib; {
     nixpkgs.config.allowUnfree = true;
     services.upower.enable = true;
 
+    services.dbus.packages = [ pkgs.gcr ];
+
     # List packages installed in system profile.
     environment.systemPackages = with pkgs; [
       git
@@ -123,6 +125,8 @@ with lib; {
       alsa-utils
       xkeyboard_config
       nodejs_20
+      tessen
+      pass-wayland
 
       (import inputs.nixpkgs-unstable {
         system = "x86_64-linux";

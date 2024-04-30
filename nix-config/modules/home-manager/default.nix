@@ -30,7 +30,6 @@ with osConfig; {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.password-store.enable = true;
   programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;

@@ -9,6 +9,8 @@ let
     (builtins.readFile ./scripts/tofi-launcher.sh);
   tofi-powermenu = pkgs.writeScriptBin "tofi-powermenu"
     (builtins.readFile ./scripts/tofi-powermenu.sh);
+  tofi-pass =
+    pkgs.writeScriptBin "tofi-pass" (builtins.readFile ./scripts/tofi-pass.sh);
 in {
   config = {
     home.packages = with pkgs; [
@@ -17,12 +19,16 @@ in {
       tofi-calc
       tofi-emoji
       tofi-launcher
+      tofi-pass
       tofi-powermenu
     ];
 
     xdg.configFile = {
       "tofi/one-line".source = ./config/one-line;
       "tofi/multi-line".source = ./config/multi-line;
+      "tofi/pass".source = ./config/pass;
     };
+
+    xdg.configFile = { "tessen/config".source = ./tessen/config; };
   };
 }

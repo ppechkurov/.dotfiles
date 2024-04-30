@@ -13,6 +13,8 @@ in tagBinds // {
     "[app_id=scratch_term] scratchpad show, resize set width 80ppt height 80ppt";
   "${mod}+b" = "exec ${lib.getExe pkgs.chromium}";
   "${mod}+r" = "exec tofi-launcher";
+
+  "${mod}+p" = "exec tofi-pass";
   "${mod}+t" = "exec tofi-calc";
   "${mod}+Shift+t" = "exec tofi-emoji";
 
