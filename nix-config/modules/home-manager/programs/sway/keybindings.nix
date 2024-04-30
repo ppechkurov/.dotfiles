@@ -16,6 +16,7 @@ in tagBinds // {
 
   "${mod}+p" = "exec tofi-pass";
   "${mod}+t" = "exec tofi-calc";
+  "${mod}+s" = "exec foot tofi-ssh";
   "${mod}+Shift+t" = "exec tofi-emoji";
 
   "XF86AudioMute" = "exec amixer sset Master toggle";
