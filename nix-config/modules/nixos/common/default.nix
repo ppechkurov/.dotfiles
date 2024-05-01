@@ -118,15 +118,16 @@ with lib; {
 
     # List packages installed in system profile.
     environment.systemPackages = with pkgs; [
-      git
-      vim
-      curl
-      jq
       alsa-utils
-      xkeyboard_config
+      curl
+      git
+      jq
+      libnotify
       nodejs_20
-      tessen
       pass-wayland
+      tessen
+      vim
+      xkeyboard_config
 
       (import inputs.nixpkgs-unstable {
         system = "x86_64-linux";

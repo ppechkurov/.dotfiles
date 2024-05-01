@@ -9,6 +9,7 @@
       extraPackages = with pkgs; [
         lua
         lua-language-server
+        nodePackages.bash-language-server
         nil
         nixfmt
         shfmt
