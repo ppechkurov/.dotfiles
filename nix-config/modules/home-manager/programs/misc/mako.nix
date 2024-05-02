@@ -1,4 +1,3 @@
-{ config, pkgs, ... }: 
 {
   services = {
     mako = {
@@ -8,10 +7,10 @@
       defaultTimeout = 5000;
       borderSize = 2;
       borderRadius = 5;
-      backgroundColor = "#1e1e2e";
-      borderColor = "#b4befe";
+      backgroundColor = "#323232";
+      borderColor = "#A89984";
       progressColor = "over #313244";
-      textColor = "#cdd6f4";
+      textColor = "#A89984";
       icons = true;
       actions = true;
       extraConfig = ''

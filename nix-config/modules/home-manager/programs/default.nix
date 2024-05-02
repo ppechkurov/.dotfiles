@@ -6,6 +6,7 @@
     ./git
     ./github
     ./nvim
+    ./misc/mako.nix
     ./sway
     ./tofi
     ./waybar

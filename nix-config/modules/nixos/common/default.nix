@@ -74,6 +74,12 @@ with lib; {
       driSupport32Bit = true;
     };
 
+    # Docker
+    virtualisation.docker.rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+
     # Fonts
     fonts = {
       fontconfig = {
@@ -120,6 +126,7 @@ with lib; {
     environment.systemPackages = with pkgs; [
       alsa-utils
       curl
+      docker-credential-helpers
       git
       jq
       libnotify
