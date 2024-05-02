@@ -7,7 +7,6 @@ let
     disk = "disk";
     idle = "custom/swayidle";
     language = "sway/language";
-    mako = "custom/mako";
     memory = "memory";
     mode = "sway/mode";
     network = "network";
@@ -25,7 +24,6 @@ in {
   mainBar = with modules; {
     layer = "bottom";
     position = "top";
-    # height = 30; # Remove for auto height
 
     modules-left = [
       "${os-icon}"
@@ -74,15 +72,12 @@ in {
       "${pipe}"
       "${memory}"
       "${pipe}"
-      "${mako}"
       "${clipboard}"
       "${sound}"
       "${sound}#mic"
       "${idle}"
       "${pipe}"
       "${language}"
-      "${pipe}"
-      "${power}"
     ];
 
     "${os-icon}" = {
@@ -109,8 +104,8 @@ in {
         "3" = "";
         "4" = "";
         "urgent" = "";
-        "focused" = "";
-        "default" = "";
+        # "focused" = "";
+        # "default" = "";
       };
       "persistent-workspaces" = {
         "1" = [ ];
