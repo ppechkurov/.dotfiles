@@ -11,15 +11,24 @@ xkb_symbols "winkeys" {
     include "ru(common)"
     name[Group1]= "Russian";
 
-    key <AE03> { [           3,  numerosign  ] };
-    key <AE04> { [           4,   semicolon  ] };
-    key <AE05> { [           5,     percent  ] };
-    key <AE06> { [           6,       colon  ] };
-    key <AE07> { [           7,    question  ] };
-    key <AE08> { [           8,    asterisk, U20BD  ] };
+    key <TLDE> { [  Cyrillic_io, Cyrillic_IO ] };
+
+    key <AE01> { [  1,      plus          ] };
+    key <AE02> { [  2,      bracketleft   ] };
+    key <AE03> { [  3,      braceleft     ] };
+    key <AE04> { [  4,      parenleft     ] };
+    key <AE05> { [  5,      ampersand     ] };
+    key <AE06> { [  6,      equal         ] };
+    key <AE07> { [  7,      parenright    ] };
+    key <AE08> { [  8,      braceright    ] };
+    key <AE09> { [  9,      bracketright  ] };
+    key <AE10> { [  0,      asterisk      ] };
+    key <AE11> { [  exclam, percent       ] };
+    key <AE12> { [  bar,    grave         ] };
 
     key <AB10> { [      period,       comma  ] };
-    key <BKSL> { [   backslash,       slash  ] };
+    key <AC12> { [ Cyrillic_hardsign, Cyrillic_HARDSIGN  ] };
+    key <AD12> { [  slash,  question      ] };
 };
 
 hidden partial alphanumeric_keys
