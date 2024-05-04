@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
-rg "Host " ~/.ssh/config | rg -o '\S+' | sed -n '2p' |
+rg '^[[:space:]]*Host[[:space:]]+(\S+)' \
+	-o --replace '$1' \
+	~/.ssh/config \
+	--no-line-number |
 	tofi --prompt-text "SSH:>" --config "$HOME/.config/tofi/multi-line" |
-	xargs ssh
+	xargs -o ssh
