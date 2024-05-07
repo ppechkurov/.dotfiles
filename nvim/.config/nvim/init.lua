@@ -43,6 +43,7 @@ spec('plugins.persistence')
 spec('plugins.codeium')
 spec('plugins.dap')
 spec('plugins.octo')
+spec('plugins.csv')
 
 spec('plugins.dressing')
 spec('plugins.colorizer')

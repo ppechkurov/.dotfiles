@@ -83,3 +83,27 @@ function abl() (
 		--format short \
 		--follow
 )
+
+function batch_logs() {
+	# Check if all required parameters are provided
+	if [ "$#" -lt 2 ]; then
+		echo "Usage: batch_logs job_id customer [region]"
+		return 1
+	fi
+
+	local job_id="${1}"
+	local customer="${2}"
+	local region="${3:-us-east-2}"
+	local filename="${customer}-${job_id}-$(date -I).log"
+
+	aws batch describe-jobs \
+		--jobs ${job_id} \
+		--region ${region} |
+		jq '.jobs[0].container.logStreamName' |
+		xargs -I {} aws logs tail \
+			/aws/batch/job \
+			--log-stream-names '{}' \
+			--since 20d \
+			--region ${region} \
+			--format short >${filename}
+}

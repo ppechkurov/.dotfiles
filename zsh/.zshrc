@@ -71,6 +71,7 @@ plugins=(
 	vi-mode
 	fzf
 	jq
+  azure-cli
 )
 
 autoload -Uz compinit && compinit
@@ -140,3 +141,5 @@ eval SF_AC_ZSH_SETUP_PATH=${HOME}/.cache/sf/autocomplete/zsh_setup && test -f $S
 
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k/.p10k.zsh.
 [[ ! -f ~/.dotfiles/p10k/.p10k.zsh ]] || source ~/.dotfiles/p10k/.p10k.zsh
+
+source /home/ppechkurov/.config/broot/launcher/bash/br
