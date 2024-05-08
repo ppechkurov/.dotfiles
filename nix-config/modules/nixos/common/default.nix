@@ -132,6 +132,7 @@ with lib; {
       libnotify
       nodejs_20
       pass-wayland
+      slack
       tessen
       vim
       xkeyboard_config

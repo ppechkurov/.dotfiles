@@ -13,7 +13,14 @@ with osConfig; {
       package = pkgs.simp1e-cursors;
       name = "Simp1e-Gruvbox-Dark";
     };
-    packages = with pkgs; [ cliphist gcc pavucontrol ripgrep telegram-desktop ];
+    packages = with pkgs; [
+      cliphist
+      dconf
+      gcc
+      pavucontrol
+      ripgrep
+      telegram-desktop
+    ];
   };
 
   home.stateVersion = "23.11";
@@ -44,6 +51,18 @@ with osConfig; {
     { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock
     { id = "gfbliohnnapiefjpjlpjnehglfpaknnc"; } # surfingkeys
   ];
+
+  gtk.enable = true;
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      gtk-theme = "adw-gtk3-dark";
+    };
+  };
+
+  qt.enable = true;
+  qt.platformTheme = "gnome";
+  qt.style.name = "adwaita-dark";
 
   xdg = {
     enable = true;

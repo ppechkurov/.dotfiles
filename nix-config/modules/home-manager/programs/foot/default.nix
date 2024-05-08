@@ -10,7 +10,8 @@
         key-bindings = {
           scrollback-up-half-page = "Control+k";
           scrollback-down-half-page = "Control+j";
-          show-urls-launch = "Control+u";
+          show-urls-launch = "Control+Shift+u";
+          unicode-input = "none";
           search-start = "Control+slash";
         };
         search-bindings = {
