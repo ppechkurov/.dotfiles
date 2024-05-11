@@ -12,6 +12,7 @@ with osConfig; {
       gtk.enable = true;
       package = pkgs.simp1e-cursors;
       name = "Simp1e-Gruvbox-Dark";
+      size = 24;
     };
     packages = with pkgs; [
       cliphist
