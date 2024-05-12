@@ -61,11 +61,15 @@ with lib; {
             "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
         };
       };
+
+      dbus.packages = [ pkgs.gcr ];
     };
 
     # pipewire
     security.rtkit.enable = true;
     security.polkit.enable = true;
+
+    security.pam.services.swaylock = { };
 
     # OpenGL
     hardware.opengl = {
@@ -118,9 +122,6 @@ with lib; {
 
     # Allow unfree packages and insecure packages
     nixpkgs.config.allowUnfree = true;
-    services.upower.enable = true;
-
-    services.dbus.packages = [ pkgs.gcr ];
 
     # List packages installed in system profile.
     environment.systemPackages = with pkgs; [

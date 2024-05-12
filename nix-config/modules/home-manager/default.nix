@@ -44,6 +44,7 @@ with osConfig; {
     pinentryFlavor = "gnome3";
   };
 
+  programs.swaylock.enable = true;
   programs.cava.enable = true;
   programs.htop.enable = true;
   programs.ncmpcpp.enable = true;
