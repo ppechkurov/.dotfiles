@@ -1,6 +1,6 @@
 { osConfig, pkgs, config, lib, ... }:
 with osConfig; {
-  imports = [ ./programs ./keyboard ];
+  imports = [ ./programs ./services ./keyboard ];
 
   home = {
     inherit username;
@@ -29,39 +29,11 @@ with osConfig; {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  services = {
-    mpd = {
-      enable = true;
-      musicDirectory = "/home/${username}/music";
-    };
-    mpdris2.enable = true;
-    mako.enable = true;
-    swayidle = let
-      swaylockExe = lib.getExe config.programs.swaylock.package;
-      swaymsgExe = "${pkgs.sway}/bin/swaymsg";
-      walpaper = "/home/${username}/.config/sway/hackerman-wallpapers.jpg";
-    in {
-      enable = true;
-      timeouts = [
-        {
-          timeout = 300;
-          command =
-            "${swaylockExe} --image ${walpaper} --daemonize --ignore-empty-password";
-        }
-        {
-          timeout = 600;
-          command = "${swaymsgExe} 'output * dpms off'";
-          resumeCommand = "${swaymsgExe} 'output * dpms on'";
-        }
-      ];
-    };
-  };
+  services.mako.enable = true;
 
   programs.gpg.enable = true;
-  services.gpg-agent = {
-    enable = true;
-    pinentryFlavor = "gnome3";
-  };
+  services.gpg-agent.enable = true;
+  services.gpg-agent.pinentryFlavor = "gnome3";
 
   programs.swaylock.enable = true;
   programs.cava.enable = true;
