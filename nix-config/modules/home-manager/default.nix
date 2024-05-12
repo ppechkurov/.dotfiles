@@ -1,4 +1,4 @@
-{ osConfig, pkgs, ... }:
+{ osConfig, pkgs, config, lib, ... }:
 with osConfig; {
   imports = [ ./programs ./keyboard ];
 
@@ -26,6 +26,9 @@ with osConfig; {
 
   home.stateVersion = "23.11";
 
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
   services = {
     mpd = {
       enable = true;
@@ -33,10 +36,26 @@ with osConfig; {
     };
     mpdris2.enable = true;
     mako.enable = true;
+    swayidle = let
+      swaylockExe = lib.getExe config.programs.swaylock.package;
+      swaymsgExe = "${pkgs.sway}/bin/swaymsg";
+      walpaper = "/home/${username}/.config/sway/hackerman-wallpapers.jpg";
+    in {
+      enable = true;
+      timeouts = [
+        {
+          timeout = 300;
+          command =
+            "${swaylockExe} --image ${walpaper} --daemonize --ignore-empty-password";
+        }
+        {
+          timeout = 600;
+          command = "${swaymsgExe} 'output * dpms off'";
+          resumeCommand = "${swaymsgExe} 'output * dpms on'";
+        }
+      ];
+    };
   };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 
   programs.gpg.enable = true;
   services.gpg-agent = {

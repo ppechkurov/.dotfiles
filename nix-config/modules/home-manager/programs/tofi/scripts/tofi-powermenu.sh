@@ -3,9 +3,9 @@
 lock="󰍁 Lock"
 shutdown=" Shutdown"
 reboot=" Reboot"
-suspend="󰤄 Suspend"
+# suspend="󰤄 Suspend"
 logout="󰗽 Logout"
-options="$lock\n$shutdown\n$reboot\n$suspend\n$logout"
+options="$lock\n$shutdown\n$reboot\n$logout"
 
 selected="$(echo -e "$options" |
 	tofi \
@@ -21,16 +21,16 @@ case $selected in
 "$reboot")
 	systemctl reboot
 	;;
-"$suspend")
-	# Hold all on RAM
-	systemctl suspend
-	;;
+# "$suspend")
+# 	# Hold all on RAM
+# 	systemctl suspend
+# 	;;
 "$logout")
 	swaymsg exit
 	systemctl --user stop graphical-session.target
 	systemctl --user stop wayland-session.target
 	;;
 "$lock")
-	/etc/scripts/sway-lock.sh
+	swaylock --daemonize --image "$HOME/.config/sway/hackerman-wallpapers.jpg" --ignore-empty-password
 	;;
 esac
