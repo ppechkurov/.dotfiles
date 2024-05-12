@@ -1,4 +1,4 @@
-{ osConfig, pkgs, config, lib, ... }:
+{ osConfig, pkgs, ... }:
 with osConfig; {
   imports = [ ./programs ./services ./keyboard ];
 
@@ -44,13 +44,17 @@ with osConfig; {
     { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock
     { id = "gfbliohnnapiefjpjlpjnehglfpaknnc"; } # surfingkeys
   ];
+  programs.yt-dlp.enable = true;
 
   gtk.enable = true;
+  gtk.theme = {
+    name = "Adwaita-dark";
+    package = pkgs.gnome.gnome-themes-extra;
+  };
+
+  dconf.enable = true;
   dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      gtk-theme = "adw-gtk3-dark";
-    };
+    "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
   };
 
   qt.enable = true;

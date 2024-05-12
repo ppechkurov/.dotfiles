@@ -129,7 +129,9 @@ with lib; {
       curl
       docker-credential-helpers
       git
+      jmtpfs
       jq
+      jellyfin-ffmpeg
       libnotify
       nodejs_20
       pass-wayland

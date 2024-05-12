@@ -20,17 +20,20 @@
         }];
       };
 
-      startup = [{ # foot scratchpad
-        command = let
-          opacity = ".82";
-          cwd = "${config.home.homeDirectory}/.dotfiles";
-        in ''
-          exec foot \
-            --app-id ${scratchpad_app_id} \
-            --override colors.alpha=${opacity} \
-            --working-directory ${cwd}
-        '';
-      }];
+      startup = [
+        { # foot scratchpad
+          command = let
+            opacity = ".82";
+            cwd = "${config.home.homeDirectory}/.dotfiles";
+          in ''
+            exec foot \
+              --app-id ${scratchpad_app_id} \
+              --override colors.alpha=${opacity} \
+              --working-directory ${cwd}
+          '';
+        }
+        { command = "exec telegram-desktop"; }
+      ];
 
       gaps = { inner = 10; };
 
