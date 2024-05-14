@@ -30,6 +30,7 @@ with osConfig; {
   programs.home-manager.enable = true;
 
   services.mako.enable = true;
+  services.network-manager-applet.enable = true;
 
   programs.gpg.enable = true;
   services.gpg-agent.enable = true;
@@ -38,7 +39,6 @@ with osConfig; {
   programs.swaylock.enable = true;
   programs.cava.enable = true;
   programs.htop.enable = true;
-  programs.ncmpcpp.enable = true;
   programs.chromium.enable = true;
   programs.chromium.extensions = [
     { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock
