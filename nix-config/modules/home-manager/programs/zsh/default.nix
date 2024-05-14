@@ -27,6 +27,11 @@
     initExtra = ''
       source ~/.p10k.zsh
     '';
+
+    envExtra = ''
+      # VIM as man pager
+      export MANPAGER="nvim -c 'Man!' -o -"
+    '';
   };
 
   home.file.".p10k.zsh" = {
