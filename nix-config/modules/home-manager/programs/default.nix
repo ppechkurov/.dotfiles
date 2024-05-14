@@ -1,6 +1,7 @@
 {
   imports = [
     # ./misc
+    ./aws
     ./foot
     ./fzf
     ./git
