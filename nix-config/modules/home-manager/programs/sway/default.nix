@@ -7,17 +7,27 @@
     wrapperFeatures.gtk = true;
     extraSessionCommands = "export XDG_CURRENT_DESKTOP=sway;";
 
-    config = let scratchpad_app_id = "scratch_term";
+    config = let
+      app_ids = {
+        scratchpad = "scratch_term";
+        float_music = "float_music";
+      };
     in {
       bindkeysToCode = true;
 
       window = {
         border = 2;
         titlebar = false;
-        commands = [{
-          command = "move container to scratchpad";
-          criteria.app_id = "${scratchpad_app_id}";
-        }];
+        commands = with app_ids; [
+          {
+            command = "move container to scratchpad";
+            criteria.app_id = "${scratchpad}";
+          }
+          {
+            command = "resize set width 80ppt height 80ppt";
+            criteria.app_id = "${float_music}";
+          }
+        ];
       };
 
       startup = [
@@ -26,14 +36,21 @@
             opacity = ".82";
             cwd = "${config.home.homeDirectory}/.dotfiles";
           in ''
-            exec foot \
-              --app-id ${scratchpad_app_id} \
+            foot \
+              --app-id ${app_ids.scratchpad} \
               --override colors.alpha=${opacity} \
               --working-directory ${cwd}
           '';
         }
-        { command = "exec telegram-desktop"; }
+        { command = "sleep 2 && telegram-desktop"; }
       ];
+
+      # modes = {
+      #   quit = {
+      #     q = ''exec notify-send "quit"'';
+      #     Escape = "mode default";
+      #   };
+      # };
 
       gaps = { inner = 10; };
 
@@ -46,16 +63,16 @@
 
       floating = {
         modifier = "Mod4";
-        criteria = [
+        criteria = with app_ids; [
           { class = "float"; }
           { app_id = "float_htop"; }
+          { app_id = "${float_music}"; }
           { app_id = "pavucontrol"; }
         ];
         border = 2;
       };
 
       defaultWorkspace = "workspace 1";
-      workspaceAutoBackAndForth = true;
 
       assigns = {
         "1" = [ { app_id = "^footclient$"; } { app_id = "^foot$"; } ];
@@ -66,6 +83,7 @@
       keybindings = import ./keybindings.nix {
         inherit lib;
         inherit pkgs;
+        inherit app_ids;
       };
 
       seat = { "*".hide_cursor = "when-typing enable"; };

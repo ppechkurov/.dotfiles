@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, app_ids, ... }:
 let
   mod = "Mod4";
   concatAttrs = lib.fold (x: y: x // y) { };
@@ -9,8 +9,10 @@ let
   }) (lib.range 0 9));
 in tagBinds // {
   "${mod}+Shift+Return" = "exec footclient";
+  "${mod}+m" = ''
+    exec "swaymsg [app_id=${app_ids.float_music}] kill || swaymsg 'exec foot --app-id ${app_ids.float_music} ncmpcpp'"'';
   "${mod}+Return" =
-    "[app_id=scratch_term] scratchpad show, resize set width 80ppt height 80ppt";
+    "[app_id=${app_ids.scratchpad}] scratchpad show, resize set width 80ppt height 80ppt";
   "${mod}+b" = "exec ${lib.getExe pkgs.chromium}";
   "${mod}+r" = "exec tofi-launcher";
 
@@ -40,7 +42,8 @@ in tagBinds // {
   "${mod}+XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} s 1%+";
 
   "${mod}+d" = "kill";
-  "${mod}+Shift+r" = ''mode "resize"'';
+  "${mod}+Shift+r" = "mode resize";
+  "${mod}+q" = "mode quit";
   "${mod}+h" = "focus left";
   "${mod}+j" = "focus down";
   "${mod}+k" = "focus up";
