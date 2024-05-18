@@ -1,5 +1,21 @@
-{ config, pkgs, lib, osConfig, ... }: {
-  home.packages = with pkgs; [ wf-recorder wl-clipboard xdg-utils playerctl ];
+{ config, pkgs, lib, osConfig, ... }:
+let
+  app_ids = {
+    scratchpad = "scratch_term";
+    float_music = "float_music";
+  };
+  scratch =
+    pkgs.writeScriptBin "scratch" (builtins.readFile ./scripts/scratch.sh);
+  music = pkgs.writeScriptBin "music" (builtins.readFile ./scripts/music.sh);
+in {
+  home.packages = with pkgs; [
+    playerctl
+    wf-recorder
+    wl-clipboard
+    xdg-utils
+    scratch
+    music
+  ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -7,43 +23,18 @@
     wrapperFeatures.gtk = true;
     extraSessionCommands = "export XDG_CURRENT_DESKTOP=sway;";
 
-    config = let
-      app_ids = {
-        scratchpad = "scratch_term";
-        float_music = "float_music";
-      };
-    in {
+    config = {
       bindkeysToCode = true;
 
       window = {
-        border = 2;
+        border = 3;
         titlebar = false;
-        commands = with app_ids; [
-          {
-            command = "move container to scratchpad";
-            criteria.app_id = "${scratchpad}";
-          }
-          {
-            command = "resize set width 80ppt height 80ppt";
-            criteria.app_id = "${float_music}";
-          }
-        ];
       };
 
-      startup = [
-        { # foot scratchpad
-          command = let
-            opacity = ".82";
-            cwd = "${config.home.homeDirectory}/.dotfiles";
-          in ''
-            foot \
-              --app-id ${app_ids.scratchpad} \
-              --override colors.alpha=${opacity} \
-              --working-directory ${cwd}
-          '';
-        }
-        { command = "sleep 2 && telegram-desktop"; }
-      ];
+      startup = [{
+        # no tray icon without sleep
+        command = "sleep 2 && telegram-desktop";
+      }];
 
       # modes = {
       #   quit = {
@@ -63,10 +54,9 @@
 
       floating = {
         modifier = "Mod4";
-        criteria = with app_ids; [
-          { class = "float"; }
-          { app_id = "float_htop"; }
-          { app_id = "${float_music}"; }
+        criteria = [
+          { app_id = "^float_"; }
+          { app_id = "${app_ids.scratchpad}"; }
           { app_id = "pavucontrol"; }
         ];
         border = 2;

@@ -3,16 +3,14 @@ let
   mod = "Mod4";
   concatAttrs = lib.fold (x: y: x // y) { };
   tagBinds = concatAttrs (map (i: {
-    "${mod}+${toString i}" = "exec 'swaymsg workspace ${toString i}'";
-    "${mod}+Shift+${toString i}" =
-      "exec 'swaymsg move container to workspace ${toString i}'";
+    "${mod}+${toString i}" = "workspace ${toString i}";
+    "${mod}+Shift+${toString i}" = "move container to workspace ${toString i}";
   }) (lib.range 0 9));
 in tagBinds // {
   "${mod}+Shift+Return" = "exec footclient";
-  "${mod}+m" = ''
-    exec "swaymsg [app_id=${app_ids.float_music}] kill || swaymsg 'exec foot --app-id ${app_ids.float_music} ncmpcpp'"'';
-  "${mod}+Return" =
-    "[app_id=${app_ids.scratchpad}] scratchpad show, resize set width 80ppt height 80ppt";
+  "${mod}+Return" = "exec scratch ${app_ids.scratchpad}";
+  "${mod}+m" = "exec music ${app_ids.float_music} ncmpcpp";
+
   "${mod}+b" = "exec ${lib.getExe pkgs.chromium}";
   "${mod}+r" = "exec tofi-launcher";
 

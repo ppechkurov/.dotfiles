@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   # https://github.com/NotAShelf/nyx/blob/b5758f4da4bcc27e967fa7dfcb9c7f7aa21a05f4/homes/notashelf/programs/media/ncmpcpp/settings.nix
   programs.ncmpcpp.enable = true;
-  programs.ncmpcpp.package =
-    pkgs.ncmpcpp.override { visualizerSupport = true; };
+  # programs.ncmpcpp.package =
+  #   pkgs.ncmpcpp.override { visualizerSupport = true; };
 
   programs.ncmpcpp = {
     bindings = import ./bindings.nix;
@@ -21,9 +21,9 @@
       # visualizer_type = "wave";
 
       # startup screen
-      startup_screen = "visualizer";
-      startup_slave_screen = "playlist";
-      startup_slave_screen_focus = "yes";
+      # startup_screen = "visualizer";
+      # startup_slave_screen = "playlist";
+      # startup_slave_screen_focus = "yes";
 
       ignore_leading_the = true;
       message_delay_time = 1;

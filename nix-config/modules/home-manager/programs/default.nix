@@ -1,13 +1,14 @@
 {
   imports = [
     # ./misc
+    # ./atuin
     ./aws
     ./foot
     ./fzf
     ./git
     ./github
     ./nvim
-    ./ncmcpp
+    ./ncmpcpp
     ./misc/mako.nix
     ./sway
     ./tofi
