@@ -11,6 +11,7 @@
     ./ncmpcpp
     ./misc/mako.nix
     ./sway
+    ./tmux
     ./tofi
     ./waybar
     ./yazi

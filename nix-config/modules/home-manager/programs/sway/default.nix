@@ -29,6 +29,10 @@ in {
       window = {
         border = 3;
         titlebar = false;
+        commands = with app_ids; [{
+          criteria.app_id = "${float_music}";
+          command = "move position center,resize set 82ppt 51ppt";
+        }];
       };
 
       startup = [{
