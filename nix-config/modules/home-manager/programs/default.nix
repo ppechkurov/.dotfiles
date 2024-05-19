@@ -10,6 +10,7 @@
     ./nvim
     ./ncmpcpp
     ./misc/mako.nix
+    ./mpv
     ./sway
     ./tmux
     ./tofi

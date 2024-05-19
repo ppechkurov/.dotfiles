@@ -129,9 +129,9 @@ with lib; {
       curl
       docker-credential-helpers
       git
+      jellyfin-ffmpeg
       jmtpfs
       jq
-      jellyfin-ffmpeg
       libnotify
       nodejs_20
       pass-wayland
@@ -139,6 +139,7 @@ with lib; {
       tessen
       vim
       xkeyboard_config
+      transmission-qt
 
       (import inputs.nixpkgs-unstable {
         system = "x86_64-linux";

@@ -59,18 +59,19 @@ in {
       floating = {
         modifier = "Mod4";
         criteria = [
-          { app_id = "^float_"; }
           { app_id = "${app_ids.scratchpad}"; }
+          { app_id = "^float_"; }
+          { app_id = "mpv"; }
           { app_id = "pavucontrol"; }
         ];
         border = 2;
       };
 
       defaultWorkspace = "workspace 1";
+      workspaceOutputAssign = import ./workspace-output-assign.nix;
 
       assigns = {
-        "1" = [ { app_id = "^footclient$"; } { app_id = "^foot$"; } ];
-        "2" = [{ app_id = "^chromium-browser$"; }];
+        "7" = [{ app_id = "^chromium-browser$"; }];
         "4" = [{ app_id = "^org.telegram.desktop$"; }];
       };
 
