@@ -136,6 +136,7 @@ with lib; {
       nodejs_20
       pass-wayland
       slack
+      steam-run
       tessen
       vim
       xkeyboard_config
