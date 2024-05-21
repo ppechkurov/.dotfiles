@@ -31,6 +31,10 @@
     key = "L";
     command = [ "select_item" "scroll_up" ];
   }
+  {
+    key = "x";
+    command = [ "delete_playlist_items" ];
+  }
 
   {
     key = "ctrl-u";

@@ -30,7 +30,7 @@
       playlist_disable_highlight_delay = 2;
       autocenter_mode = "yes";
       centered_cursor = "yes";
-      allow_for_physical_item_deletion = "no";
+      allow_for_physical_item_deletion = "yes";
       lines_scrolled = "0";
 
       # appearance
