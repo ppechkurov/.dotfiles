@@ -29,18 +29,30 @@ in {
       window = {
         border = 3;
         titlebar = false;
-        commands = with app_ids; [{
-          criteria.app_id = "${float_music}";
-          command = "move position center,resize set 82ppt 51ppt";
-        }];
+        commands = with app_ids; [
+          {
+            criteria.app_id = "${float_music}";
+            command = "move position center,resize set 82ppt 51ppt";
+          }
+          {
+            criteria.app_id = "flameshot";
+            command = ''
+              border pixel 0,\
+                floating enable,\
+                fullscreen disable,\
+                move absolute position 0 0'';
+          }
+        ];
       };
 
       startup = with app_ids; [
         # no tray icon without sleep
         { command = "sleep 2 && telegram-desktop"; }
         { command = "scratch ${scratchpad}"; }
+        { command = "wl-paste --type=text --watch cliphist store"; }
       ];
 
+      focus.newWindow = "urgent";
       # modes = {
       #   quit = {
       #     q = ''exec notify-send "quit"'';

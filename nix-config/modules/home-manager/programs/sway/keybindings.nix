@@ -13,10 +13,11 @@ in tagBinds // {
 
   "${mod}+b" = "exec ${lib.getExe pkgs.chromium}";
 
-  "${mod}+r" = "exec tofi-launcher";
-  "${mod}+p" = "exec tofi-pass";
   "${mod}+c" = "exec tofi-calc";
+  "${mod}+p" = "exec tofi-pass";
+  "${mod}+r" = "exec tofi-launcher";
   "${mod}+s" = "exec foot tofi-ssh";
+  "${mod}+v" = "exec tofi-clip";
   "${mod}+Shift+t" = "exec tofi-emoji";
 
   "XF86AudioMute" = "exec amixer sset Master toggle";
@@ -58,8 +59,9 @@ in tagBinds // {
   "${mod}+Shift+k" = "move up";
   "${mod}+Shift+l" = "move right";
 
-  "${mod}+f" = "fullscreen";
+  "print" = "exec flameshot gui --clipboard --path ~/Pictures/screenshots";
 
+  "${mod}+f" = "fullscreen";
   "${mod}+e" = "layout toggle split";
   "${mod}+Shift+space" = "floating toggle";
   "${mod}+space" = "focus mode_toggle";

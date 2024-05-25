@@ -13,6 +13,8 @@ let
     pkgs.writeScriptBin "tofi-pass" (builtins.readFile ./scripts/tofi-pass.sh);
   tofi-ssh =
     pkgs.writeScriptBin "tofi-ssh" (builtins.readFile ./scripts/tofi-ssh.sh);
+  tofi-clip =
+    pkgs.writeScriptBin "tofi-clip" (builtins.readFile ./scripts/tofi-clip.sh);
 in {
   config = {
     home.packages = with pkgs; [
@@ -24,6 +26,7 @@ in {
       tofi-pass
       tofi-powermenu
       tofi-ssh
+      tofi-clip
     ];
 
     xdg.configFile = {

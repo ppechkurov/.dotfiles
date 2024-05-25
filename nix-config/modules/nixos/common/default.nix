@@ -129,6 +129,7 @@ with lib; {
       curl
       docker-credential-helpers
       git
+      flameshot
       jellyfin-ffmpeg
       jmtpfs
       jq
