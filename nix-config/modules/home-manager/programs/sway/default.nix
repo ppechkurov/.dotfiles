@@ -35,10 +35,11 @@ in {
         }];
       };
 
-      startup = [{
+      startup = with app_ids; [
         # no tray icon without sleep
-        command = "sleep 2 && telegram-desktop";
-      }];
+        { command = "sleep 2 && telegram-desktop"; }
+        { command = "scratch ${scratchpad}"; }
+      ];
 
       # modes = {
       #   quit = {

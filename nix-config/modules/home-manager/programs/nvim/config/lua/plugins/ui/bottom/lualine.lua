@@ -31,6 +31,7 @@ return {
 
     return {
       options = {
+        -- theme = require('neofusion.lualine'),
         theme = 'auto',
         globalstatus = true,
         disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'starter' } },

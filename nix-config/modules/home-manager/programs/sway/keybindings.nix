@@ -7,15 +7,15 @@ let
     "${mod}+Shift+${toString i}" = "move container to workspace ${toString i}";
   }) (lib.range 0 9));
 in tagBinds // {
-  "${mod}+Shift+Return" = "exec footclient";
-  "${mod}+Return" = "exec scratch ${app_ids.scratchpad}";
+  "${mod}+Return" = "exec foot";
+  "${mod}+dollar" = "exec scratch ${app_ids.scratchpad}";
   "${mod}+m" = "exec music ${app_ids.float_music} ncmpcpp";
 
   "${mod}+b" = "exec ${lib.getExe pkgs.chromium}";
-  "${mod}+r" = "exec tofi-launcher";
 
+  "${mod}+r" = "exec tofi-launcher";
   "${mod}+p" = "exec tofi-pass";
-  "${mod}+t" = "exec tofi-calc";
+  "${mod}+c" = "exec tofi-calc";
   "${mod}+s" = "exec foot tofi-ssh";
   "${mod}+Shift+t" = "exec tofi-emoji";
 
@@ -42,19 +42,28 @@ in tagBinds // {
   "${mod}+d" = "kill";
   "${mod}+Shift+r" = "mode resize";
   "${mod}+q" = "mode quit";
-  "${mod}+h" = "focus left";
-  "${mod}+j" = "focus down";
+
   "${mod}+k" = "focus up";
   "${mod}+l" = "focus right";
+  "${mod}+j" = "focus down";
+  "${mod}+h" = "focus left";
+
+  "${mod}+Up" = "focus up";
+  "${mod}+Right" = "focus right";
+  "${mod}+Down" = "focus down";
+  "${mod}+Left" = "focus left";
+
   "${mod}+Shift+h" = "move left";
   "${mod}+Shift+j" = "move down";
   "${mod}+Shift+k" = "move up";
   "${mod}+Shift+l" = "move right";
-  "${mod}+e" = "layout toggle split";
+
   "${mod}+f" = "fullscreen";
-  "${mod}+space" = "floating toggle";
+
+  "${mod}+e" = "layout toggle split";
+  "${mod}+Shift+space" = "floating toggle";
+  "${mod}+space" = "focus mode_toggle";
   "${mod}+Shift+s" = "sticky toggle";
-  "${mod}+Shift+space" = "focus mode_toggle";
   "${mod}+a" = "focus parent";
   "${mod}+Shift+c" = "reload";
   "${mod}+Shift+q" = "exec tofi-powermenu";

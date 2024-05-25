@@ -33,8 +33,8 @@ in {
       "${disk}"
       "${pipe}"
       "tray"
-      "${pipe}"
-      "${cava}"
+      # "${pipe}"
+      # "${cava}"
     ];
 
     cava = {
