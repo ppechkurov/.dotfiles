@@ -1,4 +1,4 @@
-{ osConfig, pkgs, ... }:
+{ lib, osConfig, pkgs, ... }:
 with osConfig; {
   imports = [ ./programs ./services ./keyboard ];
 
@@ -6,6 +6,10 @@ with osConfig; {
     inherit username;
     homeDirectory = "/home/${username}";
   };
+
+  home.activation.screenshots = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir /home/${username}/Pictures/screenshots
+  '';
 
   home = {
     pointerCursor = {
