@@ -8,7 +8,7 @@ with osConfig; {
   };
 
   home.activation.screenshots = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    mkdir /home/${username}/Pictures/screenshots
+    mkdir -p /home/${username}/Pictures/screenshots
   '';
 
   home = {

@@ -44,10 +44,18 @@ in tagBinds // {
   "${mod}+Shift+r" = "mode resize";
   "${mod}+q" = "mode quit";
 
-  "${mod}+k" = "focus up";
-  "${mod}+l" = "focus right";
-  "${mod}+j" = "focus down";
-  "${mod}+h" = "focus left";
+  "${mod}+j" = ''
+    [floating con_id=__focused__] focus mode_toggle;\
+    [tiling con_id=__focused__] focus down'';
+  "${mod}+k" = ''
+    [floating con_id=__focused__] focus mode_toggle;\
+    [tiling con_id=__focused__] focus up'';
+  "${mod}+h" = ''
+    [floating con_id=__focused__] focus tiling;\
+    [tiling con_id=__focused__] focus left'';
+  "${mod}+l" = ''
+    [floating con_id=__focused__] focus tiling;\
+    [tiling con_id=__focused__] focus right'';
 
   "${mod}+Up" = "focus up";
   "${mod}+Right" = "focus right";
