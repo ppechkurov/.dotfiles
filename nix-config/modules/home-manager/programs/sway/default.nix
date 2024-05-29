@@ -23,6 +23,8 @@ in {
     wrapperFeatures.gtk = true;
     extraSessionCommands = "export XDG_CURRENT_DESKTOP=sway;";
 
+    extraConfig = "workspace 1";
+
     config = {
       bindkeysToCode = true;
 
@@ -48,6 +50,7 @@ in {
       startup = with app_ids; [
         # no tray icon without sleep
         { command = "sleep 2 && telegram-desktop"; }
+        { command = "scratch ${scratchpad}"; }
         { command = "scratch ${scratchpad}"; }
         { command = "wl-paste --type=text --watch cliphist store"; }
       ];
@@ -80,12 +83,12 @@ in {
         border = 2;
       };
 
-      defaultWorkspace = "workspace 1";
+      defaultWorkspace = "workspace 7";
       workspaceOutputAssign = import ./workspace-output-assign.nix;
 
       assigns = {
-        "7" = [{ app_id = "^chromium-browser$"; }];
         "4" = [{ app_id = "^org.telegram.desktop$"; }];
+        "7" = [{ app_id = "^chromium-browser$"; }];
       };
 
       keybindings = import ./keybindings.nix {

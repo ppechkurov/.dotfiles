@@ -5,8 +5,9 @@ let
   tagBinds = concatAttrs (map (i: {
     "${mod}+${toString i}" = "workspace ${toString i}";
     "${mod}+Shift+${toString i}" = "move container to workspace ${toString i}";
-  }) (lib.range 0 9));
+  }) (lib.range 1 9));
 in tagBinds // {
+  "${mod}+0" = "workspace 10";
   "${mod}+Return" = "exec foot";
   "${mod}+dollar" = "exec scratch ${app_ids.scratchpad}";
   "${mod}+m" = "exec music ${app_ids.float_music} ncmpcpp";
