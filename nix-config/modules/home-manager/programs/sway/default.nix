@@ -51,7 +51,6 @@ in {
         # no tray icon without sleep
         { command = "sleep 2 && telegram-desktop"; }
         { command = "scratch ${scratchpad}"; }
-        { command = "scratch ${scratchpad}"; }
         { command = "wl-paste --type=text --watch cliphist store"; }
       ];
 
