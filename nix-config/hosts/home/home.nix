@@ -1,4 +1,5 @@
-{
+{ inputs, ... }: {
+
   imports = [ ../../modules/home-manager ];
 
   xdg.configFile.sway = {
@@ -15,12 +16,4 @@
       };
     };
   };
-  # wayland.windowManager.sway.config = {
-  #   input = {
-  #     "type:keyboard" = {
-  #       xkb_layout = "us,ru,us";
-  #       xkb_variant = "real-prog-dvorak,,basic";
-  #     };
-  #   };
-  # };
 }

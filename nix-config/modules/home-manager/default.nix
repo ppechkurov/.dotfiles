@@ -29,7 +29,7 @@ with osConfig; {
     ];
   };
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
