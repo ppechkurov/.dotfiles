@@ -5,6 +5,7 @@
     enable = true;
     enableCompletion = true;
     enableAutosuggestions = true;
+    # autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "emacs";
     antidote = {

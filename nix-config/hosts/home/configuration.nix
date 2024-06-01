@@ -6,7 +6,10 @@
 
   monitor = {
     "Virtual-1" = { mode = "1680x1050@59.954Hz"; };
-    "*" = { bg = "hackerman-wallpapers.jpg fill"; };
+    # "*" = {
+    #   bg =
+    #     "/home/${config.username}/.config/sway/hackerman-wallpapers.jpg fill";
+    # };
   };
 
   services.printing.enable = true;

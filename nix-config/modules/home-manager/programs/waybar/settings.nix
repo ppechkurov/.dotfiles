@@ -110,7 +110,6 @@ in {
         "8" = "";
         "9" = "";
         "10" = "󰒯";
-        "urgent" = "{number}";
         # "urgent" = "";
         # "focused" = "";
         # "default" = "";

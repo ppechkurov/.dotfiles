@@ -11,8 +11,16 @@
     input = {
       "type:keyboard" = {
         xkb_layout = "us,ru,us";
-        xkb_variant = "real-prog-dvorak,,basic";
+        xkb_variant = "dvorak,,basic";
       };
     };
   };
+  # wayland.windowManager.sway.config = {
+  #   input = {
+  #     "type:keyboard" = {
+  #       xkb_layout = "us,ru,us";
+  #       xkb_variant = "real-prog-dvorak,,basic";
+  #     };
+  #   };
+  # };
 }

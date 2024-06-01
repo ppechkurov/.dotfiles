@@ -39,7 +39,6 @@ with osConfig; {
 
   programs.gpg.enable = true;
   services.gpg-agent.enable = true;
-  services.gpg-agent.pinentryFlavor = "gnome3";
 
   programs.swaylock.enable = true;
   programs.cava.enable = true;
@@ -63,7 +62,7 @@ with osConfig; {
   };
 
   qt.enable = true;
-  qt.platformTheme = "gnome";
+  qt.platformTheme.name = "adwaita";
   qt.style.name = "adwaita-dark";
 
   xdg = {
