@@ -29,9 +29,7 @@
       message_delay_time = 1;
       playlist_disable_highlight_delay = 0;
       execute_on_song_change = ''
-        ${pkgs.libnotify}/bin/notify-send "Now playing:
-          $(${pkgs.ncmpcpp}/bin/ncmpcpp --current-song '{{{{%a - }%t}}|{%f}}'"
-      '';
+        ${pkgs.libnotify}/bin/notify-send "Now playing:" "$(${pkgs.ncmpcpp}/bin/ncmpcpp --current-song '{{{{%a - }%t}}|{%f}}')"'';
       autocenter_mode = "yes";
       centered_cursor = "yes";
       allow_for_physical_item_deletion = "yes";
