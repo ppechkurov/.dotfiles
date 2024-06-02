@@ -9,6 +9,17 @@ in {
     music
   ];
 
+  services.hyprpaper.enable = true;
+  services.hyprpaper.settings = {
+    ipc = "on";
+    splash = true;
+    splash_offset = 2.0;
+
+    preload = [ "~/.config/hypr/hackerman-wallpapers.jpg" ];
+
+    wallpaper = [ ",~/.config/hypr/hackerman-wallpapers.jpg" ];
+  };
+
   wayland.windowManager.hyprland = { enable = true; };
   wayland.windowManager.hyprland.settings = let
     opacity = "0.82";
@@ -169,7 +180,8 @@ in {
       rounding = 3;
       blur = {
         enabled = true;
-        brightness = 1.0;
+        brightness = 0.5;
+        # brightness = 1.0;
         contrast = 1.0;
         noise = 1.0e-2;
 
