@@ -24,8 +24,6 @@ in {
     wrapperFeatures.gtk = true;
     extraSessionCommands = "export XDG_CURRENT_DESKTOP=sway;";
 
-    extraConfig = "workspace 1";
-
     config = {
       bindkeysToCode = true;
 
@@ -38,6 +36,10 @@ in {
             command = "move position center,resize set 82ppt 51ppt";
           }
           {
+            criteria.app_id = "${scratchpad}";
+            command = "move scratchpad";
+          }
+          {
             criteria.app_id = "flameshot";
             command = ''
               border pixel 0,\
@@ -45,6 +47,17 @@ in {
                 fullscreen disable,\
                 move absolute position 0 0'';
           }
+        ];
+      };
+
+      floating = {
+        border = 0;
+        modifier = "Mod4";
+        criteria = [
+          { app_id = "${app_ids.scratchpad}"; }
+          { app_id = "^float_"; }
+          { app_id = "mpv"; }
+          { app_id = "pavucontrol"; }
         ];
       };
 
@@ -72,18 +85,7 @@ in {
         command = "waybar";
       }];
 
-      floating = {
-        modifier = "Mod4";
-        criteria = [
-          { app_id = "${app_ids.scratchpad}"; }
-          { app_id = "^float_"; }
-          { app_id = "mpv"; }
-          { app_id = "pavucontrol"; }
-        ];
-        border = 2;
-      };
-
-      defaultWorkspace = "workspace 7";
+      defaultWorkspace = "workspace number 7";
       workspaceOutputAssign = import ./workspace-output-assign.nix;
 
       assigns = {

@@ -41,6 +41,24 @@ vim.opt.undofile = true -- enable persistent undo
 vim.opt.updatetime = 200 -- faster completion (4000ms default)
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+vim.opt.langremap = false
+
+local top_low = [[йцуке;\;\,.py]] .. ',' .. [[нгшщз;fgcrl]]
+local top_cap = [[ЙЦУКЕ;\:\<>PY]] .. ',' .. [[НГШЩЗ;FGCRL]]
+local top = top_low .. ',' .. top_cap
+
+local middle_low = 'фывап;aoeui' .. ',' .. 'ролджэ;dhtns-'
+local middle_cap = 'ФЫВАП;AOEUI' .. ',' .. 'РОЛДЖЭ;DHTNS_'
+local middle = middle_low .. ',' .. middle_cap
+
+local bottom_low = [[ячсми;'qjkx]] .. ',' .. [[тьбю.;bmwvz]]
+local bottom_cap = [[ЯЧСМИ;"QJKX]] .. ',' .. [[ТЬБЮ\,;BMWVZ]]
+local bottom = bottom_low .. ',' .. bottom_cap
+
+local misc = table.concat({ 'ё;$' }, ',')
+
+vim.opt.langmap = top .. ',' .. middle .. ',' .. bottom .. ',' .. misc
+
 vim.opt.fillchars = {
   foldopen = '',
   foldclose = '',
