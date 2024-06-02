@@ -6,7 +6,7 @@ let
     cpu = "cpu";
     disk = "disk";
     idle = "custom/swayidle";
-    language = "sway/language";
+    language = "hyprland/language";
     memory = "memory";
     mode = "sway/mode";
     network = "network";
@@ -14,7 +14,7 @@ let
     pipe = "custom/pipe";
     power = "custom/power";
     sound = "pulseaudio";
-    workspaces = "sway/workspaces";
+    workspaces = "hyprland/workspaces";
   };
   bars = {
     small = "4e635b"; # cyan2
@@ -115,17 +115,11 @@ in {
         # "default" = "";
       };
       "persistent-workspaces" = {
-        "1" = [ "DVI-D-1" ];
-        "2" = [ "DVI-D-1" ];
-        "3" = [ "DVI-D-1" ];
-        "4" = [ "DVI-D-1" ];
-        "5" = [ "DVI-D-1" ];
-        "6" = [ "DP-1" ];
-        "7" = [ "DP-1" ];
-        "8" = [ "DP-1" ];
-        "9" = [ "DP-1" ];
-        "10" = [ "DP-1" ];
+        "DVI-D-1" = [ 1 2 3 4 5 ];
+        "DP-1" = [ 6 7 8 9 10 ];
+        "DP-4" = [ 6 7 8 9 10 ];
       };
+      # "persistent-workspaces" = { "*" = 5; };
     };
 
     "${disk}" = { format = "󰋊 {percentage_free}%"; };

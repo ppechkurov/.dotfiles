@@ -11,7 +11,8 @@
     ./ncmpcpp
     ./misc/mako.nix
     ./mpv
-    ./sway
+    # ./sway
+    ./hyprland
     ./tmux
     ./tofi
     ./waybar

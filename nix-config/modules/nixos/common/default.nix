@@ -58,7 +58,8 @@ with lib; {
         settings.default_session = {
           user = "greeter";
           command =
-            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
+            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+          # "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
         };
       };
 
@@ -129,6 +130,7 @@ with lib; {
       curl
       docker-credential-helpers
       git
+      hdrop
       flameshot
       jellyfin-ffmpeg
       jmtpfs

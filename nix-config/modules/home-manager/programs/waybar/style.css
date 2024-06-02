@@ -85,6 +85,12 @@ window#waybar.hidden {
     font-size: 16px;
 }
 
+#workspaces button.active {
+    /* color: @bg; */
+    color: @blue;
+    /* background-color: @blue; */
+}
+
 #workspaces button.focused {
     /* color: @bg; */
     color: @blue;
