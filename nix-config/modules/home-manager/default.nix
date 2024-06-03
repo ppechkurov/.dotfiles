@@ -39,6 +39,7 @@ with osConfig; {
 
   programs.gpg.enable = true;
   services.gpg-agent.enable = true;
+  services.gpg-agent.pinentryPackage = pkgs.pinentry-gnome3;
 
   programs.swaylock.enable = true;
   programs.cava.enable = true;

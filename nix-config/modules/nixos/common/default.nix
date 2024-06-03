@@ -130,7 +130,6 @@ with lib; {
       curl
       docker-credential-helpers
       git
-      hdrop
       flameshot
       jellyfin-ffmpeg
       jmtpfs
