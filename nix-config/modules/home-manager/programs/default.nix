@@ -7,6 +7,7 @@
     ./fzf
     ./git
     ./github
+    ./firefox
     ./nvim
     ./ncmpcpp
     ./misc/mako.nix

@@ -1,5 +1,9 @@
 { inputs, config, pkgs, ... }: {
-  imports = [ ../../modules/nixos/common ./hardware-configuration.nix ];
+  imports = [
+    ../../modules/nixos/common
+    ../../modules/nixos/nvidia
+    ./hardware-configuration.nix
+  ];
 
   # declare hostname
   networking.hostName = "home";
@@ -7,6 +11,11 @@
   monitor = {
     "Virtual-1" = { mode = "1680x1050@59.954Hz"; };
     "*" = { bg = "hackerman-wallpapers.jpg fill"; };
+  };
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
   };
 
   services.printing.enable = true;
