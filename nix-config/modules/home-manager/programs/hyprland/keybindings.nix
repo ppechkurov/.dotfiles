@@ -1,9 +1,10 @@
 { lib, pkgs, ... }:
-[
+let browser = "firefox";
+in [
   "$mod SHIFT, E, exec, pkill Hyprland"
   "$mod SHIFT, C, exec, hyprctl reload && notify-send 'Hyprland reloaded'"
   "$mod SHIFT, Q, exec, tofi-powermenu"
-  "$mod, B, exec, chromium"
+  "$mod, B, exec, ${browser}"
   "$mod, Return, exec, foot --override colors.alpha=0.10"
 
   "$mod, Space, togglefloating"

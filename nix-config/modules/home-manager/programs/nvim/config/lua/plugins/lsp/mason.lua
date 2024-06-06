@@ -12,7 +12,7 @@ function M.config()
     'tsserver',
     'eslint',
     'bashls',
-    'jsonls',
+    'json-lsp',
     'ansiblels',
     'marksman',
   }

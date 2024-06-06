@@ -12,6 +12,6 @@ in [
   "center, floating:1, ${music}"
 
   "workspace 4 silent, class:org.telegram.desktop"
-  "workspace 7, class:chromium-browser"
+  "workspace 7, class:firefox"
 ]
 

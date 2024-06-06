@@ -8,6 +8,8 @@
       lua
       lua-language-server
       nodePackages.bash-language-server
+      nodePackages.vscode-langservers-extracted
+      prettierd
       nil
       nixfmt-classic
       shfmt
