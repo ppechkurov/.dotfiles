@@ -20,16 +20,16 @@
           engine "github" "https://github.com/search?q={searchTerms}&type=code"
           "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 
-        "Npm" = engine "npm" "https://www.npmjs.com/search?q={searchTerms}" "";
-
-        # "DuckDuckGo" =
-        #   engine "duckduckgo" "https://duckduckgo.com/?q={searchTerms}";
-
         "NixOS packages" = engine "np"
           "https://search.nixos.org/packages?type=packages&query={searchTerms}"
           "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 
-        "Nixfns" = engine "nixfns" "https://noogle.dev/q?term={searchTerms}"
+        "NixOS options" =
+          engine "no" "https://search.nixos.org/options?query={searchTerms}"
+          "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+        "Home Manager - Option Search" = engine "hm"
+          "https://home-manager-options.extranix.com/?query={searchTerms}"
           "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 
         "Bing".metaData.hidden = true;
@@ -37,64 +37,6 @@
         "Google".metaData.alias =
           "@g"; # builtin engines only support specifying one additional alias
       };
-      # "NixOS packages" = {
-      #   urls = [{
-      #     template = "https://search.nixos.org/packages";
-      #     params = [
-      #       {
-      #         name = "type";
-      #         value = "packages";
-      #       }
-      #       {
-      #         name = "query";
-      #         value = "{searchTerms}";
-      #       }
-      #     ];
-      #   }];
-      #
-      #   icon =
-      #     "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      #   definedAliases = [ "@np" ];
-      # };
-
-      # "NixOS options" = {
-      #   urls = [{
-      #     template = "https://search.nixos.org/options";
-      #     params = [
-      #       {
-      #         name = "type";
-      #         value = "packages";
-      #       }
-      #       {
-      #         name = "query";
-      #         value = "{searchTerms}";
-      #       }
-      #     ];
-      #   }];
-      #
-      #   icon =
-      #     "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      #   definedAliases = [ "@no" ];
-      # };
-
-      # "NixOS Wiki" = {
-      #   urls = [{
-      #     template = "https://wiki.nixos.org/index.php?search={searchTerms}";
-      #   }];
-      #   icon =
-      #     "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      #   definedAliases = [ "@nw" ];
-      # };
-
-      # "Home Manager" = {
-      #   urls = [{
-      #     template =
-      #       "https://home-manager-options.extranix.com/?query={searchTerms}";
-      #   }];
-      #   icon =
-      #     "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      #   definedAliases = [ "@hm" ];
-      # };
 
       settings = {
         "devtools.toolbox.host" = "right";
@@ -111,28 +53,36 @@
             "url" = "https://youtube.com";
           }
           {
-            "label" = "YT Music";
-            "url" = "https://music.youtube.com";
-          }
-          {
             "label" = "Monkeytype";
             "url" = "https://monkeytype.com";
           }
         ];
 
-        #https://github.com/montchr/dotfield/blob/78de8ff316ccb2d34fd98cd9bfd3bfb5ad775b0e/home/profiles/firefox/search/default.nix
-        search.force = true;
-        search.default = "DuckDuckGo";
-
         # Prefer dark theme
         "layout.css.prefers-color-scheme.content-override" = 0;
-
-        # "browser.uiCustomization.state" = ''
-        #   {"placements":{"widget-overflow-fixed-list":[],"nav-bar":["back-button","forward-button","stop-reload-button","home-button","urlbar-container","downloads-button","library-button","ublock0_raymondhill_net-browser-action","_testpilot-containers-browser-action"],"toolbar-menubar":["menubar-items"],"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],"PersonalToolbar":["import-button","personal-bookmarks"]},"seen":["save-to-pocket-button","developer-button","ublock0_raymondhill_net-browser-action","_testpilot-containers-browser-action"],"dirtyAreaCache":["nav-bar","PersonalToolbar","toolbar-menubar","TabsToolbar","widget-overflow-fixed-list"],"currentVersion":18,"newElementCount":4}'';
 
         # Auto-decline cookies
         "cookiebanners.service.mode" = 2;
         "cookiebanners.service.mode.privateBrowsing" = 2;
+
+        # https://github.com/gingkapls/dotnix/blob/f2b912b992708bc05e478c78725eb18c1038f790/hm/programs/firefox/default.nix#L4
+        # turn of google safebrowsing (it literally sends a sha sum of everything you download to google)
+        "browser.safebrowsing.downloads.remote.block_dangerous" = false;
+        "browser.safebrowsing.downloads.remote.block_dangerous_host" = false;
+        "browser.safebrowsing.downloads.remote.block_potentially_unwanted" =
+          false;
+        "browser.safebrowsing.downloads.remote.block_uncommon" = false;
+        "browser.safebrowsing.downloads.remote.url" = false;
+        "browser.safebrowsing.downloads.remote.enabled" = false;
+        "browser.safebrowsing.downloads.enabled" = false;
+
+        # telemetry
+        "toolkit.telemetry.enabled" = false;
+        "toolkit.telemetry.unified" = false;
+        "toolkit.telemetry.archive.enabled" = false;
+        "datareporting.healthreport.uploadEnabled" = false;
+        "datareporting.healthreport.service.enabled" = false;
+        "datareporting.policy.dataSubmissionEnabled" = false;
       };
     };
 
@@ -142,6 +92,8 @@
       DontCheckDefaultBrowser = true;
       DisablePocket = true;
       SearchBar = "unified";
+      OfferToSaveLogins = false;
+      OfferToSaveLoginsDefault = false;
 
       # ---- EXTENSIONS ----
       # Check about:support for extension/add-on ID strings.
