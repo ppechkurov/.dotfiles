@@ -8,7 +8,7 @@ let
     idle = "custom/swayidle";
     language = "hyprland/language";
     memory = "memory";
-    mode = "sway/mode";
+    mode = "hyprland/submap";
     network = "network";
     os-icon = "custom/os-icon";
     pipe = "custom/pipe";

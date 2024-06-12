@@ -86,13 +86,10 @@ in {
     "$mod" = "SUPER";
     env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 
-    exec-once = [ "pkill waybar; sleep 0.5; waybar" "telegram-desktop" ];
+    exec-once =
+      [ "pkill waybar; sleep 0.5; waybar" "sleep 1 && telegram-desktop" ];
 
-    bindm = [
-      "$mod, mouse:272, movewindow"
-      "$mod, mouse:273, resizewindow"
-      "$mod ALT, mouse:272, resizewindow"
-    ];
+    bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
 
     bind = import ./keybindings.nix {
       inherit lib;

@@ -26,7 +26,7 @@ case $selected in
 # 	systemctl suspend
 # 	;;
 "$logout")
-	swaymsg exit
+	hyprctl dispatch exit
 	systemctl --user stop graphical-session.target
 	systemctl --user stop wayland-session.target
 	;;

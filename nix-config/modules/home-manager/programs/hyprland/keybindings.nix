@@ -42,9 +42,13 @@ in [
 
   "$mod SHIFT, dollar, movetoworkspace, special:scratch"
   "$mod, dollar, togglespecialworkspace, scratch"
+  "$mod, dollar, resizewindowpixel, exact 80% 80%, class:scratch"
+  "$mod, dollar, centerwindow"
 
   "$mod SHIFT, M, movetoworkspace, special:music"
   "$mod, M, togglespecialworkspace, music"
+  "$mod, M, resizewindowpixel, exact 80% 80%, class:music"
+  "$mod, M, centerwindow"
 
   ", Print, exec, grimblast copy area"
   "$mod, R, submap, resize"
