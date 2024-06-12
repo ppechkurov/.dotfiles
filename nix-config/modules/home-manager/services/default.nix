@@ -1,2 +1,8 @@
-{ imports = [ ./mpd.nix ./swayidle.nix ]; }
+{
+  imports = [
+    ./mpd.nix
+    # ./swayidle.nix
+    ./hypridle.nix
+  ];
+}
 
