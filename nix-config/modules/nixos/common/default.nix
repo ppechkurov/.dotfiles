@@ -134,6 +134,7 @@ with lib; {
       jellyfin-ffmpeg
       jmtpfs
       jq
+      killall
       libnotify
       nodejs_20
       pass-wayland

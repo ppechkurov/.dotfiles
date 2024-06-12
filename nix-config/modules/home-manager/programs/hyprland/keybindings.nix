@@ -42,15 +42,12 @@ in [
 
   "$mod SHIFT, dollar, movetoworkspace, special:scratch"
   "$mod, dollar, togglespecialworkspace, scratch"
-  "$mod, dollar, resizeactive, exact 80% 80%"
-  "$mod, dollar, centerwindow"
 
   "$mod SHIFT, M, movetoworkspace, special:music"
   "$mod, M, togglespecialworkspace, music"
-  "$mod, M, resizeactive, exact 80% 80%"
-  "$mod, M, centerwindow"
 
   ", Print, exec, grimblast copy area"
+  "$mod, R, submap, resize"
 ] ++ (
   # workspaces
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
