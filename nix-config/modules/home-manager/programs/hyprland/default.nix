@@ -86,7 +86,7 @@ in {
     "$mod" = "SUPER";
     env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 
-    exec-once = [ "killall -q waybar && waybar" "telegram-desktop" ];
+    exec-once = [ "pkill waybar; sleep 0.5; waybar" "telegram-desktop" ];
 
     bindm = [
       "$mod, mouse:272, movewindow"
