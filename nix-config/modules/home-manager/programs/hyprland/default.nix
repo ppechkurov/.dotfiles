@@ -1,63 +1,7 @@
 { pkgs, config, lib, ... }:
 let music = pkgs.writeScriptBin "music" (builtins.readFile ./scripts/music.sh);
 in {
-  programs.hyprlock.enable = true;
-  programs.hyprlock.settings = {
-    background = {
-      monitor = "";
-      path =
-        "${config.home.homeDirectory}/.config/hypr/hackerman-wallpapers.jpg";
-      # color = "rgba(25, 20, 20, 1.0)";
-      blur_passes = 3;
-      blur_size = 4;
-      noise = 1.17e-2;
-      contrast = 0.8916;
-      brightness = 0.8172;
-      vibrancy = 0.1696;
-      vibrancy_darkness = 0.0;
-    };
-
-    input-field = {
-      monitor = "";
-      size = "200, 50";
-      outline_thickness = 3;
-      dots_size = 0.2;
-      dots_spacing = 0.64;
-      dots_center = true;
-      dots_rounding = -1;
-      outer_color = "rgb(151515)";
-      inner_color = "rgb(200, 200, 200)";
-      font_color = "rgb(10, 10, 10)";
-      fade_on_empty = true;
-      fade_timeout = 1000;
-      placeholder_text = "<i>Input Password...</i>";
-      hide_input = false;
-      rounding = -1;
-      check_color = "rgb(204, 136, 34)";
-      fail_color = "rgb(204, 34, 34)";
-      fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
-      fail_transition = 300;
-      capslock_color = -1;
-      numlock_color = -1;
-      bothlock_color = -1;
-      invert_numlock = false;
-      swap_font_color = false;
-      position = "0, -20";
-      halign = "center";
-      valign = "center";
-    };
-
-    label = [{
-      text = ''cmd[update:200:1] echo "<b><big> $TIME </big></b>"'';
-      # text = ''cmd[update:200:1] echo "<b><big> $(date +"%H:%M:%S") </big></b>"'';
-      # color = "rgb(${config.theme.colors.fg})";
-      font_size = 64;
-
-      position = "0, 16";
-      halign = "center";
-      valign = "center";
-    }];
-  };
+  imports = [ ./hyprlock.nix ];
 
   home.packages = with pkgs; [
     playerctl
