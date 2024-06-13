@@ -18,6 +18,6 @@ scratch_term_cmd: [
   "9, monitor:DP-1"
   "10, monitor:DP-1"
 
-  "special:scratch, on-created-empty:[stayfocused] ${scratch_term_cmd}"
-  "special:music, on-created-empty:[stayfocused] music"
+  "special:scratch, on-created-empty:${scratch_term_cmd}"
+  "special:music, on-created-empty:music"
 ]

@@ -106,7 +106,7 @@ in {
       border_size = 2;
       allow_tearing = true;
       resize_on_border = true;
-      cursor_inactive_timeout = 3;
+      cursor_inactive_timeout = 10;
       # layout = "master";
     };
 
@@ -152,6 +152,7 @@ in {
       initial_workspace_tracking = 0;
 
       force_default_wallpaper = 0;
+      hide_cursor_on_key_press = true;
 
       # disable dragging animation
       animate_mouse_windowdragging = false;

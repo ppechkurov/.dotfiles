@@ -86,14 +86,30 @@
       };
     };
 
+    # https://github.com/adtya/configuration.nix/blob/cb825841cc442356386d12789edc7ba7abdd5365/home/programs/firefox.nix
     policies = {
-      DisableTelemetry = true;
+      DisableAppUpdate = true;
+      DisableFirefoxAccounts = true;
       DisableFirefoxStudies = true;
-      DontCheckDefaultBrowser = true;
+      DisableFormHistory = true;
       DisablePocket = true;
+      DisableTelemetry = true;
+      DisplayBookmarksToolbar = "newtab";
+      DontCheckDefaultBrowser = true;
+
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        EmailTracking = true;
+        Fingerprinting = true;
+      };
+      NoDefaultBookmarks = true;
+
       SearchBar = "unified";
       OfferToSaveLogins = false;
       OfferToSaveLoginsDefault = false;
+      RequestedLocales = [ "en-US" ];
 
       # ---- EXTENSIONS ----
       # Check about:support for extension/add-on ID strings.
