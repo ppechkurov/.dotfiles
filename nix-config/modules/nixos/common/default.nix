@@ -129,21 +129,22 @@ with lib; {
       alsa-utils
       curl
       docker-credential-helpers
-      git
       flameshot
+      git
       jellyfin-ffmpeg
       jmtpfs
       jq
       killall
       libnotify
+      mpc-cli
       nodejs_20
       pass-wayland
       slack
       steam-run
       tessen
+      transmission-qt
       vim
       xkeyboard_config
-      transmission-qt
 
       (import inputs.nixpkgs-unstable {
         system = "x86_64-linux";
