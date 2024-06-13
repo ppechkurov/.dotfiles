@@ -15,24 +15,24 @@ vim.api.nvim_create_autocmd('FileType', {
   group = augroup('close_with_q'),
   pattern = {
     'PlenaryTestPopup',
-    'oil',
+    'checkhealth',
     'help',
     'lspinfo',
     'man',
+    'neotest-output',
+    'neotest-output-panel',
+    'neotest-summary',
     'notify',
+    'oil',
     'qf',
     'query',
     'spectre_panel',
     'startuptime',
     'tsplayground',
-    'neotest-output',
-    'checkhealth',
-    'neotest-summary',
-    'neotest-output-panel',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
+    vim.keymap.set('n', 'q', 'ZQ', { buffer = event.buf, silent = true })
   end,
 })
 
