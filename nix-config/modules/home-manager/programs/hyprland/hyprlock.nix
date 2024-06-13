@@ -1,14 +1,6 @@
 { config, ... }: {
   programs.hyprlock.enable = true;
-
   programs.hyprlock.settings = {
-    general = {
-      disable_loading_bar = true;
-      grace = 300;
-      hide_cursor = true;
-      no_fade_in = false;
-    };
-
     background = {
       monitor = "";
       path =
@@ -22,13 +14,24 @@
       vibrancy_darkness = 0.0;
     };
 
-    label = [{
-      text = ''cmd[update:200:1] echo "<b><big> $TIME </big></b>"'';
-      font_size = 64;
-      position = "0, 16";
-      halign = "center";
-      valign = "center";
-    }];
+    label = [
+      {
+        text = ''cmd[update:200:1] echo "<b><big> $TIME </big></b>"'';
+        font_size = 64;
+
+        position = "0, 16";
+        halign = "center";
+        valign = "center";
+      }
+      {
+        text = "<b><big> $LAYOUT </big></b>";
+        font_size = 24;
+
+        position = "0, 16";
+        halign = "center";
+        valign = "bottom";
+      }
+    ];
 
     input-field = [{
       size = "200, 50";

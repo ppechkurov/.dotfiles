@@ -13,11 +13,6 @@
     "*" = { bg = "hackerman-wallpapers.jpg fill"; };
   };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ canon-cups-ufr2 gutenprint ];
 

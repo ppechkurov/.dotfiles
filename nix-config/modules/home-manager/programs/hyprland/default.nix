@@ -21,6 +21,8 @@ in {
   };
 
   wayland.windowManager.hyprland.enable = true;
+  wayland.windowManager.hyprland.xwayland.enable = true;
+  wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
   wayland.windowManager.hyprland.settings = let
     opacity = "0.82";
     cwd = "${config.home.homeDirectory}/.dotfiles";
@@ -124,5 +126,8 @@ in {
     bind=$mod,R,submap,reset
 
     submap=reset
+
+    monitor=Unknown-1,disabled
   '';
+  # https://wiki.hyprland.org/FAQ/#workspaces-or-clients-are-disappearing-or-monitor-related-dispatchers-cause-crashes
 }

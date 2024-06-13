@@ -59,7 +59,6 @@ with lib; {
           user = "greeter";
           command =
             "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
-          # "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
         };
       };
 
@@ -70,7 +69,7 @@ with lib; {
     security.rtkit.enable = true;
     security.polkit.enable = true;
 
-    security.pam.services.swaylock = { };
+    security.pam.services.hyprlock = { };
 
     # OpenGL
     hardware.opengl = {
