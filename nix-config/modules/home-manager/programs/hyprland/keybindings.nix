@@ -50,7 +50,7 @@ in [
   "$mod, M, resizewindowpixel, exact 80% 80%, class:music"
   "$mod, M, centerwindow"
 
-  ", Print, exec, grimblast copy area"
+  '', Print, exec, grim -g "$(slurp)" - | satty --filename=-''
   "$mod, R, submap, resize"
 ] ++ (
   # workspaces

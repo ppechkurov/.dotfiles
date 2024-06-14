@@ -130,15 +130,18 @@ with lib; {
       docker-credential-helpers
       flameshot
       git
+      grim
       jellyfin-ffmpeg
-      jmtpfs
+      jmtpfs # mount android devices, see https://nixos.wiki/wiki/MTP
       jq
       killall
       libnotify
       mpc-cli
       nodejs_20
       pass-wayland
+      satty
       slack
+      slurp
       steam-run
       tessen
       transmission-qt
@@ -174,9 +177,12 @@ with lib; {
     xdg.portal = {
       enable = true;
       wlr.enable = true;
-      extraPortals =
-        [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
-      config = { common.default = [ "gtk" "wlr" ]; };
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-hyprland
+      ];
+      config = { common.default = [ "gtk" "wlr" "hyprland" ]; };
     };
 
     # Open ports in the firewall.
