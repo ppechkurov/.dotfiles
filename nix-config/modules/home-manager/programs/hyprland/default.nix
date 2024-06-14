@@ -1,15 +1,10 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, ... }:
 let music = pkgs.writeScriptBin "music" (builtins.readFile ./scripts/music.sh);
 in {
-  imports = [ ./hyprlock.nix ];
+  imports = [ ./hyprlock.nix ./workspaces.nix ./keybindings.nix ./rules.nix ]
+    ++ [ ./input.nix ];
 
-  home.packages = with pkgs; [
-    playerctl
-    wf-recorder
-    wl-clipboard
-    xdg-utils
-    music
-  ];
+  home.packages = with pkgs; [ wf-recorder wl-clipboard xdg-utils music ];
 
   services.hyprpaper.enable = true;
   services.hyprpaper.settings = {
@@ -23,28 +18,13 @@ in {
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.xwayland.enable = true;
   wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
-  wayland.windowManager.hyprland.settings = let
-    opacity = "0.82";
-    cwd = "${config.home.homeDirectory}/.dotfiles";
-    scratch_term_cmd =
-      "foot --app-id scratch --override colors.alpha=${opacity} --working-directory ${cwd}";
-  in {
-    "$mod" = "SUPER";
+  wayland.windowManager.hyprland.settings = {
     env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 
     exec-once =
       [ "pkill waybar; sleep 0.5; waybar" "sleep 1 && telegram-desktop" ];
 
-    bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
-
-    bind = import ./keybindings.nix {
-      inherit lib;
-      inherit pkgs;
-    };
-
-    workspace = import ./workspaces.nix scratch_term_cmd;
-    windowrulev2 = import ./rules.nix;
-    input = import ./input.nix;
+    "$mod" = "SUPER";
 
     general = {
       gaps_in = 5;
@@ -52,8 +32,6 @@ in {
       border_size = 2;
       allow_tearing = true;
       resize_on_border = true;
-      cursor_inactive_timeout = 10;
-      # layout = "master";
     };
 
     decoration = {
