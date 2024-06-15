@@ -15,24 +15,25 @@ vim.api.nvim_create_autocmd('FileType', {
   group = augroup('close_with_q'),
   pattern = {
     'PlenaryTestPopup',
-    'oil',
+    'checkhealth',
     'help',
     'lspinfo',
     'man',
+    'neotest-output',
+    'neotest-output-panel',
+    'neotest-summary',
     'notify',
+    'oil',
     'qf',
     'query',
     'spectre_panel',
     'startuptime',
     'tsplayground',
-    'neotest-output',
-    'checkhealth',
-    'neotest-summary',
-    'neotest-output-panel',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
+    vim.keymap.set('n', 'q', 'ZQ', { buffer = event.buf, silent = true })
+    -- vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
   end,
 })
 
@@ -122,11 +123,19 @@ vim.api.nvim_command([[
     autocmd ModeChanged * lua leave_snippet()
 ]])
 
+-- justfile ft
+vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+  pattern = { 'justfile', 'Justfile' },
+  command = 'set filetype=just',
+})
+
 -- autodetect ansible files
 vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   pattern = {
     '*/playbooks/*.yml',
     '*/playbooks/*.yaml',
+    '*/playbooks/deploy.yml',
+    '*/playbooks/deploy.yaml',
     '*/roles/*/tasks/*.yml',
     '*/roles/*/tasks/*.yaml',
     '*/roles/*/handlers/*.yml',
@@ -134,4 +143,25 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   },
   desc = 'autodetect ansible',
   command = 'set filetype=yaml.ansible',
+})
+
+-- disable autoformat on save, see https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#command-to-toggle-format-on-save
+vim.api.nvim_create_user_command('FormatDisable', function(args)
+  if args.bang then
+    -- FormatDisable! will disable formatting just for this buffer
+    vim.b.disable_autoformat = true
+  else
+    vim.g.disable_autoformat = true
+  end
+end, {
+  desc = 'Disable autoformat-on-save',
+  bang = true,
+})
+
+-- enable autoformat on save, see https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#command-to-toggle-format-on-save
+vim.api.nvim_create_user_command('FormatEnable', function()
+  vim.b.disable_autoformat = false
+  vim.g.disable_autoformat = false
+end, {
+  desc = 'Re-enable autoformat-on-save',
 })

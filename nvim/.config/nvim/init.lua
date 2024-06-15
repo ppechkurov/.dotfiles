@@ -44,6 +44,7 @@ spec('plugins.codeium')
 spec('plugins.dap')
 spec('plugins.octo')
 spec('plugins.csv')
+spec('plugins.obsidian')
 
 spec('plugins.dressing')
 spec('plugins.colorizer')
