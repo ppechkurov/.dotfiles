@@ -31,6 +31,6 @@ case $selected in
 	systemctl --user stop wayland-session.target
 	;;
 "$lock")
-	swaylock --daemonize --image "$HOME/.config/sway/hackerman-wallpapers.jpg" --ignore-empty-password
+	hyprctl dispatch exec hyprlock
 	;;
 esac

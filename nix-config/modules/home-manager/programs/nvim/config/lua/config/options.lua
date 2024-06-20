@@ -75,9 +75,6 @@ vim.cmd('set whichwrap+=<,>,[,],h,l')
 vim.opt.foldlevel = 99
 vim.o.foldmethod = 'indent'
 
--- vim.cmd([[set iskeyword+=-]])
---vim.cmd([[set iskeyword+=_]])
-
 vim.g.netrw_banner = 0
 vim.g.netrw_mouse = 2
 
@@ -88,13 +85,13 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 if vim.g.neovide then
-  vim.o.guifont = 'ShureTechMono Nerd Font:h18'
-  vim.g.neovide_fullscreen = true
+  -- vim.o.guifont = 'ShureTechMono Nerd Font:h18'
+  -- vim.g.neovide_fullscreen = true
   vim.g.neovide_cursor_vfx_mode = 'pixiedust'
   vim.g.neovide_confirm_quit = true
 
   vim.o.scrolloff = 10
   vim.o.sidescrolloff = 10
 
-  -- vim.g.neovide_transparency = 0.95
+  vim.g.neovide_transparency = 0.0
 end

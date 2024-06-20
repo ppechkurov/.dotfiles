@@ -52,7 +52,7 @@ return {
         entry_prefix = '   ',
         initial_mode = 'insert',
         selection_strategy = 'reset',
-        path_display = { 'filename_first' },
+        path_display = { 'truncate' },
         color_devicons = true,
         vimgrep_arguments = {
           'rg',

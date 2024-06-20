@@ -34,6 +34,15 @@ with osConfig; {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  accounts.email.accounts.work.aerc.enable = true;
+  accounts.email.accounts.work.flavor = "gmail.com";
+  accounts.email.accounts.work.primary = true;
+  accounts.email.accounts.work.realName = "Petr Pechkurov";
+  accounts.email.accounts.work.address = "petr.pechkurov@succraft.com";
+
+  programs.aerc.enable = true;
+  programs.aerc.extraConfig.general.unsafe-accounts-conf = true;
+
   services.mako.enable = true;
   services.network-manager-applet.enable = true;
 
@@ -72,8 +81,8 @@ with osConfig; {
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "x-scheme-handler/http" = [ "chromium-browser.desktop" ];
-        "x-scheme-handler/https" = "chromium-browser.desktop";
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = "firefox.desktop";
       };
     };
     userDirs = {

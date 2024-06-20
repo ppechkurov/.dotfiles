@@ -137,6 +137,7 @@ with lib; {
       killall
       libnotify
       mpc-cli
+      neovide
       nodejs_20
       pass-wayland
       satty
