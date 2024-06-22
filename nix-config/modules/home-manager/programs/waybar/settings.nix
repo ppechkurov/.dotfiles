@@ -110,16 +110,8 @@ in {
         "8" = "";
         "9" = "";
         "10" = "󰒯";
-        # "urgent" = "";
-        # "focused" = "";
-        # "default" = "";
       };
-      "persistent-workspaces" = {
-        "DVI-D-1" = [ 1 2 3 4 5 ];
-        "DP-1" = [ 6 7 8 9 10 ];
-        "DP-4" = [ 6 7 8 9 10 ];
-      };
-      # "persistent-workspaces" = { "*" = 5; };
+      "persistent-workspaces" = { "*" = 5; };
     };
 
     "${disk}" = { format = "󰋊 {percentage_free}%"; };

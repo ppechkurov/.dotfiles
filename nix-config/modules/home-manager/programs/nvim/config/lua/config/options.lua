@@ -93,5 +93,7 @@ if vim.g.neovide then
   vim.o.scrolloff = 10
   vim.o.sidescrolloff = 10
 
-  vim.g.neovide_transparency = 0.0
+  vim.g.neovide_text_gamma = 1.0
+  vim.g.neovide_text_contrast = 1.0
+  vim.g.neovide_transparency = 0.70
 end

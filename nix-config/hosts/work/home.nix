@@ -1,12 +1,8 @@
 {
-  imports = [ ../../modules/home-manager ];
-
-  wayland.windowManager.sway.config = {
-    input = {
-      "type:keyboard" = {
-        xkb_layout = "us,ru";
-        xkb_variant = "real-prog-dvorak,";
-      };
-    };
+  imports = [ ../../modules/home-manager ./hyprland ];
+  xdg.configFile.hypr = {
+    enable = true;
+    source = ./hackerman-wallpapers.jpg;
+    target = "hypr/hackerman-wallpapers.jpg";
   };
 }

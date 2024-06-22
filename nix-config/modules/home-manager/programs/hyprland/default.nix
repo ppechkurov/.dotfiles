@@ -39,16 +39,16 @@ in {
       drop_shadow = false;
       blur = {
         enabled = true;
-        brightness = 0.5;
-        # brightness = 1.0;
-        contrast = 1.0;
+        # brightness = 0.5;
+        brightness = 0.8;
+        contrast = 0.8;
         noise = 1.0e-2;
 
-        vibrancy = 0.2;
-        vibrancy_darkness = 0.5;
+        # vibrancy = 0.2;
+        # vibrancy_darkness = 0.5;
 
-        passes = 4;
-        size = 7;
+        passes = 3;
+        size = 5;
 
         popups = true;
         popups_ignorealpha = 0.2;
