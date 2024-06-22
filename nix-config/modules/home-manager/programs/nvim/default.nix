@@ -9,6 +9,7 @@
       lua-language-server
       nodePackages.bash-language-server
       nodePackages.vscode-langservers-extracted
+      nodePackages.typescript-language-server
       prettierd
       nil
       nixfmt-classic

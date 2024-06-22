@@ -27,6 +27,7 @@
     initExtra = ''
       source ~/.p10k.zsh
       SF_AC_ZSH_SETUP_PATH=${config.home.homeDirectory}/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
+      complete -C "$(which aws_completer)" aws
     '';
 
     envExtra = ''

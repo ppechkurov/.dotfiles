@@ -11,7 +11,13 @@ return {
       vim.cmd("let g:gruvbox_material_current_word='grey background'")
       vim.cmd("let g:gruvbox_material_float_style='dim'") -- oil bg
       vim.cmd("let g:gruvbox_material_ui_contrast='high'")
-      -- vim.cmd('let g:gruvbox_material_transparent_background=2')
+
+      if vim.g.neovide then
+        vim.cmd('let g:gruvbox_material_transparent_background=0')
+      else
+        vim.cmd('let g:gruvbox_material_transparent_background=1')
+      end
+
       vim.cmd("let g:gruvbox_material_diagnostic_virtual_text='colored'")
       vim.cmd('let g:gruvbox_material_enable_bold=1')
       vim.cmd('let g:gruvbox_material_enable_italic=1')
