@@ -5,4 +5,5 @@
     source = ./hackerman-wallpapers.jpg;
     target = "hypr/hackerman-wallpapers.jpg";
   };
+  home.sessionPath = [ "$HOME/.npm-global/bin" ];
 }
