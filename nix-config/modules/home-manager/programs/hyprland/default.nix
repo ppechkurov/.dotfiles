@@ -21,8 +21,12 @@ in {
   wayland.windowManager.hyprland.settings = {
     env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 
-    exec-once =
-      [ "pkill waybar; sleep 0.5; waybar" "sleep 1 && telegram-desktop" ];
+    exec-once = [
+      "pkill waybar; sleep 0.5; waybar"
+      "sleep 1 && telegram-desktop"
+      "sleep 1 && skypeforlinux"
+      "sleep 1 && slack"
+    ];
 
     "$mod" = "SUPER";
 

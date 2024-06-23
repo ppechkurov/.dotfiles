@@ -20,7 +20,10 @@ in {
     "stayfocused, ${pavucontrol}"
 
     "workspace 4 silent, class:org.telegram.desktop"
+    "workspace 5 silent, class:Slack"
+    "workspace 3, class:neovide"
     "workspace 7, class:firefox"
+    "workspace 0 silent, class:Skype"
   ];
 }
 

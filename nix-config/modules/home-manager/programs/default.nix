@@ -18,6 +18,7 @@
     ./tofi
     ./waybar
     ./yazi
+    ./zellij
     ./zoxide
     ./zsh
   ];

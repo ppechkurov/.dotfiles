@@ -135,12 +135,14 @@ with lib; {
       jmtpfs # mount android devices, see https://nixos.wiki/wiki/MTP
       jq
       killall
+      lazydocker
       libnotify
       mpc-cli
       neovide
       nodejs_20
       pass-wayland
       satty
+      skypeforlinux
       slack
       slurp
       steam-run
@@ -148,6 +150,7 @@ with lib; {
       transmission-qt
       vim
       xkeyboard_config
+      zoom-us
 
       (import inputs.nixpkgs-unstable {
         system = "x86_64-linux";
