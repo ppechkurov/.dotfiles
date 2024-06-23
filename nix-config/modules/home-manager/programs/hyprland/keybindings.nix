@@ -22,12 +22,6 @@ in {
       "$mod, F, fullscreen"
       "$mod, D, killactive"
 
-      ",XF86AudioMute, exec, amixer sset Master toggle"
-
-      ",XF86AudioNext, exec, mpc next"
-      ",XF86AudioPrev, exec, mpc prev"
-      ",XF86AudioPlay, exec, mpc toggle"
-
       # move focus
       "$mod, left, movefocus, l"
       "$mod, right, movefocus, r"
@@ -67,8 +61,8 @@ in {
         ]) 10));
 
     binde = [
-      "$mod, F12, exec, amixer sset Master 5%+"
-      "$mod, F11, exec, amixer sset Master 5%-"
+      "$mod, F11, exec, amixer sset Master 5%+"
+      "$mod, F12, exec, amixer sset Master 5%-"
       ",XF86AudioRaiseVolume, exec, amixer sset Master 5%+"
       ",XF86AudioLowerVolume, exec, amixer sset Master 5%-"
     ];

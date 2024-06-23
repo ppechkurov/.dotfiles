@@ -137,6 +137,7 @@ with lib; {
       killall
       lazydocker
       libnotify
+      libreoffice
       mpc-cli
       neovide
       nodejs_20
@@ -147,6 +148,7 @@ with lib; {
       slurp
       steam-run
       tessen
+      unzip
       transmission-qt
       vim
       xkeyboard_config
