@@ -152,7 +152,6 @@ with lib; {
       transmission-qt
       vim
       xkeyboard_config
-      zoom-us
 
       (import inputs.nixpkgs-unstable {
         system = "x86_64-linux";
