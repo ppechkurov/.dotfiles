@@ -11,6 +11,13 @@ in {
       "$mod, B, exec, ${browser}"
       "$mod, Return, exec, foot --override colors.alpha=0.10"
 
+      "$mod, C, exec, tofi-calc"
+      "$mod, P, exec, tofi-pass"
+      "$mod, R, exec, tofi-launcher"
+      "$mod, S, exec, foot tofi-ssh"
+      "$mod, V, exec, tofi-clip"
+      "$mod Shift, T, exec, tofi-emoji"
+
       "$mod, Space, togglefloating"
       "$mod, F, fullscreen"
       "$mod, D, killactive"
@@ -48,7 +55,7 @@ in {
       "$mod, M, centerwindow"
 
       '', Print, exec, grim -g "$(slurp)" - | satty --filename=-''
-      "$mod, R, submap, resize"
+      "$mod SHIFT, R, submap, resize"
     ] ++ (
       # workspaces
       # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
