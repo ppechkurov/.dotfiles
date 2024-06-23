@@ -10,4 +10,5 @@
   home.sessionPath = [ "$HOME/.npm-global/bin" ];
 
   local.zellij.enable = true;
+  local.mysql.enable = true;
 }

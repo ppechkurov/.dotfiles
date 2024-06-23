@@ -10,6 +10,7 @@
     ./firefox
     ./nvim
     ./ncmpcpp
+    ./mysql
     ./misc/mako.nix
     ./mpv
     # ./sway
