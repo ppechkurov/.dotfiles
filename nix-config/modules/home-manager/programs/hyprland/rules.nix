@@ -22,6 +22,10 @@ in {
     "float, class:neovide"
     "size 90% 90%, class:neovide"
 
+    "float, class:zoom"
+    "size 90% 90%, class:zoom"
+    "center, floating:1, class:zoom"
+
     "workspace 4 silent, class:org.telegram.desktop"
     "workspace 5 silent, class:Slack"
     "workspace 3, class:neovide"
