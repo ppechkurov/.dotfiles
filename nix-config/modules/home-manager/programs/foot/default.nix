@@ -4,7 +4,10 @@
       enable = true;
       server.enable = false;
       settings = {
-        main = { font = "JetBrainsMono Nerd Font:size=16"; };
+        main = {
+          font = "JetBrainsMono Nerd Font:size=16";
+          selection-target = "both";
+        };
         mouse = { hide-when-typing = "yes"; };
         cursor = { blink = "yes"; };
         key-bindings = {
