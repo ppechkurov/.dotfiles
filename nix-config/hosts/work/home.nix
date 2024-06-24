@@ -12,4 +12,8 @@
 
   local.zellij.enable = true;
   local.mysql.enable = true;
+
+  local.meli.enable = true;
+  local.meli.email = "petr.pechkurov@succraft.com";
+  local.meli.secrets_path = "success/gmail";
 }

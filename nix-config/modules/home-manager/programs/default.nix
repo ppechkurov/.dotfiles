@@ -13,6 +13,7 @@
     ./mysql
     ./misc/mako.nix
     ./mpv
+    ./meli
     # ./sway
     ./hyprland
     ./tmux
