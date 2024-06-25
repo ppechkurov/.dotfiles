@@ -10,6 +10,7 @@
       nodePackages.bash-language-server
       nodePackages.vscode-langservers-extracted
       nodePackages.typescript-language-server
+      nodePackages.sql-formatter
       prettierd
       nil
       nixfmt-classic
