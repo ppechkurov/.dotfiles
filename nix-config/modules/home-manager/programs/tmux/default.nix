@@ -35,10 +35,11 @@ in {
       set -g pane-border-style fg=blue
       set -g pane-active-border-style "bg=default fg=blue"
 
-      set -g @plugin 'tmux-plugins/tpm'
-      set -g @plugin 'catppuccin/tmux'
-
       bind Enter copy-mode
+
+      bind -n C-k copy-mode \; send-keys -X halfpage-up
+      bind -n C-j copy-mode \; send-keys -X halfpage-down
+
       bind-key -T copy-mode-vi C-k send-keys -X halfpage-up
       bind-key -T copy-mode-vi C-j send-keys -X halfpage-down
       bind-key -T copy-mode-vi v send-keys -X begin-selection
