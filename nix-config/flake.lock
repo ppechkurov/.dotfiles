@@ -21,6 +21,26 @@
         "type": "github"
       }
     },
+    "minimal-tmux": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718553171,
+        "narHash": "sha256-cwWoKsiDLSlSLis5tzqP2kFwTbl9PlzMYNdo2lDk0So=",
+        "owner": "niksingh710",
+        "repo": "minimal-tmux-status",
+        "rev": "131306e6924a8e71dfc6be20dd1a10441248c690",
+        "type": "github"
+      },
+      "original": {
+        "owner": "niksingh710",
+        "repo": "minimal-tmux-status",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1717144377,
@@ -54,6 +74,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "minimal-tmux": "minimal-tmux",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
