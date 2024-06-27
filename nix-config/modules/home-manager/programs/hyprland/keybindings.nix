@@ -19,6 +19,7 @@ in {
       "$mod Shift, T, exec, tofi-emoji"
 
       "$mod, Space, togglefloating"
+      "$mod SHIFT, Space, pin"
       "$mod, F, fullscreen"
       "$mod, D, killactive"
 

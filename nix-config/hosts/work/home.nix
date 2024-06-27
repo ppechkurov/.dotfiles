@@ -8,7 +8,7 @@
   };
 
   home.sessionPath = [ "$HOME/.npm-global/bin" ];
-  home.packages = with pkgs; [ zoom-us ansible ];
+  home.packages = with pkgs; [ zoom-us ansible obsidian ];
 
   local.zellij.enable = true;
   local.mysql.enable = true;

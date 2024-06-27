@@ -5,17 +5,19 @@
     enable = true;
     defaultEditor = true;
     extraPackages = with pkgs; [
+      ansible-lint
       lua
       lua-language-server
-      nodePackages.bash-language-server
-      nodePackages.vscode-langservers-extracted
-      nodePackages.typescript-language-server
-      nodePackages.sql-formatter
-      prettierd
       nil
       nixfmt-classic
+      nodePackages.bash-language-server
+      nodePackages.sql-formatter
+      nodePackages.typescript-language-server
+      nodePackages.vscode-langservers-extracted
+      prettierd
       shfmt
       stylua
+      yaml-language-server
     ];
     vimAlias = true;
     withNodeJs = true;
