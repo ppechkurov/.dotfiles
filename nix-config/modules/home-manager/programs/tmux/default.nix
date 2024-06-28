@@ -17,7 +17,7 @@
       {
         plugin = inputs.minimal-tmux.packages.${pkgs.system}.default;
         extraConfig = ''
-          set -g @minimal-tmux-status-right "#[bg=default,fg=default,bold] #h "
+          set -g @minimal-tmux-status-right "#[bg=default,fg=default,bold] #h  "
         '';
       }
     ];
@@ -25,6 +25,11 @@
       set -g default-terminal "screen-256color"
       set -g pane-border-style fg=blue
       set -g pane-active-border-style "bg=default fg=blue"
+
+      set -g status "on"
+
+      set -g renumber-windows on    # renumber windows when a window is closed
+      set -g set-titles on          # set terminal title
 
       bind -n C-Enter copy-mode
 
@@ -40,12 +45,27 @@
       bind-key -T copy-mode-vi ? command-prompt -i -p "search down" "send -X search-forward-incremental \"%%%\""
       bind-key -T copy-mode-vi / command-prompt -i -p "search up" "send -X search-backward-incremental \"%%%\""
 
-      set -g status "on"
-
-      set -g renumber-windows on    # renumber windows when a window is closed
-      set -g set-titles on          # set terminal title
-
       bind -n C-l send-keys C-l \; run 'sleep 0.2' \; clear-history
+
+      # pane navigation
+      bind -r h select-pane -L  # move left
+      bind -r j select-pane -D  # move down
+      bind -r k select-pane -U  # move up
+      bind -r l select-pane -R  # move right
+      bind > swap-pane -D       # swap current pane with the next one
+      bind < swap-pane -U       # swap current pane with the previous one
+
+      # pane resizing
+      bind -r H resize-pane -L 2
+      bind -r J resize-pane -D 2
+      bind -r K resize-pane -U 2
+      bind -r L resize-pane -R 2
+
+      # split current window horizontally
+      bind - split-window -v
+
+      # split current window vertically
+      bind | split-window -h
     '';
   };
 }
