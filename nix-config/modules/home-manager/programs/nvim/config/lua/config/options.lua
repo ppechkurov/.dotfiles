@@ -69,6 +69,8 @@ vim.opt.fillchars = {
   eob = ' ',
 }
 
+vim.cmd('abbreviate w silent w')
+
 vim.cmd('set whichwrap+=<,>,[,],h,l')
 
 -- folds
