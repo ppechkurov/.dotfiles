@@ -15,7 +15,7 @@
           scrollback-down-half-page = "Control+j";
           show-urls-launch = "Control+Shift+u";
           unicode-input = "none";
-          search-start = "Control+slash";
+          # search-start = "Control+slash";
         };
         search-bindings = {
           find-prev = "Control+n";
