@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 with lib; {
   options = {
     username = mkOption {
@@ -153,10 +153,7 @@ with lib; {
       vim
       xkeyboard_config
 
-      (import inputs.nixpkgs-unstable {
-        system = "x86_64-linux";
-        config = { allowUnfree = true; };
-      }).codeium
+      pkgs-unstable.codeium
     ];
 
     environment.pathsToLink = [ "/share/zsh" ];

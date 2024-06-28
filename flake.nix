@@ -11,7 +11,12 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: {
-    nixosConfigurations = {
+    nixosConfigurations = let
+      pkgs-unstable = import nixpkgs-unstable {
+        system = "x86_64-linux";
+        config = { allowUnfree = true; };
+      };
+    in {
       work = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/work/configuration.nix
@@ -21,7 +26,10 @@
             home-manager.useUserPackages = true;
           })
         ];
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+          inherit pkgs-unstable;
+        };
       };
       home = nixpkgs.lib.nixosSystem {
         modules = [

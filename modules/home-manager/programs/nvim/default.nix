@@ -25,7 +25,7 @@
 
   xdg.configFile.nvim = let
     nvim_config_dir =
-      "${config.home.homeDirectory}/.dotfiles/nix-config/modules/home-manager/programs/nvim";
+      "${config.home.homeDirectory}/.dotfiles/modules/home-manager/programs/nvim";
   in {
     enable = true;
     source = config.lib.file.mkOutOfStoreSymlink "${nvim_config_dir}/config";

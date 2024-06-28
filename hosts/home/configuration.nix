@@ -18,6 +18,9 @@
 
   home-manager = {
     users.${config.username} = import ./home.nix;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs;
+      pkgs-unstable = inputs.nixpkgs-unstable;
+    };
   };
 }

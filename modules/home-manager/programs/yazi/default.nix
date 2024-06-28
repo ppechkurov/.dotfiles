@@ -1,8 +1,7 @@
-{ inputs, ... }: {
+{ pkgs-unstable, ... }: {
   programs.yazi = {
     enable = true;
-    package =
-      (import inputs.nixpkgs-unstable { system = "x86_64-linux"; }).yazi;
+    package = pkgs-unstable.yazi;
     enableZshIntegration = true;
     theme = import ./theme.nix;
     settings = {

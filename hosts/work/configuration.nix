@@ -1,4 +1,4 @@
-{ inputs, config, ... }: {
+{ inputs, config, pkgs-unstable, ... }: {
   imports = [ ../../modules/nixos/common ./hardware-configuration.nix ];
 
   # declare hostname
@@ -8,6 +8,9 @@
 
   home-manager = {
     users.${config.username} = import ./home.nix;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs;
+      inherit pkgs-unstable;
+    };
   };
 }
