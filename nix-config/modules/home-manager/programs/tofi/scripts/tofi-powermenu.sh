@@ -31,6 +31,6 @@ case $selected in
 	systemctl --user stop wayland-session.target
 	;;
 "$lock")
-	hyprctl dispatch exec hyprlock
+	hyprlock
 	;;
 esac
