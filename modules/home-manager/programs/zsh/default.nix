@@ -1,6 +1,9 @@
 { pkgs, config, ... }: {
   home = { packages = with pkgs; [ bat eza ]; };
 
+  programs.direnv.enable = true;
+  programs.direnv.enableZshIntegration = true;
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
