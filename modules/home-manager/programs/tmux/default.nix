@@ -17,7 +17,7 @@
       {
         plugin = inputs.minimal-tmux.packages.${pkgs.system}.default;
         extraConfig = ''
-          set -g @minimal-tmux-status-right "#[bg=default,fg=default,bold] #h  "
+          set -g @minimal-tmux-status-right "#[bg=default,fg=default,bold] #S  "
         '';
       }
     ];
