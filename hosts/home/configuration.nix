@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }: {
+{ inputs, config, pkgs, pkgs-unstable, ... }: {
   imports = [
     ../../modules/nixos/common
     ../../modules/nixos/nvidia
@@ -20,7 +20,7 @@
     users.${config.username} = import ./home.nix;
     extraSpecialArgs = {
       inherit inputs;
-      pkgs-unstable = inputs.nixpkgs-unstable;
+      inherit pkgs-unstable;
     };
   };
 }

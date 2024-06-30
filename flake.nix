@@ -12,9 +12,12 @@
 
   outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: {
     nixosConfigurations = let
-      pkgs-unstable = import nixpkgs-unstable {
-        system = "x86_64-linux";
-        config = { allowUnfree = true; };
+      specialArgs = {
+        inherit inputs;
+        pkgs-unstable = import nixpkgs-unstable {
+          system = "x86_64-linux";
+          config = { allowUnfree = true; };
+        };
       };
     in {
       work = nixpkgs.lib.nixosSystem {
@@ -26,10 +29,7 @@
             home-manager.useUserPackages = true;
           })
         ];
-        specialArgs = {
-          inherit inputs;
-          inherit pkgs-unstable;
-        };
+        inherit specialArgs;
       };
       home = nixpkgs.lib.nixosSystem {
         modules = [
@@ -40,7 +40,7 @@
             home-manager.useUserPackages = true;
           })
         ];
-        specialArgs = { inherit inputs; };
+        inherit specialArgs;
       };
     };
   };
