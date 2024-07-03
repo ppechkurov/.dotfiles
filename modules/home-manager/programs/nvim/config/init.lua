@@ -48,4 +48,5 @@ spec('plugins.octo')
 
 spec('plugins.dressing')
 spec('plugins.colorizer')
+spec('plugins.otter')
 require('config.lazy')

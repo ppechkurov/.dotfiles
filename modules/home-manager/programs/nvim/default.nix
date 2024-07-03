@@ -1,9 +1,10 @@
-{ pkgs, config, ... }:
+{ pkgs, pkgs-unstable, config, ... }:
 
 {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    package = pkgs-unstable.neovim-unwrapped;
     extraPackages = with pkgs; [
       ansible-lint
       lua
@@ -21,6 +22,7 @@
     ];
     vimAlias = true;
     withNodeJs = true;
+    withPython3 = true;
   };
 
   xdg.configFile.nvim = let
