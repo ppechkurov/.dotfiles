@@ -4,7 +4,7 @@
   services.hypridle.settings = {
     general = {
       # after_sleep_cmd = "hyprctl dispatch dpms on";
-      # ignore_dbus_inhibit = false;
+      ignore_dbus_inhibit = false;
       lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
     };
 
