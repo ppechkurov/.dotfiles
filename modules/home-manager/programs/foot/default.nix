@@ -5,7 +5,7 @@
       server.enable = false;
       settings = {
         main = {
-          font = "JetBrainsMono Nerd Font:size=16";
+          font = "JetBrainsMono Nerd Font:size=14";
           selection-target = "both";
         };
         mouse = { hide-when-typing = "yes"; };
