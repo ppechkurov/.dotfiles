@@ -114,7 +114,7 @@ in {
       "persistent-workspaces" = { "*" = 5; };
     };
 
-    "${disk}" = { format = "󰋊 {percentage_free}%"; };
+    "${disk}" = { format = "󰋊 {free}"; };
 
     "${clock}" = {
       interval = 1;
