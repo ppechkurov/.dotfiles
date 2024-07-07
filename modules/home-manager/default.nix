@@ -44,7 +44,7 @@ with osConfig; {
   programs.aerc.extraConfig.general.unsafe-accounts-conf = true;
 
   services.mako.enable = true;
-  services.network-manager-applet.enable = true;
+  services.network-manager-applet.enable = false;
 
   programs.gpg.enable = true;
   services.gpg-agent.enable = true;
