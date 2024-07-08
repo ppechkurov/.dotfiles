@@ -18,8 +18,9 @@ in {
       "$mod, V, exec, tofi-clip"
       "$mod Shift, T, exec, tofi-emoji"
 
-      "$mod, Space, togglefloating"
-      "$mod SHIFT, Space, pin"
+      "$mod, Space, togglesplit"
+      "$mod SHIFT, Space, togglefloating"
+      "$mod ALT, Space, pin"
       "$mod, F, fullscreen"
       "$mod, D, killactive"
 

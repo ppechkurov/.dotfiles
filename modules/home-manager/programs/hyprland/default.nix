@@ -36,6 +36,12 @@ in {
       border_size = 2;
       allow_tearing = true;
       resize_on_border = true;
+      layout = "dwindle";
+    };
+
+    dwindle = {
+      pseudotile = true;
+      preserve_split = true;
     };
 
     decoration = {
