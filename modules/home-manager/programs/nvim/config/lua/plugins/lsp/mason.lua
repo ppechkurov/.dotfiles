@@ -7,23 +7,23 @@ local M = {
 
 function M.config()
   local servers = {
-    'lua_ls',
-    'html',
-    'tsserver',
-    'eslint',
+    -- 'lua_ls',
+    -- 'html',
+    -- 'tsserver',
+    -- 'eslint',
     'bashls',
-    'json-lsp',
-    'ansiblels',
-    'marksman',
+    -- 'json-lsp',
+    -- 'ansiblels',
+    -- 'marksman',
   }
 
   require('mason').setup({
     ui = { border = 'single' },
   })
-  --
-  -- require('mason-lspconfig').setup({
-  --   ensure_installed = servers,
-  -- })
+
+  require('mason-lspconfig').setup({
+    ensure_installed = servers,
+  })
 end
 
 return M
