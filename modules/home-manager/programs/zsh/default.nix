@@ -1,5 +1,13 @@
-{ pkgs, config, ... }: {
-  home = { packages = with pkgs; [ bat eza ]; };
+{ pkgs, config, ... }:
+let
+  oil-ssh = pkgs.writeScriptBin "oil-ssh" # bash
+    ''
+      host=$1
+      [ -z "$host" ] && host=$(rg '^[[:space:]]*Host[[:space:]]+(\S+)' -o --replace '$1' ~/.ssh/config --no-line-number | fzf)
+      [ "$host" ] && vim oil-ssh://"$host"//home
+    '';
+in {
+  home = { packages = with pkgs; [ bat eza oil-ssh ]; };
 
   programs.direnv.enable = true;
   programs.direnv.enableZshIntegration = true;
@@ -27,11 +35,25 @@
       lla = "ll -a";
     };
 
-    initExtra = ''
-      source ~/.p10k.zsh
-      SF_AC_ZSH_SETUP_PATH=${config.home.homeDirectory}/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
-      complete -C "$(which aws_completer)" aws
-    '';
+    initExtra =
+      # bash
+      ''
+        source ~/.p10k.zsh
+        SF_AC_ZSH_SETUP_PATH=${config.home.homeDirectory}/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
+        complete -C "$(which aws_completer)" aws
+
+        _ssh() {
+          local cur opts
+          COMPREPLY=()
+          cur="$\{COMP_WORDS[COMP_CWORD]}"
+          opts=$(grep '^Host' ~/.ssh/config ~/.ssh/config.d/* 2>/dev/null | grep -v '[?*]' | cut -d ' ' -f 2-)
+
+          COMPREPLY=("$(compgen -W "$opts" -- "$\{cur}")")
+          return 0
+        }
+
+        complete -F _ssh oil-ssh
+      '';
 
     envExtra = ''
       # VIM as man pager

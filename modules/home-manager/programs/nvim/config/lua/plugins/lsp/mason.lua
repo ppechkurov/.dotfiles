@@ -11,7 +11,7 @@ function M.config()
     -- 'html',
     -- 'tsserver',
     -- 'eslint',
-    'bashls',
+    -- 'bashls',
     -- 'json-lsp',
     -- 'ansiblels',
     -- 'marksman',

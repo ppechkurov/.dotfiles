@@ -10,6 +10,5 @@
       update_check = false;
     };
   };
-
 }
 
