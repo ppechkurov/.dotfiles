@@ -52,7 +52,7 @@ in {
           return 0
         }
 
-        complete -F _ssh oil-ssh
+        complete -F _ssh oil-ssh ssh scp
       '';
 
     envExtra = ''

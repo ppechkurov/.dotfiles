@@ -20,6 +20,17 @@
           set -g @minimal-tmux-status-right "#[bg=default,fg=default,bold] #S  "
         '';
       }
+      {
+        plugin = tmuxPlugins.resurrect;
+        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+      }
+      {
+        plugin = tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '60' # minutes
+        '';
+      }
     ];
     extraConfig = ''
       set -g default-terminal "screen-256color"
