@@ -31,6 +31,8 @@
       {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''
+          set -g default-terminal "screen-256color"
+          set -g @continuum-boot 'on'
           set -g @continuum-restore 'on'
           set -g @continuum-save-interval '60' # minutes
         '';
@@ -59,6 +61,12 @@
       # pane navigation
       bind > swap-pane -D       # swap current pane with the next one
       bind < swap-pane -U       # swap current pane with the previous one
+
+      # pane resizing
+      bind -r H resize-pane -L 2
+      bind -r J resize-pane -D 2
+      bind -r K resize-pane -U 2
+      bind -r L resize-pane -R 2
 
       # window reordering
       bind -r C-H swap-window -d -t -1

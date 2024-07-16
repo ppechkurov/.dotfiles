@@ -26,6 +26,7 @@ in {
       "firefox"
       "sleep 5 && foot --app-id ssh --override colors.alpha=0.10 tmux new -A -s ssh"
       "pkill waybar; sleep 0.5; waybar"
+      "tmux start-server"
       "sleep 1 && telegram-desktop"
       "sleep 1 && skypeforlinux"
       "sleep 1 && slack"
