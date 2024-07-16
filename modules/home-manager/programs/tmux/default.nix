@@ -27,6 +27,8 @@
       {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''
+          set -g default-terminal "screen-256color"
+          set -g @continuum-boot 'on'
           set -g @continuum-restore 'on'
           set -g @continuum-save-interval '60' # minutes
         '';
@@ -44,11 +46,6 @@
 
       bind -n C-Enter copy-mode
 
-      bind -n C-k copy-mode \; send -X halfpage-up
-      bind -n C-j copy-mode \; send -X halfpage-down
-
-      bind-key -T copy-mode-vi C-k send -X halfpage-up
-      bind-key -T copy-mode-vi C-j send -X halfpage-down
       bind-key -T copy-mode-vi v send -X begin-selection
       bind-key -T copy-mode-vi C-v send -X begin-selection \; send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
@@ -72,11 +69,9 @@
       bind -r K resize-pane -U 2
       bind -r L resize-pane -R 2
 
-      # split current window horizontally
-      bind - split-window -v
-
-      # split current window vertically
-      bind | split-window -h
+      # window reordering
+      bind -r C-H swap-window -d -t -1
+      bind -r C-L swap-window -d -t +1
     '';
   };
 }
