@@ -22,16 +22,19 @@ in {
     "float, class:neovide"
     "size 90% 90%, class:neovide"
 
-    "float, class:zoom"
-    "size 90% 90%, class:zoom"
-    "center, floating:1, class:zoom"
+    "float, class:flameshot"
+    # "float, class:zoom"
+    # "size 90% 90%, class:zoom"
+    # "center, floating:1, class:zoom"
 
+    "workspace 1, class:default"
+    "workspace 2 silent, class:firefox"
+    "workspace 3, class:neovide"
     "workspace 4 silent, class:org.telegram.desktop"
     "workspace 5 silent, class:Slack"
-    "workspace 3, class:neovide"
+    "workspace 6 silent, class:ssh"
 
-    "workspace 7, class:firefox"
-    "workspace 0 silent, class:Skype"
+    "workspace 10 silent, class:Skype"
   ];
 }
 

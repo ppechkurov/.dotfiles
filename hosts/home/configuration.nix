@@ -16,6 +16,8 @@
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ canon-cups-ufr2 gutenprint ];
 
+  environment.systemPackages = with pkgs; [ steam-run ];
+
   home-manager = {
     users.${config.username} = import ./home.nix;
     extraSpecialArgs = {

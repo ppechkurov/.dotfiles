@@ -50,7 +50,8 @@ in {
       "$mod, M, resizewindowpixel, exact 80% 80%, class:music"
       "$mod, M, centerwindow"
 
-      '', Print, exec, grim -g "$(slurp)" - | satty --filename=-''
+      # '', Print, exec, grim -g "$(slurp)" - | satty --filename=-''
+      ", Print, exec, XDG_CURRENT_DESKTOP=Sway flameshot gui"
       "$mod SHIFT, R, submap, resize"
     ] ++ (
       # workspaces

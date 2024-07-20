@@ -1,10 +1,12 @@
-{ inputs, config, pkgs-unstable, ... }: {
+{ inputs, config, pkgs, pkgs-unstable, ... }: {
   imports = [ ../../modules/nixos/common ./hardware-configuration.nix ];
 
   # declare hostname
   networking.hostName = "work";
 
   services.gnome.gnome-keyring.enable = true;
+
+  environment.systemPackages = with pkgs; [ skypeforlinux gnumake ];
 
   home-manager = {
     users.${config.username} = import ./home.nix;

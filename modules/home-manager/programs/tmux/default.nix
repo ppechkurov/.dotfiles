@@ -3,10 +3,14 @@
   programs.tmux = {
     baseIndex = 1;
     clock24 = true;
+    customPaneNavigationAndResize = true;
     escapeTime = 1;
-    keyMode = "vi";
     historyLimit = 10000;
+    keyMode = "vi";
     mouse = true;
+    newSession = true;
+    resizeAmount = 2;
+    terminal = "screen-256color";
     plugins = with pkgs; [
       {
         plugin = tmuxPlugins.fzf-tmux-url;
@@ -22,20 +26,17 @@
       }
       {
         plugin = tmuxPlugins.resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        extraConfig = "set -g @resurrect-processes 'ssh'";
       }
       {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''
-          set -g default-terminal "screen-256color"
-          set -g @continuum-boot 'on'
           set -g @continuum-restore 'on'
           set -g @continuum-save-interval '60' # minutes
         '';
       }
     ];
     extraConfig = ''
-      set -g default-terminal "screen-256color"
       set -g pane-border-style fg=blue
       set -g pane-active-border-style "bg=default fg=blue"
 
@@ -56,18 +57,8 @@
       bind -n C-l send-keys C-l \; run 'sleep 0.2' \; clear-history
 
       # pane navigation
-      bind -r h select-pane -L  # move left
-      bind -r j select-pane -D  # move down
-      bind -r k select-pane -U  # move up
-      bind -r l select-pane -R  # move right
       bind > swap-pane -D       # swap current pane with the next one
       bind < swap-pane -U       # swap current pane with the previous one
-
-      # pane resizing
-      bind -r H resize-pane -L 2
-      bind -r J resize-pane -D 2
-      bind -r K resize-pane -U 2
-      bind -r L resize-pane -R 2
 
       # window reordering
       bind -r C-H swap-window -d -t -1

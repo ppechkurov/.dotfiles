@@ -56,7 +56,7 @@ with lib; {
       greetd = {
         enable = true;
         settings.default_session = {
-          user = "greeter";
+          user = config.username;
           command =
             "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
         };
@@ -139,14 +139,13 @@ with lib; {
       libnotify
       libreoffice
       mpc-cli
+      ncdu
       neovide
       nodejs_20
       pass-wayland
       satty
-      skypeforlinux
       slack
       slurp
-      steam-run
       tessen
       unzip
       transmission-qt
