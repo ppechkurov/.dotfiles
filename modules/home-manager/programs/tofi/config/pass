@@ -1,2 +1,8 @@
 include = ./multi-line
-prompt-text = "pass: "
+
+font = "ShureTechMono Nerd Font"
+prompt-text = ">_: "
+outline-color = #D3D1B9
+border-color = #E3E1C9
+text-color = #0A3
+selection-color = #0F6
