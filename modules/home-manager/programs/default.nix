@@ -2,6 +2,7 @@
   imports = [
     # ./misc
     # ./atuin
+    ./aerc
     ./aws
     ./foot
     ./fzf
