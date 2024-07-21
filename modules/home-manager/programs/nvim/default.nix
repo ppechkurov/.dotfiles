@@ -9,6 +9,7 @@
       ansible-lint
       lua
       lua-language-server
+      marksman
       nil
       nixfmt-classic
       nodePackages.bash-language-server
