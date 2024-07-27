@@ -128,7 +128,7 @@ in {
     "${network}" = {
       # interface = "wlp2*"; # (Optional) To force the use of this interface
       format-wifi = "({signalStrength}%) ";
-      format-ethernet = "  {bandwidthUpBytes} |   {bandwidthDownBytes} 󰈀 ";
+      format-ethernet = " {bandwidthUpBytes:>} |  {bandwidthDownBytes:>} 󰈀 ";
       interval = 2;
       tooltip-format = "󱘖 {ipaddr}";
       format-linked = "{ifname} (No IP) ?";
@@ -138,7 +138,7 @@ in {
     };
 
     "${cpu}" = {
-      format = "  {usage}%";
+      format = "  {usage:>2}%";
       tooltip = false;
       interval = 2;
       format-alt = "  {avg_frequency} GHz";
