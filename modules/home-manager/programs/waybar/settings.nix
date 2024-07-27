@@ -99,6 +99,7 @@ in {
       disable-scroll = true;
       format = "{icon} ";
       sort-by-number = true;
+      # all-outputs = true;
       format-icons = {
         "1" = "";
         "2" = "";
@@ -112,6 +113,20 @@ in {
         "10" = "󰒯";
       };
       "persistent-workspaces" = { "*" = 5; };
+      # "persistent-workspaces" = {
+      #   # DP-4 = [ "1" "2" "3" "4" "5" ];
+      #   # DVI-D-1 = [ "6" "7" "8" "9" "10" ];
+      #   # "1" = [ "DP-4" ];
+      #   # "2" = [ "DP-4" ];
+      #   # "3" = [ "DP-4" ];
+      #   # "4" = [ "DP-4" ];
+      #   # "5" = [ "DP-4" ];
+      #   # "6" = [ "DVI-D-1" ];
+      #   # "7" = [ "DVI-D-1" ];
+      #   # "8" = [ "DVI-D-1" ];
+      #   # "9" = [ "DVI-D-1" ];
+      #   # "10" = [ "DVI-D-1" ];
+      # };
     };
 
     "${disk}" = { format = "󰋊 {free}"; };
