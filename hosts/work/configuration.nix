@@ -6,7 +6,7 @@
 
   services.gnome.gnome-keyring.enable = true;
 
-  environment.systemPackages = with pkgs; [ skypeforlinux gnumake ];
+  environment.systemPackages = with pkgs; [ skypeforlinux gnumake zip ];
 
   home-manager = {
     users.${config.username} = import ./home.nix;
