@@ -26,14 +26,11 @@
       }
       {
         plugin = tmuxPlugins.resurrect;
-        extraConfig = "set -g @resurrect-processes 'ssh'";
+        extraConfig = "set -g @resurrect-processes 'ssh cava ncmpcpp'";
       }
       {
         plugin = tmuxPlugins.continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '60' # minutes
-        '';
+        extraConfig = "set -g @continuum-restore 'on'";
       }
     ];
     extraConfig = ''

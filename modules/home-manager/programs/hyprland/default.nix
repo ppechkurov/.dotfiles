@@ -23,8 +23,8 @@ in {
 
     exec-once = [
       "foot --app-id default --override colors.alpha=0.10 tmux new -A -s default"
+      "sleep 10; foot --app-id ssh --override colors.alpha=0.10 tmux new -A -s ssh"
       "firefox"
-      "sleep 5 && foot --app-id ssh --override colors.alpha=0.10 tmux new -A -s ssh"
       "pkill waybar; sleep 0.5; waybar"
       "sleep 1 && telegram-desktop"
       "sleep 1 && skypeforlinux"
