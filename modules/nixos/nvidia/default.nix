@@ -1,14 +1,15 @@
-{ pkgs, config, ... }: {
+{ pkgs, pkgs-unstable, config, ... }: {
   # Enable OpenGL
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-      intel-media-driver
-      egl-wayland
-    ];
+    extraPackages = with pkgs;
+      [
+        # nvidia-vaapi-driver
+        # intel-media-driver
+        pkgs-unstable.egl-wayland
+      ];
   };
 
   # Load nvidia driver for Xorg and Wayland
@@ -39,6 +40,6 @@
     forceFullCompositionPipeline = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 }

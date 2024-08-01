@@ -79,6 +79,8 @@ in {
       ];
     };
 
+    cursor = { hide_on_key_press = true; };
+
     misc = {
       # disable auto polling for config file changes
       disable_autoreload = true;
@@ -89,7 +91,6 @@ in {
       initial_workspace_tracking = 0;
 
       force_default_wallpaper = 0;
-      hide_cursor_on_key_press = true;
 
       # disable dragging animation
       animate_mouse_windowdragging = false;
