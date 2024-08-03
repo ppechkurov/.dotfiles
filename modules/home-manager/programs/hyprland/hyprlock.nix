@@ -1,6 +1,11 @@
 { config, ... }: {
   programs.hyprlock.enable = true;
   programs.hyprlock.settings = {
+    general = {
+      grace = 60;
+      ignore_empty_input = true;
+    };
+
     background = {
       monitor = "";
       path =
@@ -16,7 +21,7 @@
 
     label = [
       {
-        text = ''cmd[update:200:1] echo "<b><big> $TIME </big></b>"'';
+        text = ''cmd[update:60:1] echo "<b><big> $TIME </big></b>"'';
         font_size = 64;
 
         position = "0, 16";

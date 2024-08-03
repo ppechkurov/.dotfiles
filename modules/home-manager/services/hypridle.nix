@@ -1,14 +1,16 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }:
+with lib; {
   services.hypridle.enable = true;
 
   services.hypridle.settings = {
     general = {
       # after_sleep_cmd = "hyprctl dispatch dpms on";
       ignore_dbus_inhibit = false;
-      lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+      lock_cmd =
+        "pidof ${pkgs.hyprlock}/bin/hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
     };
 
-    listener = [
+    listener = mkDefault [
       {
         timeout = 300;
         on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
