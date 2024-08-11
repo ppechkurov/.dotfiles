@@ -20,6 +20,7 @@ return {
       javascript = { 'prettierd' },
       json = { 'prettierd' },
       nix = { 'nixfmt' },
+      go = { 'gofmt' },
     },
   },
 }

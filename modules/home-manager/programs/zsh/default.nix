@@ -30,7 +30,7 @@ in {
     history = { ignoreAllDups = true; };
     shellAliases = {
       cat = "bat";
-      ls = "eza";
+      ls = "eza --group-directories-first";
       ll = "ls -l -g --icons=auto";
       lla = "ll -a";
     };

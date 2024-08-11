@@ -115,6 +115,7 @@ function M.config()
     'ansiblels',
     'marksman',
     'nil_ls',
+    'gopls',
   }
 
   for _, server in pairs(servers) do
