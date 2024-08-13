@@ -168,10 +168,6 @@ with lib; {
       WLR_NO_HARDWARE_CURSORS = "1";
       XDG_SESSION_TYPE = "wayland";
 
-      LIBVA_DRIVER_NAME = "nvidia";
-      GBM_BACKEND = "nvidia-drm";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      NVD_BACKEND = "direct";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
 
@@ -185,6 +181,10 @@ with lib; {
       ];
       config = { common.default = [ "gtk" "wlr" "hyprland" ]; };
     };
+
+    programs.hyprland.enable = true;
+    programs.hyprland.xwayland.enable = true;
+    programs.hyprland.portalPackage = pkgs.xdg-desktop-portal-hyprland;
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];

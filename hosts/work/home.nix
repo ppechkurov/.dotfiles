@@ -8,19 +8,8 @@
   };
 
   home.sessionPath = [ "$HOME/.npm-global/bin" ];
-  home.packages = with pkgs; [
-    zoom-us
-    ansible
-    obsidian
-    just
-    protonvpn-gui
-    drawio
-  ];
+  home.packages = with pkgs; [ drawio just obsidian zoom-us ];
 
   local.zellij.enable = true;
   local.mysql.enable = true;
-
-  local.meli.enable = true;
-  local.meli.email = "petr.pechkurov@succraft.com";
-  local.meli.secrets_path = "success/gmail";
 }
