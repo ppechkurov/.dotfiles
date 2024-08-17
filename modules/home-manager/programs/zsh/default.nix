@@ -20,7 +20,7 @@ in {
     defaultKeymap = "emacs";
     antidote = {
       enable = true;
-      plugins = [ "romkatv/powerlevel10k" ];
+      plugins = [ "romkatv/powerlevel10k" "zsh-users/zsh-completions" ];
     };
     oh-my-zsh = {
       enable = true;
