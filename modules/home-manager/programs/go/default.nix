@@ -1,0 +1,2 @@
+{ programs.go.enable = true; }
+
