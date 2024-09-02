@@ -8,6 +8,7 @@
     ./fzf
     ./git
     ./github
+    ./go
     ./firefox
     ./nvim
     ./ncmpcpp
