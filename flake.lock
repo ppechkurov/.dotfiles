@@ -21,6 +21,27 @@
         "type": "github"
       }
     },
+    "jira": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1725456233,
+        "narHash": "sha256-B164BQUkJENNZLNL/Vtkmty3P8ne+50tAYCPmlphrf0=",
+        "owner": "ppechkurov",
+        "repo": "jira",
+        "rev": "9864a9ef9e89729db737f5c835936cb3164d554f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ppechkurov",
+        "repo": "jira",
+        "type": "github"
+      }
+    },
     "minimal-tmux": {
       "inputs": {
         "nixpkgs": [
@@ -74,9 +95,43 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "jira": "jira",
         "minimal-tmux": "minimal-tmux",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
       }
     }
   },

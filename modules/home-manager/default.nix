@@ -1,4 +1,4 @@
-{ lib, osConfig, pkgs, ... }:
+{ lib, osConfig, pkgs, inputs, ... }:
 with osConfig; {
   imports = [ ./programs ./services ./keyboard ];
 
@@ -19,14 +19,9 @@ with osConfig; {
       name = "Simp1e-Gruvbox-Dark";
       size = 24;
     };
-    packages = with pkgs; [
-      cliphist
-      dconf
-      gcc
-      pavucontrol
-      ripgrep
-      telegram-desktop
-    ];
+    packages = with pkgs;
+      let jira = inputs.jira.packages.${pkgs.system}.default;
+      in [ jira cliphist dconf gcc pavucontrol ripgrep telegram-desktop ];
   };
 
   home.stateVersion = "24.05";
