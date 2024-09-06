@@ -6,7 +6,10 @@
 
   services.gnome.gnome-keyring.enable = true;
 
-  environment.systemPackages = with pkgs; [ skypeforlinux gnumake zip ];
+  environment.systemPackages = let
+    stable = with pkgs; [ skypeforlinux gnumake zip ];
+    unstable = with pkgs-unstable; [ jetbrains.writerside ];
+  in stable ++ unstable;
 
   home-manager = {
     users.${config.username} = import ./home.nix;
