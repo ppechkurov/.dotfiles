@@ -165,7 +165,6 @@ with lib; {
       QT_QPA_PLATFORM = "wayland";
       SDL_VIDEODRIVER = "wayland";
       TERMINAL = "foot";
-      WLR_NO_HARDWARE_CURSORS = "1";
       XDG_SESSION_TYPE = "wayland";
 
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
@@ -177,12 +176,12 @@ with lib; {
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
         xdg-desktop-portal-wlr
-        xdg-desktop-portal-hyprland
       ];
       config = { common.default = [ "gtk" "wlr" "hyprland" ]; };
     };
 
     programs.hyprland.enable = true;
+    programs.hyprland.package = pkgs-unstable.hyprland;
     programs.hyprland.xwayland.enable = true;
     programs.hyprland.portalPackage = pkgs.xdg-desktop-portal-hyprland;
 

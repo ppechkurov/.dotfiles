@@ -28,13 +28,17 @@ return {
   end,
   opts = {
     window = {
-      position = 'float',
+      position = 'left',
       mappings = {
         ['l'] = 'open',
         ['h'] = 'close_node',
       },
     },
     filesystem = {
+      follow_current_file = {
+        enabled = true,
+        leave_dirs_open = false,
+      },
       filtered_items = {
         always_show = {
           '.config',

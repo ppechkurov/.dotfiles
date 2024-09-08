@@ -10,7 +10,9 @@
     [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelPackages = pkgs.linuxPackages_6_8;
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  # try with good internet
+  # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
