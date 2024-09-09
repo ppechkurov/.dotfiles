@@ -118,6 +118,17 @@ with lib; {
       shell = pkgs.zsh;
     };
 
+    programs.ssh.extraConfig =
+      #bash
+      ''
+        Host github.com
+          IdentitiesOnly yes
+          User git
+          Hostname github.com
+          PreferredAuthentications publickey
+          IdentityFile /home/${config.username}/.ssh/id_ed25519
+      '';
+
     networking.networkmanager.enable = true;
 
     # Allow unfree packages and insecure packages

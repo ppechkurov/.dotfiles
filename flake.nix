@@ -8,7 +8,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
     minimal-tmux.inputs.nixpkgs.follows = "nixpkgs";
-    jira.url = "github:ppechkurov/jira";
+    jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
     jira.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
