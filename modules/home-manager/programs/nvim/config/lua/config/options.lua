@@ -21,7 +21,7 @@ vim.opt.numberwidth = 4 -- set number column width to 2 {default 4}
 vim.opt.pumblend = 10
 vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.relativenumber = true -- set relative numbered lines
-vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', 'globals', 'skiprtp', 'folds' }
+vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'winpos', 'help', 'globals', 'skiprtp', 'folds' }
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.shortmess:append('c')
 vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore

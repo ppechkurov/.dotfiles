@@ -10,7 +10,7 @@ return {
   config = function(_, opts)
     local wk = require('which-key')
     wk.register({
-      ['<leader>e'] = { ':Neotree focus reveal<cr>', 'File Tree' },
+      ['<leader>e'] = { ':Neotree focus toggle<cr>', 'File Tree' },
     })
     opts.event_handlers = opts.event_handlers or {}
     vim.list_extend(opts.event_handlers, {
@@ -20,7 +20,7 @@ return {
           -- auto close
           -- vimc.cmd("Neotree close")
           -- OR
-          require('neo-tree.command').execute({ action = 'close' })
+          -- require('neo-tree.command').execute({ action = 'close' })
         end,
       },
     })

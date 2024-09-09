@@ -1,7 +1,14 @@
 return {
   'folke/persistence.nvim',
   event = 'BufReadPre',
-  opts = { options = vim.opt.sessionoptions:get() },
+  opts = {
+    options = vim.opt.sessionoptions:get(),
+    post_load = function()
+      if vim.api.nvim_win_get_width(0) >= 120 then
+        require('neo-tree.command').execute({ action = 'show' })
+      end
+    end,
+  },
   -- stylua: ignore
   keys = {
     -- { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
