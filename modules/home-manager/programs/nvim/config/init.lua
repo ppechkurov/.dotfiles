@@ -47,6 +47,8 @@ spec('plugins.dap')
 spec('plugins.octo')
 
 spec('plugins.dressing')
+-- spec('plugins.go')
+-- spec('plugins.rest')
 spec('plugins.colorizer')
 spec('plugins.otter')
 spec('plugins.nopain')

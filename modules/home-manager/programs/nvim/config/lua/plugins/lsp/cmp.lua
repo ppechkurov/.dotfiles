@@ -41,6 +41,7 @@ local M = {
 
 function M.config()
   local cmp = require('cmp')
+  local compare = cmp.config.compare
 
   local luasnip = require('luasnip')
   require('luasnip/loaders/from_vscode').lazy_load()
@@ -131,13 +132,26 @@ function M.config()
       end,
     },
     sources = {
-      { name = 'nvim_lsp' },
+      { name = 'nvim_lsp', priority = 1000 },
       { name = 'luasnip' },
       { name = 'nvim_lua' },
       { name = 'buffer' },
       { name = 'path' },
       { name = 'calc' },
       { name = 'emoji' },
+    },
+    sorting = {
+      priority_weight = 1.0,
+      comparators = {
+        compare.sort_text,
+        compare.score,
+        compare.offset,
+        compare.exact,
+        compare.recently_used,
+        compare.locality,
+        compare.kind,
+        compare.length,
+      },
     },
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,

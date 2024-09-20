@@ -57,6 +57,12 @@
       bind > swap-pane -D       # swap current pane with the next one
       bind < swap-pane -U       # swap current pane with the previous one
 
+      bind < swap-pane -U       # swap current pane with the previous one
+
+      # split and follow
+      bind '"' split-window -v -c "#{pane_current_path}"
+      bind  %  split-window -h -c "#{pane_current_path}"
+
       # window reordering
       bind -r C-H swap-window -d -t -1
       bind -r C-L swap-window -d -t +1
