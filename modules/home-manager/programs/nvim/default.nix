@@ -7,7 +7,6 @@
     package = pkgs-unstable.neovim-unwrapped;
     extraPackages = with pkgs; [
       ansible-lint
-      hurl
       lua
       lua-language-server
       marksman
