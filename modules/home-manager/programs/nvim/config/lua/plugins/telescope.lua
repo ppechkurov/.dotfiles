@@ -1,3 +1,14 @@
+local function pick_git_root(telescope_picker)
+  return function()
+    local dot_git_path = vim.fn.finddir('.git', '.;')
+    local result = vim.fn.fnamemodify(dot_git_path, ':h')
+    -- set cwd to git root befor search.
+    -- see [reddit](https://www.reddit.com/r/neovim/comments/x0563u/how_to_automatically_cd_to_the_git_root_of_the/)
+    vim.api.nvim_set_current_dir(result)
+    require('telescope.builtin')[telescope_picker]()
+  end
+end
+
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
@@ -10,13 +21,14 @@ return {
     wk.register({
       -- quick find
       ['<leader><space>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
-      -- ['<Tab>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
       ['<leader>/'] = { '<cmd>Telescope live_grep<cr>', 'Grep' },
       ['<leader>:'] = { '<cmd>Telescope command_history<cr>', 'Command History' },
       -- files
       ['<leader>ff'] = { '<cmd>Telescope find_files<cr>', '[f]iles' },
-      ['<leader>fF'] = { '<cmd>Telescope git_files<cr>', '[F]iles(.git)' },
+      ['<leader>fF'] = { pick_git_root('find_files'), '[F]iles(.git)' },
+
       ['<leader>fg'] = { '<cmd>Telescope live_grep<cr>', '[g]rep' },
+      ['<leader>fG'] = { pick_git_root('live_grep'), '[g]rep(.git)' },
       ['<leader>f.'] = { '<cmd>Telescope oldfiles<cr>', '[.]oldfiles' },
       ['<leader>fr'] = { '<cmd>Telescope resume<cr>', '[r]esume' },
       -- diagnostics
