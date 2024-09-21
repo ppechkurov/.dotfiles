@@ -4,16 +4,16 @@ return {
     local mappings = {
       q = { '<cmd>confirm q<CR>', 'Quit' },
       w = { '<cmd>:w<CR>', 'Write' },
-      c = {
-        name = '[c]lose buffers',
+      b = {
+        name = 'close [b]uffers',
         o = { '<cmd>%bd|e#|bd#<CR>', '[o]thers' },
         c = { '<cmd>bd<CR>', '[c]urrent' },
       },
+      c = { name = '[c]ode' },
       d = { name = '[d]ebug' },
-      s = { name = '[s]earch' },
+      f = { name = '[f]ind' },
       g = { name = '[g]it' },
       l = { name = '[L]SP' },
-      -- p = { name = "Plugins" },
       t = {
         name = '[t]abs',
         n = { '<cmd>$tabnew<cr>', 'New Empty Tab' },

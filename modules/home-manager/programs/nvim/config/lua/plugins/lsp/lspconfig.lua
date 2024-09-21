@@ -12,12 +12,11 @@ local M = {
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  -- gD is the default mapping for go to first occurence of a word under the cursor
   keymap(bufnr, 'n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
   keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   keymap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-  keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 end
 
@@ -39,10 +38,6 @@ function M.common_capabilities()
   return capabilities
 end
 
-M.toggle_inlay_hints = function()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end
-
 function M.config()
   local wk = require('which-key')
   wk.register({
@@ -54,7 +49,7 @@ function M.config()
     ['<leader>cf'] = { "<cmd> lua require('conform').format()<cr>", 'Format' },
     ['<leader>ci'] = { '<cmd>LspInfo<cr>', 'Info' },
     ['<leader>cj'] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Next Diagnostic' },
-    ['<leader>ch'] = { "<cmd>lua require('plugins.lspconfig').toggle_inlay_hints()<cr>", 'Hints' },
+    ['<leader>ch'] = { '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>', 'Hints' },
     ['<leader>ck'] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Prev Diagnostic' },
     ['<leader>cl'] = { '<cmd>lua vim.lsp.codelens.run()<cr>', 'CodeLens Action' },
     ['<leader>cq'] = { '<cmd>lua vim.diagnostic.setloclist()<cr>', 'Quickfix' },
@@ -106,7 +101,7 @@ function M.config()
   local servers = {
     'lua_ls',
     'html',
-    -- 'tsserver',
+    -- 'tsserver', // configured in typescript-tools
     'eslint',
     'bashls',
     'jsonls',

@@ -29,7 +29,6 @@ return {
       -- git
       ['<leader>gb'] = { '<cmd>Telescope git_branches<cr>', 'Git Branch' },
       ['<leader>gc'] = { '<cmd>Telescope git_commits<cr>', 'Git Commits' },
-      ['<leader>gf'] = { '<cmd>Telescope git_commits<cr>', 'Git Files' },
     })
 
     local icons = require('config.icons')
