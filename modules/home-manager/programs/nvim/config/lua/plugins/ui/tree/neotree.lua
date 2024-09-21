@@ -10,7 +10,7 @@ return {
   config = function(_, opts)
     local wk = require('which-key')
     wk.register({
-      ['<leader>e'] = { ':Neotree focus toggle<cr>', 'File Tree' },
+      ['<leader>e'] = { ':Neotree show toggle<cr>', 'File Tree' },
     })
     opts.event_handlers = opts.event_handlers or {}
     vim.list_extend(opts.event_handlers, {
@@ -27,6 +27,7 @@ return {
     require('neo-tree').setup(opts)
   end,
   opts = {
+    close_if_last_window = true,
     window = {
       position = 'left',
       mappings = {
@@ -35,10 +36,10 @@ return {
       },
     },
     filesystem = {
-      bind_to_cwd = false,
+      bind_to_cwd = true,
       follow_current_file = {
         enabled = true,
-        leave_dirs_open = false,
+        leave_dirs_open = true,
       },
       filtered_items = {
         always_show = {
