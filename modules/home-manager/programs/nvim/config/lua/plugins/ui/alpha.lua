@@ -33,7 +33,7 @@ function M.config()
     button('p', icons.git.Repo .. ' Find project', ":lua require('telescope').extensions.projects.projects()<CR>"),
     button('r', icons.ui.History .. ' Recent files', ':Telescope oldfiles <CR>'),
     button('c', icons.ui.Gear .. ' Config', ':e ~/.config/nvim/init.lua <CR>'),
-    button('s', icons.ui.CloudDownload .. ' Last session', ':lua require("persistence").load({last = true})<CR>'),
+    button('s', icons.ui.CloudDownload .. ' Last session', ':lua require("persistence").load()<CR>'),
     button('n', icons.ui.NewFile .. ' New file', ':ene <BAR> startinsert <CR>'),
     button('q', icons.ui.SignOut .. ' Quit', ':qa<CR>'),
   }
