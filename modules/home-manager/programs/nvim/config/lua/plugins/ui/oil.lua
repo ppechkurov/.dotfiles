@@ -17,6 +17,6 @@ return {
         ['<BS>'] = 'actions.parent',
       },
     })
-    vim.keymap.set('n', '<BS>', '<CMD>Oil --float<CR>', { desc = 'Open parent directory' })
+    vim.keymap.set('n', '<BS>', '<CMD>OutlineFocusCode<CR><CMD>Oil --float<CR>', { desc = 'Open parent directory' })
   end,
 }

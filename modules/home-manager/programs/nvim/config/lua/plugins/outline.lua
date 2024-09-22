@@ -7,6 +7,8 @@ return {
     require('outline').setup({
       outline_window = {
         auto_jump = true,
+        width = 30,
+        relative_width = false,
       },
     })
   end,

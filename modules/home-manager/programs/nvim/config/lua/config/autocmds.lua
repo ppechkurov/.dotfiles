@@ -2,16 +2,16 @@ local function augroup(name)
   return vim.api.nvim_create_augroup('auto_' .. name, { clear = true })
 end
 
--- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight on yank',
   group = augroup('highlight_yank'),
   callback = function()
     vim.highlight.on_yank()
   end,
 })
 
--- close some filetypes with <q>
 vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Close some filetypes with <q>',
   group = augroup('close_with_q'),
   pattern = {
     'PlenaryTestPopup',
@@ -36,8 +36,8 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Wrap and check for spell in text filetypes',
   group = augroup('wrap_spell'),
   pattern = { 'gitcommit', 'markdown' },
   callback = function()
@@ -46,8 +46,15 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Fix conceallevel for json files
+vim.api.nvim_create_autocmd('BufLeave', {
+  desc = 'close outline when leaving outline buffer (opening float oil, telescope etc.)',
+  group = augroup('outline'),
+  pattern = { 'OUTLINE*' },
+  command = 'OutlineClose',
+})
+
 vim.api.nvim_create_autocmd({ 'FileType' }, {
+  desc = 'Fix conceallevel for json files',
   group = augroup('json_conceal'),
   pattern = { 'json', 'jsonc', 'json5' },
   callback = function()
@@ -55,8 +62,8 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
--- Auto create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  desc = 'Auto create dir when saving a file, in case some intermediate directory does not exist',
   group = augroup('auto_create_dir'),
   callback = function(event)
     if event.match:match('^%w%w+://') then
@@ -146,6 +153,7 @@ end, {
   desc = 'Disable autoformat-on-save',
   bang = true,
 })
+
 vim.api.nvim_create_user_command('FormatEnable', function()
   vim.b.disable_autoformat = false
   vim.g.disable_autoformat = false
