@@ -1,4 +1,9 @@
-{
+{ lib, ... }: {
+  wayland.windowManager.hyprland.settings.input = {
+    kb_layout = lib.mkForce "us,ru,us";
+    kb_variant = "dvorak,,basic";
+  };
+
   wayland.windowManager.hyprland.settings.monitor = [
     "DP-4, preferred, 0x0, 1"
     "DVI-D-2, preferred, 1920x0, 1"
