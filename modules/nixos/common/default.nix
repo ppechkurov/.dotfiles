@@ -118,6 +118,7 @@ with lib; {
       shell = pkgs.zsh;
     };
 
+    programs.ssh.startAgent = true;
     programs.ssh.extraConfig =
       #bash
       ''
