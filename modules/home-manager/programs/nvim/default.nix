@@ -5,6 +5,16 @@
     enable = true;
     defaultEditor = true;
     package = pkgs-unstable.neovim-unwrapped;
+    # required for rest.nvim plugin. it uses luarocks and libs from there.
+    extraLuaPackages = ps:
+      with pkgs; [
+        luajitPackages.luarocks-nix
+        luajitPackages.lua-curl
+        luajitPackages.xml2lua
+        luajitPackages.mimetypes
+        luajitPackages.fidget-nvim
+        luajitPackages.nvim-nio
+      ];
     extraPackages = with pkgs; [
       ansible-lint
       lua
