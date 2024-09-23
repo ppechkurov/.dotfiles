@@ -158,5 +158,6 @@ return {
     Smiley = ' ',
     Package = ' ',
     CircuitBoard = ' ',
+    Lock = ' ',
   },
 }

@@ -34,6 +34,10 @@ return {
         -- theme = require('neofusion.lualine'),
         theme = 'auto',
         globalstatus = true,
+        -- component_separators = { left = '', right = '' },
+        -- section_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+
         disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'starter' } },
       },
       sections = {
@@ -41,32 +45,24 @@ return {
         lualine_b = { 'branch' },
 
         lualine_c = {
-          -- Util.lualine.root_dir(),
           {
             'diagnostics',
             symbols = {
-              error = icons.diagnostics.Error,
-              warn = icons.diagnostics.Warn,
-              info = icons.diagnostics.Info,
-              hint = icons.diagnostics.Hint,
+              error = icons.diagnostics.Error .. ' ',
+              warn = icons.diagnostics.Warning .. ' ',
+              info = icons.diagnostics.Information .. ' ',
+              hint = icons.diagnostics.Hint .. ' ',
             },
           },
-          -- { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
-          -- { Util.lualine.pretty_path() },
+          { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
+          {
+            'filename',
+            path = 0,
+            padding = { left = 0, right = 1 },
+            symbols = { unnamed = '', readonly = icons.misc.Lock, modified = icons.git.FileUnstaged },
+          },
         },
         lualine_x = {
-            -- stylua: ignore
-            {
-              function() return require("noice").api.status.command.get() end,
-              cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-              color = foreground("Statement"),
-            },
-            -- stylua: ignore
-            {
-              function() return require("noice").api.status.mode.get() end,
-              cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-              color = foreground("Constant"),
-            },
             -- stylua: ignore
             {
               function() return "  " .. require("dap").status() end,
@@ -98,8 +94,7 @@ return {
           },
         },
         lualine_y = {
-          { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
-          { 'location', padding = { left = 0, right = 1 } },
+          { 'location', padding = { left = 1, right = 1 } },
         },
         lualine_z = {
           function()
