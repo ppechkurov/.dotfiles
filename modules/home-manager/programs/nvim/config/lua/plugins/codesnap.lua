@@ -2,8 +2,8 @@ return {
   'mistricky/codesnap.nvim',
   build = 'make',
   opts = {
-    bg_x_padding = 0,
-    bg_y_padding = 0,
+    bg_x_padding = 10,
+    bg_y_padding = 10,
     mac_window_bar = false,
     has_breadcrumbs = true,
     has_line_number = true,

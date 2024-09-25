@@ -46,10 +46,23 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.api.nvim_create_autocmd('BufLeave', {
-  desc = 'close outline when leaving outline buffer (opening float oil, telescope etc.)',
-  group = augroup('outline'),
-  pattern = { 'OUTLINE*' },
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Focus code before showing oil. Without this it will open in outline window',
+  group = augroup('outline_oil'),
+  pattern = { 'Outline' },
+  callback = function()
+    vim.keymap.set(
+      'n',
+      '<BS>',
+      '<CMD>OutlineFocusCode<CR><CMD>Oil --float<CR>',
+      { desc = 'Focus code before showing oil', buffer = true }
+    )
+  end,
+})
+
+vim.api.nvim_create_autocmd('User', {
+  desc = 'close outline when opening telescope because it will open in the outline window',
+  pattern = 'TelescopeFindPre',
   command = 'OutlineClose',
 })
 
