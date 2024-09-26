@@ -1,4 +1,10 @@
-{ inputs, config, pkgs, pkgs-unstable, ... }: {
+{ inputs, config, pkgs, pkgs-unstable, ... }:
+let
+  factorio = pkgs.writeScriptBin "factorio" # bash
+    ''
+      steam-run ~/factorio/bin/x64/factorio
+    '';
+in {
   imports = [
     ../../modules/nixos/common
     ../../modules/nixos/nvidia
@@ -16,7 +22,7 @@
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ canon-cups-ufr2 gutenprint ];
 
-  environment.systemPackages = with pkgs; [ steam-run ];
+  environment.systemPackages = with pkgs; [ steam-run factorio ];
 
   home-manager = {
     users.${config.username} = import ./home.nix;
