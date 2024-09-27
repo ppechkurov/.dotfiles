@@ -11,10 +11,15 @@ return {
       changedelete = { text = '▎' },
       untracked = { text = '▎' },
     },
+    signs_staged = {
+      add = { text = '▎' },
+      change = { text = '▎' },
+      delete = { text = '' },
+      topdelete = { text = '' },
+      changedelete = { text = '▎' },
+    },
   },
   config = function()
-    local icons = require('config.icons')
-
     local wk = require('which-key')
     wk.register({
       ['<leader>gj'] = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", 'Next Hunk' },
@@ -35,38 +40,6 @@ return {
     })
 
     require('gitsigns').setup({
-      signs = {
-        add = {
-          hl = 'GitSignsAdd',
-          text = icons.ui.BoldLineDashedMiddle,
-          numhl = 'GitSignsAddNr',
-          linehl = 'GitSignsAddLn',
-        },
-        change = {
-          hl = 'GitSignsChange',
-          text = icons.ui.BoldLineMiddle,
-          numhl = 'GitSignsChangeNr',
-          linehl = 'GitSignsChangeLn',
-        },
-        delete = {
-          hl = 'GitSignsDelete',
-          text = icons.ui.TriangleShortArrowRight,
-          numhl = 'GitSignsDeleteNr',
-          linehl = 'GitSignsDeleteLn',
-        },
-        topdelete = {
-          hl = 'GitSignsDelete',
-          text = icons.ui.TriangleShortArrowRight,
-          numhl = 'GitSignsDeleteNr',
-          linehl = 'GitSignsDeleteLn',
-        },
-        changedelete = {
-          hl = 'GitSignsChange',
-          text = icons.ui.BoldLineDashedMiddle,
-          numhl = 'GitSignsChangeNr',
-          linehl = 'GitSignsChangeLn',
-        },
-      },
       watch_gitdir = {
         interval = 1000,
         follow_files = true,
