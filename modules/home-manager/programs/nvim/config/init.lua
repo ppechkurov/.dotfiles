@@ -47,6 +47,7 @@ spec('plugins.dap')
 spec('plugins.octo')
 
 spec('plugins.dressing')
+spec('plugins.gh')
 -- spec('plugins.go')
 spec('plugins.rest')
 -- spec('plugins.edgy')
