@@ -30,6 +30,12 @@ return {
       vim.cmd.colorscheme('gruvbox-material')
     end,
   },
+  {
+    'tjdevries/colorbuddy.nvim',
+    config = function()
+      -- vim.cmd.colorscheme('gruvbuddy')
+    end,
+  },
   -- {
   --   'diegoulloao/neofusion.nvim',
   --   priority = 1000,

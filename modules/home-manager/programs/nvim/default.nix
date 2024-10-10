@@ -46,10 +46,10 @@
   };
 
   # https://search.nixos.org/packages?channel=unstable&show=codeium&from=0&size=50&sort=relevance&type=packages&query=codeium
-  # find the line with `let s:language_server_sha = 'lsp_sha'` in the /home/petrp/.local/share/nvim/lazy/codeium.vim/autoload/codeium/server.vim
+  # find the line with `let s:language_server_sha = 'lsp_sha'` in the /home/${USER}/.local/share/nvim/lazy/codeium.vim/autoload/codeium/server.vim
   # and copy the sha from it to commit and update plugin
   xdg.dataFile.".codeium" = let
-    commit = "071907d082576067b0c7a5f2f7659958865d751e";
+    commit = "37f12b83df389802b7d4e293b3e1a986aca289c0";
     # "$(which codeium_language_server)"
     exec = "/run/current-system/sw/bin/codeium_language_server";
   in {

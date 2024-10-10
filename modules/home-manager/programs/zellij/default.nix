@@ -22,8 +22,9 @@
                 }
 
                 pane name="client" size=6 {
+                    cwd "./client"
                     command "npm"
-                    args "run" "dev:client"
+                    args "run" "dev"
                 }
 
                 pane size=2 borderless=true {
@@ -31,19 +32,24 @@
                 }
             }
 
-            tab name="master & security" {
+            tab name="database & security & schedulers" {
                 pane size=1 borderless=true {
                     plugin location="zellij:tab-bar"
                 }
 
-                pane name="master" {
+                pane name="database-manager" {
                     command "npm"
-                    args "run" "dev:master"
+                    args "run" "dev:database-manager"
                 }
 
                 pane name="security" {
                     command "npm"
                     args "run" "dev:security"
+                }
+
+                pane name="schedulers" {
+                    command "npm"
+                    args "run" "dev:schedulers-manager"
                 }
 
                 pane size=2 borderless=true {
