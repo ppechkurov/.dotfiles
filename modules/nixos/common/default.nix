@@ -153,8 +153,7 @@ with lib; {
       mpc-cli
       ncdu
       neovide
-      nodejs_20
-      # nodejs_22
+      nodejs_22
       pass-wayland
       satty
       slack

@@ -33,7 +33,7 @@ return {
       options = {
         -- theme = require('neofusion.lualine'),
         theme = 'auto',
-        globalstatus = true,
+        globalstatus = vim.o.laststatus == 3,
         -- component_separators = { left = '', right = '' },
         -- section_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
@@ -73,6 +73,19 @@ return {
             require('lazy.status').updates,
             cond = require('lazy.status').has_updates,
             color = foreground('Special'),
+          },
+          -- the bellow commands add macro recording indicatior and key presses
+          -- stylua: ignore
+          {
+            function() return require('noice').api.status.command.get() end,
+            cond = function() return package.loaded['noice'] and require('noice').api.status.command.has() end,
+            color = { fg = '#ff9e64' },
+          },
+          -- stylua: ignore
+          {
+            function() return require("noice").api.status.mode.get() end,
+            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+            color = { fg = '#ff9e64' },
           },
           {
             'diff',
