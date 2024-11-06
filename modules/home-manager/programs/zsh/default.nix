@@ -74,6 +74,9 @@ in {
       ''
         # VIM as man pager
         export MANPAGER="nvim -c 'Man!' -o -"
+
+        # disable cursor style for zsh-vi-mode plugin
+        export ZVM_CURSOR_STYLE_ENABLED=false
       '';
   };
 

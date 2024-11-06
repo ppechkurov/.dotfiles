@@ -10,7 +10,7 @@
     mouse = true;
     newSession = true;
     resizeAmount = 2;
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     plugins = with pkgs; [
       {
         plugin = tmuxPlugins.fzf-tmux-url;
@@ -33,39 +33,47 @@
         extraConfig = "set -g @continuum-restore 'on'";
       }
     ];
-    extraConfig = ''
-      set -g pane-border-style fg=blue
-      set -g pane-active-border-style "bg=default fg=blue"
+    extraConfig = # tmux
+      ''
+        set -g pane-border-style fg=blue
+        set -g pane-active-border-style "bg=default fg=blue"
 
-      set -g status "on"
+        set -g status "on"
 
-      set -g renumber-windows on    # renumber windows when a window is closed
-      set -g set-titles on          # set terminal title
+        set -g renumber-windows on    # renumber windows when a window is closed
+        set -g set-titles on          # set terminal title
 
-      bind -n C-Enter copy-mode
+        bind -n C-Enter copy-mode
 
-      bind-key -T copy-mode-vi v send -X begin-selection
-      bind-key -T copy-mode-vi C-v send -X begin-selection \; send-keys -X rectangle-toggle
-      bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
+        # scroll
+        is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
 
-      bind-key -T copy-mode-vi ? command-prompt -i -p "search down" "send -X search-forward-incremental \"%%%\""
-      bind-key -T copy-mode-vi / command-prompt -i -p "search up" "send -X search-backward-incremental \"%%%\""
+        bind -n C-u if-shell "$is_vim" "send-keys C-u" "copy-mode -e \; send-keys -X halfpage-up"
+        bind -n C-d if-shell "$is_vim" "send-keys C-d" "send-keys C-d"
 
-      bind -n C-l send-keys C-l \; run 'sleep 0.2' \; clear-history
+        bind-key -T copy-mode-vi v send -X begin-selection
+        bind-key -T copy-mode-vi C-v send -X begin-selection \; send-keys -X rectangle-toggle
+        bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
 
-      # pane navigation
-      bind > swap-pane -D       # swap current pane with the next one
-      bind < swap-pane -U       # swap current pane with the previous one
+        bind-key -T copy-mode-vi / command-prompt -i -p "search up" "send -X search-backward-incremental \"%%%\""
+        bind-key -T copy-mode-vi ? command-prompt -i -p "search down" "send -X search-forward-incremental \"%%%\""
 
-      bind < swap-pane -U       # swap current pane with the previous one
+        bind -n C-l send-keys C-l \; run 'sleep 0.2' \; clear-history
 
-      # split and follow
-      bind '"' split-window -v -c "#{pane_current_path}"
-      bind  %  split-window -h -c "#{pane_current_path}"
+        # pane navigation
+        bind > swap-pane -D       # swap current pane with the next one
+        bind < swap-pane -U       # swap current pane with the previous one
 
-      # window reordering
-      bind -r C-H swap-window -d -t -1
-      bind -r C-L swap-window -d -t +1
-    '';
+        bind < swap-pane -U       # swap current pane with the previous one
+
+        # split and follow
+        bind '"' split-window -v -c "#{pane_current_path}"
+        bind  %  split-window -h -c "#{pane_current_path}"
+
+        # window reordering
+        bind -r C-H swap-window -d -t -1
+        bind -r C-L swap-window -d -t +1
+      '';
   };
 }
