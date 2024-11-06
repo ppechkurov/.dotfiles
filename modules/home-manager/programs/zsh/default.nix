@@ -22,11 +22,15 @@ in {
       enable = true;
       plugins = [ "romkatv/powerlevel10k" "zsh-users/zsh-completions" ];
     };
+    plugins = [{
+      name = "vi-mode";
+      src = pkgs.zsh-vi-mode;
+      file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+    }];
     oh-my-zsh = {
       enable = true;
-      plugins = [ "vi-mode" "fzf" ];
+      plugins = [ "fzf" ];
     };
-
     history = { ignoreAllDups = true; };
     shellAliases = {
       cat = "bat";
@@ -35,8 +39,7 @@ in {
       lla = "ll -a";
     };
 
-    initExtra =
-      # bash
+    initExtra = # bash
       ''
         source ~/.p10k.zsh
         SF_AC_ZSH_SETUP_PATH=${config.home.homeDirectory}/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
@@ -49,7 +52,7 @@ in {
           complete -C "$(which aws_completer)" aws
         fi
 
-        _ssh() {
+        _ssh_custom() {
           local cur opts
           COMPREPLY=()
           cur="$\{COMP_WORDS[COMP_CWORD]}"
@@ -59,13 +62,19 @@ in {
           return 0
         }
 
-        complete -F _ssh oil-ssh ssh scp
+        complete -F _ssh_custom oil-ssh ssh
+
+        # zsh-vi-mode overrides Ctrl+R, mapping it back
+        function zvm_after_init() {
+          zvm_bindkey viins "^R" fzf-history-widget
+        }
       '';
 
-    envExtra = ''
-      # VIM as man pager
-      export MANPAGER="nvim -c 'Man!' -o -"
-    '';
+    envExtra = # bash
+      ''
+        # VIM as man pager
+        export MANPAGER="nvim -c 'Man!' -o -"
+      '';
   };
 
   home.file.".p10k.zsh" = {
