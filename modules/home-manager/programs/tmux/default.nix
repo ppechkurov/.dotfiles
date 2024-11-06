@@ -1,4 +1,10 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+let
+  tmux-sessionizer = pkgs.writeShellScriptBin "tmux-sessionizer"
+    (builtins.readFile ./scripts/tmux-sessionizer.sh);
+in {
+  home.packages = [ tmux-sessionizer ];
+
   programs.tmux.enable = true;
   programs.tmux = {
     baseIndex = 1;
@@ -74,6 +80,8 @@
         # window reordering
         bind -r C-H swap-window -d -t -1
         bind -r C-L swap-window -d -t +1
+
+        bind-key -r f run-shell "tmux neww tmux-sessionizer"
       '';
   };
 }
