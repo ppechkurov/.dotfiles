@@ -17,7 +17,7 @@ in {
     enableCompletion = true;
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
-    defaultKeymap = "emacs";
+    defaultKeymap = "viins";
     antidote = {
       enable = true;
       plugins = [ "romkatv/powerlevel10k" "zsh-users/zsh-completions" ];
@@ -41,6 +41,9 @@ in {
 
     initExtra = # bash
       ''
+        bindkey -s "^J" ""
+        bindkey -s "^F" "tmux-sessionizer\n"
+
         source ~/.p10k.zsh
         SF_AC_ZSH_SETUP_PATH=${config.home.homeDirectory}/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
 

@@ -51,12 +51,12 @@ in {
 
         bind -n C-Enter copy-mode
 
-        # scroll
-        is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+        bind -n C-k "copy-mode -e \; send-keys -X halfpage-up" # enter copy mode and scroll up
 
-        bind -n C-u if-shell "$is_vim" "send-keys C-u" "copy-mode -e \; send-keys -X halfpage-up"
-        bind -n C-d if-shell "$is_vim" "send-keys C-d" "send-keys C-d"
+        bind-key -T copy-mode-vi C-j send -X halfpage-down # scroll down in copy mode for convinience with foot's C-j
+        bind-key -T copy-mode-vi C-k send -X halfpage-up # scroll up in copy mode for convinience with foot's C-k
+        bind-key -T copy-mode-vi u send -X halfpage-up
+        bind-key -T copy-mode-vi d send -X halfpage-down
 
         bind-key -T copy-mode-vi v send -X begin-selection
         bind-key -T copy-mode-vi C-v send -X begin-selection \; send-keys -X rectangle-toggle
