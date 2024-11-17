@@ -9,7 +9,7 @@ return {
 
     settings = {
       separate_diagnostic_server = false,
-      publish_diagnostic_on = 'change',
+      publish_diagnostic_on = 'insert_leave',
       expose_as_code_action = {
         'fix_all',
         'organize_imports',

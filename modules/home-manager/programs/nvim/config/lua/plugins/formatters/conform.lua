@@ -19,6 +19,7 @@ return {
       typescript = { 'prettierd' },
       javascript = { 'prettierd' },
       json = { 'prettierd' },
+      jsonc = { 'prettierd' },
       nix = { 'nixfmt' },
       go = { 'goimports' },
     },
