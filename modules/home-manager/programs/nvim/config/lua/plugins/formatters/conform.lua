@@ -21,7 +21,7 @@ return {
       json = { 'prettierd' },
       jsonc = { 'prettierd' },
       nix = { 'nixfmt' },
-      go = { 'goimports' },
+      go = { 'goimports', 'gofumpt' },
     },
   },
 }

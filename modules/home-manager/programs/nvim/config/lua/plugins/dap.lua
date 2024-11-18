@@ -3,12 +3,11 @@ return {
   lazy = true,
   dependencies = {
     'rcarriga/nvim-dap-ui',
-    'mxsdev/nvim-dap-vscode-js',
     'nvim-neotest/nvim-nio',
     {
       'microsoft/vscode-js-debug',
       version = '1.x',
-      build = 'npm i && npm run compile vsDebugServerBundle && mv dist out',
+      build = 'npm i && npm run compile dapDebugServer && mv dist out',
     },
   },
   keys = {
@@ -18,12 +17,6 @@ return {
         require('dap').toggle_breakpoint()
       end,
     },
-    -- {
-    --   '<F5>',
-    --   function()
-    --     require('dap').continue()
-    --   end,
-    -- },
     {
       '<F4>',
       function()
@@ -34,10 +27,15 @@ return {
     },
   },
   config = function()
-    require('dap-vscode-js').setup({
-      debugger_path = vim.fn.stdpath('data') .. '/lazy/vscode-js-debug',
-      adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
-    })
+    require('dap').adapters['pwa-node'] = {
+      type = 'server',
+      host = 'localhost',
+      port = '${port}',
+      executable = {
+        command = 'node',
+        args = { vim.fn.stdpath('data') .. '/lazy/vscode-js-debug' .. '/out/src/dapDebugServer.js', '${port}' },
+      },
+    }
 
     for _, language in ipairs({ 'typescript', 'javascript' }) do
       require('dap').configurations[language] = {

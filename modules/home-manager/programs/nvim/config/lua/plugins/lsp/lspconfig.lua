@@ -110,6 +110,8 @@ function M.config()
     'marksman',
     'nil_ls',
     'gopls',
+    'golangci_lint_ls',
+    'terraformls',
   }
 
   for _, server in pairs(servers) do
