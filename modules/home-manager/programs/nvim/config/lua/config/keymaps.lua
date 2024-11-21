@@ -51,3 +51,69 @@ vim.keymap.set('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' 
 vim.keymap.set('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
 vim.keymap.set('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
 vim.keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
+
+---@param types string[] Will return the first node that matches one of these types
+---@param node TSNode|nil
+---@return TSNode|nil
+local function find_node_ancestor(types, node)
+  if not node then
+    return nil
+  end
+
+  if vim.tbl_contains(types, node:type()) then
+    return node
+  end
+
+  local parent = node:parent()
+
+  return find_node_ancestor(types, parent)
+end
+
+---When typing "await" add "async" to the function declaration if the function
+---isn't async already.
+local function add_async()
+  -- This function should be executed when the user types "t" in insert mode,
+  -- but "t" is not inserted because it's the trigger.
+  vim.api.nvim_feedkeys('t', 'n', true)
+
+  local buffer = vim.fn.bufnr()
+
+  local text_before_cursor = vim.fn.getline('.'):sub(vim.fn.col('.') - 4, vim.fn.col('.') - 1)
+  if text_before_cursor ~= 'awai' then
+    return
+  end
+
+  -- ignore_injections = false makes this snippet work in filetypes where JS is injected
+  -- into other languages
+  local current_node = vim.treesitter.get_node({ ignore_injections = false })
+  local target_node =
+    find_node_ancestor({ 'arrow_function', 'function_declaration', 'function', 'method_definition' }, current_node)
+  if not target_node then
+    return
+  end
+
+  if target_node:type() == 'method_definition' then
+    target_node = target_node:child(1)
+    if not target_node then
+      return
+    end
+  end
+
+  if target_node:type() == 'formal_parameters' then
+    target_node = target_node:parent()
+    if not target_node then
+      return
+    end
+  end
+
+  local node_text = vim.treesitter.get_node_text(target_node, 0)
+  if vim.startswith(node_text, 'async') then
+    return
+  end
+
+  local start_row, start_col = target_node:start()
+  vim.api.nvim_buf_set_text(buffer, start_row, start_col, start_row, start_col, { 'async ' })
+end
+
+-- TODO: this should be set within autocmd for ts and js filetypes only
+vim.keymap.set('i', 't', add_async, { buffer = true })
