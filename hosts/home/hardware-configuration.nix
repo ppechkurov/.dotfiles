@@ -9,10 +9,10 @@
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
-  # try with good internet
-  # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {

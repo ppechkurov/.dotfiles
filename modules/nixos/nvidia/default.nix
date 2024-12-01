@@ -1,15 +1,9 @@
-{ pkgs, pkgs-unstable, config, ... }: {
+{ pkgs-unstable, config, ... }: {
   # Enable OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs;
-      [
-        # nvidia-vaapi-driver
-        # intel-media-driver
-        pkgs-unstable.egl-wayland
-      ];
+    enable32Bit = true;
+    extraPackages = [ pkgs-unstable.egl-wayland ];
   };
 
   # Load nvidia driver for Xorg and Wayland

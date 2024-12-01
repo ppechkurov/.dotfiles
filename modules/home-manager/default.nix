@@ -49,7 +49,7 @@ with osConfig; {
   gtk.enable = true;
   gtk.theme = {
     name = "Adwaita-dark";
-    package = pkgs.gnome.gnome-themes-extra;
+    package = pkgs.gnome-themes-extra;
   };
 
   dconf.enable = true;

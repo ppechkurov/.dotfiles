@@ -28,7 +28,7 @@ in {
       "pkill waybar; sleep 0.5; waybar"
       "sleep 1 && telegram-desktop"
       "sleep 1 && skypeforlinux"
-      "sleep 1 && slack"
+      "sleep 1 && slack || echo 'slack is not installed'"
     ];
 
     "$mod" = "SUPER";
@@ -49,7 +49,7 @@ in {
 
     decoration = {
       rounding = 3;
-      drop_shadow = false;
+      shadow.enabled = false;
       blur = {
         enabled = true;
         # brightness = 0.5;
@@ -81,6 +81,11 @@ in {
 
     cursor = { hide_on_key_press = true; };
 
+    render = {
+      # we do, in fact, want direct scanout
+      direct_scanout = true;
+    };
+
     misc = {
       # disable auto polling for config file changes
       disable_autoreload = true;
@@ -97,9 +102,6 @@ in {
 
       # enable variable refresh rate (effective depending on hardware)
       vrr = 1;
-
-      # we do, in fact, want direct scanout
-      no_direct_scanout = false;
     };
 
     binds = { workspace_center_on = 0; };

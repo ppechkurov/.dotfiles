@@ -24,6 +24,7 @@ with lib; {
         dates = "weekly";
         options = "--delete-older-than 7d";
       };
+      channel.enable = false;
     };
 
     # To prevent getting stuck at shutdown
@@ -65,6 +66,22 @@ with lib; {
       dbus.packages = [ pkgs.gcr ];
     };
 
+    # this is a life saver.
+    # literally no documentation about this anywhere.
+    # might be good to write about this...
+    # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
+    # found [here](https://github.com/sjcobb2022/nixos-config/blob/main/hosts/common/optional/greetd.nix)
+    systemd.services.greetd.serviceConfig = {
+      Type = "idle";
+      StandardInput = "tty";
+      StandardOutput = "tty";
+      StandardError = "journal"; # Without this errors will spam on screen
+      # Without these bootlogs will spam on screen
+      TTYReset = true;
+      TTYVHangup = true;
+      TTYVTDisallocate = true;
+    };
+
     # pipewire
     security.rtkit.enable = true;
     security.polkit.enable = true;
@@ -72,10 +89,9 @@ with lib; {
     security.pam.services.hyprlock = { };
 
     # OpenGL
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
     };
 
     # Docker
@@ -94,18 +110,19 @@ with lib; {
         (nerdfonts.override {
           fonts = [ "VictorMono" "JetBrainsMono" "ShareTechMono" ];
         })
-        font-awesome
-        powerline-fonts
-        powerline-symbols
-        noto-fonts
-        noto-fonts-cjk
-        noto-fonts-emoji
-        liberation_ttf
+        dina-font
         fira-code
         fira-code-symbols
+        font-awesome
+        liberation_ttf
         mplus-outline-fonts.githubRelease
-        dina-font
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-emoji
+        powerline-fonts
+        powerline-symbols
         proggyfonts
+        greetd.tuigreet
       ];
     };
 
@@ -156,11 +173,10 @@ with lib; {
       nodejs_22
       pass-wayland
       satty
-      slack
       slurp
       tessen
       unzip
-      transmission-qt
+      transmission_4-qt
       vim
       xkeyboard_config
 
