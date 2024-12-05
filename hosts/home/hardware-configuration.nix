@@ -8,12 +8,13 @@
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  boot.initrd.kernelModules = [ "nvidia" ];
+  boot.kernelParams =
+    [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia-drm.fbdev=1" ];
   boot.kernelModules = [ "kvm-intel" ];
 
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
