@@ -4,7 +4,6 @@
     package = pkgs-unstable.yazi;
     enableZshIntegration = true;
     theme = import ./theme.nix;
-    initLua = ./init.lua;
     settings = {
       manager = {
         linemode = "mtime";
@@ -14,18 +13,6 @@
         sort_reverse = false;
         show_symlink = true;
       };
-      plugin.prepend_fetchers = [
-        {
-          id = "git";
-          name = "*";
-          run = "git";
-        }
-        {
-          id = "git";
-          name = "*/";
-          run = "git";
-        }
-      ];
     };
   };
 }

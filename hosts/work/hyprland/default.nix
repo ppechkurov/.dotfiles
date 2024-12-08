@@ -1,2 +1,2 @@
-{ imports = [ ./workspaces.nix ]; }
+{ imports = [ ./workspaces.nix ./settings.nix ]; }
 

@@ -11,6 +11,11 @@
     unstable = with pkgs-unstable; [ jetbrains.writerside ];
   in stable ++ unstable;
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   home-manager = {
     users.${config.username} = import ./home.nix;
     extraSpecialArgs = {

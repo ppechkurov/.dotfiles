@@ -1,7 +1,7 @@
 { ... }: {
   wayland.windowManager.hyprland.settings = {
-    # fck nvidia
-    render = { explicit_sync = 1; };
+    decoration = { drop_shadow = false; };
+    misc = { no_direct_scanout = false; };
     opengl = { nvidia_anti_flicker = true; };
   };
 }

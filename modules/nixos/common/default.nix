@@ -88,12 +88,6 @@ with lib; {
 
     security.pam.services.hyprlock = { };
 
-    # OpenGL
-    hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-
     # Docker
     virtualisation.docker.rootless = {
       enable = true;
@@ -136,8 +130,7 @@ with lib; {
     };
 
     programs.ssh.startAgent = true;
-    programs.ssh.extraConfig =
-      #bash
+    programs.ssh.extraConfig = # bash
       ''
         Host github.com
           IdentitiesOnly yes

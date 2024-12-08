@@ -49,7 +49,6 @@ in {
 
     decoration = {
       rounding = 3;
-      shadow.enabled = false;
       blur = {
         enabled = true;
         # brightness = 0.5;
@@ -80,11 +79,6 @@ in {
     };
 
     cursor = { hide_on_key_press = true; };
-
-    render = {
-      # we do, in fact, want direct scanout
-      direct_scanout = true;
-    };
 
     misc = {
       # disable auto polling for config file changes
