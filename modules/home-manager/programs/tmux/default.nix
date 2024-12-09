@@ -51,10 +51,6 @@ in {
 
         bind -n C-Enter copy-mode
 
-        bind -n C-k "copy-mode -e \; send-keys -X halfpage-up" # enter copy mode and scroll up
-
-        bind-key -T copy-mode-vi C-j send -X halfpage-down # scroll down in copy mode for convinience with foot's C-j
-        bind-key -T copy-mode-vi C-k send -X halfpage-up # scroll up in copy mode for convinience with foot's C-k
         bind-key -T copy-mode-vi u send -X halfpage-up
         bind-key -T copy-mode-vi d send -X halfpage-down
 
@@ -71,15 +67,14 @@ in {
         bind > swap-pane -D       # swap current pane with the next one
         bind < swap-pane -U       # swap current pane with the previous one
 
-        bind < swap-pane -U       # swap current pane with the previous one
-
         # split and follow
         bind '"' split-window -v -c "#{pane_current_path}"
-        bind  %  split-window -h -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+        bind c new-window -c "#{pane_current_path}"
 
         # window reordering
-        bind -r C-H swap-window -d -t -1
-        bind -r C-L swap-window -d -t +1
+        bind -r H swap-window -d -t -1
+        bind -r L swap-window -d -t +1
 
         bind-key -r f run-shell "tmux neww tmux-sessionizer"
       '';
