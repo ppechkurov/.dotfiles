@@ -39,8 +39,17 @@
       "${config.home.homeDirectory}/.dotfiles/modules/home-manager/programs/nvim";
   in {
     enable = true;
-    source = config.lib.file.mkOutOfStoreSymlink "${nvim_config_dir}/config";
     recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink "${nvim_config_dir}/config";
+  };
+
+  xdg.configFile.nvim_tj = let
+    nvim_config_dir =
+      "${config.home.homeDirectory}/.dotfiles/modules/home-manager/programs/nvim";
+  in {
+    enable = true;
+    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink "${nvim_config_dir}/tj";
   };
 
   # https://search.nixos.org/packages?channel=unstable&show=codeium&from=0&size=50&sort=relevance&type=packages&query=codeium
