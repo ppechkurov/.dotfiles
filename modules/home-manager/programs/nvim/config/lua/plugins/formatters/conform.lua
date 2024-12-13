@@ -9,19 +9,19 @@ return {
       end
       return { timeout_ms = 1000, lsp_format = 'fallback' }
     end,
-    ---@type table<string, conform.FormatterUnit[]>
     formatters_by_ft = {
-      lua = { 'stylua' },
-      zsh = { 'shfmt' },
-      sh = { 'shfmt' },
-      sql = { 'sql_formatter' },
-      markdown = { 'prettierd' },
-      typescript = { 'prettierd' },
+      go = { 'goimports', 'gofumpt' },
       javascript = { 'prettierd' },
       json = { 'prettierd' },
       jsonc = { 'prettierd' },
+      lua = { 'stylua' },
+      markdown = { 'prettierd' },
       nix = { 'nixfmt' },
-      go = { 'goimports', 'gofumpt' },
+      sh = { 'shfmt' },
+      sql = { 'sql_formatter' },
+      typescript = { 'prettierd' },
+      terraform = { 'tofu_fmt' },
+      zsh = { 'shfmt' },
     },
   },
 }
