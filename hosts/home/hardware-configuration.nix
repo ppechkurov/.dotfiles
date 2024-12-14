@@ -11,6 +11,7 @@
   boot.initrd.kernelModules = [ "nvidia" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.kernelPackages = pkgs.linuxPackages_6_6; # the kernel
+  boot.kernelParams = [ "module_blacklist=i915" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";

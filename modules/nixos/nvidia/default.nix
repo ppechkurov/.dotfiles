@@ -4,7 +4,7 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = [ pkgs.egl-wayland ];
+    extraPackages = [ pkgs.egl-wayland pkgs.nvidia-vaapi-driver ];
   };
 
   # Load nvidia driver for Xorg and Wayland
@@ -32,7 +32,7 @@
 
     # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
     nvidiaSettings = true;
-    forceFullCompositionPipeline = true;
+    forceFullCompositionPipeline = false;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     # package = config.boot.kernelPackages.nvidiaPackages.stable;
