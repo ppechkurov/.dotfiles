@@ -47,5 +47,11 @@
       persistencedSha256 =
         "sha256-qDGBAcZEN/ueHqWO2Y6UhhXJiW5625Kzo1m/oJhvbj4=";
     };
+
+    prime = {
+      sync.enable = true;
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
   };
 }
