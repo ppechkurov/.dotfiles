@@ -25,7 +25,7 @@
           "hyprctl switchxkblayout ${keyboard-device} ${us-layout} && ${pkgs.hyprlock}/bin/hyprlock";
       }
       {
-        timeout = 600;
+        timeout = 6000;
         on-timeout = "hyprctl dispatch dpms off";
         on-resume = "hyprctl dispatch dpms on";
       }
