@@ -112,6 +112,8 @@ function M.config()
     'gopls',
     'golangci_lint_ls',
     'terraformls',
+    'docker_compose_language_service',
+    'clangd',
   }
 
   for _, server in pairs(servers) do

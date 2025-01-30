@@ -21,7 +21,9 @@ return {
       sql = { 'sql_formatter' },
       typescript = { 'prettierd' },
       terraform = { 'tofu_fmt' },
+      ['terraform-vars'] = { 'tofu_fmt' },
       zsh = { 'shfmt' },
+      zig = { 'zls' },
     },
   },
 }
