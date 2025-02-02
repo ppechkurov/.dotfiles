@@ -142,6 +142,15 @@ vim.api.nvim_command([[
     autocmd ModeChanged * lua leave_snippet()
 ]])
 
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  desc = 'Fix indentation in asm files',
+  group = augroup('json_conceal'),
+  pattern = { 'asm' },
+  callback = function()
+    vim.opt_local.shiftwidth = 8
+  end,
+})
+
 -- autodetect ansible files
 vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   pattern = {

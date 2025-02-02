@@ -114,6 +114,7 @@ function M.config()
     'terraformls',
     'docker_compose_language_service',
     'clangd',
+    'asm_lsp',
   }
 
   for _, server in pairs(servers) do
