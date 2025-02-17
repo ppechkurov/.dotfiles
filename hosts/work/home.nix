@@ -15,6 +15,8 @@
     commit.gpgsign = true;
   };
 
+  services.automatic-timezoned.enable = true;
+
   local.zellij.enable = true;
   local.mysql.enable = true;
 }
