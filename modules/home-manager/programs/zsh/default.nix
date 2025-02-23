@@ -51,6 +51,10 @@ in {
           source <(kubectl completion zsh)
         fi
 
+        if [ -x "$(command -v minikube)" ]; then
+          source <(minikube completion zsh)
+        fi
+
         if [ -x "$(command -v aws)" ]; then
           complete -C "$(which aws_completer)" aws
         fi
