@@ -5,18 +5,18 @@
   };
 
   wayland.windowManager.hyprland.settings.monitor = [
-    "DP-1, preferred, 0x0, 1"
+    "DP-4, preferred, 0x0, 1"
     "DVI-D-2, preferred, 1920x0, 1"
-    "HDMI-A-1, preferred, 0x-1080, 1"
+    "HDMI-A-4, preferred, 0x-1080, 1"
   ];
 
   wayland.windowManager.hyprland.settings.workspace = [
     # left
-    "1, monitor:DP-1, default:true"
-    "2, monitor:DP-1"
-    "3, monitor:DP-1"
-    "4, monitor:DP-1"
-    "5, monitor:DP-1"
+    "1, monitor:DP-4, default:true"
+    "2, monitor:DP-4"
+    "3, monitor:DP-4"
+    "4, monitor:DP-4"
+    "5, monitor:DP-4"
 
     # right
     "6, monitor:DVI-D-2, default:true"
