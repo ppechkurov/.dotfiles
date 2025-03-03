@@ -31,7 +31,7 @@ with lib; {
     systemd.extraConfig = "DefaulTimeoutStopSec=10s";
 
     # Set your time zone.
-    time.timeZone = lib.mkDefault "Europe/Minsk";
+    time.timeZone = lib.mkDefault "Europe/Warsaw";
 
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
