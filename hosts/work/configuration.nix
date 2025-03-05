@@ -5,8 +5,6 @@
   networking.hostName = "work";
 
   services.gnome.gnome-keyring.enable = true;
-  services.mullvad-vpn.enable = true;
-  services.mullvad-vpn.package = pkgs-unstable.mullvad-vpn;
 
   environment.systemPackages = let
     stable = with pkgs; [ skypeforlinux gnumake zip ];

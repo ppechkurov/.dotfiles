@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, pkgs-unstable, ... }: {
+{ inputs, lib, config, pkgs, pkgs-unstable, ... }: {
   imports = [
     ../../modules/nixos/common
     ../../modules/nixos/nvidia
@@ -21,6 +21,8 @@
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
+
+  time.timeZone = lib.mkForce "Europe/Minsk";
 
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =

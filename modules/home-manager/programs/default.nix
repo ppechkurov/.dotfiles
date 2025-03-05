@@ -10,6 +10,7 @@
     ./github
     ./go
     ./firefox
+    ./librewolf
     ./nvim
     ./ncmpcpp
     ./mysql

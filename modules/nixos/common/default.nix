@@ -172,8 +172,6 @@ with lib; {
       transmission_4-qt
       vim
       xkeyboard_config
-
-      pkgs-unstable.codeium
     ];
 
     environment.pathsToLink = [ "/share/zsh" ];
