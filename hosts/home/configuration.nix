@@ -2,11 +2,14 @@
   imports = [
     ../../modules/nixos/common
     ../../modules/nixos/nvidia
+    ../../modules/nixos/networks/kubernetes.nix
     ./hardware-configuration.nix
   ];
 
   # declare hostname
   networking.hostName = "home";
+
+  kube.networks.enable = true;
 
   monitor = {
     "Virtual-1" = { mode = "1680x1050@59.954Hz"; };
