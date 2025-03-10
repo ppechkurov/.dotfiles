@@ -7,8 +7,6 @@
   ];
 
   # declare hostname
-  networking.firewall.enable = false;
-
   networking.hostName = "home";
   networking.useDHCP = false;
   networking.bridges = { br0 = { interfaces = [ "enp5s0" ]; }; };
@@ -28,48 +26,31 @@
   systemd.network = {
     enable = true;
     wait-online.enable = false;
-    netdevs = {
-      # Create the tap interface
-      "20-tap1" = {
-        enable = true;
-        netdevConfig = {
-          Kind = "tap";
-          Name = "tap1";
-        };
-      };
-      "20-tap2" = {
-        enable = true;
-        netdevConfig = {
-          Kind = "tap";
-          Name = "tap2";
-        };
-      };
-    };
-    networks = {
-      "40-tap1" = {
-        matchConfig.Name = "tap1";
-        bridgeConfig = { };
-        linkConfig = {
-          ActivationPolicy = "always-up";
-          RequiredForOnline = "no";
-        };
-        networkConfig = { Bridge = "br0"; };
-      };
-      "40-tap2" = {
-        matchConfig.Name = "tap2";
-        bridgeConfig = { };
-        linkConfig = {
-          ActivationPolicy = "always-up";
-          RequiredForOnline = "no";
-        };
-        networkConfig = { Bridge = "br0"; };
-      };
-    };
-  };
 
-  # kube.networks.enable = true;
-  # kube.networks-1.enable = true;
-  # kube.networks-2.enable = true;
+    netdevs = builtins.listToAttrs (map (index: {
+      name = "20-tap${toString index}";
+      value = {
+        enable = true;
+        netdevConfig = {
+          Kind = "tap";
+          Name = "tap${toString index}";
+        };
+      };
+    }) (lib.genList (i: i + 1) 4));
+
+    networks = builtins.listToAttrs (map (index: {
+      name = "30-tap${toString index}";
+      value = {
+        matchConfig.Name = "tap${toString index}";
+        linkConfig = {
+          ActivationPolicy = "always-up";
+          RequiredForOnline = "no";
+        };
+        networkConfig = { Bridge = "br0"; };
+      };
+    }) (lib.genList (i: i + 1) 4));
+
+  };
 
   monitor = {
     "Virtual-1" = { mode = "1680x1050@59.954Hz"; };
