@@ -10,6 +10,7 @@
     ./github
     ./go
     ./firefox
+    ./floorp
     ./librewolf
     ./nvim
     ./ncmpcpp

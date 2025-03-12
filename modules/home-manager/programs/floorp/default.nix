@@ -1,11 +1,17 @@
 { pkgs, ... }: {
-  programs.librewolf.enable = true;
-  programs.librewolf.package = pkgs.librewolf;
-  programs.librewolf = {
+  programs.floorp.enable = true;
+  programs.floorp = {
     profiles.petrp = {
       id = 0;
-      name = "Petr P.";
+      name = "Petr P";
       isDefault = true;
+
+      containersForce = true;
+      containers = let cont = icon: color: id: { inherit icon color id; };
+      in {
+        Work = cont "briefcase" "orange" 1;
+        Personal = cont "fingerprint" "blue" 2;
+      };
 
       #https://github.com/montchr/dotfield/blob/78de8ff316ccb2d34fd98cd9bfd3bfb5ad775b0e/home/profiles/firefox/search/default.nix
       search.force = true;
@@ -35,6 +41,8 @@
 
         "Bing".metaData.hidden = true;
         "Wikipedia".metaData.hidden = true;
+        "Startpage".metaData.hidden = true;
+        "You.com".metaData.hidden = true;
         "Google".metaData.alias =
           "@g"; # builtin engines only support specifying one additional alias
       };
@@ -42,9 +50,19 @@
       settings = {
         "devtools.toolbox.host" = "right";
         "browser.uidensity" = 1; # minimal ui
+
+        # locale
+        "browser.search.region" = "US";
+        "browser.search.isUS" = true;
         "general.useragent.locale" = "en-US";
+        "distribution.searchplugins.defaultLocale" = "en-US";
+
         "browser.startup.page" = 3;
         "browser.newtabpage.pinned" = [
+          {
+            "label" = "Monkeytype";
+            "url" = "https://monkeytype.com";
+          }
           {
             "label" = "GitHub";
             "url" = "https://github.com";
@@ -52,10 +70,6 @@
           {
             "label" = "YouTube";
             "url" = "https://youtube.com";
-          }
-          {
-            "label" = "Monkeytype";
-            "url" = "https://monkeytype.com";
           }
         ];
 
@@ -135,11 +149,50 @@
 
         # this is broken on 24.11 atm
         # github-refined
-        # "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = {
-        #   install_url =
-        #     "https://addons.mozilla.org/firefox/downloads/latest/{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}/latest.xpi";
-        #   installation_mode = "force_installed";
-        # };
+        "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}/latest.xpi";
+          installation_mode = "force_installed";
+        };
+
+        # you-com
+        "{82b57c0f-7165-4ce2-afe0-f03c11d1fc51}" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/{82b57c0f-7165-4ce2-afe0-f03c11d1fc51}/latest.xpi";
+          installation_mode = "blocked";
+        };
+      };
+
+      FirefoxSuggest = {
+        WebSuggestions = false;
+        SponsoredSuggestions = false;
+        ImproveSuggest = false;
+        Locked = true;
+      };
+
+      FirefoxHome = {
+        "Search" = true;
+        "TopSites" = true;
+        "SponsoredTopSites" = false;
+        "Highlights" = false;
+        "Pocket" = false;
+        "SponsoredPocket" = false;
+        "Snippets" = false;
+        "Locked" = true;
+      };
+
+      Extensions = {
+        Uninstall = [
+          "google@search.mozilla.org"
+          "bing@search.mozilla.org"
+          "amazondotcom@search.mozilla.org"
+          "ebay@search.mozilla.org"
+          "twitter@search.mozilla.org"
+          "youtube@search.mozilla.org"
+          "yahoo@search.mozilla.org"
+          "startpage-private-search@search.mozilla.org"
+          "you-com@search.mozilla.org"
+        ];
       };
     };
   };

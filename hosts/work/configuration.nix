@@ -8,7 +8,7 @@
 
   environment.systemPackages = let
     stable = with pkgs; [ skypeforlinux gnumake zip ];
-    unstable = with pkgs-unstable; [ jetbrains.writerside ghostty ];
+    unstable = with pkgs-unstable; [ ghostty ];
   in stable ++ unstable;
 
   hardware.graphics = {
