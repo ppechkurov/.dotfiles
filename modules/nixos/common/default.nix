@@ -150,7 +150,7 @@ with lib; {
       alsa-utils
       curl
       docker-credential-helpers
-      flameshot
+      (flameshot.override { enableWlrSupport = true; })
       git
       grim
       jellyfin-ffmpeg
