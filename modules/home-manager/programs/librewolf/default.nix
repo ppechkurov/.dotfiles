@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-unstable, ... }: {
   programs.librewolf.enable = true;
-  programs.librewolf.package = pkgs.librewolf;
+  programs.librewolf.package = pkgs-unstable.librewolf;
   programs.librewolf = {
     profiles.petrp = {
       id = 0;

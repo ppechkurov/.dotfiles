@@ -10,8 +10,8 @@
     ./github
     ./go
     ./firefox
-    ./floorp
-    ./librewolf
+    # ./floorp
+    # ./librewolf
     ./nvim
     ./ncmpcpp
     ./mysql

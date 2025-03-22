@@ -7,17 +7,14 @@ in {
 
   programs.awscli = {
     enable = true;
-    settings.default = { region = "us-east-2"; };
-    settings.futudo = { region = "eu-central-1"; };
-
-    credentials.default.credential_process =
-      "${pkgs.pass}/bin/pass aws/cli/default";
-
-    credentials.futudo.credential_process =
-      "${pkgs.pass}/bin/pass aws/cli/futudo";
-
-    credentials.cargill.credential_process =
-      "${pkgs.pass}/bin/pass aws/cli/cargill";
+    # settings.default = { region = "us-east-2"; };
+    # settings.futudo = { region = "eu-central-1"; };
+    #
+    # credentials.default.credential_process =
+    #   "${pkgs.pass}/bin/pass aws/cli/default";
+    #
+    # credentials.futudo.credential_process =
+    #   "${pkgs.pass}/bin/pass aws/cli/futudo";
   };
 }
 

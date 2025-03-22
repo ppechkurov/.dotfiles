@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-unstable, ... }: {
   programs.floorp.enable = true;
   programs.floorp = {
+    package = pkgs-unstable.floorp;
     profiles.petrp = {
       id = 0;
       name = "Petr P";

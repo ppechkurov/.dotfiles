@@ -9,7 +9,13 @@
   # declare hostname
   networking.hostName = "home";
 
-  local.kube.networks.enable = true;
+  specialisation.kuber = {
+    inheritParentConfig = true;
+    configuration = {
+      system.nixos.tags = [ "kuber" ];
+      local.kube.networks.enable = true;
+    };
+  };
 
   monitor = {
     "Virtual-1" = { mode = "1680x1050@59.954Hz"; };
