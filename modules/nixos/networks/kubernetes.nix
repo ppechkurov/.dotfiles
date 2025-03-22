@@ -1,78 +1,52 @@
 { lib, config, ... }:
 with lib; {
   options = {
-    kube.networks.enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    local.kube.networks.enable =
+      mkEnableOption "kubernetes network setup for vms";
   };
 
-  config = mkIf config.kube.networks.enable {
-    networking.networkmanager = {
-      enable = true;
-      unmanaged = [ "tap0" "br0" ];
+  config = mkIf config.local.kube.networks.enable {
+    # networking.useDHCP = true;
+    networking.bridges = { br0 = { interfaces = [ "enp5s0" ]; }; };
+    networking.interfaces.br0.ipv4.addresses = [{
+      address = "192.168.100.3";
+      prefixLength = 24;
+    }];
+
+    networking.defaultGateway = {
+      address = "192.168.100.1";
+      interface = "br0";
     };
 
-    systemd.services."systemd-networkd".environment.SYSTEMD_LOG_LEVEL = "debug";
+    networking.nameservers = [ "192.168.100.1" "8.8.8.8" ];
+    networking.useNetworkd = true;
+
     systemd.network = {
       enable = true;
       wait-online.enable = false;
-      netdevs = {
-        # Create the tap interface
-        "20-tap2" = {
+
+      netdevs = builtins.listToAttrs (map (index: {
+        name = "20-tap${toString index}";
+        value = {
           enable = true;
           netdevConfig = {
             Kind = "tap";
-            Name = "tap2";
+            Name = "tap${toString index}";
           };
         };
-        "20-tap3" = {
-          enable = true;
-          netdevConfig = {
-            Kind = "tap";
-            Name = "tap3";
-          };
-        };
-        "20-bridge0" = {
-          enable = true;
-          netdevConfig = {
-            Kind = "bridge";
-            Name = "br0";
-          };
-        };
-      };
-      networks = {
-        "30-enp5s0" = {
-          matchConfig.Name = "enp5s0";
-          linkConfig = { Unmanaged = "yes"; };
-        };
-        "40-tap2" = {
-          matchConfig.Name = "tap2";
-          bridgeConfig = { };
+      }) (lib.genList (i: i + 1) 4));
+
+      networks = builtins.listToAttrs (map (index: {
+        name = "30-tap${toString index}";
+        value = {
+          matchConfig.Name = "tap${toString index}";
           linkConfig = {
             ActivationPolicy = "always-up";
             RequiredForOnline = "no";
           };
           networkConfig = { Bridge = "br0"; };
         };
-        "40-tap3" = {
-          matchConfig.Name = "tap3";
-          bridgeConfig = { };
-          linkConfig = {
-            ActivationPolicy = "always-up";
-            RequiredForOnline = "no";
-          };
-          networkConfig = { Bridge = "br0"; };
-        };
-        "40-bridge0" = {
-          matchConfig.Name = "br0";
-          linkConfig = {
-            ActivationPolicy = "always-up";
-            RequiredForOnline = "no";
-          };
-          networkConfig = { Address = [ "192.168.100.5/24" ]; };
-        };
-      };
+      }) (lib.genList (i: i + 1) 4));
     };
   };
 }
