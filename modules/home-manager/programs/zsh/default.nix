@@ -59,6 +59,10 @@ in {
           complete -C "$(which aws_completer)" aws
         fi
 
+        if [ -x "$(command -v tfschema)" ]; then
+          complete -o nospace -C $(which tfschema) tfschema
+        fi
+
         _ssh_custom() {
           local cur opts
           COMPREPLY=()

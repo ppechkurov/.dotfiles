@@ -13,6 +13,7 @@
       DVI-D-2 = [ 6 7 8 9 10 ];
     };
   };
+  home.sessionPath = [ "$HOME/go/bin" ];
 
   services.hypridle.settings = {
     listener = let
