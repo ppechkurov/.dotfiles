@@ -21,7 +21,16 @@ with osConfig; {
     };
     packages = with pkgs;
       let jira = inputs.jira.packages.${pkgs.system}.default;
-      in [ jira cliphist dconf gcc pavucontrol ripgrep telegram-desktop ];
+      in [
+        jira
+        cliphist
+        dconf
+        gcc
+        pavucontrol
+        ripgrep
+        telegram-desktop
+        git-crypt
+      ];
   };
 
   home.stateVersion = "24.05";
