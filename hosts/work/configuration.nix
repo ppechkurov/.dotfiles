@@ -16,6 +16,8 @@
     enable32Bit = true;
   };
 
+  programs.nix-ld.enable = true;
+
   home-manager = {
     users.${config.username} = import ./home.nix;
     extraSpecialArgs = {
