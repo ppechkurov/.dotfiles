@@ -164,6 +164,7 @@ with lib; {
       ncdu
       neovide
       nodejs_22
+      oath-toolkit # mfa
       pass-wayland
       satty
       slurp
