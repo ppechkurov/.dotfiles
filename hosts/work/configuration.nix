@@ -7,7 +7,7 @@
   services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = let
-    stable = with pkgs; [ skypeforlinux gnumake zip ];
+    stable = with pkgs; [ gnumake zip teams-for-linux ];
     unstable = with pkgs-unstable; [ ghostty ];
   in stable ++ unstable;
 
