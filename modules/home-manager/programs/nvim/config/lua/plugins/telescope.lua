@@ -34,6 +34,8 @@ return {
       -- diagnostics
       ['<leader>fd'] = { '<cmd>Telescope diagnostics bufnr=0<cr>', '[d]iagnostics(buffer)' },
       ['<leader>fD'] = { '<cmd>Telescope diagnostics<cr>', '[D]iagnostics(workspace)' },
+      -- quickfix list
+      ['<leader>fq'] = { '<cmd>Telescope quickfix<cr>', '[Q]uickfix list' },
       -- misc
       ['<leader>fp'] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", '[p]rojects' },
       ['<leader>fh'] = { '<cmd>Telescope help_tags<cr>', '[h]elp' },

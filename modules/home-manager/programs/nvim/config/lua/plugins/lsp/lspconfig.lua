@@ -15,9 +15,6 @@ local function lsp_keymaps(bufnr)
   -- gD is the default mapping for go to first occurence of a word under the cursor
   keymap(bufnr, 'n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
   keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  keymap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-  keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 end
 
 M.on_attach = function(client, bufnr)
@@ -41,19 +38,15 @@ end
 function M.config()
   local wk = require('which-key')
   wk.register({
-    ['<leader>ca'] = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action' },
-    ['<leader>cA'] = {
-      '<cmd>lua vim.lsp.buf.code_action({ context = { only = { "source" } }, diagnostics = {}})<cr>',
-      'Code Action',
-    },
     ['<leader>cf'] = { "<cmd> lua require('conform').format()<cr>", 'Format' },
-    ['<leader>ci'] = { '<cmd>LspInfo<cr>', 'Info' },
-    ['<leader>cj'] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Next Diagnostic' },
     ['<leader>ch'] = { '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>', 'Hints' },
-    ['<leader>ck'] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Prev Diagnostic' },
     ['<leader>cl'] = { '<cmd>lua vim.lsp.codelens.run()<cr>', 'CodeLens Action' },
     ['<leader>cq'] = { '<cmd>lua vim.diagnostic.setloclist()<cr>', 'Quickfix' },
-    ['<leader>cr'] = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename' },
+    ['gra'] = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action' },
+    ['gri'] = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
+    ['grn'] = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename' },
+    ['grr'] = { '<cmd>Telescope lsp_references<CR>', 'References' },
+    ['<C-W>d'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Float diagnostics' },
   })
 
   local lspconfig = require('lspconfig')
@@ -61,14 +54,17 @@ function M.config()
 
   local severity = vim.diagnostic.severity
   vim.diagnostic.config({
-    virtual_text = {
-      prefix = '',
-      spacing = 4,
-      source = 'if_many',
-    },
+    virtual_lines = true,
+
+    -- looks like this no longer looks good. commenting.
+    -- virtual_text = {
+    --   prefix = '',
+    --   spacing = 4,
+    --   source = 'if_many',
+    -- },
 
     update_in_insert = false,
-    -- underline = true,
+    underline = true,
     severity_sort = true,
 
     signs = {
@@ -80,8 +76,6 @@ function M.config()
       },
     },
 
-    underline = true,
-
     float = {
       focusable = true,
       style = 'minimal',
@@ -91,23 +85,6 @@ function M.config()
       prefix = '',
     },
   })
-  local border = {
-    { '┌', 'FloatBorder' },
-    { '─', 'FloatBorder' },
-    { '┐', 'FloatBorder' },
-    { '│', 'FloatBorder' },
-    { '┘', 'FloatBorder' },
-    { '─', 'FloatBorder' },
-    { '└', 'FloatBorder' },
-    { '│', 'FloatBorder' },
-  }
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.buf.hover({
-    border = border,
-  })
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.buf.signature_help()
-  -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.buf.signature_help({ border = 'none' })
-
-  require('lspconfig.ui.windows').default_options.border = 'single'
 
   local servers = {
     'lua_ls',
