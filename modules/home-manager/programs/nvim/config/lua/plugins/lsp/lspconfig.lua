@@ -59,44 +59,55 @@ function M.config()
   local lspconfig = require('lspconfig')
   local icons = require('config.icons')
 
-  local default_diagnostic_config = {
-    signs = {
-      active = true,
-      values = {
-        { name = 'DiagnosticSignError', text = icons.diagnostics.Error },
-        { name = 'DiagnosticSignWarn', text = icons.diagnostics.Warning },
-        { name = 'DiagnosticSignHint', text = icons.diagnostics.Hint },
-        { name = 'DiagnosticSignInfo', text = icons.diagnostics.Information },
-      },
-    },
+  local severity = vim.diagnostic.severity
+  vim.diagnostic.config({
     virtual_text = {
+      prefix = '',
       spacing = 4,
       source = 'if_many',
-      prefix = '●',
     },
+
     update_in_insert = false,
     -- underline = true,
     severity_sort = true,
+
+    signs = {
+      text = {
+        [severity.ERROR] = icons.diagnostics.Error,
+        [severity.WARN] = icons.diagnostics.Warning,
+        [severity.INFO] = icons.diagnostics.Information,
+        [severity.HINT] = icons.diagnostics.Hint,
+      },
+    },
+
+    underline = true,
+
     float = {
       focusable = true,
       style = 'minimal',
       border = 'none',
-      source = 'always',
+      source = true,
       header = '',
       prefix = '',
     },
+  })
+  local border = {
+    { '┌', 'FloatBorder' },
+    { '─', 'FloatBorder' },
+    { '┐', 'FloatBorder' },
+    { '│', 'FloatBorder' },
+    { '┘', 'FloatBorder' },
+    { '─', 'FloatBorder' },
+    { '└', 'FloatBorder' },
+    { '│', 'FloatBorder' },
   }
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.buf.hover({
+    border = border,
+  })
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.buf.signature_help()
+  -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.buf.signature_help({ border = 'none' })
 
-  vim.diagnostic.config(default_diagnostic_config)
-
-  for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), 'signs', 'values') or {}) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
-  end
-
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'none' })
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'none' })
-
-  require('lspconfig.ui.windows').default_options.border = 'none'
+  require('lspconfig.ui.windows').default_options.border = 'single'
 
   local servers = {
     'lua_ls',

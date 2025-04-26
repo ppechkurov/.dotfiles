@@ -11,7 +11,7 @@ vim.opt.completeopt = { 'menuone', 'noselect' } -- mostly just for cmp
 vim.opt.confirm = true -- confirm to save changes before exiting
 vim.opt.cursorline = true -- highlight the current line
 vim.opt.expandtab = true -- convert tabs to spaces
-vim.opt.fillchars:append({ stl = ' ' })
+-- vim.opt.fillchars:append({ stl = ' ' })
 vim.opt.hlsearch = true -- highlight all matches on previous search pattern
 vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.laststatus = 3
@@ -51,8 +51,8 @@ local middle_low = 'фывап;aoeui' .. ',' .. 'ролджэ;dhtns-'
 local middle_cap = 'ФЫВАП;AOEUI' .. ',' .. 'РОЛДЖЭ;DHTNS_'
 local middle = middle_low .. ',' .. middle_cap
 
-local bottom_low = [[ячсми;'qjkx]] .. ',' .. [[тьбю.;bmwvz]]
-local bottom_cap = [[ЯЧСМИ;"QJKX]] .. ',' .. [[ТЬБЮ\,;BMWVZ]]
+local bottom_low = [[ячсми;'qjkx]] .. ',' .. [[тьбю;bmwv]]
+local bottom_cap = [[ЯЧСМИ;"QJKX]] .. ',' .. [[ТЬБЮ;BMWV]]
 local bottom = bottom_low .. ',' .. bottom_cap
 
 local misc = table.concat({ 'ё;$' }, ',')
