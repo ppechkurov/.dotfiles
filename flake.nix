@@ -2,11 +2,6 @@
   description = "My NixOS config flake";
 
   inputs = {
-    # 24.05
-    nixpkgs-24-05.url = "nixpkgs/nixos-24.05";
-    hm-24-05.url = "github:nix-community/home-manager/release-24.05";
-    hm-24-05.inputs.nixpkgs.follows = "nixpkgs-24-05";
-
     # 24.11
     nixpkgs.url = "nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
@@ -19,39 +14,38 @@
     jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
   };
 
-  outputs =
-    { self, nixpkgs-24-05, hm-24-05, nixpkgs, nixpkgs-unstable, ... }@inputs: {
-      nixosConfigurations = let
-        specialArgs = {
-          inherit inputs;
-          pkgs-unstable = import nixpkgs-unstable {
-            system = "x86_64-linux";
-            config = { allowUnfree = true; };
-          };
-        };
-      in {
-        work = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/work/configuration.nix
-            inputs.home-manager.nixosModule
-            ({ ... }: {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-            })
-          ];
-          inherit specialArgs;
-        };
-        home = nixpkgs-24-05.lib.nixosSystem {
-          modules = [
-            ./hosts/home/configuration.nix
-            hm-24-05.nixosModule
-            ({ ... }: {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-            })
-          ];
-          inherit specialArgs;
+  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: {
+    nixosConfigurations = let
+      specialArgs = {
+        inherit inputs;
+        pkgs-unstable = import nixpkgs-unstable {
+          system = "x86_64-linux";
+          config = { allowUnfree = true; };
         };
       };
+    in {
+      work = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/work/configuration.nix
+          inputs.home-manager.nixosModule
+          ({ ... }: {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          })
+        ];
+        inherit specialArgs;
+      };
+      home = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/home/configuration.nix
+          inputs.home-manager.nixosModule
+          ({ ... }: {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          })
+        ];
+        inherit specialArgs;
+      };
     };
+  };
 }

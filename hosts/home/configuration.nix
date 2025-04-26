@@ -9,13 +9,14 @@
   # declare hostname
   networking.hostName = "home";
 
-  specialisation.kuber = {
-    inheritParentConfig = true;
-    configuration = {
-      system.nixos.tags = [ "kuber" ];
-      local.kube.networks.enable = true;
-    };
-  };
+  # Uncomment this if you want to play with the kube again.
+  # specialisation.kuber = {
+  #   inheritParentConfig = true;
+  #   configuration = {
+  #     system.nixos.tags = [ "kuber" ];
+  #     local.kube.networks.enable = true;
+  #   };
+  # };
 
   monitor = {
     "Virtual-1" = { mode = "1680x1050@59.954Hz"; };

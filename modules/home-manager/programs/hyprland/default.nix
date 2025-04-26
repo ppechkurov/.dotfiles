@@ -18,6 +18,7 @@ in {
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.xwayland.enable = true;
   wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
+
   wayland.windowManager.hyprland.settings = {
     env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 
@@ -65,6 +66,7 @@ in {
         popups = true;
         popups_ignorealpha = 0.2;
       };
+      shadow.enabled = false;
     };
 
     animations = {
@@ -78,6 +80,7 @@ in {
       ];
     };
 
+    render.direct_scanout = true;
     cursor = { hide_on_key_press = true; };
 
     misc = {
