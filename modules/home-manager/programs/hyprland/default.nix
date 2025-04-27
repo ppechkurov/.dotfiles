@@ -28,7 +28,7 @@ in {
       "firefox"
       "pkill waybar; sleep 0.5; waybar"
       "sleep 1 && telegram-desktop"
-      "sleep 1 && skypeforlinux"
+      "sleep 1 && teams-for-linux"
       "sleep 1 && slack || echo 'slack is not installed'"
     ];
 
