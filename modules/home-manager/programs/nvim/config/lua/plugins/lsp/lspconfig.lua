@@ -54,18 +54,18 @@ function M.config()
 
   local severity = vim.diagnostic.severity
   vim.diagnostic.config({
-    virtual_lines = true,
 
-    -- looks like this no longer looks good. commenting.
-    -- virtual_text = {
-    --   prefix = '',
-    --   spacing = 4,
-    --   source = 'if_many',
-    -- },
+    virtual_text = {
+      prefix = ' ',
+      spacing = 4,
+      source = 'if_many',
+    },
 
-    update_in_insert = false,
-    underline = true,
     severity_sort = true,
+
+    virtual_lines = { current_line = true },
+    underline = true,
+    update_in_insert = false,
 
     signs = {
       text = {
