@@ -60,11 +60,11 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.api.nvim_create_autocmd('User', {
-  desc = 'close outline when opening telescope because it will open in the outline window',
-  pattern = 'TelescopeFindPre',
-  command = 'OutlineClose',
-})
+-- vim.api.nvim_create_autocmd('User', {
+--   desc = 'close outline when opening telescope because it will open in the outline window',
+--   pattern = 'TelescopeFindPre',
+--   command = 'OutlineClose',
+-- })
 
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   desc = 'Fix conceallevel for json files',

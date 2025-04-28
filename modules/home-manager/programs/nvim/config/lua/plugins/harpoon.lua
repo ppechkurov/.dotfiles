@@ -4,7 +4,7 @@ return {
     local mark = require('harpoon.mark')
     local ui = require('harpoon.ui')
 
-    vim.keymap.set('n', '<leader>a', function()
+    vim.keymap.set('n', '<C-a>', function()
       mark.add_file()
     end)
 

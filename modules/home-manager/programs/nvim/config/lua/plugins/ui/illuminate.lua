@@ -4,6 +4,7 @@ return {
   config = function()
     require('illuminate').configure({
       filetypes_denylist = {
+        'alpha',
         'mason',
         'harpoon',
         'DressingInput',

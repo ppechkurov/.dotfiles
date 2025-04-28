@@ -1,5 +1,6 @@
 local function pick_git_root(telescope_picker)
   return function()
+    local initial_cwd = vim.fn.getcwd()
     local dot_git_path = vim.fn.finddir('.git', '.;')
     local result = vim.fn.fnamemodify(dot_git_path, ':h')
     -- set cwd to git root befor search.
@@ -40,6 +41,7 @@ return {
       ['<leader>fp'] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", '[p]rojects' },
       ['<leader>fh'] = { '<cmd>Telescope help_tags<cr>', '[h]elp' },
       ['<leader>fk'] = { '<cmd>Telescope keymaps<cr>', '[k]eymaps' },
+      ['<leader>fs'] = { '<cmd>Telescope aerial<cr>', '[s]symbols' },
       -- git
       ['<leader>gb'] = { '<cmd>Telescope git_branches<cr>', 'Git Branch' },
       ['<leader>gc'] = { '<cmd>Telescope git_commits<cr>', 'Git Commits' },
@@ -162,6 +164,22 @@ return {
           override_generic_sorter = true, -- override the generic sorter
           override_file_sorter = true, -- override the file sorter
           case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+        },
+        aerial = {
+          -- Set the width of the first two columns (the second
+          -- is relevant only when show_columns is set to 'both')
+          col1_width = 4,
+          col2_width = 30,
+          -- How to format the symbols
+          format_symbol = function(symbol_path, filetype)
+            if filetype == 'json' or filetype == 'yaml' then
+              return table.concat(symbol_path, '.')
+            else
+              return symbol_path[#symbol_path]
+            end
+          end,
+          -- Available modes: symbols, lines, both
+          show_columns = 'both',
         },
       },
     })
