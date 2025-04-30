@@ -4,6 +4,11 @@ let
   music = "class:music";
   pavucontrol = "class:pavucontrol";
 in {
+  wayland.windowManager.hyprland.settings.windowrule = [
+    "move 0 0,title:^(flameshot)"
+    "suppressevent fullscreen,title:^(flameshot)"
+  ];
+
   wayland.windowManager.hyprland.settings.windowrulev2 = [
     "float, ${scratch}"
     "size 80% 80%, ${scratch}"
@@ -22,10 +27,7 @@ in {
     "float, class:neovide"
     "size 90% 90%, class:neovide"
 
-    "float, class:flameshot"
-    # "float, class:zoom"
-    # "size 90% 90%, class:zoom"
-    # "center, floating:1, class:zoom"
+    "float, title:^(flameshot)"
 
     "workspace 1, class:default"
     "workspace 2 silent, class:firefox"
