@@ -164,6 +164,14 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   command = 'set filetype=yaml.ansible',
 })
 
+vim.api.nvim_create_user_command('LspLogClear', function()
+  local lsplogpath = vim.fn.stdpath('state') .. '/lsp.log'
+  if io.close(io.open(lsplogpath, 'w+b')) == false then
+    vim.notify('Clearning LSP Log failed.', vim.log.levels.WARN)
+  end
+  print('Lsp log file cleaned up')
+end, { nargs = 0 })
+
 vim.api.nvim_create_user_command('FormatDisable', function(args)
   if args.bang then
     -- FormatDisable! will disable formatting just for this buffer

@@ -26,8 +26,12 @@ return {
     })
     require('neo-tree').setup(opts)
   end,
+  ---@module "neo-tree"
+  ---@type neotree.Config?
   opts = {
     close_if_last_window = true,
+    auto_clean_after_session_restore = true,
+    open_files_do_not_replace_types = { 'terminal', 'Trouble', 'trouble', 'qf', 'Outline' },
     window = {
       position = 'left',
       width = 30,
@@ -40,7 +44,7 @@ return {
       bind_to_cwd = true,
       follow_current_file = {
         enabled = true,
-        leave_dirs_open = true,
+        leave_dirs_open = false,
       },
       filtered_items = {
         always_show = {
