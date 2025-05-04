@@ -4,6 +4,7 @@
     ../../modules/nixos/nvidia
     ../../modules/nixos/networks/kubernetes.nix
     ./hardware-configuration.nix
+    ./wireguard.secret.nix
   ];
 
   # declare hostname
