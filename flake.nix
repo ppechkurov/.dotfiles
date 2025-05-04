@@ -19,7 +19,7 @@
     jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, agenix, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -48,6 +48,7 @@
           modules = [
             ./hosts/home/configuration.nix
             inputs.home-manager.nixosModule
+            inputs.agenix.nixosModules.default
             ({ ... }: {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

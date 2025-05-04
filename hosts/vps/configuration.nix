@@ -8,6 +8,7 @@ in {
   ];
 
   boot.tmp.cleanOnBoot = true;
+  boot.loader.timeout = 1;
   zramSwap.enable = true;
   networking.hostName = "vps";
   networking.domain = "local";

@@ -27,6 +27,8 @@
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ canon-cups-ufr2 gutenprint ];
 
+  services.openssh.enable = true;
+
   environment.systemPackages = with pkgs; [ steam-run protonup ];
 
   programs.steam.enable = true;
