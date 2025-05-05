@@ -2,8 +2,10 @@
 let publicKeys = (import ../../globals.nix).publicKeys.users.petrp;
 in {
   imports = [
-    ./hardware-configuration.nix
-    ./networking.secret.nix # generated at runtime by nixos-infect
+    # ./hardware-configuration.nix
+    ./blue/hardware-configuration.nix
+    # ./networking.secret.nix # generated at runtime by nixos-infect
+    ./blue/networking.nix
     ./services
   ];
 
