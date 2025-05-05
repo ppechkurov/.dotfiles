@@ -18,6 +18,8 @@
 
   programs.nix-ld.enable = true;
 
+  services.openssh.enable = true;
+
   home-manager = {
     users.${config.username} = import ./home.nix;
     extraSpecialArgs = {
