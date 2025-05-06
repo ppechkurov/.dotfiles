@@ -20,13 +20,14 @@ in {
   # Open ports in the firewall
   networking.firewall = { allowedUDPPorts = [ wgServerPort ]; };
 
-  age.secrets.wireguard-private-key.file = ./wireguard-private-key.age;
+  age.secrets.wireguard-server-private-key.file =
+    ./wireguard-server-private-key.age;
 
   networking.wg-quick.interfaces = {
     wg0 = {
       address = [ wgServerPrivateIpv4 wgServerPrivateIpv6 ];
       listenPort = wgServerPort;
-      privateKeyFile = config.age.secrets.wireguard-private-key.path;
+      privateKeyFile = config.age.secrets.wireguard-server-private-key.path;
 
       # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
       postUp = ''
@@ -53,7 +54,7 @@ in {
 
         # Work
         {
-          publicKey = "9BnCKs5egVp2ue9shCEfqZTlPio6g0UPBoW3IR9e4iw=";
+          publicKey = "bBZ3r9G2gkcq/L8oNQTarJMUDB4Zuh0ut9qP4LsAzH4=";
           allowedIPs = [ "10.0.100.3/32" "fdc9:281f:04d7:9ee9::3/128" ];
         }
 

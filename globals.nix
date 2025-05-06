@@ -16,7 +16,7 @@
       ];
       vps = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHgzXxbOtAYItFjZgizB/Hymvmz9lMMpeJw1mJSrfFQ5 senko"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvbd0vS2BWd6rQAwuE/PwqvAJeKJ0rghriiAaCFhxKO blue"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvbd0vS2BWd6rQAwuE/PwqvAJeKJ0rghriiAaCFhxKO"
       ];
     };
   };
