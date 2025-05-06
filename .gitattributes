@@ -2,4 +2,5 @@ modules/home-manager/programs/aws/default.nix filter=git-crypt diff=git-crypt
 
 **/*.secret.nix filter=git-crypt diff=git-crypt
 secrets.nix filter=git-crypt diff=git-crypt
+globals.nix filter=git-crypt diff=git-crypt
 **/*.age filter=git-crypt diff=git-crypt

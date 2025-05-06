@@ -1,25 +1,19 @@
-{ pkgs, ... }:
-let publicKeys = (import ../../globals.nix).publicKeys.users.petrp;
+{ globals, username, hostname, pkgs, ... }:
+let publicKeys = globals.publicKeys.users.${username};
 in {
-  imports = [
-    # ./hardware-configuration.nix
-    ./blue/hardware-configuration.nix
-    # ./networking.secret.nix # generated at runtime by nixos-infect
-    ./blue/networking.nix
-    ./services
-  ];
+  imports = [ ./services ];
 
   boot.tmp.cleanOnBoot = true;
   boot.loader.timeout = 1;
   zramSwap.enable = true;
-  networking.hostName = "vps";
+  networking.hostName = hostname;
   networking.domain = "local";
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = false;
 
   users.users.root.openssh.authorizedKeys.keys = publicKeys;
 
-  users.users.petrp = {
+  users.users.${username} = {
     description = "default nixos user";
     openssh.authorizedKeys.keys = publicKeys;
     extraGroups = [ "wheel" "nginx" "forgejo" "virtualMail" ];
@@ -43,7 +37,7 @@ in {
 
   programs.vim.enable = true;
   programs.vim.defaultEditor = true;
-  environment.systemPackages = with pkgs; [ htop aerc ];
+  environment.systemPackages = with pkgs; [ htop ];
 
   i18n.defaultLocale = "en_US.UTF-8";
 

@@ -41,6 +41,7 @@ with lib; {
       font = "Lat2-Terminus16";
     };
 
+    services.openssh.settings.PasswordAuthentication = false;
     # Services
     services = {
       # Sound with pipewire

@@ -1,13 +1,14 @@
 { inputs, config, pkgs, pkgs-unstable, ... }: {
   imports = [
     ../../modules/nixos/common
+    ../../modules/nixos/wireguard
     ./hardware-configuration.nix
-    ./wireguard.secret.nix
   ];
 
   # declare hostname
   networking.hostName = "work";
 
+  local.wireguard.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = let

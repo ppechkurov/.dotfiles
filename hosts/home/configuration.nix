@@ -2,13 +2,15 @@
   imports = [
     ../../modules/nixos/common
     ../../modules/nixos/nvidia
+    ../../modules/nixos/wireguard
     ../../modules/nixos/networks/kubernetes.nix
     ./hardware-configuration.nix
-    ./wireguard.secret.nix
+    # ./wireguard.secret.nix
   ];
 
   # declare hostname
   networking.hostName = "home";
+  local.wireguard.enable = true;
 
   # Uncomment this if you want to play with the kube again.
   # specialisation.kuber = {

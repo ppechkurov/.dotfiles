@@ -23,15 +23,29 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+      globals = import ./globals.nix;
     in {
       nixosConfigurations = let
         specialArgs = {
-          inherit inputs;
+          inherit inputs globals;
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
             config = { allowUnfree = true; };
           };
         };
+        mkVps = hostname: configModulePath:
+          nixpkgs.lib.nixosSystem {
+            modules = [
+              ./hosts/vps
+              configModulePath
+              inputs.mailserver.nixosModule
+              inputs.agenix.nixosModules.default
+            ];
+            specialArgs = specialArgs // {
+              username = "petrp";
+              inherit hostname;
+            };
+          };
       in {
         work = nixpkgs.lib.nixosSystem {
           modules = [
@@ -57,14 +71,18 @@
           ];
           inherit specialArgs;
         };
-        vps = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/vps/configuration.nix
-            inputs.mailserver.nixosModule
-            inputs.agenix.nixosModules.default
-          ];
-          inherit specialArgs;
-        };
+        bluevps = mkVps "bluevps" ./hosts/vps/bluevps/configuration.nix;
+        # bluevps = nixpkgs.lib.nixosSystem {
+        #   modules = [
+        #     ./hosts/vps/bluevps/configuration.nix
+        #     inputs.mailserver.nixosModule
+        #     inputs.agenix.nixosModules.default
+        #   ];
+        #   specialArgs = specialArgs // {
+        #     username = "petrp";
+        #     hostname = "bluevps";
+        #   };
+        # };
       };
 
       devShells = {

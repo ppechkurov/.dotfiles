@@ -1,8 +1,8 @@
 {
   imports = [
-    # ./nginx.nix
-    # ./forgejo.nix
-    ./wireguard.nix
+    ./nginx.nix
+    ./forgejo.nix
+    ../../../modules/nixos/wireguard
     #./mailserver.nix
   ];
 }
