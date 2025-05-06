@@ -50,6 +50,18 @@ in {
           publicKey = "I9LlpFOmXIuql4TLf/o3oGQ5GhS9ciX0oLsEjdUQiik=";
           allowedIPs = [ "10.0.100.2/32" "fdc9:281f:04d7:9ee9::2/128" ];
         }
+
+        # Work
+        {
+          publicKey = "9BnCKs5egVp2ue9shCEfqZTlPio6g0UPBoW3IR9e4iw=";
+          allowedIPs = [ "10.0.100.3/32" "fdc9:281f:04d7:9ee9::3/128" ];
+        }
+
+        # Mobile
+        {
+          publicKey = "d5OWm1T2ZNE+irH8Q3qxMgjYmBbsYqM2mxCpBK1RoSU=";
+          allowedIPs = [ "10.0.100.4/32" "fdc9:281f:04d7:9ee9::4/128" ];
+        }
       ];
     };
   };

@@ -1,5 +1,9 @@
 { inputs, config, pkgs, pkgs-unstable, ... }: {
-  imports = [ ../../modules/nixos/common ./hardware-configuration.nix ];
+  imports = [
+    ../../modules/nixos/common
+    ./hardware-configuration.nix
+    ./wireguard.secret.nix
+  ];
 
   # declare hostname
   networking.hostName = "work";
