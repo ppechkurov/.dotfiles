@@ -36,6 +36,7 @@
   "no-neck-pain.nvim": { "branch": "main", "commit": "9cef4b9a54657f430cbac95a83c7cbf0bff28d31" },
   "noice.nvim": { "branch": "main", "commit": "0427460c2d7f673ad60eb02b35f5e9926cf67c59" },
   "nui.nvim": { "branch": "main", "commit": "8d5b0b568517935d3c84f257f272ef004d9f5a59" },
+  "nvim-ansible-vault": { "branch": "main", "commit": "027a36ef478fa5613cdf60d9f7e11c704aa2e062" },
   "nvim-autopairs": { "branch": "master", "commit": "4d74e75913832866aa7de35e4202463ddf6efd1b" },
   "nvim-bqf": { "branch": "main", "commit": "e20417d5e589e03eaaaadc4687904528500608be" },
   "nvim-cmp": { "branch": "main", "commit": "b5311ab3ed9c846b585c0c15b7559be131ec4be9" },
