@@ -72,17 +72,7 @@
           inherit specialArgs;
         };
         bluevps = mkVps "bluevps" ./hosts/vps/bluevps/configuration.nix;
-        # bluevps = nixpkgs.lib.nixosSystem {
-        #   modules = [
-        #     ./hosts/vps/bluevps/configuration.nix
-        #     inputs.mailserver.nixosModule
-        #     inputs.agenix.nixosModules.default
-        #   ];
-        #   specialArgs = specialArgs // {
-        #     username = "petrp";
-        #     hostname = "bluevps";
-        #   };
-        # };
+        webdock = mkVps "webdock" ./hosts/vps/webdock/configuration.nix;
       };
 
       devShells = {

@@ -5,6 +5,8 @@ let
 in {
   config = with cfg;
     lib.mkIf cfg.enable {
+      # disable two way ping detection
+      boot.kernel.sysctl."net.ipv4.icmp_echo_ignore_all" = 1;
       environment.systemPackages = with pkgs; [ wireguard-tools ];
 
       # Enable NAT
@@ -28,16 +30,20 @@ in {
 
           # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
           postUp = ''
+            ${pkgs.iptables}/bin/iptables -A INPUT -p icmp --icmp-type echo-request -j DROP # disable two way ping detection
             ${pkgs.iptables}/bin/iptables -A FORWARD -i ${interface} -j ACCEPT
             ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s ${privateIpv4} -o ${defaultNetworkInterface} -j MASQUERADE
+            ${pkgs.iptables}/bin/ip6tables -A INPUT -p icmp --icmp-type echo-request -j DROP # disable two way ping detection
             ${pkgs.iptables}/bin/ip6tables -A FORWARD -i ${interface} -j ACCEPT
             ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s ${privateIpv6} -o ${defaultNetworkInterface} -j MASQUERADE
           '';
 
           # Undo the above
           preDown = ''
+            ${pkgs.iptables}/bin/iptables -D INPUT -p icmp --icmp-type echo-request -j DROP # disable two way ping detection
             ${pkgs.iptables}/bin/iptables -D FORWARD -i ${interface} -j ACCEPT
             ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${privateIpv4} -o ${defaultNetworkInterface} -j MASQUERADE
+            ${pkgs.iptables}/bin/ip6tables -D INPUT -p icmp --icmp-type echo-request -j DROP # disable two way ping detection
             ${pkgs.iptables}/bin/ip6tables -D FORWARD -i ${interface} -j ACCEPT
             ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s ${privateIpv6} -o ${defaultNetworkInterface} -j MASQUERADE
           '';

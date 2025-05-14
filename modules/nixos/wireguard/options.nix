@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, globals, ... }: {
   options.local.wireguard = with lib; {
     enable = mkEnableOption "wireguard";
 
@@ -15,6 +15,12 @@
         type = types.number;
         description = "Wireguard server port";
         default = 51820;
+      };
+
+      publicIpv4 = mkOption {
+        type = types.str;
+        description = "Wireguard server public ip v4";
+        default = globals.wg.server.publicIpv4;
       };
 
       privateIpv4 = mkOption {

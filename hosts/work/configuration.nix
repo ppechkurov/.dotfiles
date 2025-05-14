@@ -9,6 +9,8 @@
   networking.hostName = "work";
 
   local.wireguard.enable = true;
+  networking.wg-quick.interfaces.vpn.autostart = false;
+
   services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = let
