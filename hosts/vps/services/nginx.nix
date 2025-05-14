@@ -15,10 +15,17 @@ in {
           enableACME = true;
           forceSSL = true;
           serverName = "git-pp.duckdns.org";
-          locations."/" = {
-            # proxyPass =
-            #   "http://localhost:${toString cfg.settings.server.HTTP_PORT}";
-            proxyPass = "http://work.wg:3000";
+          locations."/" = let port = toString cfg.settings.server.HTTP_PORT;
+          in {
+            proxyPass = "http://work.wg:${port}";
+            extraconfig = ''
+              proxy_set_header Connection $http_connection;  Not Committed Yet                                                                                     •
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+            '';
           };
         };
       };
