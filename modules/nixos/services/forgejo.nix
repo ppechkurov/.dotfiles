@@ -7,6 +7,7 @@ in {
     dnsName = mkOption {
       type = types.str;
       description = "Forgejo instance dns name";
+      default = "test.shit.com";
     };
   };
 
@@ -14,37 +15,15 @@ in {
     services.forgejo.enable = true;
 
     environment.systemPackages = [ pkgs.forgejo ];
-    environment.variables = {
-      FORGEJO_WORK_DIR = "${config.services.forgejo.stateDir}";
-    };
 
     services.forgejo = {
       package = pkgs.forgejo;
       dump.enable = true;
+      # stateDir = "/home/forgejo/data"; # this doesn't work at the moment
       settings = {
         service.DISABLE_REGISTRATION = true;
         openid.ENABLE_OPENID_SIGNIN = false;
         server = { ROOT_URL = "https://${cfg.dnsName}"; };
-      };
-    };
-
-    security.acme = {
-      acceptTerms = true;
-      defaults.email = "git@pechkurov.org";
-    };
-
-    services.nginx = {
-      enable = true;
-      virtualHosts = let
-        serverName = cfg.dnsName;
-        port = toString config.services.forgejo.settings.server.HTTP_PORT;
-      in {
-        "${serverName}" = {
-          enableACME = true;
-          forceSSL = true;
-          locations."/" = { proxyPass = "http://localhost:${port}"; };
-          inherit serverName;
-        };
       };
     };
 

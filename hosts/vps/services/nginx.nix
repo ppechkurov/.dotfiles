@@ -2,7 +2,7 @@
 let cfg = config.services.forgejo;
 in {
   options = { };
-  config = {
+  config = lib.mkIf true {
     security.acme = {
       acceptTerms = true;
       defaults.email = "petr.pechkurov@gmail.com";
@@ -18,7 +18,7 @@ in {
           locations."/" = {
             # proxyPass =
             #   "http://localhost:${toString cfg.settings.server.HTTP_PORT}";
-            proxyPass = "http://10.0.100.4:3000";
+            proxyPass = "http://work.wg:3000";
           };
         };
       };

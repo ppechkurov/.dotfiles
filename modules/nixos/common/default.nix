@@ -1,5 +1,6 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
-with lib; {
+{ config, lib, pkgs, pkgs-unstable, globals, ... }:
+let publicKeys = globals.publicKeys.users.${config.username};
+in with lib; {
   options = {
     username = mkOption {
       type = types.str;
@@ -125,9 +126,11 @@ with lib; {
     programs.zsh.enable = true;
     users.users.${config.username} = {
       description = "default nixos user";
-      extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" ];
+      extraGroups =
+        [ "networkmanager" "wheel" "disk" "power" "video" "forgejo" ];
       isNormalUser = true;
       shell = pkgs.zsh;
+      openssh.authorizedKeys.keys = publicKeys;
     };
 
     programs.ssh.startAgent = true;
