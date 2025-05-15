@@ -2,6 +2,7 @@
   imports = [
     ../../modules/nixos/common
     ../../modules/nixos/wireguard
+    ../../modules/nixos/services/syncthing.nix
     ../../modules/nixos/services/forgejo.nix
     ./hardware-configuration.nix
   ];
@@ -11,6 +12,7 @@
 
   local.wireguard.enable = true;
   local.forgejo.enable = true;
+  services.syncthing.enable = true;
   networking.wg-quick.interfaces.vpn.autostart = false;
 
   services.gnome.gnome-keyring.enable = true;
