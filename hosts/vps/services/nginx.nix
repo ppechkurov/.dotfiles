@@ -18,8 +18,8 @@ in {
           locations."/" = let port = toString cfg.settings.server.HTTP_PORT;
           in {
             proxyPass = "http://work.wg:${port}";
-            extraconfig = ''
-              proxy_set_header Connection $http_connection;  Not Committed Yet                                                                                     •
+            extraConfig = ''
+              proxy_set_header Connection $http_connection;
               proxy_set_header Upgrade $http_upgrade;
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
