@@ -8,7 +8,7 @@
       vpnInterface = mkOption {
         type = types.str;
         description = "Wireguard server network interface";
-        default = "wg0";
+        default = "vpn";
       };
 
       internalInterface = mkOption {
