@@ -72,6 +72,7 @@
           inherit specialArgs;
         };
         bluevps = mkVps "bluevps" ./hosts/vps/bluevps/configuration.nix;
+        senko = mkVps "senko" ./hosts/vps/senko/configuration.nix;
         webdock = mkVps "webdock" ./hosts/vps/webdock/configuration.nix;
       };
 
