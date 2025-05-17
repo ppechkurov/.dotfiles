@@ -14,7 +14,7 @@
       internalInterface = mkOption {
         type = types.str;
         description = "Wireguard server network interface";
-        default = "int0";
+        default = "tun";
       };
 
       port = mkOption {

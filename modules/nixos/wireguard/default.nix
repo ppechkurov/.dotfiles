@@ -16,7 +16,7 @@ in {
   # Add all peers to /etc/hosts
   networking.hosts = lib.mkIf (cfg.enable || cfg.server.enable) (lib.listToAttrs
     (lib.mapAttrsToList (name: peer: {
-      name = peer.ipv4vpn;
-      value = [ "${name}.wg" ];
+      name = peer.networks.tun.ipv4;
+      value = [ "${name}.local.wg" ];
     }) (wg.peers // { server = wg.server; })));
 }
