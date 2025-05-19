@@ -78,7 +78,7 @@
 
       devShells = {
         ${system}.default = pkgs.mkShell {
-          packages = [ inputs.agenix.packages.${system}.agenix ];
+          packages = [ inputs.agenix.packages.${system}.agenix pkgs.nh ];
         };
       };
     };
