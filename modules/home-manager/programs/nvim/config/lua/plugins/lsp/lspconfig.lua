@@ -54,7 +54,6 @@ function M.config()
 
   local severity = vim.diagnostic.severity
   vim.diagnostic.config({
-
     virtual_text = {
       prefix = ' ',
       spacing = 4,
@@ -63,7 +62,6 @@ function M.config()
 
     severity_sort = true,
 
-    virtual_lines = { current_line = true },
     underline = true,
     update_in_insert = false,
 
