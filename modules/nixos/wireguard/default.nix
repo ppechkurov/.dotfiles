@@ -4,7 +4,12 @@ let
 
   mkWg = action:
     pkgs.writeShellScriptBin "wg-${action}" ''
-      sudo systemctl ${action} wg-quick-wg0.service
+      if [[ -z $1 ]]; then
+        echo "Usage $(basename $0) <interface_name>"
+        exit 1
+      fi
+
+      sudo systemctl "${action}" "wg-quick-$1.service"
     '';
   wg-start = mkWg "start";
   wg-stop = mkWg "stop";

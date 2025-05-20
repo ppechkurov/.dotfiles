@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, globals, ... }:
 let cfg = config.services.forgejo;
 in {
   imports = [
@@ -20,9 +20,11 @@ in {
         enableACME = true;
         forceSSL = true;
         serverName = "git-pp.duckdns.org";
-        locations."/" = let port = toString cfg.settings.server.HTTP_PORT;
+        locations."/" = let
+          host = globals.wg.peers.work.networks.tun.ipv4;
+          port = toString cfg.settings.server.HTTP_PORT;
         in {
-          proxyPass = "http://10.0.200.3:${port}";
+          proxyPass = "http://${host}:${port}";
           extraConfig = ''
             proxy_set_header Connection $http_connection;
             proxy_set_header Upgrade $http_upgrade;

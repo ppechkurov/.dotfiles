@@ -15,10 +15,11 @@ in {
 
   users.users.root.openssh.authorizedKeys.keys = publicKeys;
 
+  # users.mutableUsers = false;
   users.users.${username} = {
     description = "default nixos user";
     openssh.authorizedKeys.keys = publicKeys;
-    extraGroups = [ "wheel" "nginx" "forgejo" "virtualMail" ];
+    extraGroups = [ "wheel" "nginx" ];
     isNormalUser = true;
     shell = pkgs.bash;
   };
