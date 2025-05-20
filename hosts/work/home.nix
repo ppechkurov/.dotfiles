@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-unstable, ... }: {
   imports = [ ../../modules/home-manager ./hyprland ];
 
   xdg.configFile.hypr = {
@@ -8,7 +8,16 @@
   };
 
   home.sessionPath = [ "$HOME/.npm-global/bin" ];
-  home.packages = with pkgs; [ drawio just obsidian zoom-us slack ];
+  home.packages = with pkgs; [
+    drawio
+    just
+    obsidian
+    zoom-us
+    slack
+    signal-desktop
+    pkgs-unstable.signal-cli
+    pkgs-unstable.gurk-rs
+  ];
 
   programs.git.extraConfig = {
     user.signingkey = "F7C0B35DA9397DD1";
