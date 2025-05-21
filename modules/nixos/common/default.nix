@@ -1,5 +1,9 @@
 { config, lib, pkgs, pkgs-unstable, globals, ... }:
-let publicKeys = globals.publicKeys.users.${config.username};
+let
+  publicKeys = globals.publicKeys.users.${config.username};
+  mfa = pkgs.writeShellScriptBin "mfa" ''
+    pass flosum/aws/totp | xargs -d '\n' oathtool -b --totp | wl-copy --trim-newline
+  '';
 in with lib; {
   options = {
     username = mkOption {
@@ -169,6 +173,7 @@ in with lib; {
       neovide
       nodejs_22
       oath-toolkit # mfa
+      mfa
       pass-wayland
       satty
       slurp
