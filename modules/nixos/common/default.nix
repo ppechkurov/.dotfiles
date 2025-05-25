@@ -168,6 +168,7 @@ in with lib; {
       lazydocker
       libnotify
       libreoffice
+      pkgs-unstable.mattermost-desktop
       mpc-cli
       ncdu
       neovide

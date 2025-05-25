@@ -1,4 +1,6 @@
-{ pkgs, pkgs-unstable, ... }: {
+{ pkgs, pkgs-unstable, ... }:
+let serverName = "matter-pp.duckdns.org";
+in {
   imports = [
     ./hardware-configuration.nix
     ./networking.secret.nix # generated at runtime by nixos-infect
@@ -6,28 +8,73 @@
 
   local.wireguard.server.enable = true;
 
-  # services.ejabberd.enable = true;
-  # services.ejabberd.configFile = "/etc/ejabberd.yml";
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   security.acme = {
     acceptTerms = true;
     defaults.email = "petr.pechkurov@gmail.com";
   };
 
-  services.nginx = {
+  services.nginx = let
+    upstream = "mattermost";
+    port = "8065";
+  in {
     enable = true;
 
+    recommendedOptimisation = true;
+
+    upstreams = {
+      ${upstream} = {
+        servers."127.0.0.1:${port}" = { };
+        extraConfig = "keepalive 32;";
+      };
+    };
+
     virtualHosts = {
-      "matter-pp.duckdns.org" = {
+      "${serverName}" = {
         enableACME = true;
         forceSSL = true;
-        serverName = "matter-pp.duckdns.org";
-        locations."^~ /" = let
-          host = "127.0.0.1";
-          port = "8065";
-        in {
-          proxyPass = "http://${host}:${port}";
+
+        inherit serverName;
+
+        # [Docs](https://docs.mattermost.com/deploy/server/setup-nginx-proxy.html)
+        # Actually, it should work without this. But it required if you need webhooks.
+        locations."~ /api/v[0-9]+/(users/)?websocket$" = {
+          proxyPass = "http://${upstream}";
           proxyWebsockets = true;
+          extraConfig = ''
+            proxy_set_header Connection "upgrade";
+            client_max_body_size 50M;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Frame-Options SAMEORIGIN;
+            proxy_buffers 256 16k;
+            proxy_buffer_size 16k;
+            client_body_timeout 60s;
+            send_timeout 300s;
+            lingering_timeout 5s;
+            proxy_connect_timeout 90s;
+            proxy_send_timeout 300s;
+            proxy_read_timeout 90s;
+          '';
+        };
+
+        locations."/" = {
+          proxyPass = "http://${upstream}";
+          extraConfig = ''
+            client_max_body_size 50M;
+            proxy_set_header Connection "";
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Frame-Options SAMEORIGIN;
+            proxy_buffers 256 16k;
+            proxy_buffer_size 16k;
+            proxy_read_timeout 600s;
+          '';
         };
       };
     };
@@ -37,8 +84,8 @@
 
   services.mattermost = {
     enable = true;
-    package = pkgs-unstable.mattermost;
-    siteUrl = "https://matter-pp.duckdns.org";
+    package = pkgs-unstable.mattermostLatest;
+    siteUrl = "https://${serverName}";
     plugins = [
       (pkgs.fetchurl {
         url =
@@ -50,9 +97,12 @@
           "https://github.com/moussetc/mattermost-plugin-giphy/releases/download/v3.0.0/com.github.moussetc.mattermost.plugin.giphy-3.0.0.tar.gz";
         hash = "sha256-/i2Tfbb+2B5TBb0mXYZTBH3jF3TZAjmiiyTxL9gx/a0=";
       })
+      (pkgs.fetchurl {
+        url =
+          "https://github.com/mattermost/mattermost-plugin-github/releases/download/v2.4.0/mattermost-plugin-github-v2.4.0-linux-amd64.tar.gz";
+        hash = "sha256-b/k5K5uAtRcBFVpCp1XYNXzGVXEp4l4tF2p7Gms6lW4=";
+      })
     ];
     extraConfig.ServiceSettings.EnableLocalMode = true;
   };
-
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
