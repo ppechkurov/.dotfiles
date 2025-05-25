@@ -34,7 +34,7 @@
           };
         };
         mkVps = hostname: configModulePath:
-          nixpkgs.lib.nixosSystem {
+          nixpkgs-unstable.lib.nixosSystem {
             modules = [
               ./hosts/vps
               configModulePath

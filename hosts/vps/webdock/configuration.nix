@@ -1,5 +1,7 @@
-{ pkgs, pkgs-unstable, ... }:
-let serverName = "matter-pp.duckdns.org";
+{ pkgs, pkgs-unstable, config, ... }:
+let
+  serverName = "matter-pp.duckdns.org";
+  cfg = config.services.mattermost;
 in {
   imports = [
     ./hardware-configuration.nix
@@ -81,11 +83,18 @@ in {
   };
 
   environment.systemPackages = [ pkgs-unstable.mmctl ];
+  environment.variables = { MMCTL_LOCAL_SOCKET_PATH = cfg.socket.path; };
+
+  age.secrets.mattermost-environment.file = ./mattermost-environment.age;
 
   services.mattermost = {
     enable = true;
     package = pkgs-unstable.mattermostLatest;
     siteUrl = "https://${serverName}";
+
+    # Local mode
+    socket = { enable = true; };
+
     plugins = [
       (pkgs.fetchurl {
         url =
@@ -94,15 +103,35 @@ in {
       })
       (pkgs.fetchurl {
         url =
-          "https://github.com/moussetc/mattermost-plugin-giphy/releases/download/v3.0.0/com.github.moussetc.mattermost.plugin.giphy-3.0.0.tar.gz";
-        hash = "sha256-/i2Tfbb+2B5TBb0mXYZTBH3jF3TZAjmiiyTxL9gx/a0=";
-      })
-      (pkgs.fetchurl {
-        url =
           "https://github.com/mattermost/mattermost-plugin-github/releases/download/v2.4.0/mattermost-plugin-github-v2.4.0-linux-amd64.tar.gz";
         hash = "sha256-b/k5K5uAtRcBFVpCp1XYNXzGVXEp4l4tF2p7Gms6lW4=";
       })
     ];
-    extraConfig.ServiceSettings.EnableLocalMode = true;
+
+    environmentFile = config.age.secrets.mattermost-environment.path;
+
+    settings = {
+      LogSettings = {
+        ConsoleLevel = "INFO";
+        ConsoleJson = false;
+      };
+
+      PluginSettings = {
+        EnableMarketplace = false;
+        EnableRemoteMarketplace = false;
+
+        PluginStates = {
+          "com.mattermost.calls" = { Enable = true; };
+          github = { Enable = true; };
+          mattermost-ai = { Enable = false; };
+          playbooks = { Enable = false; };
+        };
+
+        # Plugins are configured in age secret mattermost-environment.age.
+        # There are some secrets in it. Haven't found a way to declare secrets
+        # and non secrets separately.
+        Plugins = { };
+      };
+    };
   };
 }

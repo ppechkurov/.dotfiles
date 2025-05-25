@@ -34,7 +34,7 @@ in {
             ${pkgs.iptables}/bin/iptables -A INPUT -p icmp --icmp-type echo-request -j DROP # disable two way ping detection
             ${pkgs.iptables}/bin/iptables -A FORWARD -i ${vpnInterface} -j ACCEPT
             ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s ${privateIpv4} -o ${defaultNetworkInterface} -j MASQUERADE
-            ${pkgs.iptables}/bin/ip6tables -A INPUT -p icmp --icmp-type echo-request -j DROP # disable two way ping detection
+            ${pkgs.iptables}/bin/ip6tables -A INPUT -p icmp -j DROP # disable two way ping detection
             ${pkgs.iptables}/bin/ip6tables -A FORWARD -i ${vpnInterface} -j ACCEPT
             ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s ${privateIpv6} -o ${defaultNetworkInterface} -j MASQUERADE
           '';
@@ -44,7 +44,7 @@ in {
             ${pkgs.iptables}/bin/iptables -D INPUT -p icmp --icmp-type echo-request -j DROP # disable two way ping detection
             ${pkgs.iptables}/bin/iptables -D FORWARD -i ${vpnInterface} -j ACCEPT
             ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${privateIpv4} -o ${defaultNetworkInterface} -j MASQUERADE
-            ${pkgs.iptables}/bin/ip6tables -D INPUT -p icmp --icmp-type echo-request -j DROP # disable two way ping detection
+            ${pkgs.iptables}/bin/ip6tables -D INPUT -p icmp -j DROP # disable two way ping detection
             ${pkgs.iptables}/bin/ip6tables -D FORWARD -i ${vpnInterface} -j ACCEPT
             ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s ${privateIpv6} -o ${defaultNetworkInterface} -j MASQUERADE
           '';
