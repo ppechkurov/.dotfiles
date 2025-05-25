@@ -10,6 +10,8 @@ in {
 
   local.wireguard.server.enable = true;
 
+  programs.nh.enable = true;
+
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   security.acme = {
@@ -91,6 +93,7 @@ in {
     enable = true;
     package = pkgs-unstable.mattermostLatest;
     siteUrl = "https://${serverName}";
+    database.peerAuth = true;
 
     # Local mode
     socket = { enable = true; };
