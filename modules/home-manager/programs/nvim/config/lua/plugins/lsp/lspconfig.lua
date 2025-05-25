@@ -101,6 +101,7 @@ function M.config()
     'docker_compose_language_service',
     'clangd',
     'asm_lsp',
+    'denols',
   }
 
   for _, server in pairs(servers) do
