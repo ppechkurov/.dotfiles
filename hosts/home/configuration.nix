@@ -33,7 +33,9 @@
 
   services.openssh.enable = true;
 
-  environment.systemPackages = with pkgs; [ steam-run protonup ];
+  environment.systemPackages = with pkgs;
+    let gostman = inputs.gostman.packages.${pkgs.system}.default;
+    in [ steam-run protonup gostman ];
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;

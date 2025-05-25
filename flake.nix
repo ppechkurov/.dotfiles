@@ -17,6 +17,9 @@
       "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
 
     jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
+
+    gostman.url = "github:Halftoothed/gostman";
+    gostman.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, agenix, nixpkgs-unstable, ... }@inputs:
