@@ -22,8 +22,10 @@
       nixfmt-classic
       nodePackages.bash-language-server
       nodePackages.sql-formatter
-      nodePackages.typescript-language-server
-      nodePackages.vscode-langservers-extracted
+      # nodePackages.typescript-language-server
+      # nodePackages.vscode-langservers-extracted
+      typescript
+      typescript-language-server
       prettierd
       shfmt
       stylua
