@@ -1,18 +1,16 @@
 { config, lib, pkgs, ... }: {
-
   # Enable OpenGL
   hardware.graphics = { enable = true; };
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # Was no able to access tty on 24.11 on the home machine.
+  # Was not able to access tty on 24.11 on the home machine.
   # [This](https://github.com/NixOS/nixpkgs/issues/328972#issuecomment-2316575557) helped.
   hardware.nvidia.modesetting.enable = false;
-  boot.kernelParams = [ "nvidia-drm.modeset=1" ];
+  boot.kernelParams = [ "nvidia-drm.modeset=1" "nvidia_drm.fbdev=0" ];
 
   hardware.nvidia = {
-
     # Modesetting is required.
     # modesetting.enable = false;
 
@@ -36,7 +34,7 @@
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
+    nvidiaSettings = false;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;

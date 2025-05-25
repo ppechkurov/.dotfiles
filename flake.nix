@@ -2,10 +2,10 @@
   description = "My NixOS config flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
+    nixpkgs.url = "nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
@@ -65,7 +65,7 @@
         home = nixpkgs.lib.nixosSystem {
           modules = [
             ./hosts/home/configuration.nix
-            inputs.home-manager.nixosModule
+            inputs.home-manager.nixosModules.home-manager
             inputs.agenix.nixosModules.default
             ({ ... }: {
               home-manager.useGlobalPkgs = true;

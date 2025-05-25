@@ -8,7 +8,8 @@
 
       #https://github.com/montchr/dotfield/blob/78de8ff316ccb2d34fd98cd9bfd3bfb5ad775b0e/home/profiles/firefox/search/default.nix
       search.force = true;
-      search.default = "DuckDuckGo";
+      search.default = "ddg";
+      # search.default = "DuckDuckGo";
       search.engines = let
         engine = alias: template: icon: {
           definedAliases = [ "@${alias}" ];
@@ -32,9 +33,9 @@
           "https://home-manager-options.extranix.com/?query={searchTerms}"
           "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
 
-        "Bing".metaData.hidden = true;
-        "Wikipedia".metaData.hidden = true;
-        "Google".metaData.alias =
+        "bing".metaData.hidden = true;
+        "wikipedia".metaData.hidden = true;
+        "google".metaData.alias =
           "@g"; # builtin engines only support specifying one additional alias
       };
 

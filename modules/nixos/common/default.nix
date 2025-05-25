@@ -32,9 +32,6 @@ in with lib; {
       channel.enable = false;
     };
 
-    # To prevent getting stuck at shutdown
-    systemd.extraConfig = "DefaulTimeoutStopSec=10s";
-
     # Set your time zone.
     time.timeZone = lib.mkDefault "Europe/Warsaw";
 
@@ -107,9 +104,9 @@ in with lib; {
         defaultFonts = { monospace = [ "JetBrainsMono Nerd Font" ]; };
       };
       packages = with pkgs; [
-        (nerdfonts.override {
-          fonts = [ "VictorMono" "JetBrainsMono" "ShareTechMono" ];
-        })
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.victor-mono
+        nerd-fonts.shure-tech-mono
         dina-font
         fira-code
         fira-code-symbols

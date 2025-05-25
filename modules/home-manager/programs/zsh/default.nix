@@ -39,7 +39,7 @@ in {
       lla = "ll -a";
     };
 
-    initExtra = # bash
+    initContent = # bash
       ''
         bindkey -s "^J" ""
         bindkey -s "^F" "tmux-sessionizer\n"
