@@ -2,17 +2,21 @@
   services.mako = {
     enable = true;
     settings = {
-      font = "JetBrainsMono Nerd Font 12";
-      defaultTimeout = 5000;
-      borderSize = 2;
-      borderRadius = 5;
-      backgroundColor = "#323232";
-      borderColor = "#A89984";
-      height = 200;
-      progressColor = "over #313244";
-      textColor = "#A89984";
-      icons = true;
       actions = true;
+      background-color = "#323232";
+      border-color = "#A89984";
+      border-radius = 5;
+      border-size = 2;
+      default-timeout = 3000;
+      font = "JetBrainsMono Nerd Font 12";
+      height = 200;
+      icons = true;
+      progress-color = "over #313244";
+      text-alignment = "center";
+      text-color = "#A89984";
+
+      # Section example
+      "actionable=true" = { anchor = "top-left"; };
     };
   };
 }
