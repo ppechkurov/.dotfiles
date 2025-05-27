@@ -85,7 +85,6 @@ in {
   };
 
   environment.systemPackages = [ pkgs-unstable.mmctl ];
-  environment.variables = { MMCTL_LOCAL_SOCKET_PATH = cfg.socket.path; };
 
   age.secrets.mattermost-environment.file = ./mattermost-environment.age;
 
@@ -96,15 +95,16 @@ in {
     database.peerAuth = true;
 
     # Local mode
-    socket = { enable = true; };
+    socket.enable = true;
+    socket.export = true;
 
-    plugins = [
-      (pkgs.fetchurl {
+    plugins = with pkgs; [
+      (fetchurl {
         url =
           "https://github.com/mattermost/mattermost-plugin-calls/releases/download/v1.7.1/mattermost-plugin-calls-v1.7.1-linux-amd64.tar.gz";
         hash = "sha256-wA6tmumDcjA9EqvYTYrHr1WaDM7iKNm0PDRe5TXZ/GA=";
       })
-      (pkgs.fetchurl {
+      (fetchurl {
         url =
           "https://github.com/mattermost/mattermost-plugin-github/releases/download/v2.4.0/mattermost-plugin-github-v2.4.0-linux-amd64.tar.gz";
         hash = "sha256-b/k5K5uAtRcBFVpCp1XYNXzGVXEp4l4tF2p7Gms6lW4=";
