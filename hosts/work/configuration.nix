@@ -18,7 +18,7 @@
   services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = let
-    stable = with pkgs; [ gnumake zip teams-for-linux ];
+    stable = with pkgs; [ gnumake zip teams-for-linux mattermost-desktop ];
     unstable = with pkgs-unstable; [ ghostty ];
   in stable ++ unstable;
 

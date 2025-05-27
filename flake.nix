@@ -53,7 +53,7 @@
         work = nixpkgs.lib.nixosSystem {
           modules = [
             ./hosts/work/configuration.nix
-            inputs.home-manager.nixosModule
+            inputs.home-manager.nixosModules.home-manager
             inputs.agenix.nixosModules.default
             ({ ... }: {
               home-manager.useGlobalPkgs = true;
