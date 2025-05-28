@@ -119,6 +119,8 @@ in {
         ConsoleJson = false;
       };
 
+      ServiceSettings = { EnableAPIPostDeletion = true; };
+
       PluginSettings = {
         EnableMarketplace = false;
         EnableRemoteMarketplace = false;

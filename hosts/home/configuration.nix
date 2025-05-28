@@ -5,14 +5,15 @@
     ../../modules/nixos/wireguard
     ../../modules/nixos/networks/kubernetes.nix
     ../../modules/nixos/services/syncthing.nix
+    ../../modules/nixos/services/gatus.nix
     ./hardware-configuration.nix
-    # ./wireguard.secret.nix
   ];
 
   # declare hostname
   networking.hostName = "home";
   local.wireguard.enable = true;
   services.syncthing.enable = true;
+  services.gatus.enable = true;
 
   # Uncomment this if you want to play with the kube again.
   # specialisation.kuber = {
