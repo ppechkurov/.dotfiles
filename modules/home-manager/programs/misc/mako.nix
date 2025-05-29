@@ -7,7 +7,7 @@
       border-color = "#A89984";
       border-radius = 5;
       border-size = 2;
-      default-timeout = 3000;
+      default-timeout = 5000;
       font = "JetBrainsMono Nerd Font 12";
       height = 200;
       icons = true;

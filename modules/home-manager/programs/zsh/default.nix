@@ -63,17 +63,34 @@ in {
           complete -o nospace -C $(which tfschema) tfschema
         fi
 
-        _ssh_custom() {
-          local cur opts
-          COMPREPLY=()
-          cur="$\{COMP_WORDS[COMP_CWORD]}"
-          opts=$(grep '^Host' ~/.ssh/config ~/.ssh/config.d/* 2>/dev/null | grep -v '[?*]' | cut -d ' ' -f 2-)
+        notify() {
+          local dir=$(basename "$PWD")
+          local cmd="$*"
 
-          COMPREPLY=("$(compgen -W "$opts" -- "$\{cur}")")
-          return 0
+          if command "$@"; then
+            notify-send \
+              --app-name "$dir" \
+              "🟢 Success!" \
+              $'cmd: '"$cmd"
+            return
+          fi
+
+          exit_code=$?
+          notify-send \
+            --app-name "$dir" \
+            --urgency critical \
+            "🔴 Failure!" \
+            $'cmd: '"$cmd"
+          return $exit_code
         }
 
-        complete -F _ssh_custom oil-ssh ssh
+        _notify() {
+          _arguments '*:: :_normal'
+        }
+
+        compdef _notify notify
+
+        complete -F _ssh oil-ssh
 
         # zsh-vi-mode overrides Ctrl+R, mapping it back
         function zvm_after_init() {
