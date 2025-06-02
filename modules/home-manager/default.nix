@@ -70,6 +70,8 @@ with osConfig; {
   qt.platformTheme.name = "adwaita";
   qt.style.name = "adwaita-dark";
 
+  programs.zathura.enable = true;
+
   xdg = {
     enable = true;
     mime.enable = true;
@@ -81,6 +83,7 @@ with osConfig; {
         "x-scheme-handler/https" = "firefox.desktop";
         "x-scheme-handler/about" = "firefox.desktop";
         "x-scheme-handler/unknown" = "firefox.desktop";
+        "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
       };
     };
     userDirs = {
