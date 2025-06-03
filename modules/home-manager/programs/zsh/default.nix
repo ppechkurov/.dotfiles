@@ -12,7 +12,10 @@ in {
   programs.direnv.enable = true;
   programs.direnv.enableZshIntegration = true;
 
-  programs.zsh = {
+  programs.zsh = let
+    sound =
+      "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga";
+  in {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
@@ -63,15 +66,22 @@ in {
           complete -o nospace -C $(which tfschema) tfschema
         fi
 
+        if [ -x "$(command -v zoxide)" ]; then
+          eval "$(zoxide init zsh --cmd cd)"
+        fi
+
         notify() {
           local dir=$(basename "$PWD")
           local cmd="$*"
 
           if command "$@"; then
+            (pw-play "${sound}" &>/dev/null &)
+
             notify-send \
               --app-name "$dir" \
               "🟢 Success!" \
               $'cmd: '"$cmd"
+
             return
           fi
 
@@ -81,6 +91,9 @@ in {
             --urgency critical \
             "🔴 Failure!" \
             $'cmd: '"$cmd"
+
+          (pw-play "${sound}" &>/dev/null &)
+
           return $exit_code
         }
 
