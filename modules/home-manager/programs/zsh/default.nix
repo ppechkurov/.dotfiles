@@ -66,10 +66,6 @@ in {
           complete -o nospace -C $(which tfschema) tfschema
         fi
 
-        if [ -x "$(command -v zoxide)" ]; then
-          eval "$(zoxide init zsh --cmd cd)"
-        fi
-
         notify() {
           local dir=$(basename "$PWD")
           local cmd="$*"

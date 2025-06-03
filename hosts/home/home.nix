@@ -15,6 +15,8 @@
   };
   home.sessionPath = [ "$HOME/go/bin" ];
 
+  programs.zathura.enable = true;
+
   services.hypridle.settings = {
     listener = let
       keyboard-device = "compx-2.4g-receiver";
