@@ -22,7 +22,7 @@ in {
       "$mod SHIFT, Space, togglefloating"
       "$mod ALT, Space, pin"
       "$mod, F, fullscreen"
-      "$mod, D, killactive"
+      "$mod, Q, killactive"
 
       # move focus
       "$mod, left, movefocus, l"

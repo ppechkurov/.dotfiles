@@ -36,7 +36,7 @@ in {
     "workspace 5 silent, class:Slack"
     "workspace 6 silent, class:ssh"
 
-    "workspace 10 silent, class:teams-for-linux"
+    "workspace 10 silent, class:signal"
   ];
 }
 

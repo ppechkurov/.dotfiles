@@ -15,10 +15,11 @@
   services.syncthing.enable = true;
   networking.wg-quick.interfaces.vpn.autostart = false;
 
-  services.gnome.gnome-keyring.enable = true;
+  # needed for a custom keyboard
+  services.udev.packages = with pkgs; [ qmk-udev-rules vial ];
 
   environment.systemPackages = let
-    stable = with pkgs; [ gnumake zip teams-for-linux mattermost-desktop ];
+    stable = with pkgs; [ gnumake zip mattermost-desktop vial ];
     unstable = with pkgs-unstable; [ ghostty ];
   in stable ++ unstable;
 
