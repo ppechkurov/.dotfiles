@@ -1,8 +1,5 @@
 { inputs, lib, config, pkgs, pkgs-unstable, ... }: {
-  imports = [
-    # ../../modules/nixos/wireguard 
-    ./hardware-configuration.nix
-  ];
+  imports = [ ../../modules/nixos/wireguard ./hardware-configuration.nix ];
 
   # TODO: move to some common module
   options = with lib; {
@@ -16,7 +13,7 @@
   config = {
     # declare hostname
     networking.hostName = "mini";
-    local.wireguard.enable = true;
+    local.wireguard.enable = false;
     # services.syncthing.enable = true;
     # services.gatus.enable = true;
     services.soft-serve.enable = true;
