@@ -1,5 +1,4 @@
-{ lib, osConfig, pkgs, inputs, ... }:
-with osConfig; {
+{ lib, osConfig, pkgs, inputs, ... }: {
   imports = [
     ../../modules/home-manager/programs/nvim
     ../../modules/home-manager/programs/zsh
@@ -7,10 +6,6 @@ with osConfig; {
   ];
 
   home.sessionPath = [ "$HOME/go/bin" ];
-  home = {
-    inherit username;
-    homeDirectory = "/home/${username}";
-  };
 
   home = { packages = [ ]; };
 
