@@ -2,7 +2,7 @@
   imports = [ ../../modules/nixos/wireguard ./hardware-configuration.nix ];
 
   # declare hostname
-  networking.hostName = "home";
+  networking.hostName = "mini";
   local.wireguard.enable = true;
   # services.syncthing.enable = true;
   # services.gatus.enable = true;
