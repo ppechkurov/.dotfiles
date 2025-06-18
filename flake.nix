@@ -74,6 +74,18 @@
           ];
           inherit specialArgs;
         };
+        mini = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/mini/configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+            inputs.agenix.nixosModules.default
+            ({ ... }: {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+            })
+          ];
+          inherit specialArgs;
+        };
         bluevps = mkVps "bluevps" ./hosts/vps/bluevps/configuration.nix;
         senko = mkVps "senko" ./hosts/vps/senko/configuration.nix;
         webdock = mkVps "webdock" ./hosts/vps/webdock/configuration.nix;
