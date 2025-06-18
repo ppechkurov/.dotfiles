@@ -12,8 +12,9 @@
   # declare hostname
   networking.hostName = "home";
   local.wireguard.enable = true;
-  services.syncthing.enable = true;
-  services.gatus.enable = true;
+  # services.syncthing.enable = true;
+  # services.gatus.enable = true;
+  services.soft-serve.enable = true;
 
   # Uncomment this if you want to play with the kube again.
   # specialisation.kuber = {
