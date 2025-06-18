@@ -1,24 +1,35 @@
 { inputs, lib, config, pkgs, pkgs-unstable, ... }: {
   imports = [ ../../modules/nixos/wireguard ./hardware-configuration.nix ];
 
-  # declare hostname
-  networking.hostName = "mini";
-  local.wireguard.enable = true;
-  # services.syncthing.enable = true;
-  # services.gatus.enable = true;
-  services.soft-serve.enable = true;
+  # TODO: move to some common module
+  options = with lib; {
+    username = mkOption {
+      type = types.str;
+      default = "petrp";
+    };
+    monitor = mkOption { type = types.attrsOf types.anything; };
+  };
 
-  services.openssh.enable = true;
+  config = {
+    # declare hostname
+    networking.hostName = "mini";
+    local.wireguard.enable = true;
+    # services.syncthing.enable = true;
+    # services.gatus.enable = true;
+    services.soft-serve.enable = true;
 
-  environment.systemPackages = [ ];
+    services.openssh.enable = true;
 
-  time.timeZone = lib.mkForce "Europe/Minsk";
+    environment.systemPackages = [ ];
 
-  home-manager = {
-    users.${config.username} = import ./home.nix;
-    extraSpecialArgs = {
-      inherit inputs;
-      inherit pkgs-unstable;
+    time.timeZone = lib.mkForce "Europe/Minsk";
+
+    home-manager = {
+      users.${config.username} = import ./home.nix;
+      extraSpecialArgs = {
+        inherit inputs;
+        inherit pkgs-unstable;
+      };
     };
   };
 }
