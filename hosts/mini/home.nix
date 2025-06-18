@@ -3,7 +3,7 @@ with osConfig; {
   imports = [
     ../../modules/home-manager/programs/nvim
     ../../modules/home-manager/programs/zsh
-    ./keyboard
+    ../../modules/home-manager/keyboard
   ];
 
   home.sessionPath = [ "$HOME/go/bin" ];
