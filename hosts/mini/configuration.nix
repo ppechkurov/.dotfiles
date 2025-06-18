@@ -1,5 +1,8 @@
 { inputs, lib, config, pkgs, pkgs-unstable, ... }: {
-  imports = [ ../../modules/nixos/wireguard ./hardware-configuration.nix ];
+  imports = [
+    # ../../modules/nixos/wireguard 
+    ./hardware-configuration.nix
+  ];
 
   # TODO: move to some common module
   options = with lib; {
@@ -31,5 +34,7 @@
         inherit pkgs-unstable;
       };
     };
+
+    system.stateVersion = "25.05";
   };
 }
