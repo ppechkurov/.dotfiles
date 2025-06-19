@@ -1,13 +1,5 @@
-{ pkgs, config, ... }:
-let
-  oil-ssh = pkgs.writeScriptBin "oil-ssh" # bash
-    ''
-      host=$1
-      [ -z "$host" ] && host=$(rg '^[[:space:]]*Host[[:space:]]+(\S+)' -o --replace '$1' ~/.ssh/config --no-line-number | fzf)
-      [ "$host" ] && vim oil-ssh://"$host"//home
-    '';
-in {
-  home = { packages = with pkgs; [ bat eza oil-ssh ]; };
+{ pkgs, config, ... }: {
+  home = { packages = with pkgs; [ git bat eza fzf ]; };
 
   programs.direnv.enable = true;
   programs.direnv.enableZshIntegration = true;
@@ -21,19 +13,18 @@ in {
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
-    zplug = {
-      enable = true;
-      plugins = [{ name = "romkatv/powerlevel10k"; }];
-    };
-    # antidote = {
-    #   enable = true;
-    #   plugins = [ "romkatv/powerlevel10k" "zsh-users/zsh-completions" ];
-    # };
-    plugins = [{
-      name = "vi-mode";
-      src = pkgs.zsh-vi-mode;
-      file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-    }];
+    plugins = [
+      {
+        name = "vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+    ];
     oh-my-zsh = {
       enable = true;
       plugins = [ "fzf" ];
