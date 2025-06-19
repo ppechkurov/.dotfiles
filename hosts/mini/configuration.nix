@@ -1,6 +1,6 @@
 { inputs, globals, lib, config, pkgs, pkgs-unstable, ... }:
-# let publicKeys = globals.publicKeys.users.${config.username}; in
-{
+let publicKeys = globals.publicKeys.users.${config.username};
+in {
   imports = [ ../../modules/nixos/wireguard ./hardware-configuration.nix ];
 
   # TODO: move to some common module
@@ -23,7 +23,7 @@
     services.openssh.enable = true;
 
     environment.systemPackages = with pkgs; [ fzf git ];
-    # users.users.root.openssh.authorizedKeys.keys = publicKeys;
+    users.users.root.openssh.authorizedKeys.keys = publicKeys;
 
     # Use the systemd-boot EFI boot loader.
     boot.loader.systemd-boot.enable = true;
@@ -61,10 +61,7 @@
       extraGroups = [ "wheel" "disk" ];
       isNormalUser = true;
       shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM/8sFXfWRrIE+n4TtvawXjd1QKIYadM2OR9PGOxHKrP home"
-      ];
-      # openssh.authorizedKeys.keys = publicKeys;
+      openssh.authorizedKeys.keys = publicKeys;
     };
 
     programs.ssh.startAgent = true;
