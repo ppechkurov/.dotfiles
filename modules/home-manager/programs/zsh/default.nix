@@ -1,5 +1,5 @@
 { pkgs, config, ... }: {
-  home = { packages = with pkgs; [ git bat eza fzf ]; };
+  home = { packages = with pkgs; [ bat eza fzf ]; };
 
   programs.direnv.enable = true;
   programs.direnv.enableZshIntegration = true;

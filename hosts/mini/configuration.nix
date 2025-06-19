@@ -9,20 +9,21 @@ in {
       type = types.str;
       default = "petrp";
     };
-    monitor = mkOption { type = types.attrsOf types.anything; };
   };
 
   config = {
-    # declare hostname
     networking.hostName = "mini";
-    local.wireguard.enable = false;
-    # services.syncthing.enable = true;
-    # services.gatus.enable = true;
+    local.wireguard.enable = true;
     services.soft-serve.enable = true;
 
-    services.openssh.enable = true;
+    networking.firewall.allowedTCPPorts = [
+      8080 # for connection test
+    ];
 
-    environment.systemPackages = with pkgs; [ fzf git ];
+    services.openssh.enable = true;
+    services.openssh.settings.PasswordAuthentication = false;
+
+    environment.systemPackages = with pkgs; [ git ];
     users.users.root.openssh.authorizedKeys.keys = publicKeys;
 
     # Use the systemd-boot EFI boot loader.
@@ -53,8 +54,6 @@ in {
       font = "Lat2-Terminus16";
     };
 
-    services.openssh.settings.PasswordAuthentication = false;
-
     programs.zsh.enable = true;
     users.users.${config.username} = {
       description = "default nixos user";
@@ -65,16 +64,6 @@ in {
     };
 
     programs.ssh.startAgent = true;
-    programs.ssh.extraConfig = # bash
-      ''
-        Host github.com
-          IdentitiesOnly yes
-          User git
-          Hostname github.com
-          PreferredAuthentications publickey
-          IdentityFile /home/${config.username}/.ssh/id_ed25519
-      '';
-
     home-manager = {
       users.${config.username} = import ./home.nix;
       extraSpecialArgs = {
