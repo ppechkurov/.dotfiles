@@ -21,10 +21,14 @@ in {
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "viins";
-    antidote = {
+    zplug = {
       enable = true;
-      plugins = [ "romkatv/powerlevel10k" "zsh-users/zsh-completions" ];
+      plugins = [{ name = "romkatv/powerlevel10k"; }];
     };
+    # antidote = {
+    #   enable = true;
+    #   plugins = [ "romkatv/powerlevel10k" "zsh-users/zsh-completions" ];
+    # };
     plugins = [{
       name = "vi-mode";
       src = pkgs.zsh-vi-mode;
