@@ -1,9 +1,7 @@
-{ globals, lib, username, hostname, pkgs, ... }:
+{ globals, username, hostname, pkgs, ... }:
 let publicKeys = globals.publicKeys.users.${username};
 in {
   imports = [ ./services ];
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   boot.tmp.cleanOnBoot = true;
   boot.loader.timeout = 1;

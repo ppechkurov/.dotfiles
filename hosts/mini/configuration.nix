@@ -16,6 +16,9 @@ in {
     local.wireguard.enable = true;
     services.soft-serve.enable = true;
 
+    services.jellyfin.enable = true;
+    services.jellyfin = { openFirewall = true; };
+
     networking.firewall.allowedTCPPorts = [
       8080 # for connection test
     ];
@@ -29,6 +32,8 @@ in {
     # Use the systemd-boot EFI boot loader.
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
+    boot.tmp.cleanOnBoot = true;
+    boot.loader.timeout = 1;
 
     # Enable Experimental Features and Package Management
     nix = {
