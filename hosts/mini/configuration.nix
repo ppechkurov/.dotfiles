@@ -1,7 +1,11 @@
 { inputs, globals, lib, config, pkgs, pkgs-unstable, ... }:
 let publicKeys = globals.publicKeys.users.${config.username};
 in {
-  imports = [ ../../modules/nixos/wireguard ./hardware-configuration.nix ];
+  imports = [
+    ../../modules/nixos/wireguard
+    ../../modules/nixos/services/soft-serve
+    ./hardware-configuration.nix
+  ];
 
   # TODO: move to some common module
   options = with lib; {
@@ -62,7 +66,7 @@ in {
     programs.zsh.enable = true;
     users.users.${config.username} = {
       description = "default nixos user";
-      extraGroups = [ "wheel" "disk" ];
+      extraGroups = [ "wheel" "disk" "power" ];
       isNormalUser = true;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = publicKeys;
