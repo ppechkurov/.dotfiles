@@ -23,6 +23,8 @@ in {
     services.jellyfin.enable = true;
     services.jellyfin = { openFirewall = true; };
 
+    # TODO: doesn't work
+    networking.interfaces.enp4s0.wakeOnLan.enable = true;
     networking.firewall.allowedTCPPorts = [
       8080 # for connection test
     ];

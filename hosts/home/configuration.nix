@@ -16,6 +16,10 @@
   # services.gatus.enable = true;
   services.soft-serve.enable = true;
 
+  networking.hosts = {
+    "192.168.100.14" = [ "soft.local.home" "git-pp.duckdns.org" ];
+  };
+
   # Uncomment this if you want to play with the kube again.
   # specialisation.kuber = {
   #   inheritParentConfig = true;

@@ -1,7 +1,9 @@
-{ pkgs, pkgs-unstable, config, ... }:
+{ pkgs, pkgs-unstable, config, globals, ... }:
 let
   serverName = "matter-pp.duckdns.org";
   cfg = config.services.mattermost;
+  softServeIp = globals.wg.peers.mini.networks.tun.ipv4;
+  softServePort = 2222;
 in {
   imports = [
     ./hardware-configuration.nix
@@ -12,7 +14,7 @@ in {
 
   programs.nh.enable = true;
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 softServePort ];
 
   security.acme = {
     acceptTerms = true;
@@ -33,6 +35,14 @@ in {
         extraConfig = "keepalive 32;";
       };
     };
+
+    # soft serve git
+    streamConfig = ''
+      server {
+        listen ${toString softServePort};
+        proxy_pass ${softServeIp}:23231;
+      }
+    '';
 
     virtualHosts = {
       "${serverName}" = {
