@@ -17,6 +17,7 @@ in {
         internalInterfaces = [ vpnInterface internalInterface ];
       };
 
+      networking.firewall.trustedInterfaces = [ "tun" ];
       networking.firewall.allowedUDPPorts = let internalPort = port + 1;
       in [ port internalPort ];
 

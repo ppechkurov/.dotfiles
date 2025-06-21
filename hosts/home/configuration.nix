@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, pkgs-unstable, ... }: {
+{ inputs, lib, config, pkgs, pkgs-unstable, globals, ... }: {
   imports = [
     ../../modules/nixos/common
     ../../modules/nixos/nvidia
@@ -62,9 +62,6 @@
 
   home-manager = {
     users.${config.username} = import ./home.nix;
-    extraSpecialArgs = {
-      inherit inputs;
-      inherit pkgs-unstable;
-    };
+    extraSpecialArgs = { inherit inputs pkgs-unstable globals; };
   };
 }

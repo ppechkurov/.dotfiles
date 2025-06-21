@@ -11,8 +11,9 @@ in {
   ];
 
   local.wireguard.server.enable = true;
-
+  services.atuin.enable = true;
   programs.nh.enable = true;
+  environment.systemPackages = [ pkgs-unstable.mmctl pkgs-unstable.atuin ];
 
   networking.firewall.allowedTCPPorts = [ 80 443 softServePort ];
 
@@ -93,8 +94,6 @@ in {
       };
     };
   };
-
-  environment.systemPackages = [ pkgs-unstable.mmctl ];
 
   age.secrets.mattermost-environment.file = ./mattermost-environment.age;
 

@@ -1,4 +1,8 @@
-{
+{ globals, osConfig, ... }:
+let
+  wgServerIp = globals.wg.server.networks.tun.ipv4;
+  cfg = osConfig.services.atuin;
+in {
   programs.atuin = {
     enableZshIntegration = true;
     flags = [ "--disable-up-arrow" ];
@@ -12,6 +16,7 @@
       show_preview = true;
       style = "full";
       update_check = false;
+      sync_address = "http://${wgServerIp}:${toString cfg.port}";
     };
   };
 }
