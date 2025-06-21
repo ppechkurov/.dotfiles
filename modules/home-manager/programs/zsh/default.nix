@@ -94,11 +94,10 @@
 
         compdef _notify notify
 
-        complete -F _ssh oil-ssh
-
         # zsh-vi-mode overrides Ctrl+R, mapping it back
         function zvm_after_init() {
-          zvm_bindkey viins "^R" fzf-history-widget
+          zvm_bindkey vicmd "^r" atuin-search
+          bindkey '^r' atuin-search
         }
       '';
 

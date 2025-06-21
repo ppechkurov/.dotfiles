@@ -16,6 +16,7 @@
   home.sessionPath = [ "$HOME/go/bin" ];
 
   programs.zathura.enable = true;
+  programs.atuin.enable = true;
 
   services.hypridle.settings = {
     listener = let
