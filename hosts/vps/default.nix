@@ -37,8 +37,9 @@ in {
   };
 
   programs.vim.enable = true;
+  programs.bash.blesh.enable = true;
   programs.vim.defaultEditor = true;
-  environment.systemPackages = with pkgs; [ htop ];
+  environment.systemPackages = with pkgs; [ htop atuin ];
 
   i18n.defaultLocale = "en_US.UTF-8";
 
