@@ -19,6 +19,7 @@
     pkgs-unstable.gurk-rs
   ];
 
+  programs.atuin.enable = true;
   programs.git.extraConfig = {
     user.signingkey = "F7C0B35DA9397DD1";
     commit.gpgsign = true;
