@@ -77,10 +77,7 @@ in {
     programs.ssh.startAgent = true;
     home-manager = {
       users.${config.username} = import ./home.nix;
-      extraSpecialArgs = {
-        inherit inputs;
-        inherit pkgs-unstable;
-      };
+      extraSpecialArgs = { inherit inputs pkgs-unstable globals; };
     };
 
     system.stateVersion = "25.05";

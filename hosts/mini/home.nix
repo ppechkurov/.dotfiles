@@ -2,6 +2,7 @@
   imports = [
     ../../modules/home-manager/programs/nvim
     ../../modules/home-manager/programs/zsh
+    ../../modules/home-manager/programs/atuin
     ../../modules/home-manager/keyboard
   ];
 
