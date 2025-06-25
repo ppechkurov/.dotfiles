@@ -124,11 +124,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1749748083,
-        "narHash": "sha256-6wKg9bKbih6NTp6JU+ZcYRtJ4uknwXmQjdxLZuryVpg=",
+        "lastModified": 1750867529,
+        "narHash": "sha256-QSPjne6hfvxd8W/IlCZyg60uCv1Ta+CgU8qOp5YKcg0=",
         "ref": "refs/heads/main",
-        "rev": "30f27d9efc340b71ac44042dec34acdac96be7dd",
-        "revCount": 42,
+        "rev": "00e1f8770071c7cc7c2dba5b756097af2f9a4b87",
+        "revCount": 60,
         "type": "git",
         "url": "ssh://git@github.com/ppechkurov/jira.git"
       },
