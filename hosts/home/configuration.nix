@@ -55,7 +55,7 @@
 
   environment.systemPackages = with pkgs;
     let gostman = inputs.gostman.packages.${pkgs.system}.default;
-    in [ steam-run protonup gostman ];
+    in [ steam-run protonup gostman jellyfin-media-player ];
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
