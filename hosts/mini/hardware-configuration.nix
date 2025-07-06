@@ -12,6 +12,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/mnt/hdd" = {
+    device = "/dev/disk/by-label/hdd";
+    options = [ "nofail" "noatime" "nodiratime" ];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/boot";
     fsType = "vfat";
