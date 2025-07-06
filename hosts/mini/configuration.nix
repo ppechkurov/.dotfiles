@@ -23,8 +23,11 @@ in {
     services.jellyfin.enable = true;
     services.jellyfin = { openFirewall = true; };
 
-    # TODO: doesn't work
-    networking.interfaces.enp4s0.wakeOnLan.enable = true;
+    networking.interfaces.enp4s0.wakeOnLan = {
+      enable = true;
+      policy = [ "magic" ];
+    };
+
     networking.firewall.allowedTCPPorts = [
       8080 # for connection test
     ];
@@ -32,7 +35,7 @@ in {
     services.openssh.enable = true;
     services.openssh.settings.PasswordAuthentication = false;
 
-    environment.systemPackages = with pkgs; [ git ];
+    environment.systemPackages = with pkgs; [ git wakeonlan ];
     users.users.root.openssh.authorizedKeys.keys = publicKeys;
 
     # Use the systemd-boot EFI boot loader.

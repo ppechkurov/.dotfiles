@@ -1,8 +1,9 @@
-{ lib, osConfig, pkgs, inputs, ... }: {
+{ ... }: {
   imports = [
     ../../modules/home-manager/programs/nvim
     ../../modules/home-manager/programs/zsh
     ../../modules/home-manager/programs/atuin
+    ../../modules/home-manager/programs/tmux
     ../../modules/home-manager/keyboard
   ];
 
@@ -14,10 +15,6 @@
   programs.home-manager.enable = true;
 
   programs.htop.enable = true;
-  programs.gpg.enable = true;
-
-  services.gpg-agent.enable = true;
-  services.gpg-agent.pinentry.package = pkgs.pinentry-gnome3;
 
   xdg = {
     enable = true;

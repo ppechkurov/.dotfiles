@@ -11,11 +11,24 @@
 
   # declare hostname
   networking.hostName = "home";
+
+  networking.interfaces.enp5s0.wakeOnLan = {
+    enable = true;
+    policy = [ "magic" ];
+  };
+
   local.wireguard.enable = true;
   # services.syncthing.enable = true;
   # services.gatus.enable = true;
   services.soft-serve.enable = true;
 
+  # services.immich.enable = true;
+  # services.photoprism.enable = true;
+  # services.photoprism.originalsPath = "/data/photos";
+  # services.photoprism.settings = {
+  #   PHOTOPRISM_ADMIN_USER = "admin";
+  #   PHOTOPRISM_ADMIN_PASSWORD = "aoeu";
+  # };
   networking.hosts = {
     "192.168.100.14" =
       [ "soft.local.home" "git-pp.duckdns.org" "mini.local.home" ];
@@ -42,7 +55,7 @@
 
   environment.systemPackages = with pkgs;
     let gostman = inputs.gostman.packages.${pkgs.system}.default;
-    in [ steam-run protonup gostman ghostty ];
+    in [ steam-run protonup gostman ];
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
