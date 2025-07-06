@@ -26,7 +26,7 @@
       publicIpv4 = mkOption {
         type = types.str;
         description = "Wireguard server public ip v4";
-        default = globals.wg.server.publicIpv4;
+        default = globals.wg.servers.vpn.publicIpv4;
       };
 
       privateIpv4 = mkOption {

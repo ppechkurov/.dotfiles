@@ -1,5 +1,5 @@
 { globals, ... }:
-let wgServerIp = globals.wg.server.networks.tun.ipv4;
+let wgServerIp = globals.wg.servers.networks.tun.ipv4;
 in {
   services.atuin = {
     host = wgServerIp; # doesn't work with localhost, not sure why

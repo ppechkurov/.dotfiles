@@ -57,7 +57,7 @@ in {
           }) globals.wg.peers;
         };
 
-        "${internalInterface}" = with globals.wg.server.networks; {
+        "${internalInterface}" = with globals.wg.servers.networks; {
           address = [ tun.ipv4 tun.ipv6 ];
           listenPort = port + 1;
           privateKeyFile = config.age.secrets.wireguard-server-private-key.path;

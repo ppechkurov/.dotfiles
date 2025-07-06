@@ -23,5 +23,5 @@ in {
     (lib.mapAttrsToList (name: peer: {
       name = peer.networks.tun.ipv4;
       value = [ "${name}.local.wg" ];
-    }) (wg.peers // { server = wg.server; })));
+    }) (wg.peers // { server = wg.servers; })));
 }

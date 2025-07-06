@@ -1,6 +1,6 @@
 { globals, osConfig, ... }:
 let
-  wgServerIp = globals.wg.server.networks.tun.ipv4;
+  wgServerIp = globals.wg.servers.networks.tun.ipv4;
   cfg = osConfig.services.atuin;
 in {
   programs.atuin.enable = true;
