@@ -23,6 +23,7 @@ in with lib; {
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
         auto-optimise-store = true;
+        trusted-users = [ "root" "petrp" ];
       };
       gc = {
         automatic = true;
