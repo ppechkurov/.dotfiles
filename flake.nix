@@ -16,7 +16,11 @@
     mailserver.url =
       "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
 
-    jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
+    jira.url = "ssh://git@github.com/ppechkurov/jira.git";
+    jira = {
+      type = "git";
+      ref = "v0.0.5";
+    };
 
     gostman.url = "github:Halftoothed/gostman";
     gostman.inputs.nixpkgs.follows = "nixpkgs";
