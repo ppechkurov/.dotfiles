@@ -1,8 +1,8 @@
 { pkgs, pkgs-unstable, config, globals, ... }:
 let
-  serverName = "matter-pp.duckdns.org";
-  cfg = config.services.mattermost;
-  softServeIp = globals.wg.peers.mini.networks.tun.ipv4;
+  mattermostServerName = "matter-pp.duckdns.org";
+  jellyfinServerName = "jelly-pp.duckdns.org";
+  miniPcIp = globals.wg.peers.mini.networks.tun.ipv4;
   softServePort = 2222;
 in {
   imports = [
@@ -41,16 +41,18 @@ in {
     streamConfig = ''
       server {
         listen ${toString softServePort};
-        proxy_pass ${softServeIp}:23231;
+        proxy_pass ${miniPcIp}:23231;
       }
     '';
 
+    # Details: [link](https://nixos.org/manual/nixos/stable/index.html#module-security-acme)
     virtualHosts = {
-      "${serverName}" = {
+      "mattermost" = {
         enableACME = true;
         forceSSL = true;
+        serverAliases = [ jellyfinServerName ];
 
-        inherit serverName;
+        serverName = mattermostServerName;
 
         # [Docs](https://docs.mattermost.com/deploy/server/setup-nginx-proxy.html)
         # Actually, it should work without this. But it required if you need webhooks.
@@ -92,6 +94,44 @@ in {
           '';
         };
       };
+
+      "jellyfin" = {
+        useACMEHost = "${mattermostServerName}";
+        forceSSL = true;
+
+        serverName = "${jellyfinServerName}";
+
+        locations."/" = {
+          proxyPass = "http://${miniPcIp}:8096";
+          extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Forwarded-Protocol $scheme;
+            proxy_set_header X-Forwarded-Host $http_host;
+
+            # Disable buffering when the nginx proxy gets very resource heavy upon streaming
+            proxy_buffering off;
+          '';
+        };
+
+        # Proxy Jellyfin Websockets traffic
+        locations."/socket" = {
+          proxyPass = "http://${miniPcIp}:8096";
+          extraConfig = ''
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Forwarded-Protocol $scheme;
+            proxy_set_header X-Forwarded-Host $http_host;
+          '';
+        };
+      };
     };
   };
 
@@ -100,7 +140,7 @@ in {
   services.mattermost = {
     enable = true;
     package = pkgs-unstable.mattermostLatest;
-    siteUrl = "https://${serverName}";
+    siteUrl = "https://${mattermostServerName}";
     database.peerAuth = true;
 
     # Local mode

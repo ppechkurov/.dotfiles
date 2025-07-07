@@ -11,15 +11,22 @@
   networking.hostName = "work";
 
   local.wireguard.enable = true;
-  local.forgejo.enable = true;
-  services.syncthing.enable = true;
-  networking.wg-quick.interfaces.vpn.autostart = false;
+  # local.forgejo.enable = true;
+  # services.syncthing.enable = true;
+  networking.wg-quick.interfaces.vpn.autostart = true;
 
   # needed for a custom keyboard
   services.udev.packages = with pkgs; [ qmk-udev-rules vial ];
 
   environment.systemPackages = let
-    stable = with pkgs; [ gnumake zip mattermost-desktop vial ];
+    stable = with pkgs; [
+      gnumake
+      zip
+      mattermost-desktop
+      vial
+      jellyfin-media-player
+      cachix
+    ];
     unstable = with pkgs-unstable; [ ghostty ];
   in stable ++ unstable;
 
