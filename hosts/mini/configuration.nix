@@ -33,9 +33,10 @@ in {
     ];
 
     services.openssh.enable = true;
+    services.openssh.allowSFTP = true;
     services.openssh.settings.PasswordAuthentication = false;
 
-    environment.systemPackages = with pkgs; [ git wakeonlan ];
+    environment.systemPackages = with pkgs; [ git wakeonlan sshfs ];
     users.users.root.openssh.authorizedKeys.keys = publicKeys;
 
     # Use the systemd-boot EFI boot loader.
@@ -73,10 +74,12 @@ in {
     programs.zsh.enable = true;
     users.users.${config.username} = {
       description = "default nixos user";
-      extraGroups = [ "wheel" "disk" "power" ];
+      extraGroups = [ "wheel" "disk" "power" "transmission" ];
       isNormalUser = true;
       shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = publicKeys;
+      openssh.authorizedKeys.keys = publicKeys ++ [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPhEZUfUL6KX4uWMR7G7b9oxPBaaucCVFrU9ULA9+c+b petrp@webdock"
+      ];
     };
 
     programs.ssh.startAgent = true;

@@ -12,8 +12,17 @@ in {
 
   local.wireguard.server.enable = true;
   services.atuin.enable = true;
+
+  services.transmission.enable = true;
+  services.transmission = {
+    openFirewall = true;
+    settings.incomplete-dir = "/mnt/sshfs/.incomplete";
+    settings.download-dir = "/mnt/sshfs/Downloads";
+  };
+
   programs.nh.enable = true;
-  environment.systemPackages = [ pkgs-unstable.mmctl pkgs-unstable.atuin ];
+  environment.systemPackages =
+    [ pkgs-unstable.mmctl pkgs-unstable.atuin pkgs.ncdu ];
 
   networking.firewall.allowedTCPPorts = [ 80 443 softServePort ];
 
