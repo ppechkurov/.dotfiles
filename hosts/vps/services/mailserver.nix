@@ -1,13 +1,16 @@
-{ config, ... }: {
+{ config, lib, ... }:
+let domain = "slonverse.xyz";
+in {
   age.secrets.mailserver-password.file = ./mailserver-password.age;
 
   mailserver = {
     enable = true;
-    fqdn = "mail-pp.duckdns.org";
-    domains = [ "mail-pp.duckdns.org" ];
+    fqdn = "mail.${domain}";
+    domains = [ "${domain}" ];
+    stateVersion = 3;
 
     loginAccounts = {
-      "petrp@mail-pp.duckdns.org" = {
+      "petr.pechkurov@${domain}" = {
         hashedPasswordFile = config.age.secrets.mailserver-password.path;
       };
     };
