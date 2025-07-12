@@ -1,5 +1,7 @@
 { pkgs, pkgs-unstable, config, globals, ... }:
 let
+  # mattermostServerName = "chat.slonverse.xyz";
+  # jellyfinServerName = "media.slonverse.xyz";
   mattermostServerName = "matter-pp.duckdns.org";
   jellyfinServerName = "jelly-pp.duckdns.org";
   miniPcIp = globals.wg.peers.mini.networks.tun.ipv4;
@@ -59,7 +61,8 @@ in {
       "mattermost" = {
         enableACME = true;
         forceSSL = true;
-        serverAliases = [ jellyfinServerName ];
+        serverAliases =
+          [ jellyfinServerName "chat.slonverse.xyz" "media.slonverse.xyz" ];
 
         serverName = mattermostServerName;
 
@@ -109,6 +112,7 @@ in {
         forceSSL = true;
 
         serverName = "${jellyfinServerName}";
+        serverAliases = [ "media.slonverse.xyz" ];
 
         locations."/" = {
           proxyPass = "http://${miniPcIp}:8096";
