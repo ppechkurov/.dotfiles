@@ -30,5 +30,17 @@
     realName = "Petr Pechkurov";
     userName = "petr.pechkurov@succraft.com";
   };
+
+  accounts.email.accounts.Slonverse = {
+    address = "petr.pechkurov@slonverse.xyz";
+    aerc.enable = true;
+    flavor = "plain";
+    folders.inbox = "INBOX";
+    imap = { host = "mail.slonverse.xyz"; };
+    smtp = { host = "mail.slonverse.xyz"; };
+    passwordCommand = "pass mail/petr.pechkurov@slonverse.xyz";
+    realName = "Petr Pechkurov";
+    userName = "petr.pechkurov@slonverse.xyz";
+  };
 }
 

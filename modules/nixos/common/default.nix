@@ -167,6 +167,7 @@ in with lib; {
       jellyfin-ffmpeg
       jmtpfs # mount android devices, see https://nixos.wiki/wiki/MTP
       jq
+      inetutils
       killall
       lazydocker
       libnotify

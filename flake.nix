@@ -13,8 +13,7 @@
     agenix.inputs.darwin.follows = "";
 
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
-    mailserver.url =
-      "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
+    mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
 
     jira.url = "ssh://git@github.com/ppechkurov/jira.git";
     jira = {
