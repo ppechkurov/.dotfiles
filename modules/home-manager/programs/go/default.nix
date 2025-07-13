@@ -1,5 +1,5 @@
 { pkgs-unstable, ... }: {
   programs.go.enable = true;
-  programs.go.package = pkgs-unstable.go_1_23;
+  programs.go.package = pkgs-unstable.go_1_24;
 }
 
