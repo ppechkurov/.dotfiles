@@ -18,6 +18,8 @@ in {
   config = {
     networking.hostName = "mini";
     local.wireguard.enable = true;
+
+    # TODO: configure when their fix for tmux is merged to the nix packages
     services.soft-serve.enable = true;
 
     services.jellyfin.enable = true;
@@ -36,7 +38,14 @@ in {
     services.openssh.allowSFTP = true;
     services.openssh.settings.PasswordAuthentication = false;
 
-    environment.systemPackages = with pkgs; [ git wakeonlan sshfs ];
+    environment.systemPackages = with pkgs; [
+      git
+      wakeonlan
+      sshfs
+      lm_sensors
+      inetutils
+    ];
+
     users.users.root.openssh.authorizedKeys.keys = publicKeys;
 
     # Use the systemd-boot EFI boot loader.
@@ -78,7 +87,7 @@ in {
       isNormalUser = true;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = publicKeys ++ [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPhEZUfUL6KX4uWMR7G7b9oxPBaaucCVFrU9ULA9+c+b petrp@webdock"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPhEZUfUL6KX4uWMR7G7b9oxPBaaucCVFrU9ULA9+c+b petrp@webdock" # to mount sshfs
       ];
     };
 
