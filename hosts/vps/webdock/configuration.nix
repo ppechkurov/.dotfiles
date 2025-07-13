@@ -183,6 +183,20 @@ in {
 
       ServiceSettings = { EnableAPIPostDeletion = true; };
 
+      EmailSettings = {
+        SMTPServer = "mail.slonverse.xyz";
+        SMTPPort = "465";
+        SMTPServerTimeout = 5;
+        FeedbackName = "Mattermost";
+        FeedbackOrganization = "Mattermost";
+        FeedbackEmail = "mattermost@slonverse.xyz";
+        ReplyToAddress = "mattermost@slonverse.xyz";
+        EnableSMTPAuth = true;
+        ConnectionSecurity = "TLS";
+      };
+
+      SupportSettings = { SupportEmail = "support@slonverse.xyz"; };
+
       PluginSettings = {
         EnableMarketplace = false;
         EnableRemoteMarketplace = false;

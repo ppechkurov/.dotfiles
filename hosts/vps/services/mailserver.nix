@@ -17,6 +17,12 @@ in {
         hashedPasswordFile = config.age.secrets.mailserver-password.path;
       };
     };
+    extraVirtualAliases = {
+      "info@${domain}" = "petr.pechkurov@${domain}";
+      "mattermost@${domain}" = "petr.pechkurov@${domain}";
+      "no-reply@${domain}" = "petr.pechkurov@${domain}";
+      "support@${domain}" = "petr.pechkurov@${domain}";
+    };
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
     # down nginx and opens port 80.
