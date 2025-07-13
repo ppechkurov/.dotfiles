@@ -23,6 +23,9 @@
 
     gostman.url = "github:Halftoothed/gostman";
     gostman.inputs.nixpkgs.follows = "nixpkgs";
+
+    waybar.url = "github:Alexays/Waybar";
+    waybar.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = { self, nixpkgs, agenix, nixpkgs-unstable, ... }@inputs:

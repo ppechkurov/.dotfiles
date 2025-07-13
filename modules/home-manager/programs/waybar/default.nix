@@ -1,12 +1,13 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   config = {
-    programs.waybar = {
-      enable = true;
-      package = pkgs.waybar.overrideAttrs (oa: {
-        mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
-      });
-      settings = import ./settings.nix;
-      style = ./style.css;
-    };
+    programs.waybar =
+      let waybar = inputs.waybar.packages.${pkgs.system}.default;
+      in {
+        enable = true;
+        package = waybar;
+
+        settings = import ./settings.nix;
+        style = ./style.css;
+      };
   };
 }
