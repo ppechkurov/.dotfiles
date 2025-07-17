@@ -1,10 +1,11 @@
-{ ... }: {
+{ pkgs-unstable, ... }: {
   networking.firewall.allowedTCPPorts = [
     23231 # git ssh
     23232 # git http
     23233 # metrics
   ];
 
+  services.soft-serve.package = pkgs-unstable.soft-serve;
   services.soft-serve.settings = {
     name = "Soft Serve";
     log_format = "text";
@@ -17,6 +18,7 @@
     stats.listen_addr = ":23233";
     initial_admin_keys = [
       "'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM/8sFXfWRrIE+n4TtvawXjd1QKIYadM2OR9PGOxHKrP petrp@home'"
+      "'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSWj22PDftLUTcup93SZFdh2Bdy1eMI3UvGalfTdVdN petrp@work'"
     ];
   };
 }
