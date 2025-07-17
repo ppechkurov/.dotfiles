@@ -13,7 +13,7 @@
   local.wireguard.enable = true;
   # local.forgejo.enable = true;
   # services.syncthing.enable = true;
-  networking.wg-quick.interfaces.vpn.autostart = true;
+  networking.wg-quick.interfaces.vpn.autostart = false;
 
   # needed for a custom keyboard
   services.udev.packages = with pkgs; [ qmk-udev-rules vial ];
@@ -36,6 +36,7 @@
   };
 
   programs.nix-ld.enable = true;
+  programs.sniffnet.enable = true;
 
   services.openssh.enable = true;
 

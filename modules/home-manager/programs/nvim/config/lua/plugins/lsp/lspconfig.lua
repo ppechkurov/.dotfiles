@@ -104,6 +104,12 @@ function M.config()
     'denols',
   }
 
+  -- vim.lsp.enable('tofu_ls')
+  -- vim.lsp.config('tofu_ls', {
+  --   cmd = { 'opentofu-ls', 'serve' },
+  --   filetypes = { 'tf', 'opentofu', 'opentofu-vars', 'terraform' },
+  -- })
+
   for _, server in pairs(servers) do
     local opts = {
       on_attach = M.on_attach,

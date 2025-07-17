@@ -101,6 +101,8 @@ in {
 
       # enable variable refresh rate (effective depending on hardware)
       vrr = 1;
+
+      enable_anr_dialog = false;
     };
 
     binds = { workspace_center_on = 0; };

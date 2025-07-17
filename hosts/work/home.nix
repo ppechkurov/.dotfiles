@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }: {
+{ pkgs, ... }: {
   imports = [ ../../modules/home-manager ./hyprland ];
 
   xdg.configFile.hypr = {
@@ -8,16 +8,7 @@
   };
 
   home.sessionPath = [ "$HOME/.npm-global/bin" ];
-  home.packages = with pkgs; [
-    drawio
-    just
-    obsidian
-    zoom-us
-    slack
-    signal-desktop
-    pkgs-unstable.signal-cli
-    pkgs-unstable.gurk-rs
-  ];
+  home.packages = with pkgs; [ obsidian zoom-us slack signal-desktop ];
 
   programs.atuin.enable = true;
   programs.git.extraConfig = {

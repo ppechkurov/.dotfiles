@@ -161,7 +161,7 @@ in with lib; {
       alsa-utils
       curl
       docker-credential-helpers
-      (pkgs-unstable.flameshot.override { enableWlrSupport = true; })
+      pkgs-unstable.flameshot
       git
       grim
       jellyfin-ffmpeg
@@ -175,7 +175,6 @@ in with lib; {
       pkgs-unstable.mattermost-desktop
       mpc-cli
       ncdu
-      neovide
       nodejs_22
       oath-toolkit # mfa
       mfa
