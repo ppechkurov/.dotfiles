@@ -1,9 +1,12 @@
 { inputs, globals, lib, config, pkgs, pkgs-unstable, ... }:
-let publicKeys = globals.publicKeys.users.${config.username};
+let
+  publicKeys = globals.publicKeys.users.${config.username};
+  secrets = config.age.secrets;
 in {
   imports = [
     ../../modules/nixos/wireguard
     ../../modules/nixos/services/soft-serve
+    ../../modules/nixos/services/restic
     ./hardware-configuration.nix
   ];
 
@@ -95,6 +98,29 @@ in {
     home-manager = {
       users.${config.username} = import ./home.nix;
       extraSpecialArgs = { inherit inputs pkgs-unstable globals; };
+    };
+
+    services.restic.backups.services = {
+      initialize = true;
+      passwordFile = secrets.restic-password-file.path;
+      repository = "/mnt/hdd/restic";
+      user = "restic";
+
+      package = pkgs.writeShellScriptBin "restic" ''
+        exec /run/wrappers/bin/restic "$@"
+      '';
+
+      paths = let
+        jellyfin = lib.mkIf config.services.jellyfin.enable
+          config.services.jellyfin.dataDir;
+        soft-serve = lib.mkIf config.services.soft-serve.enable
+          "/var/lib/private/soft-serve";
+      in [ jellyfin soft-serve ];
+      pruneOpts = [ "--keep-daily 7" ];
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
+      };
     };
 
     system.stateVersion = "25.05";
