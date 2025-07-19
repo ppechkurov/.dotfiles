@@ -6,6 +6,7 @@
     ../../modules/nixos/networks/kubernetes.nix
     ../../modules/nixos/services/syncthing.nix
     ../../modules/nixos/services/gatus.nix
+    ../../modules/nixos/services/restic
     ./hardware-configuration.nix
   ];
 
