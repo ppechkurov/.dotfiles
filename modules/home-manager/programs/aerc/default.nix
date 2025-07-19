@@ -22,6 +22,17 @@
 
   services.imapnotify.enable = true;
 
+  accounts.email.accounts.Personal = let email = "petr.pechkurov@gmail.com";
+  in {
+    address = email;
+    aerc.enable = true;
+    flavor = "gmail.com";
+    folders.inbox = "INBOX";
+    passwordCommand = "pass aerc/${email}";
+    realName = "Petr Pechkurov";
+    userName = email;
+  };
+
   accounts.email.accounts.Work = {
     address = "petr.pechkurov@succraft.com";
     aerc.enable = true;
