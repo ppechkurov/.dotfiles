@@ -25,6 +25,8 @@
       "_netdev" # this is a network fs
       "allow_other" # for non-root access
       "nofail"
+      "noatime"
+
       "x-systemd.automount" # mount on demand
 
       # SSH options

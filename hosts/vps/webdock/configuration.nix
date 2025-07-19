@@ -1,7 +1,7 @@
 { pkgs, pkgs-unstable, config, globals, ... }:
 let
-  # mattermostServerName = "chat.slonverse.xyz";
-  # jellyfinServerName = "media.slonverse.xyz";
+  chatAlias = "chat.slonverse.xyz";
+  mediaAlias = "media.slonverse.xyz";
   mattermostServerName = "matter-pp.duckdns.org";
   jellyfinServerName = "jelly-pp.duckdns.org";
   miniPcIp = globals.wg.peers.mini.networks.tun.ipv4;
@@ -61,10 +61,8 @@ in {
       "mattermost" = {
         enableACME = true;
         forceSSL = true;
-        serverAliases =
-          [ jellyfinServerName "chat.slonverse.xyz" "media.slonverse.xyz" ];
-
         serverName = mattermostServerName;
+        serverAliases = [ chatAlias ];
 
         # [Docs](https://docs.mattermost.com/deploy/server/setup-nginx-proxy.html)
         # Actually, it should work without this. But it required if you need webhooks.
@@ -108,11 +106,11 @@ in {
       };
 
       "jellyfin" = {
-        useACMEHost = "${mattermostServerName}";
+        enableACME = true;
         forceSSL = true;
 
+        serverAliases = [ mediaAlias ];
         serverName = "${jellyfinServerName}";
-        serverAliases = [ "media.slonverse.xyz" ];
 
         locations."/" = {
           proxyPass = "http://${miniPcIp}:8096";
