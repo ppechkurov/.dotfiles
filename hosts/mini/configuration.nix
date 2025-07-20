@@ -119,7 +119,7 @@ in {
       in [ jellyfin soft-serve ];
       pruneOpts = [ "--keep-daily 7" ];
       timerConfig = {
-        OnCalendar = "daily";
+        OnCalendar = "5:00";
         Persistent = true;
       };
     };
