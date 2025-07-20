@@ -153,10 +153,7 @@ in {
     pgdumpOptions = "--no-owner";
   };
 
-  systemd.services.restic-backups-services.unitConfig.OnFailure =
-    "notify-backup-failed.service";
-
-  services.restic.backups.services = {
+  services.restic.backups.daily = {
     initialize = true;
     passwordFile = secrets.restic-password-file.path;
     repository = "sftp:restic@mini.local.wg:/mnt/hdd/restic";
