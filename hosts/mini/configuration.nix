@@ -47,6 +47,7 @@ in {
       sshfs
       lm_sensors
       inetutils
+      ncdu
     ];
 
     users.users.root.openssh.authorizedKeys.keys = publicKeys;

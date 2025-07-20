@@ -1,9 +1,7 @@
 { pkgs, pkgs-unstable, config, globals, ... }:
 let
-  chatAlias = "chat.slonverse.xyz";
-  mediaAlias = "media.slonverse.xyz";
-  mattermostServerName = "matter-pp.duckdns.org";
-  jellyfinServerName = "jelly-pp.duckdns.org";
+  mattermostDnsName = "chat.slonverse.xyz";
+  jellyfinDnsName = "media.slonverse.xyz";
   miniPcIp = globals.wg.peers.mini.networks.tun.ipv4;
   softServePort = 2222;
 in {
@@ -61,8 +59,8 @@ in {
       "mattermost" = {
         enableACME = true;
         forceSSL = true;
-        serverName = mattermostServerName;
-        serverAliases = [ chatAlias ];
+
+        serverName = mattermostDnsName;
 
         # [Docs](https://docs.mattermost.com/deploy/server/setup-nginx-proxy.html)
         # Actually, it should work without this. But it required if you need webhooks.
@@ -109,8 +107,7 @@ in {
         enableACME = true;
         forceSSL = true;
 
-        serverAliases = [ mediaAlias ];
-        serverName = "${jellyfinServerName}";
+        serverName = jellyfinDnsName;
 
         locations."/" = {
           proxyPass = "http://${miniPcIp}:8096";
@@ -148,10 +145,15 @@ in {
 
   age.secrets.mattermost-environment.file = ./mattermost-environment.age;
 
+  # services.postgresqlBackup.enable = true;
+  # services.postgresqlBackup = {
+  #
+  # };
+
   services.mattermost = {
     enable = true;
     package = pkgs-unstable.mattermostLatest;
-    siteUrl = "https://${mattermostServerName}";
+    siteUrl = "https://${mattermostDnsName}";
     database.peerAuth = true;
 
     # Local mode
