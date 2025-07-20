@@ -101,6 +101,9 @@ in {
       extraSpecialArgs = { inherit inputs pkgs-unstable globals; };
     };
 
+    systemd.services.restic-backups-services.unitConfig.OnFailure =
+      "notify-backup-failed.service";
+
     services.restic.backups.services = {
       initialize = true;
       passwordFile = secrets.restic-password-file.path;
