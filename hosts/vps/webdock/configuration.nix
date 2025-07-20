@@ -1,5 +1,6 @@
-{ pkgs, pkgs-unstable, config, globals, ... }:
+{ config, pkgs, pkgs-unstable, lib, globals, ... }:
 let
+  secrets = config.age.secrets;
   mattermostDnsName = "chat.slonverse.xyz";
   jellyfinDnsName = "media.slonverse.xyz";
   miniPcIp = globals.wg.peers.mini.networks.tun.ipv4;
@@ -7,6 +8,7 @@ let
 in {
   imports = [
     ./hardware-configuration.nix
+    ../../../modules/nixos/services/restic
     ./networking.secret.nix # generated at runtime by nixos-infect
   ];
 
@@ -145,10 +147,35 @@ in {
 
   age.secrets.mattermost-environment.file = ./mattermost-environment.age;
 
-  # services.postgresqlBackup.enable = true;
-  # services.postgresqlBackup = {
-  #
-  # };
+  services.postgresqlBackup.enable = true;
+  services.postgresqlBackup = {
+    startAt = "*-*-* 01:00:00";
+    pgdumpOptions = "--no-owner";
+  };
+
+  services.restic.backups.services = {
+    initialize = true;
+    passwordFile = secrets.restic-password-file.path;
+    repository = "sftp:restic@mini.local.wg:/mnt/hdd/restic";
+    user = "restic";
+
+    package = pkgs.writeShellScriptBin "restic" ''
+      exec /run/wrappers/bin/restic "$@"
+    '';
+
+    paths = let
+      mattermostDataDir = lib.mkIf config.services.mattermost.enable
+        config.services.mattermost.dataDir;
+      mattermostDb = lib.mkIf config.services.postgresqlBackup.enable
+        "${config.services.postgresqlBackup.location}/all.sql.gz";
+    in [ mattermostDataDir mattermostDb ];
+
+    pruneOpts = [ "--keep-daily 7" ];
+    timerConfig = {
+      OnCalendar = "1:15";
+      Persistent = true;
+    };
+  };
 
   services.mattermost = {
     enable = true;

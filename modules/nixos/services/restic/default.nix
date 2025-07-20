@@ -9,7 +9,12 @@ in {
   };
 
   # see [link](https://wiki.nixos.org/wiki/Restic)
-  users.users.restic = { isNormalUser = true; };
+  users.users.restic = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMrby7Og0kSdysnQKj54rCzJirVZqLFD8MYMV6pZRA2K restic@webdock"
+    ];
+  };
 
   environment.systemPackages = [ pkgs.restic ];
   security.wrappers.restic = {
