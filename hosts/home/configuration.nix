@@ -6,7 +6,7 @@
     ../../modules/nixos/networks/kubernetes.nix
     ../../modules/nixos/services/syncthing.nix
     ../../modules/nixos/services/gatus.nix
-    ../../modules/nixos/services/restic
+    # ../../modules/nixos/services/restic
     ./hardware-configuration.nix
   ];
 
@@ -32,7 +32,7 @@
   # };
   networking.hosts = {
     "192.168.100.14" =
-      [ "soft.local.home" "git-pp.duckdns.org" "mini.local.home" ];
+      [ "soft.local.home" "git.slonverse.xyz" "mini.local.home" ];
   };
 
   # Uncomment this if you want to play with the kube again.
