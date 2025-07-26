@@ -6,7 +6,7 @@
     ../../modules/nixos/networks/kubernetes.nix
     ../../modules/nixos/services/syncthing.nix
     ../../modules/nixos/services/gatus.nix
-    # ../../modules/nixos/services/restic
+    ../../modules/nixos/services/mattermost
     ./hardware-configuration.nix
   ];
 
@@ -56,7 +56,15 @@
 
   environment.systemPackages = with pkgs;
     let gostman = inputs.gostman.packages.${pkgs.system}.default;
-    in [ steam-run protonup gostman jellyfin-media-player cachix ];
+    in [
+      steam-run
+      protonup
+      gostman
+      jellyfin-media-player
+      cachix
+      mattermost-send
+      pkgs-unstable.comma
+    ];
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
@@ -78,5 +86,53 @@
   home-manager = {
     users.${config.username} = import ./home.nix;
     extraSpecialArgs = { inherit inputs pkgs-unstable globals; };
+  };
+
+  systemd.services.sync-restic-repo = {
+    enable = true;
+    description = "Sync restic backup repo";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "petrp";
+    };
+    path = [ pkgs.openssh pkgs.rclone ];
+
+    script = # bash
+      ''
+        rclone sync mini:/mnt/hdd/restic $HOME/restic
+      '';
+  };
+
+  systemd.services.notify-sync-success = {
+    enable = true;
+    description = "Notify on successful restic sync";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "petrp";
+    };
+
+    script = # bash
+      let
+        text = ''
+          **Backup Successful**
+
+          Host: `${config.networking.hostName}`.
+
+          Daily backup job completed successfuly!
+        '';
+      in ''
+        ${pkgs.mattermost-send}/bin/mattermost-send '${text}'
+      '';
+  };
+
+  systemd.timers.sync-restic-repo = {
+    enable = true;
+    description = "Daily sync of restic backup repo at midnight";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+      Unit = "sync-restic-repo.service";
+    };
   };
 }
