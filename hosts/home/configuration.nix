@@ -1,4 +1,15 @@
-{ inputs, lib, config, pkgs, pkgs-unstable, globals, ... }: {
+{ inputs, lib, config, pkgs, pkgs-unstable, globals, ... }:
+let
+  mkSyncNotifyService = status: message: {
+    enable = true;
+    description = "Notify on restic sync ${status}";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "petrp";
+    };
+    script = "${lib.getExe pkgs.mattermost-send} '${message}' ${status}";
+  };
+in {
   imports = [
     ../../modules/nixos/common
     ../../modules/nixos/nvidia
@@ -103,28 +114,6 @@
       '';
   };
 
-  systemd.services.notify-sync-success = {
-    enable = true;
-    description = "Notify on successful restic sync";
-    serviceConfig = {
-      Type = "oneshot";
-      User = "petrp";
-    };
-
-    script = # bash
-      let
-        text = ''
-          **Backup Successful**
-
-          Host: `${config.networking.hostName}`.
-
-          Daily backup job completed successfuly!
-        '';
-      in ''
-        ${pkgs.mattermost-send}/bin/mattermost-send '${text}'
-      '';
-  };
-
   systemd.timers.sync-restic-repo = {
     enable = true;
     description = "Daily sync of restic backup repo at midnight";
@@ -135,4 +124,29 @@
       Unit = "sync-restic-repo.service";
     };
   };
+
+  systemd.services.sync-restic-repo.unitConfig = {
+    OnSuccess = "notify-sync-success.service";
+    OnFailure = "notify-sync-failure.service";
+  };
+
+  systemd.services.notify-sync-success = let
+    message = ''
+      **Sync Job Successful**
+
+      Host: `${config.networking.hostName}`.
+
+      Sync job completed successfuly!
+    '';
+  in mkSyncNotifyService "success" message;
+
+  systemd.services.notify-sync-failure = let
+    message = ''
+      **Sync Job Failed**
+
+      Host: `${config.networking.hostName}`.
+
+      Sync job has been failed!
+    '';
+  in mkSyncNotifyService "failure" message;
 }

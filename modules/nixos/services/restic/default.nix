@@ -1,8 +1,19 @@
-{ pkgs, config, ... }:
+{ lib, pkgs, config, ... }:
 let
   owner = "restic";
   group = config.users.users.${owner}.group;
+  mkBackupNotifyService = status: message: {
+    enable = true;
+    description = "Notify on restic backup ${status}";
+    serviceConfig = {
+      Type = "oneshot";
+      User = owner;
+    };
+    script = "${lib.getExe pkgs.mattermost-send} '${message}' ${status} ";
+  };
 in {
+  imports = [ ../mattermost ];
+
   age.secrets = {
     restic-password-file = {
       file = ./restic-password-file.age;
@@ -33,61 +44,26 @@ in {
 
   systemd.services.restic-backups-daily.unitConfig = {
     OnSuccess = "notify-backup-success.service";
-    OnFailure = "notify-backup-failed.service";
+    OnFailure = "notify-backup-failure.service";
   };
 
-  systemd.services.notify-backup-success = {
-    enable = true;
-    description = "Notify on successful backup";
-    serviceConfig = {
-      Type = "oneshot";
-      User = "restic";
-    };
+  systemd.services.notify-backup-success = let
+    message = ''
+      **Backup Job Successful**
 
-    script = # bash
-      ''
-        URL="$(cat ${config.age.secrets.mattermost-bot-webhook-url-file.path})"
+      Host: `${config.networking.hostName}`.
 
-        ${pkgs.curl}/bin/curl -X POST \
-          -H 'Content-Type: application/json' \
-          -d '{
-                "attachments": [
-                  {
-                    "text": "**Backup Successful**\n\nHost: `${config.networking.hostName}`.\n\nDaily backup job completed successfuly!",
-                    "color": "#36A64F"
-                  }
-                ]
-              }' \
-          "$URL"
-      '';
-  };
+      Backup job completed successfuly!
+    '';
+  in mkBackupNotifyService "success" message;
 
-  systemd.services.notify-backup-failed =
-    let logsCmd = "journalctl -u restic-backups-daily -n 20 -o cat";
-    in {
-      enable = true;
-      description = "Notify on failed backup";
-      serviceConfig = {
-        Type = "oneshot";
-        User = "restic";
-      };
+  systemd.services.notify-backup-failure = let
+    message = ''
+      **Backup Job Failed**
 
-      script = # bash
-        ''
-          URL="$(cat ${config.age.secrets.mattermost-bot-webhook-url-file.path})"
+      Host: `${config.networking.hostName}`.
 
-          ${pkgs.curl}/bin/curl -X POST \
-            -H 'Content-Type: application/json' \
-            -d '{
-                  "attachments": [
-                    {
-                      "text": "**Backup Alert**\n\nDaily backup job failed. Host: `${config.networking.hostName}`.\n\nTo check the logs:\n```\n${logsCmd}\n```",
-                      "color": "#DD0000"
-                    }
-                  ]
-                }' \
-            "$URL"
-        '';
-    };
-
+      Backup job completed has been failed!
+    '';
+  in mkBackupNotifyService "failure" message;
 }

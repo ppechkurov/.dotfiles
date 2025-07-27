@@ -1,6 +1,4 @@
-config: final: prev:
-let data = builtins.toJSON { };
-in {
+config: final: prev: {
   mattermost-send = prev.writeShellScriptBin "mattermost-send" ''
     if [ $# -eq 0 ]; then
       echo "Usage: mattermost-send <message> [<success | failure>]"
@@ -21,6 +19,7 @@ in {
       -f \
       -H 'Content-Type: application/json' \
       -d '{
+            "channel": "backups",
             "attachments": [
               {
                 "text": "'"$TEXT"'",
