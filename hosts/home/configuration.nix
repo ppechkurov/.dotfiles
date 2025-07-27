@@ -68,18 +68,24 @@ in {
   environment.systemPackages = with pkgs;
     let gostman = inputs.gostman.packages.${pkgs.system}.default;
     in [
-      steam-run
-      protonup
+      cachix
       gostman
       jellyfin-media-player
-      cachix
       mattermost-send
       pkgs-unstable.comma
+      protonup
+      steam-run
+      vial
     ];
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
+
+  programs.niri.enable = true;
+  programs.niri.package = pkgs-unstable.niri;
+
+  services.udev.packages = with pkgs; [ qmk-udev-rules vial ];
 
   time.timeZone = lib.mkForce "Europe/Minsk";
 
