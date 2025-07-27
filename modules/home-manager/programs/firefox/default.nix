@@ -9,7 +9,6 @@
       #https://github.com/montchr/dotfield/blob/78de8ff316ccb2d34fd98cd9bfd3bfb5ad775b0e/home/profiles/firefox/search/default.nix
       search.force = true;
       search.default = "ddg";
-      # search.default = "DuckDuckGo";
       search.engines = let
         engine = alias: template: icon: {
           definedAliases = [ "@${alias}" ];
@@ -39,10 +38,28 @@
           "@g"; # builtin engines only support specifying one additional alias
       };
 
+      containers = {
+        personal = {
+          id = 1;
+          name = "Personal";
+          color = "blue";
+          icon = "fingerprint";
+        };
+        work = {
+          id = 2;
+          name = "Work";
+          color = "yellow";
+          icon = "briefcase";
+        };
+      };
+
       settings = {
         "devtools.toolbox.host" = "right";
-        "browser.uidensity" = 1; # minimal ui
         "general.useragent.locale" = "en-US";
+
+        "accessibility.force_disabled" = true;
+        "browser.sessionstore.interval" = 60000; # 1 min
+        "browser.uidensity" = 1; # minimal ui
         "browser.startup.page" = 3;
         "browser.newtabpage.pinned" = [
           {
@@ -66,6 +83,7 @@
         "cookiebanners.service.mode" = 2;
         "cookiebanners.service.mode.privateBrowsing" = 2;
 
+        "browser.urlbar.suggest.topsites" = false;
         # https://github.com/gingkapls/dotnix/blob/f2b912b992708bc05e478c78725eb18c1038f790/hm/programs/firefox/default.nix#L4
         # turn of google safebrowsing (it literally sends a sha sum of everything you download to google)
         "browser.safebrowsing.downloads.remote.block_dangerous" = false;
@@ -84,6 +102,26 @@
         "datareporting.healthreport.uploadEnabled" = false;
         "datareporting.healthreport.service.enabled" = false;
         "datareporting.policy.dataSubmissionEnabled" = false;
+
+        # https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
+        "browser.topsites.contile.enabled" = false;
+        "browser.search.suggest.enabled" = false;
+        "browser.search.suggest.enabled.private" = false;
+        "browser.urlbar.suggest.searches" = false;
+        "browser.urlbar.showSearchSuggestionsFirst" = false;
+        "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+        "browser.newtabpage.activity-stream.feeds.snippets" = false;
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" =
+          false;
+        "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" =
+          false;
+        "browser.newtabpage.activity-stream.section.highlights.includeDownloads" =
+          false;
+        "browser.newtabpage.activity-stream.section.highlights.includeVisited" =
+          false;
+        "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.newtabpage.activity-stream.system.showSponsored" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
       };
     };
 
@@ -98,6 +136,13 @@
       DisplayBookmarksToolbar = "newtab";
       DontCheckDefaultBrowser = true;
 
+      FirefoxSuggest = {
+        WebSuggestions = false;
+        SponsoredSuggestions = false;
+        ImproveSuggest = false;
+        Locked = true;
+      };
+
       EnableTrackingProtection = {
         Value = true;
         Locked = true;
@@ -109,7 +154,6 @@
 
       SearchBar = "unified";
       OfferToSaveLogins = false;
-      OfferToSaveLoginsDefault = false;
       RequestedLocales = [ "en-US" ];
 
       # ---- EXTENSIONS ----
@@ -133,13 +177,12 @@
           installation_mode = "force_installed";
         };
 
-        # this is broken on 24.11 atm
         # github-refined
-        # "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = {
-        #   install_url =
-        #     "https://addons.mozilla.org/firefox/downloads/latest/{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}/latest.xpi";
-        #   installation_mode = "force_installed";
-        # };
+        "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}/latest.xpi";
+          installation_mode = "force_installed";
+        };
       };
     };
   };
