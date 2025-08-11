@@ -27,7 +27,7 @@
       jellyfin-media-player
       cachix
     ];
-    unstable = with pkgs-unstable; [ ghostty ];
+    unstable = with pkgs-unstable; [ ghostty hyprland-per-window-layout ];
   in stable ++ unstable;
 
   hardware.graphics = {
@@ -37,6 +37,9 @@
 
   programs.nix-ld.enable = true;
   programs.sniffnet.enable = true;
+
+  programs.niri.enable = true;
+  programs.niri.package = pkgs-unstable.niri;
 
   services.openssh.enable = true;
 

@@ -32,6 +32,7 @@ in {
       "sleep 1 && teams-for-linux"
       "sleep 1 && slack || echo 'slack is not installed'"
       "sleep 1 && signal-desktop || echo 'signal is not installed'"
+      "hyprland-per-window-layout"
     ];
 
     "$mod" = "SUPER";

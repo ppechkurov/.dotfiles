@@ -49,6 +49,8 @@ in with lib; {
       font = "Lat2-Terminus16";
     };
 
+    programs.gnupg.agent.enable = true;
+
     services.openssh.settings.PasswordAuthentication = false;
     # Services
     services = {
@@ -138,6 +140,7 @@ in with lib; {
       isNormalUser = true;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = publicKeys;
+      packages = [ pkgs.gnupg ];
     };
 
     programs.ssh.startAgent = true;

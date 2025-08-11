@@ -48,7 +48,7 @@
         work = {
           id = 2;
           name = "Work";
-          color = "yellow";
+          color = "orange";
           icon = "briefcase";
         };
       };
