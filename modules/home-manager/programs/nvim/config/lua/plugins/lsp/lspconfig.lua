@@ -102,6 +102,7 @@ function M.config()
     'clangd',
     'asm_lsp',
     'denols',
+    'buf_ls',
   }
 
   -- vim.lsp.enable('tofu_ls')
