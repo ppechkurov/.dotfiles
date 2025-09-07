@@ -5,7 +5,7 @@
     enableZshIntegration = true;
     theme = import ./theme.nix;
     settings = {
-      manager = {
+      mgr = {
         linemode = "mtime";
         show_hidden = true;
         sort_by = "natural";
