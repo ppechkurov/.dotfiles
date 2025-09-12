@@ -103,6 +103,7 @@ function M.config()
     'asm_lsp',
     'denols',
     'buf_ls',
+    'biome',
   }
 
   -- vim.lsp.enable('tofu_ls')
