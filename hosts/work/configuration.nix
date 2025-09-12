@@ -38,6 +38,8 @@
   programs.nix-ld.enable = true;
   programs.sniffnet.enable = true;
 
+  programs.obs-studio = { enable = true; };
+
   programs.niri.enable = true;
   programs.niri.package = pkgs-unstable.niri;
 
