@@ -1,6 +1,7 @@
 return {
   'pmizio/typescript-tools.nvim',
   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+  enabled = false,
   opts = {
     root_dir = require('lspconfig.util').root_pattern('.git'),
     on_attach = function()

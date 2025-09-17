@@ -27,7 +27,7 @@ return {
       nix = { 'nixfmt' },
       sh = { 'shfmt' },
       sql = { 'sql_formatter' },
-      typescript = { 'prettierd' },
+      typescript = { 'biome' },
       terraform = { 'tofu_fmt' },
       hcl = { 'hcl' },
       ['terraform-vars'] = { 'tofu_fmt' },

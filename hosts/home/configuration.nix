@@ -82,6 +82,7 @@ in {
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
 
+  programs.nix-ld.enable = true;
   programs.niri.enable = true;
   programs.niri.package = pkgs-unstable.niri;
 
