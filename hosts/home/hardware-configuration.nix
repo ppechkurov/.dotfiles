@@ -4,7 +4,7 @@
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.kernelModules = [ "kvm-intel" "btusb" ];
-  boot.kernelPackages = pkgs-unstable.linuxPackages_6_6; # the kernel
+  boot.kernelPackages = pkgs.linuxPackages_6_6; # the kernel
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/big";

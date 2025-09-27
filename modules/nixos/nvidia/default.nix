@@ -32,8 +32,7 @@
     # Only available from driver 515.43.04+
     open = false;
 
-    # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
+    # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
     nvidiaSettings = false;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
