@@ -40,8 +40,8 @@
 
   programs.obs-studio = { enable = true; };
 
-  programs.niri.enable = true;
-  programs.niri.package = pkgs-unstable.niri;
+  # programs.niri.enable = true;
+  # programs.niri.package = pkgs-unstable.niri;
 
   services.openssh.enable = true;
 

@@ -20,8 +20,6 @@
     };
   };
 
-  services.imapnotify.enable = true;
-
   accounts.email.accounts.Personal = let email = "petr.pechkurov@gmail.com";
   in {
     address = email;
@@ -51,10 +49,6 @@
     folders.inbox = "INBOX";
     imap = { host = "mail.slonverse.xyz"; };
     smtp = { host = "mail.slonverse.xyz"; };
-    imapnotify.enable = true;
-    imapnotify.boxes = [ "INBOX" ];
-    imapnotify.onNotifyPost =
-      "${pkgs.libnotify}/bin/notify-send 'New mail arrived'";
     passwordCommand = "pass mail/petr.pechkurov@slonverse.xyz";
     realName = "Petr Pechkurov";
     userName = "petr.pechkurov@slonverse.xyz";

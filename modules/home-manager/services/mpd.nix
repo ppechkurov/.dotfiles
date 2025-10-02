@@ -1,6 +1,7 @@
-{ config, ... }: {
+{ config, pkgs-unstable, ... }: {
   services = {
     mpd.enable = true;
+    mpd.package = pkgs-unstable.mpd;
 
     mpd.musicDirectory = "${config.home.homeDirectory}/Music";
     mpd = { network.startWhenNeeded = true; };
