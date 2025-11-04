@@ -32,7 +32,7 @@ in {
   local.wireguard.enable = true;
   # services.syncthing.enable = true;
   # services.gatus.enable = true;
-  services.soft-serve.enable = true;
+  # services.soft-serve.enable = true;
 
   # services.immich.enable = true;
   # services.photoprism.enable = true;

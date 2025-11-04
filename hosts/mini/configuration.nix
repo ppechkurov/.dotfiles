@@ -7,6 +7,7 @@ in {
     ../../modules/nixos/wireguard
     ../../modules/nixos/services/soft-serve
     ../../modules/nixos/services/restic
+    ../../modules/nixos/services/forgejo.nix
     ./hardware-configuration.nix
   ];
 
@@ -24,6 +25,7 @@ in {
 
     # TODO: configure when their fix for tmux is merged to the nix packages
     services.soft-serve.enable = true;
+    local.forgejo.enable = true;
 
     services.jellyfin.enable = true;
     services.jellyfin = { openFirewall = true; };
