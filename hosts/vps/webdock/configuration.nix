@@ -17,6 +17,7 @@ in {
 
   services.transmission.enable = true;
   services.transmission = {
+    package = pkgs.transmission_4;
     openFirewall = true;
     settings.incomplete-dir = "/mnt/sshfs/.incomplete";
     settings.download-dir = "/mnt/sshfs/Downloads";
