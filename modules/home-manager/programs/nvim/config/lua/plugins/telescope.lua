@@ -21,7 +21,10 @@ return {
     local wk = require('which-key')
     wk.register({
       -- quick find
-      ['<leader><space>'] = { '<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>', 'Buffers' },
+      ['<leader><space>'] = {
+        '<cmd>Telescope buffers sort_mru=true sort_lastused=true ignore_current_buffer=true<cr>',
+        'Buffers',
+      },
       ['<leader>/'] = { '<cmd>Telescope live_grep<cr>', 'Grep' },
       ['<leader>:'] = { '<cmd>Telescope command_history<cr>', 'Command History' },
       -- files
@@ -116,17 +119,17 @@ return {
         },
 
         buffers = {
-          theme = 'dropdown',
-          previewer = false,
-          initial_mode = 'normal',
-          mappings = {
-            i = {
-              ['<C-d>'] = actions.delete_buffer,
-            },
-            n = {
-              ['dd'] = actions.delete_buffer,
-            },
-          },
+          -- theme = 'dropdown',
+          -- previewer = false,
+          -- initial_mode = 'normal',
+          -- mappings = {
+          --   i = {
+          --     ['<C-d>'] = actions.delete_buffer,
+          --   },
+          --   n = {
+          --     ['dd'] = actions.delete_buffer,
+          --   },
+          -- },
         },
 
         planets = {

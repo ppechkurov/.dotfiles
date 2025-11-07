@@ -10,7 +10,12 @@ return {
     require('aerial').setup({
       layout = {
         placement = 'edge',
+        min_width = { 20 },
       },
+      close_automatic_events = {
+        'unsupported',
+      },
+
       -- optionally use on_attach to set keymaps when aerial has attached to a buffer
       on_attach = function(bufnr)
         -- Jump forwards/backwards with '{' and '}'

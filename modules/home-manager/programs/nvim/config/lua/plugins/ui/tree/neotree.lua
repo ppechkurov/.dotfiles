@@ -30,7 +30,7 @@ return {
   ---@type neotree.Config?
   opts = {
     close_if_last_window = true,
-    auto_clean_after_session_restore = true,
+    auto_clean_after_session_restore = false,
     open_files_do_not_replace_types = { 'terminal', 'Trouble', 'trouble', 'qf', 'Outline' },
     window = {
       position = 'left',

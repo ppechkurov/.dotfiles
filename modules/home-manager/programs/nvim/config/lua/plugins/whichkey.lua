@@ -3,7 +3,7 @@ return {
   commit = '4433e5ec9a507e5097571ed55c02ea9658fb268a',
   config = function()
     local mappings = {
-      q = { '<cmd>confirm q<CR>', 'Quit' },
+      q = { '<cmd>confirm qa<CR>', 'Quit' },
       w = { '<cmd>:w<CR>', 'Write' },
       b = {
         name = 'close [b]uffers',

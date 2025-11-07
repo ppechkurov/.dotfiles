@@ -9,16 +9,17 @@ return {
     'stevearc/resession.nvim',
     config = function()
       local resession = require('resession')
-      resession.setup({})
+      resession.setup()
 
-      local utils = require('utils')
+      resession.add_hook('pre_save', function()
+        -- Need to close neo-tree before saving session, because it's not
+        -- possible to restore it properly when closing with :q
+        require('neo-tree.command').execute({ action = 'close' })
+      end)
+
       vim.api.nvim_create_autocmd('VimLeavePre', {
         callback = function()
-          local dir = utils.get_root_dir()
-          -- Need to close neo-tree before saving session, because it's not
-          -- possible to restore it properly when closing with :q
-          require('neo-tree.command').execute({ action = 'close' })
-          resession.save(dir)
+          exec_action(resession.save)
         end,
       })
 
@@ -28,7 +29,6 @@ return {
 
       vim.keymap.set('n', '<leader>ls', function(_, opts)
         exec_action(resession.load, opts)
-        -- require('aerial').open({ focus = false, direction = 'right' })
         require('neo-tree.command').execute({ action = 'show' })
       end)
 

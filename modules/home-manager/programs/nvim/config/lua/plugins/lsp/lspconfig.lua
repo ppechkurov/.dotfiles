@@ -49,9 +49,7 @@ function M.config()
     ['<C-W>d'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Float diagnostics' },
   })
 
-  local lspconfig = require('lspconfig')
   local icons = require('config.icons')
-
   local severity = vim.diagnostic.severity
   vim.diagnostic.config({
     virtual_text = {
@@ -99,18 +97,12 @@ function M.config()
     'golangci_lint_ls',
     'terraformls',
     'docker_compose_language_service',
-    'clangd',
+    -- 'clangd',
     'asm_lsp',
     -- 'denols',
     'buf_ls',
     'biome',
   }
-
-  -- vim.lsp.enable('tofu_ls')
-  -- vim.lsp.config('tofu_ls', {
-  --   cmd = { 'opentofu-ls', 'serve' },
-  --   filetypes = { 'tf', 'opentofu', 'opentofu-vars', 'terraform' },
-  -- })
 
   for _, server in pairs(servers) do
     local opts = {
@@ -127,7 +119,8 @@ function M.config()
       require('neodev').setup({})
     end
 
-    lspconfig[server].setup(opts)
+    vim.lsp.config(server, opts)
+    vim.lsp.enable(server)
   end
 end
 
