@@ -23,8 +23,7 @@ in {
     networking.hostName = "mini";
     local.wireguard.enable = true;
 
-    # TODO: configure when their fix for tmux is merged to the nix packages
-    services.soft-serve.enable = true;
+    services.soft-serve.enable = false;
     local.forgejo.enable = true;
 
     services.jellyfin.enable = true;
@@ -116,9 +115,11 @@ in {
       paths = let
         jellyfin = lib.mkIf config.services.jellyfin.enable
           config.services.jellyfin.dataDir;
+        forgejo = lib.mkIf config.services.forgejo.enable
+          config.services.forgejo.dump.backupDir;
         soft-serve = lib.mkIf config.services.soft-serve.enable
           "/var/lib/private/soft-serve";
-      in [ jellyfin soft-serve ];
+      in [ jellyfin forgejo soft-serve ];
       pruneOpts = [ "--keep-daily 7" ];
       timerConfig = {
         OnCalendar = "5:00";

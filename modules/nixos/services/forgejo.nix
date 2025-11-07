@@ -1,5 +1,7 @@
 { lib, config, pkgs-unstable, ... }:
-let cfg = config.local.forgejo;
+let
+  cfg = config.local.forgejo;
+  cleanupService = "forgejo-dump-cleanup";
 in {
   options.local.forgejo = with lib; {
     enable = mkEnableOption "forgejo service";
@@ -30,6 +32,32 @@ in {
           CLONE = 4200;
           PULL = 4200;
         };
+      };
+    };
+
+    systemd.services.${cleanupService} = {
+      enable = true;
+      description = "Clean up forgejo dumps";
+      serviceConfig = {
+        Type = "oneshot";
+        User = "forgejo";
+      };
+      path = [ ];
+
+      script = # bash
+        ''
+          rm -rf ${config.services.forgejo.dump.backupDir}/*
+        '';
+    };
+
+    systemd.timers.${cleanupService} = {
+      enable = true;
+      description = "Daily clean up of forgejo dumps";
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
+        Unit = "${cleanupService}.service";
       };
     };
 
