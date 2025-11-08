@@ -67,6 +67,7 @@ spec('plugins.scrollbar')
 spec('plugins.stickybuf')
 spec('plugins.tabby')
 spec('plugins.timber')
+spec('plugins.triforce')
 spec('plugins.todo')
 spec('plugins.typescript-tools')
 

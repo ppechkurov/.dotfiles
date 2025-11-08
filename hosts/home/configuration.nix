@@ -41,10 +41,8 @@ in {
   #   PHOTOPRISM_ADMIN_USER = "admin";
   #   PHOTOPRISM_ADMIN_PASSWORD = "aoeu";
   # };
-  networking.hosts = {
-    "192.168.100.14" =
-      [ "soft.local.home" "git.slonverse.xyz" "mini.local.home" ];
-  };
+
+  networking.hosts = { "192.168.100.14" = [ "mini.local.home" ]; };
 
   # Uncomment this if you want to play with the kube again.
   # specialisation.kuber = {
