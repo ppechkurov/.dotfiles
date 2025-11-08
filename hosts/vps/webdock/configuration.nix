@@ -3,8 +3,8 @@ let
   secrets = config.age.secrets;
   mattermostDnsName = "chat.slonverse.xyz";
   jellyfinDnsName = "media.slonverse.xyz";
+  forgejoDnsName = "git.slonverse.xyz";
   miniPcIp = globals.wg.peers.mini.networks.tun.ipv4;
-  softServePort = 2222;
 in {
   imports = [
     ./hardware-configuration.nix
@@ -21,13 +21,17 @@ in {
     openFirewall = true;
     settings.incomplete-dir = "/mnt/sshfs/.incomplete";
     settings.download-dir = "/mnt/sshfs/Downloads";
+    # extraFlags = [ "--log-level=debug" ];
   };
+
+  # temp fix, because it wasn't starting with the default, which is "notify"
+  systemd.services.transmission.serviceConfig.Type = lib.mkForce "simple";
 
   programs.nh.enable = true;
   environment.systemPackages =
     [ pkgs-unstable.mmctl pkgs-unstable.atuin pkgs.ncdu ];
 
-  networking.firewall.allowedTCPPorts = [ 80 443 softServePort ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   security.acme = {
     acceptTerms = true;
@@ -47,19 +51,36 @@ in {
         servers."127.0.0.1:${port}" = { };
         extraConfig = "keepalive 32;";
       };
+      forgejo = {
+        servers."${miniPcIp}:3000" = { };
+        extraConfig = "keepalive 32;";
+      };
     };
-
-    # soft serve git
-    streamConfig = ''
-      server {
-        listen ${toString softServePort};
-        proxy_pass ${miniPcIp}:23231;
-      }
-    '';
 
     # Details: [link](https://nixos.org/manual/nixos/stable/index.html#module-security-acme)
     virtualHosts = {
-      "mattermost" = {
+      git = {
+        enableACME = true;
+        forceSSL = true;
+
+        serverName = forgejoDnsName;
+
+        locations."/" = {
+          proxyPass = "http://forgejo";
+          extraConfig = ''
+            proxy_set_header Connection $http_connection;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+
+            client_max_body_size 512M;
+          '';
+        };
+      };
+
+      mattermost = {
         enableACME = true;
         forceSSL = true;
 

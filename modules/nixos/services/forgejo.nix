@@ -9,7 +9,7 @@ in {
     dnsName = mkOption {
       type = types.str;
       description = "Forgejo instance dns name";
-      default = "test.shit.com";
+      default = "git.slonverse.xyz";
     };
   };
 
@@ -60,8 +60,6 @@ in {
         Unit = "${cleanupService}.service";
       };
     };
-
-    # networking.firewall.allowedTCPPorts = [ 3000 ];
   };
 }
 

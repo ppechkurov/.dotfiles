@@ -27,7 +27,7 @@ in {
     local.forgejo.enable = true;
 
     services.jellyfin.enable = true;
-    services.jellyfin = { openFirewall = true; };
+    services.jellyfin.openFirewall = true;
 
     networking.interfaces.enp4s0.wakeOnLan = {
       enable = true;
