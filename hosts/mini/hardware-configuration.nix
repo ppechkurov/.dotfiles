@@ -17,6 +17,11 @@
     options = [ "nofail" "noatime" "nodiratime" ];
   };
 
+  fileSystems."/mnt/backup" = {
+    device = "/dev/disk/by-label/backup";
+    options = [ "nofail" "noatime" "nodiratime" ];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/boot";
     fsType = "vfat";

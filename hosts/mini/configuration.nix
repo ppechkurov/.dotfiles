@@ -127,6 +127,38 @@ in {
       };
     };
 
+    systemd.services.copy-daily-backup =
+      let repo = config.services.restic.backups.daily.repository;
+      in {
+        enable = true;
+        description = "Make second copy of a daily backup";
+        serviceConfig = {
+          Type = "oneshot";
+          User = "restic";
+        };
+        path = [ pkgs.rsync ];
+        script = # bash
+          ''
+            rsync -az --delete ${repo} /mnt/backup/
+          '';
+
+        unitConfig = {
+          OnSuccess = "notify-backup-success.service";
+          OnFailure = "notify-backup-failure.service";
+        };
+      };
+
+    systemd.timers.copy-daily-backup = {
+      enable = true;
+      description = "Make second copy of a daily backup";
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "5:30";
+        Persistent = true;
+        Unit = "copy-daily-backup.service";
+      };
+    };
+
     system.stateVersion = "25.05";
   };
 }
