@@ -26,14 +26,34 @@
 
     waybar.url = "github:Alexays/Waybar";
     waybar.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = { self, nixpkgs, agenix, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, agenix, nixpkgs-unstable, deploy-rs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
       globals = import ./globals.nix;
     in {
+      deploy.nodes = let
+        mkDeployNode = { name, hostname ? name, sshUser ? "root" }: {
+          ${name} = {
+            inherit hostname;
+            profiles.system = {
+              inherit sshUser;
+              path = deploy-rs.lib.${system}.activate.nixos
+                self.nixosConfigurations.${name};
+            };
+          };
+        };
+      in mkDeployNode {
+        name = "mini";
+        hostname = "mini.local.wg";
+      } // mkDeployNode { name = "webdock"; }
+      // mkDeployNode { name = "bluevps"; };
+
       nixosConfigurations = let
         specialArgs = {
           inherit inputs globals;
@@ -93,13 +113,14 @@
           inherit specialArgs;
         };
         bluevps = mkVps "bluevps" ./hosts/vps/bluevps/configuration.nix;
-        senko = mkVps "senko" ./hosts/vps/senko/configuration.nix;
+        # senko = mkVps "senko" ./hosts/vps/senko/configuration.nix;
         webdock = mkVps "webdock" ./hosts/vps/webdock/configuration.nix;
       };
 
       devShells = {
         ${system}.default = pkgs.mkShell {
-          packages = [ inputs.agenix.packages.${system}.agenix pkgs.nh ];
+          packages =
+            [ inputs.agenix.packages.${system}.agenix pkgs.nh pkgs.deploy-rs ];
         };
       };
     };
