@@ -4,6 +4,7 @@ let
   mattermostDnsName = "chat.slonverse.xyz";
   jellyfinDnsName = "media.slonverse.xyz";
   forgejoDnsName = "git.slonverse.xyz";
+  forgejoSshPort = 2222;
   miniPcIp = globals.wg.peers.mini.networks.tun.ipv4;
 in {
   imports = [
@@ -31,7 +32,7 @@ in {
   environment.systemPackages =
     [ pkgs-unstable.mmctl pkgs-unstable.atuin pkgs.ncdu ];
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 forgejoSshPort ];
 
   security.acme = {
     acceptTerms = true;
@@ -45,6 +46,14 @@ in {
     enable = true;
 
     recommendedOptimisation = true;
+
+    # forgejo ssh
+    streamConfig = ''
+      server {
+        listen ${toString forgejoSshPort};
+        proxy_pass ${miniPcIp}:22;
+      }
+    '';
 
     upstreams = {
       ${upstream} = {
