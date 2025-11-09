@@ -10,10 +10,13 @@ in {
   imports = [
     ./hardware-configuration.nix
     ../../../modules/nixos/services/restic
+    ../../../modules/nixos/services/fail2ban
     ./networking.secret.nix # generated at runtime by nixos-infect
   ];
 
   local.wireguard.server.enable = true;
+  local.services.fail2ban.enable = true;
+
   services.atuin.enable = true;
 
   services.transmission.enable = true;
