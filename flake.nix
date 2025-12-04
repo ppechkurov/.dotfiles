@@ -35,6 +35,10 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
       globals = import ./globals.nix;
     in {
       deploy.nodes = let
@@ -55,13 +59,7 @@
       // mkDeployNode { name = "bluevps"; };
 
       nixosConfigurations = let
-        specialArgs = {
-          inherit inputs globals;
-          pkgs-unstable = import nixpkgs-unstable {
-            inherit system;
-            config = { allowUnfree = true; };
-          };
-        };
+        specialArgs = { inherit inputs globals pkgs-unstable; };
         mkVps = hostname: configModulePath:
           nixpkgs-unstable.lib.nixosSystem {
             modules = [
@@ -119,8 +117,15 @@
 
       devShells = {
         ${system}.default = pkgs.mkShell {
-          packages =
-            [ inputs.agenix.packages.${system}.agenix pkgs.nh pkgs.deploy-rs ];
+          packages = [
+            inputs.agenix.packages.${system}.agenix
+            pkgs.nh
+            pkgs.deploy-rs
+            pkgs-unstable.kind
+            pkgs-unstable.kubectl
+            pkgs-unstable.cloud-provider-kind
+            pkgs-unstable.minikube
+          ];
         };
       };
     };

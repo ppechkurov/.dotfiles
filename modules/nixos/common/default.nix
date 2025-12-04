@@ -100,9 +100,30 @@ in with lib; {
     security.pam.services.hyprlock = { };
 
     # Docker
-    virtualisation.docker.rootless = {
-      enable = true;
-      setSocketVariable = true;
+    # virtualisation.containerd.enable = true;
+    virtualisation.containers.enable = true;
+    virtualisation.containerd.enable = true;
+
+    virtualisation.docker = {
+      enable = lib.mkForce true;
+      daemon.settings = {
+        experimental = true;
+        features = { buildkit = true; };
+      };
+      extraPackages = [ pkgs.docker-buildx ];
+
+      # rootless = {
+      #   enable = true;
+      #   package = pkgs.docker_28;
+      #
+      #   setSocketVariable = true;
+      #   daemon.settings = {
+      #     dns = [ "1.1.1.1" "8.8.8.8" ];
+      #     # registry-mirrors = [ "https://mirror.gcr.io" ];
+      #     experimental = true;
+      #     # features = { buildkit = true; };
+      #   };
+      # };
     };
 
     # Fonts
@@ -176,6 +197,7 @@ in with lib; {
       libnotify
       libreoffice
       pkgs-unstable.mattermost-desktop
+      pkgs-unstable.ssm-session-manager-plugin
       mpc-cli
       ncdu
       nodejs_22
