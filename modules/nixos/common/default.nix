@@ -157,7 +157,7 @@ in with lib; {
     users.users.${config.username} = {
       description = "default nixos user";
       extraGroups =
-        [ "networkmanager" "wheel" "disk" "power" "video" "forgejo" ];
+        [ "networkmanager" "docker" "wheel" "disk" "power" "video" "forgejo" ];
       isNormalUser = true;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = publicKeys;

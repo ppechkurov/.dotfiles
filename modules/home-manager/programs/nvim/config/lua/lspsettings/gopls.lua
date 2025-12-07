@@ -7,6 +7,7 @@ return {
         constantValues = true,
         parameterNames = true,
       },
+      gofumpt = true,
     },
   },
   setup = {},
