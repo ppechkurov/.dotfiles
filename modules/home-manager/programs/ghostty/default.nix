@@ -1,5 +1,6 @@
 { inputs, pkgs, ... }:
-let ghostty = inputs.ghostty.packages.${pkgs.system}.default;
+let
+  ghostty = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   programs.ghostty.enable = true;
   programs.ghostty = {

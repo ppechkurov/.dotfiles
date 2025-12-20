@@ -145,11 +145,11 @@ in with lib; {
         mplus-outline-fonts.githubRelease
         noto-fonts
         noto-fonts-cjk-sans
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         powerline-fonts
         powerline-symbols
         proggyfonts
-        greetd.tuigreet
+        tuigreet
       ];
     };
 

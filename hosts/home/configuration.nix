@@ -65,7 +65,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     cachix
-    jellyfin-media-player
+    pkgs-unstable.jellyfin-media-player
     mattermost-send
     pkgs-unstable.comma
     protonup-ng

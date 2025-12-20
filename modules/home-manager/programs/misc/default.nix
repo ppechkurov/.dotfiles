@@ -10,7 +10,6 @@
     ./lf.nix
     ./others.nix
     ./starship.nix
-    ./spotify.nix
     ./zsh.nix
   ];
 }

@@ -13,7 +13,8 @@
     agenix.inputs.darwin.follows = "";
 
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
-    mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
+    mailserver.url =
+      "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
 
     jira.url = "ssh://git@github.com/ppechkurov/jira.git";
     jira = {
@@ -24,8 +25,8 @@
     gostman.url = "github:Halftoothed/gostman";
     gostman.inputs.nixpkgs.follows = "nixpkgs";
 
-    waybar.url = "github:Alexays/Waybar";
-    waybar.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # waybar.url = "github:Alexays/Waybar";
+    # waybar.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";

@@ -25,7 +25,8 @@ in {
         '';
       }
       {
-        plugin = inputs.minimal-tmux.packages.${pkgs.system}.default;
+        plugin =
+          inputs.minimal-tmux.packages.${pkgs.stdenv.hostPlatform.system}.default;
         extraConfig = ''
           set -g @minimal-tmux-status-right "#[bg=default,fg=default,bold] #S  "
         '';
