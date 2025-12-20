@@ -2,14 +2,17 @@
   config = {
     programs.git = {
       enable = true;
-      userEmail = "petr.pechkurov@gmail.com";
-      userName = "Petr Pechkurov";
-
-      extraConfig = {
+      settings = {
+        user.email = "petr.pechkurov@gmail.com";
+        user.name = "Petr Pechkurov";
         init.defaultBranch = "main";
         credential.helper = "store";
         push.autosetupremote = true;
       };
+
+      # 25.11 update
+      # extraConfig = {
+      # };
     };
 
     home.packages = [ pkgs.lazygit ];

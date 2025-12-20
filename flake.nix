@@ -2,10 +2,10 @@
   description = "My NixOS config flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.05";
+    nixpkgs.url = "nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
@@ -117,15 +117,8 @@
 
       devShells = {
         ${system}.default = pkgs.mkShell {
-          packages = [
-            inputs.agenix.packages.${system}.agenix
-            pkgs.nh
-            pkgs.deploy-rs
-            pkgs-unstable.kind
-            pkgs-unstable.kubectl
-            pkgs-unstable.cloud-provider-kind
-            pkgs-unstable.minikube
-          ];
+          packages =
+            [ inputs.agenix.packages.${system}.agenix pkgs.nh pkgs.deploy-rs ];
         };
       };
     };

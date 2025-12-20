@@ -70,11 +70,12 @@ in with lib; {
         settings.default_session = {
           user = config.username;
           command =
-            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+            "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
         };
       };
 
-      dbus.packages = [ pkgs.gcr ];
+      # 25.11 update
+      # dbus.packages = [ pkgs.gcr ];
     };
 
     # this is a life saver.
@@ -164,7 +165,7 @@ in with lib; {
       packages = [ pkgs.gnupg ];
     };
 
-    programs.ssh.startAgent = true;
+    # programs.ssh.startAgent = true;
     programs.ssh.extraConfig = # bash
       ''
         Host github.com
@@ -198,7 +199,7 @@ in with lib; {
       libreoffice
       pkgs-unstable.mattermost-desktop
       pkgs-unstable.ssm-session-manager-plugin
-      mpc-cli
+      mpc
       ncdu
       nodejs_22
       oath-toolkit # mfa
@@ -208,7 +209,7 @@ in with lib; {
       slurp
       tessen
       unzip
-      transmission_4-qt
+      transmission_4-qt6
       vim
       xkeyboard_config
     ];

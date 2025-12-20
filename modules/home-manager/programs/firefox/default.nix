@@ -1,6 +1,8 @@
 { pkgs, ... }: {
   programs.firefox.enable = true;
   programs.firefox = {
+    # no all of the bellow works. check home-manager.librewolf options.
+    # package = pkgs.librewolf;
     profiles.petrp = {
       id = 0;
       name = "Petr P.";
@@ -187,4 +189,3 @@
     };
   };
 }
-

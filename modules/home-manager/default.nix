@@ -20,7 +20,8 @@ with osConfig; {
       size = 24;
     };
     packages = with pkgs;
-      let jira = inputs.jira.packages.${pkgs.system}.default;
+      let
+        jira = inputs.jira.packages.${pkgs.stdenv.hostPlatform.system}.default;
       in [
         jira
         cliphist

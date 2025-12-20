@@ -63,18 +63,15 @@ in {
 
   services.openssh.enable = true;
 
-  environment.systemPackages = with pkgs;
-    let gostman = inputs.gostman.packages.${pkgs.system}.default;
-    in [
-      cachix
-      gostman
-      jellyfin-media-player
-      mattermost-send
-      pkgs-unstable.comma
-      protonup
-      steam-run
-      vial
-    ];
+  environment.systemPackages = with pkgs; [
+    cachix
+    jellyfin-media-player
+    mattermost-send
+    pkgs-unstable.comma
+    protonup-ng
+    steam-run
+    vial
+  ];
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
