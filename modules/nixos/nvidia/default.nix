@@ -1,19 +1,10 @@
 { config, lib, pkgs, ... }: {
-  # Enable OpenGL
-  hardware.graphics = { enable = true; };
-
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # Was not able to access tty on 24.11 on the home machine.
-  # [This](https://github.com/NixOS/nixpkgs/issues/328972#issuecomment-2316575557) helped.
-  hardware.nvidia.modesetting.enable = false;
-  boot.kernelParams = [ "nvidia-drm.modeset=1" "nvidia_drm.fbdev=0" ];
-
+  # Enable OpenGL
+  hardware.graphics = { enable = true; };
   hardware.nvidia = {
-    # Modesetting is required.
-    # modesetting.enable = false;
-
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead

@@ -65,9 +65,10 @@ in {
 
   environment.systemPackages = with pkgs; [
     cachix
-    pkgs-unstable.jellyfin-media-player
     mattermost-send
     pkgs-unstable.comma
+    pkgs-unstable.hyprland-per-window-layout
+    pkgs-unstable.jellyfin-media-player
     protonup-ng
     steam-run
     vial
@@ -78,8 +79,6 @@ in {
   programs.gamemode.enable = true;
 
   programs.nix-ld.enable = true;
-  programs.niri.enable = true;
-  programs.niri.package = pkgs-unstable.niri;
 
   services.udev.packages = with pkgs; [ qmk-udev-rules vial ];
 
