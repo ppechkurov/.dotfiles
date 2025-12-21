@@ -27,11 +27,11 @@ in {
       "sleep 10; foot --app-id ssh --override colors.alpha=0.10 tmux new -A -s ssh"
       "firefox"
       "pkill waybar; sleep 0.5; waybar"
-      "sleep 1 && telegram-desktop"
+      "sleep 1 && exec Telegram"
       "sleep 1 && exec mattermost-desktop"
-      "sleep 1 && slack || echo 'slack is not installed'"
-      "sleep 1 && signal-desktop || echo 'signal is not installed'"
-      "hyprland-per-window-layout"
+      "sleep 1 && exec slack || echo 'slack is not installed'"
+      "sleep 1 && exec signal-desktop || echo 'signal is not installed'"
+      "exec hyprland-per-window-layout"
     ];
 
     "$mod" = "SUPER";
