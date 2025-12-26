@@ -19,14 +19,19 @@
   services.udev.packages = with pkgs; [ qmk-udev-rules vial ];
 
   environment.systemPackages = let
-    stable = with pkgs; [
-      gnumake
-      zip
-      mattermost-desktop
-      vial
-      jellyfin-media-player
-      cachix
-    ];
+    stable = with pkgs;
+      let
+        aws-rds-forward = pkgs.writeScriptBin "aws-rds-forward"
+          (builtins.readFile ./../../modules/nixos/common/scripts/connect.sh);
+      in [
+        aws-rds-forward
+        gnumake
+        zip
+        mattermost-desktop
+        vial
+        jellyfin-media-player
+        cachix
+      ];
     unstable = with pkgs-unstable; [ ghostty hyprland-per-window-layout ];
   in stable ++ unstable;
 
