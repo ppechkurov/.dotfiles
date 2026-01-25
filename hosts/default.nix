@@ -22,8 +22,8 @@ in {
     hostname = "mini.local.wg";
   } // mkDeployNode { name = "webdock"; } // mkDeployNode { name = "bluevps"; };
   flake.nixosConfigurations = let
-    globals = import ../globals.nix;
-    specialArgs = { inherit inputs globals pkgs-unstable; };
+    # globals = import ../globals.nix;
+    specialArgs = { inherit inputs pkgs-unstable; };
 
     homeManagerConfig = { ... }: {
       home-manager.useGlobalPkgs = true;
