@@ -10,16 +10,7 @@ let
     script = "${lib.getExe pkgs.mattermost-send} '${message}' ${status}";
   };
 in {
-  imports = [
-    ../../modules/nixos/common
-    ../../modules/nixos/nvidia
-    ../../modules/nixos/wireguard
-    ../../modules/nixos/networks/kubernetes.nix
-    ../../modules/nixos/services/syncthing.nix
-    ../../modules/nixos/services/gatus.nix
-    ../../modules/nixos/services/mattermost
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   # declare hostname
   networking.hostName = "home";
