@@ -66,8 +66,10 @@ in {
       ../modules/nixos/services/mattermost
     ];
     mini = mkRegularHost ./mini/configuration.nix [ ];
-    kirill =
-      mkRegularHost ./kirill/configuration.nix [ ../modules/nixos/common ];
+    kirill = mkRegularHost ./kirill/configuration.nix [
+      ../modules/nixos/common
+      ../modules/parts/networking.nix
+    ];
 
     bluevps = mkVps "bluevps" ./vps/bluevps/configuration.nix;
     # senko = mkVps "senko" ./senko/configuration.nix;

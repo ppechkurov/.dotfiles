@@ -4,8 +4,6 @@
   # declare hostname
   networking.hostName = "kirill";
 
-  networking.hosts = { "192.168.100.14" = [ "mini.local.home" ]; };
-
   services.openssh.enable = true;
 
   environment.systemPackages = with pkgs; [
