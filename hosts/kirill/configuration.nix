@@ -4,7 +4,6 @@
   # declare hostname
   networking.hostName = "kirill";
 
-  # local.wireguard.enable = true;
   networking.hosts = { "192.168.100.14" = [ "mini.local.home" ]; };
 
   services.openssh.enable = true;

@@ -1,8 +1,5 @@
 { lib, config, pkgs, ... }: {
-  imports = [
-    ../../modules/home-manager
-    # ./hyprland
-  ];
+  imports = [ ../../modules/home-manager ./hyprland ];
 
   xdg.configFile.hypr = {
     enable = true;

@@ -8,23 +8,23 @@
     ./fzf
     ./git
     ./github
-    ./go
+    # ./go
     ./firefox
     # ./floorp
     # ./librewolf
     ./nvim
     ./ncmpcpp
-    ./mysql
+    # ./mysql
     ./misc/mako.nix
     ./mpv
-    ./meli
+    # ./meli
     # ./sway
     ./hyprland
     ./tmux
     ./tofi
     ./waybar
     ./yazi
-    ./zellij
+    # ./zellij
     ./zoxide
     ./zsh
   ];

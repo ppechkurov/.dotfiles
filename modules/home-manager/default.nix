@@ -1,4 +1,4 @@
-{ lib, osConfig, pkgs, inputs, ... }:
+{ lib, osConfig, pkgs, ... }:
 with osConfig; {
   imports = [ ./programs ./services ./keyboard ];
 
@@ -19,15 +19,7 @@ with osConfig; {
       name = "Simp1e-Gruvbox-Dark";
       size = 24;
     };
-    packages = with pkgs; [
-      cliphist
-      dconf
-      gcc
-      pavucontrol
-      ripgrep
-      telegram-desktop
-      git-crypt
-    ];
+    packages = with pkgs; [ dconf pavucontrol ripgrep git-crypt ];
   };
 
   home.stateVersion = "24.05";
@@ -36,10 +28,10 @@ with osConfig; {
   programs.home-manager.enable = true;
 
   services.mako.enable = true;
-  services.network-manager-applet.enable = false;
 
   programs.gpg.enable = true;
   services.gpg-agent.enable = true;
+  services.gpg-agent.enableZshIntegration = true;
   services.gpg-agent.pinentry.package =
     pkgs.writeShellScriptBin "pinentry-wrapper" ''
       if [[ -z $DISPLAY ]]; then
@@ -48,17 +40,10 @@ with osConfig; {
         exec ${pkgs.pinentry-gnome3}/bin/pinentry "$@"
       fi
     '';
-  services.gpg-agent.enableZshIntegration = true;
 
   programs.swaylock.enable = true;
   programs.cava.enable = true;
   programs.htop.enable = true;
-  programs.chromium.enable = true;
-  programs.chromium.extensions = [
-    { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock
-    { id = "gfbliohnnapiefjpjlpjnehglfpaknnc"; } # surfingkeys
-  ];
-  programs.yt-dlp.enable = true;
 
   gtk.enable = true;
   gtk.theme = {
@@ -97,4 +82,3 @@ with osConfig; {
     };
   };
 }
-
