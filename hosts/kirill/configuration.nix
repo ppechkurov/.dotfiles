@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, pkgs-unstable, globals, ... }: {
+{ inputs, lib, config, pkgs, pkgs-unstable, ... }: {
   imports = [ ./hardware-configuration.nix ];
 
   # declare hostname
@@ -38,6 +38,6 @@
 
   home-manager = {
     users.${config.username} = import ./home.nix;
-    extraSpecialArgs = { inherit inputs pkgs-unstable globals; };
+    extraSpecialArgs = { inherit inputs pkgs-unstable; };
   };
 }

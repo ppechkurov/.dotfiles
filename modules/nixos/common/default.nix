@@ -156,7 +156,7 @@ with lib; {
         [ "networkmanager" "docker" "wheel" "disk" "power" "video" "forgejo" ];
       isNormalUser = true;
       shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = publicKeys;
+      # openssh.authorizedKeys.keys = publicKeys;
       packages = [ pkgs.gnupg ];
     };
 
@@ -198,7 +198,7 @@ with lib; {
       ncdu
       nodejs_22
       oath-toolkit # mfa
-      mfa
+      # mfa
       pass-wayland
       satty
       slurp

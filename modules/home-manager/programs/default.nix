@@ -1,9 +1,9 @@
 {
   imports = [
     # ./misc
-    ./atuin
+    # ./atuin
     ./aerc
-    ./aws
+    # ./aws
     ./foot
     ./fzf
     ./git

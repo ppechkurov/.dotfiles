@@ -19,19 +19,15 @@ with osConfig; {
       name = "Simp1e-Gruvbox-Dark";
       size = 24;
     };
-    packages = with pkgs;
-      let
-        jira = inputs.jira.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      in [
-        jira
-        cliphist
-        dconf
-        gcc
-        pavucontrol
-        ripgrep
-        telegram-desktop
-        git-crypt
-      ];
+    packages = with pkgs; [
+      cliphist
+      dconf
+      gcc
+      pavucontrol
+      ripgrep
+      telegram-desktop
+      git-crypt
+    ];
   };
 
   home.stateVersion = "24.05";
