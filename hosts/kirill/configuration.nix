@@ -35,6 +35,12 @@
   services.blueman.enable = true;
   hardware.enableAllFirmware = true;
 
+  users.users.${config.username} = {
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM/8sFXfWRrIE+n4TtvawXjd1QKIYadM2OR9PGOxHKrP petrp@home"
+    ];
+  };
+
   home-manager = {
     users.${config.username} = import ./home.nix;
     extraSpecialArgs = { inherit inputs pkgs-unstable; };
