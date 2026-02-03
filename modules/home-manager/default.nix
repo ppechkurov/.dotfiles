@@ -19,7 +19,13 @@ with osConfig; {
       name = "Simp1e-Gruvbox-Dark";
       size = 24;
     };
-    packages = with pkgs; [ dconf pavucontrol ripgrep git-crypt ];
+    packages = with pkgs; [
+      telegram-desktop
+      dconf
+      pavucontrol
+      ripgrep
+      git-crypt
+    ];
   };
 
   home.stateVersion = "24.05";

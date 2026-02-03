@@ -29,10 +29,12 @@
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
   };
 
   outputs = { flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    flake-parts.lib.mkFlake { inherit inputs; }
+    ((inputs.import-tree [ ./dendritic ]) // {
       systems = [ "x86_64-linux" ];
       perSystem = { config, pkgs, system, inputs', ... }: {
         devShells.default = pkgs.mkShell {
@@ -41,5 +43,5 @@
       };
       imports = [ ./hosts ];
       flake = { };
-    };
+    });
 }

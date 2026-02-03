@@ -1,20 +1,20 @@
 {
   imports = [
     # ./misc
-    # ./atuin
+    ./atuin
     ./aerc
-    # ./aws
+    ./aws
     ./foot
     ./fzf
     ./git
     ./github
-    # ./go
+    ./go
     ./firefox
     # ./floorp
     # ./librewolf
     ./nvim
     ./ncmpcpp
-    # ./mysql
+    ./mysql
     ./misc/mako.nix
     ./mpv
     # ./meli
