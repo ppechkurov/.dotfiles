@@ -34,14 +34,5 @@
 
   outputs = { flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
-    ((inputs.import-tree [ ./dendritic ]) // {
-      systems = [ "x86_64-linux" ];
-      perSystem = { config, pkgs, system, inputs', ... }: {
-        devShells.default = pkgs.mkShell {
-          packages = [ inputs'.agenix.packages.agenix pkgs.nh pkgs.deploy-rs ];
-        };
-      };
-      imports = [ ./hosts ];
-      flake = { };
-    });
+    (inputs.import-tree [ ./dendritic ]);
 }
