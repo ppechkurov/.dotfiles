@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.hardwareModule = { config, lib, pkgs, modulesPath, ... }: {
+  flake.nixosModules.homeHardware = { config, lib, pkgs, modulesPath, ... }: {
     imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
     boot.initrd.availableKernelModules =
