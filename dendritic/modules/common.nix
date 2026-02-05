@@ -1,4 +1,5 @@
 { self, ... }: {
+  systems = [ "x86_64-linux" ];
   flake.nixosModules.common = { pkgs, ... }: {
     imports = [
       self.nixosModules.boot
