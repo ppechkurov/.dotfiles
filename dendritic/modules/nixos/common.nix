@@ -1,5 +1,9 @@
-{ self, ... }: {
+{ inputs, self, ... }: {
   systems = [ "x86_64-linux" ];
+  imports = [
+    inputs.flake-parts.flakeModules.flakeModules
+    inputs.home-manager.flakeModules.home-manager
+  ];
   flake.nixosModules.common = { pkgs, ... }: {
     imports = [
       self.nixosModules.boot
@@ -18,5 +22,7 @@
     services.openssh.settings.PasswordAuthentication = false;
 
     environment.systemPackages = with pkgs; [ curl git jq unzip vim ];
+
+    system.stateVersion = "23.11";
   };
 }

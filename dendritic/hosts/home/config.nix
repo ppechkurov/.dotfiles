@@ -1,11 +1,17 @@
-{ self, inputs, ... }: {
-  debug = true;
+{ inputs, self, ... }: {
   flake.nixosConfigurations.home = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.common
       self.nixosModules.homeHardware
+
+      self.nixosModules.common
       self.nixosModules.data
-      { system.stateVersion = "23.11"; }
+      self.nixosModules.fonts
+      self.nixosModules.greetd
+      self.nixosModules.sound
+
+      inputs.home-manager.nixosModules.home-manager
+
+      self.nixosModules.hyprland
     ];
   };
 }

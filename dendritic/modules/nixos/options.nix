@@ -8,6 +8,13 @@
     #     default = "192.168.100.1";
     #   };
     # };
-    passthru.wgIpAddress = "192.168.100.1";
+
+    options = {
+      username = mkOption {
+        type = types.str;
+        default = "petrp";
+      };
+    };
+    config = { passthru.wgIpAddress = "192.168.100.1"; };
   };
 }
