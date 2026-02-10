@@ -1,28 +1,28 @@
 { inputs, self, ... }: {
   systems = [ "x86_64-linux" ];
+
   imports = [
-    inputs.flake-parts.flakeModules.flakeModules
     inputs.flake-parts.flakeModules.modules
     inputs.home-manager.flakeModules.home-manager
   ];
+
   flake.modules.nixos.common = { pkgs, ... }: {
-    imports = [
-      self.nixosModules.boot
-      self.modules.nixos.petrp
-      self.nixosModules.nix
+    imports = with self.modules.nixos; [
+      boot
+      petrp
+      nix
+      data
       #
     ];
 
     i18n.defaultLocale = "en_US.UTF-8";
 
-    console = {
-      keyMap = "dvorak";
-      font = "Lat2-Terminus16";
-    };
+    console.keyMap = "dvorak";
+    console.font = "Lat2-Terminus16";
 
     services.openssh.settings.PasswordAuthentication = false;
 
-    environment.systemPackages = with pkgs; [ curl git jq unzip vim foot ];
+    environment.systemPackages = with pkgs; [ curl git jq unzip vim ];
 
     system.stateVersion = "23.11";
   };

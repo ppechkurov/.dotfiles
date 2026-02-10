@@ -3,35 +3,37 @@
     inputs.home-manager.lib.homeManagerConfiguration { };
 
   flake.nixosConfigurations.home = inputs.nixpkgs.lib.nixosSystem {
-    modules = [
+    modules = with self.modules.nixos; [
       self.nixosModules.homeHardware
 
-      self.modules.nixos.common
-      self.nixosModules.data
+      common
+      home-manager
+
       self.nixosModules.fonts
       self.nixosModules.greetd
       self.nixosModules.sound
 
-      inputs.home-manager.nixosModules.home-manager
-
-      self.modules.nixos.home-manager
-
       self.nixosModules.hyprland
-      # self.nixosModules.hyprlandMonitor
+      self.nixosModules.hyprlandMonitor
     ];
   };
 
-  flake.homeModules.hyprlandMonitor = { config, ... }:
-    let
+  flake.nixosModules.hyprlandMonitor = { config, ... }: {
+    home-manager.users.${config.username}.imports = let
       HP = "DP-4";
       samsung = "DVI-D-1";
       TV = "HDMI-A-4";
-    in {
-      # wayland.windowManager.hyprland.settings.monitor = [
-      #   "${HP}, preferred, 0x0, 1"
-      #   "${samsung}, preferred, 1920x0, 1"
-      #   "${TV}, preferred, 0x-1080, 1"
-      # ];
+    in [{
+      wayland.windowManager.hyprland.settings.input = {
+        kb_layout = "us,ru";
+        kb_variant = "dvorak,";
+      };
+
+      wayland.windowManager.hyprland.settings.monitor = [
+        "${HP}, preferred, 0x0, 1"
+        "${samsung}, preferred, 1920x0, 1"
+        "${TV}, preferred, 0x-1080, 1"
+      ];
 
       wayland.windowManager.hyprland.settings.workspace = [
         # left
@@ -48,5 +50,6 @@
         "9, monitor:${samsung}"
         "10, monitor:${samsung}"
       ];
-    };
+    }];
+  };
 }
