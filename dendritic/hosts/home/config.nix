@@ -1,4 +1,7 @@
 { inputs, self, ... }: {
+  flake.homeConfigurations.petrp =
+    inputs.home-manager.lib.homeManagerConfiguration { };
+
   flake.nixosConfigurations.home = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       self.nixosModules.homeHardware
@@ -10,19 +13,20 @@
       self.nixosModules.sound
 
       inputs.home-manager.nixosModules.home-manager
+
       self.modules.nixos.home-manager
 
       self.nixosModules.hyprland
-      self.nixosModules.hyprlandMonitor
+      # self.nixosModules.hyprlandMonitor
     ];
   };
 
-  flake.nixosModules.hyprlandMonitor = { config, ... }: {
-    home-manager.users.${config.username}.imports = let
+  flake.homeModules.hyprlandMonitor = { config, ... }:
+    let
       HP = "DP-4";
       samsung = "DVI-D-1";
       TV = "HDMI-A-4";
-    in [{
+    in {
       # wayland.windowManager.hyprland.settings.monitor = [
       #   "${HP}, preferred, 0x0, 1"
       #   "${samsung}, preferred, 1920x0, 1"
@@ -44,6 +48,5 @@
         "9, monitor:${samsung}"
         "10, monitor:${samsung}"
       ];
-    }];
-  };
+    };
 }
