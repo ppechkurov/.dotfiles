@@ -11,7 +11,7 @@
       boot
       petrp
       nix
-      data
+      globals
       #
     ];
 
