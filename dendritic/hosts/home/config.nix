@@ -3,13 +3,14 @@
     modules = [
       self.nixosModules.homeHardware
 
-      self.nixosModules.common
+      self.modules.nixos.common
       self.nixosModules.data
       self.nixosModules.fonts
       self.nixosModules.greetd
       self.nixosModules.sound
 
       inputs.home-manager.nixosModules.home-manager
+      self.modules.nixos.home-manager
 
       self.nixosModules.hyprland
       self.nixosModules.hyprlandMonitor
@@ -22,12 +23,11 @@
       samsung = "DVI-D-1";
       TV = "HDMI-A-4";
     in [{
-      hyprland.input.kb_layout = { };
-      wayland.windowManager.hyprland.settings.monitor = [
-        "${HP}, preferred, 0x0, 1"
-        "${samsung}, preferred, 1920x0, 1"
-        "${TV}, preferred, 0x-1080, 1"
-      ];
+      # wayland.windowManager.hyprland.settings.monitor = [
+      #   "${HP}, preferred, 0x0, 1"
+      #   "${samsung}, preferred, 1920x0, 1"
+      #   "${TV}, preferred, 0x-1080, 1"
+      # ];
 
       wayland.windowManager.hyprland.settings.workspace = [
         # left

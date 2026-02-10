@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.petrp = { pkgs, ... }: {
+  flake.modules.nixos.petrp = { pkgs, ... }: {
     programs.zsh.enable = true;
     users.users.petrp = {
       description = "Petr Pechkurov";

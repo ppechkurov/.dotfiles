@@ -4,6 +4,8 @@
       env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 
       exec-once = [
+        "kitty"
+        "foot"
         "foot --app-id default --override colors.alpha=0.10 tmux new -A -s default"
         "sleep 10; foot --app-id ssh --override colors.alpha=0.10 tmux new -A -s ssh"
         "firefox"
