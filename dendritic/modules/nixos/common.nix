@@ -6,12 +6,13 @@
     inputs.home-manager.flakeModules.home-manager
   ];
 
-  flake.modules.nixos.common = { pkgs, ... }: {
+  flake.modules.nixos.base = { pkgs, ... }: {
     imports = with self.modules.nixos; [
       boot
-      petrp
-      nix
+      data
       globals
+      nix
+      petrp
       #
     ];
 

@@ -1,5 +1,5 @@
 {
-  flake.homeModules.hyprlandSettings = { ... }: {
+  flake.modules.homeManager.hyprland = { ... }: {
     wayland.windowManager.hyprland.settings = {
       env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 

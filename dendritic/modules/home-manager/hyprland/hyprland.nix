@@ -1,26 +1,16 @@
-{ self, ... }: {
-  flake.nixosModules.hyprland = { pkgs, config, ... }: {
-    programs.hyprland.enable = true;
-    programs.hyprland.xwayland.enable = true;
-    programs.hyprland.portalPackage = pkgs.xdg-desktop-portal-hyprland;
-
-    home-manager.users.${config.username}.imports = [
-      self.homeModules.hyprland
-      self.homeModules.hyprlandSettings
-      self.homeModules.hyprpaper
-      { home.stateVersion = config.system.stateVersion; }
-    ];
-  };
-
-  flake.homeModules.hyprland = { lib, config, ... }:
+{ ... }: {
+  flake.modules.homeManager.hyprland = { lib, config, pkgs, ... }:
     let
       HP = "DP-4";
       samsung = "DVI-D-1";
       TV = "HDMI-A-4";
     in with lib; {
-      wayland.windowManager.hyprland.enable = mkDefault true;
-      wayland.windowManager.hyprland.xwayland.enable = true;
-      wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
+      wayland.windowManager.hyprland.enable = true;
+      wayland.windowManager.hyprland = {
+        xwayland.enable = true;
+        systemd.variables = [ "--all" ];
+        portalPackage = pkgs.xdg-desktop-portal-hyprland;
+      };
 
       wayland.windowManager.hyprland.settings.input = {
         kb_layout = mkDefault "us,ru,us";

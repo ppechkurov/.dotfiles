@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  home-manager-config = { lib, ... }: {
+  homeManagerConfig = { lib, ... }: {
     home-manager = {
       verbose = true;
       useUserPackages = true;
@@ -13,7 +13,7 @@ let
 in {
   flake.modules.nixos.home-manager = {
     imports =
-      [ inputs.home-manager.nixosModules.home-manager home-manager-config ];
+      [ inputs.home-manager.nixosModules.home-manager homeManagerConfig ];
   };
 }
 

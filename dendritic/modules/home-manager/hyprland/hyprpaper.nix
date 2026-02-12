@@ -1,5 +1,5 @@
 {
-  flake.homeModules.hyprpaper = { ... }: {
+  flake.modules.homeManager.hyprpaper = { ... }: {
     services.hyprpaper.enable = true;
     services.hyprpaper.settings = {
       ipc = "on";
