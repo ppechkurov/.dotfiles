@@ -1,9 +1,8 @@
 {
-  flake.nixosModules.greetd = { config, pkgs, ... }: {
-    services.greetd = {
-      enable = true;
-      settings.default_session = {
-        user = config.username;
+  flake.modules.nixos.greetd = { config, pkgs, ... }: {
+    services.greetd.enable = true;
+    services.greetd.settings = {
+      default_session = {
         command =
           "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
       };

@@ -1,29 +1,34 @@
-{ self, inputs, ... }:
-let admin = "petrp";
+{ self, config, ... }:
+let user = "petrp";
 in {
   flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" "home";
-  flake.homeConfigurations = self.lib.mkHomeManager "x86_64-linux" admin;
+  flake.homeConfigurations = self.lib.mkHomeManager "x86_64-linux" user;
 
   flake.modules.nixos.home-configuration = { pkgs, ... }: {
     imports = with self.modules.nixos; [
       home-manager
 
-      self.nixosModules.fonts
-      self.nixosModules.greetd
-      self.nixosModules.sound
+      fonts
+      greetd
+      sound
 
       hyprland
     ];
 
-    home-manager.users.${admin} = {
-      imports = [ self.modules.homeManager.${admin} ];
+    home-manager.users.${user} = {
+      imports = [ self.modules.homeManager.${user} ];
     };
+
+    environment.systemPackages = with pkgs; [ foot ];
   };
 
-  flake.modules.homeManager.${admin} = {
+  flake.modules.homeManager.${user} = {
     imports = with self.modules.homeManager; [
+      keyboard
       hyprland
       hyprpaper
+      nvim
+      zsh
       { home.stateVersion = "23.11"; }
     ];
   };
