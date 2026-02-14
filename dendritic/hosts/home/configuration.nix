@@ -1,15 +1,18 @@
-{ self, ... }: {
-  flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" "home";
+{ self, ... }:
+let system = "home";
+in {
+  flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" system;
 
-  flake.modules.nixos.home-configuration = { pkgs, pkgs-unstable, ... }: {
-    imports = with self.modules.nixos; [
-      home-manager
+  flake.modules.nixos."${system}-configuration" =
+    { pkgs, pkgs-unstable, ... }: {
+      imports = with self.modules.nixos; [
+        home-manager
 
-      fonts
-      greetd
-      sound
+        fonts
+        greetd
+        sound
 
-      hyprland
-    ];
-  };
+        hyprland
+      ];
+    };
 }

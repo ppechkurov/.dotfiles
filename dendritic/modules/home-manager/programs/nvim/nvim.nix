@@ -33,7 +33,7 @@
 
     xdg.configFile.nvim = let
       nvim_config_dir =
-        "${config.home.homeDirectory}/.dotfiles/dendritic/modules/home-manager/nvim";
+        "${config.home.homeDirectory}/.dotfiles/dendritic/modules/home-manager/programs/nvim";
     in {
       enable = true;
       recursive = true;
