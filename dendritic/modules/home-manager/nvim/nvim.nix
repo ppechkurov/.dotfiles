@@ -1,20 +1,17 @@
 {
-  flake.modules.homeManager.nvim = { pkgs, pkgs-unstable, config, ... }: {
+  flake.modules.homeManager.nvim = { pkgs-unstable, pkgs, config, ... }: {
+    programs.neovim.enable = true;
+
     programs.neovim = {
-      enable = true;
-      defaultEditor = true;
       package = pkgs-unstable.neovim-unwrapped;
-      # required for rest.nvim plugin. it uses luarocks and libs from there.
-      extraLuaPackages = ps:
-        with pkgs; [
-          luajitPackages.luarocks-nix
-          luajitPackages.lua-curl
-          luajitPackages.xml2lua
-          luajitPackages.mimetypes
-          luajitPackages.fidget-nvim
-          luajitPackages.nvim-nio
-        ];
+
+      defaultEditor = true;
+      vimAlias = true;
+      withNodeJs = true;
+      withPython3 = true;
+
       extraPackages = with pkgs; [
+        gh # needed for octo.nvim
         lua
         lua-language-server
         marksman
@@ -24,21 +21,19 @@
         nodePackages.sql-formatter
         nodePackages.typescript-language-server
         nodePackages.vscode-langservers-extracted
-        typescript
-        typescript-language-server
         prettierd
+        ripgrep
         shfmt
         stylua
+        typescript
+        typescript-language-server
         yaml-language-server
       ];
-      vimAlias = true;
-      withNodeJs = true;
-      withPython3 = true;
     };
 
     xdg.configFile.nvim = let
       nvim_config_dir =
-        "${config.home.homeDirectory}/.dotfiles/modules/home-manager/programs/nvim";
+        "${config.home.homeDirectory}/.dotfiles/dendritic/modules/home-manager/nvim";
     in {
       enable = true;
       recursive = true;

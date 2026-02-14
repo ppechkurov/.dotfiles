@@ -16,8 +16,6 @@
         "exec hyprland-per-window-layout"
       ];
 
-      "$mod" = "SUPER";
-
       general = {
         gaps_in = 5;
         gaps_out = 5;
