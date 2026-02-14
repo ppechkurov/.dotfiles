@@ -10,7 +10,6 @@
     imports = with self.modules.nixos; [
       boot
       data
-      globals
       nix
       petrp
       #
