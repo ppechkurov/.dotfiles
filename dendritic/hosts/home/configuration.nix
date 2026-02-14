@@ -2,9 +2,9 @@
 let user = "petrp";
 in {
   flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" "home";
-  flake.homeConfigurations = self.lib.mkHomeManager "x86_64-linux" user;
+  # flake.homeConfigurations = self.lib.mkHomeManager "x86_64-linux" user;
 
-  flake.modules.nixos.home-configuration = { pkgs, ... }: {
+  flake.modules.nixos.home-configuration = { pkgs, pkgs-unstable, ... }: {
     imports = with self.modules.nixos; [
       home-manager
 
@@ -17,18 +17,21 @@ in {
 
     home-manager.users.${user} = {
       imports = [ self.modules.homeManager.${user} ];
+      _module.args.pkgs-unstable = pkgs-unstable;
     };
 
-    environment.systemPackages = with pkgs; [ foot ];
+    # environment.systemPackages = with pkgs; [ foot ];
   };
 
   flake.modules.homeManager.${user} = {
     imports = with self.modules.homeManager; [
+      foot
       keyboard
       hyprland
       hyprpaper
       nvim
       zsh
+
       { home.stateVersion = "23.11"; }
     ];
   };

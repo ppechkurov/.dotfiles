@@ -18,26 +18,17 @@ in {
             nixpkgs.hostPlatform = lib.mkDefault system;
           }
         ];
+        specialArgs = {
+          pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+        };
       };
     };
 
     mkHomeManager = system: name: {
       ${name} = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.${system};
-        pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
         modules = [ modules.homeManager.${name} ];
       };
     };
-
-    mkUser = name:
-      { pkgs, ... }: {
-        programs.zsh.enable = true;
-        users.users.${name} = {
-          description = "Petr Pechkurov";
-          extraGroups = [ "wheel" "disk" "power" ];
-          isNormalUser = true;
-          shell = pkgs.zsh;
-        };
-      };
   };
 }

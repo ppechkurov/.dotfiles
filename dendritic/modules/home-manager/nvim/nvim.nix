@@ -1,9 +1,9 @@
 {
-  flake.modules.homeManager.nvim = { pkgs, config, ... }: {
+  flake.modules.homeManager.nvim = { pkgs, pkgs-unstable, config, ... }: {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
-      # package = pkgs-unstable.neovim-unwrapped;
+      package = pkgs-unstable.neovim-unwrapped;
       # required for rest.nvim plugin. it uses luarocks and libs from there.
       extraLuaPackages = ps:
         with pkgs; [
@@ -15,7 +15,6 @@
           luajitPackages.nvim-nio
         ];
       extraPackages = with pkgs; [
-        ansible-lint
         lua
         lua-language-server
         marksman
