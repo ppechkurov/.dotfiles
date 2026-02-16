@@ -1,10 +1,12 @@
 { ... }: {
   flake.modules.homeManager.hyprland = { lib, config, pkgs, ... }:
     let
-      HP = "DP-4";
+      HP = "DP-1";
       samsung = "DVI-D-1";
-      TV = "HDMI-A-4";
+      TV = "HDMI-A-1";
     in with lib; {
+      home.packages = with pkgs; [ wf-recorder wl-clipboard xdg-utils ];
+
       wayland.windowManager.hyprland.enable = true;
       wayland.windowManager.hyprland = {
         xwayland.enable = true;

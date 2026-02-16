@@ -1,30 +1,30 @@
 {
   imports = [
     # ./misc
-    ./atuin
+    # ./floorp
+    # ./librewolf
+    # ./meli
+    # ./sway
+    # ./zellij
     ./aerc
+    ./atuin
     ./aws
+    ./firefox
     ./foot
     ./fzf
     ./git
     ./github
     ./go
-    ./firefox
-    # ./floorp
-    # ./librewolf
-    ./nvim
-    ./ncmpcpp
-    ./mysql
+    ./hyprland
     ./misc/mako.nix
     ./mpv
-    # ./meli
-    # ./sway
-    ./hyprland
+    ./mysql
+    ./ncmpcpp
+    ./nvim
     ./tmux
     ./tofi
     ./waybar
     ./yazi
-    # ./zellij
     ./zoxide
     ./zsh
   ];
