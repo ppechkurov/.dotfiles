@@ -1,9 +1,9 @@
 { ... }: {
   flake.modules.homeManager.hyprland = { lib, config, pkgs, ... }:
     let
-      HP = "DP-1";
+      HP = "DP-4";
       samsung = "DVI-D-1";
-      TV = "HDMI-A-1";
+      TV = "HDMI-A-4";
     in with lib; {
       home.packages = with pkgs; [ wf-recorder wl-clipboard xdg-utils ];
 

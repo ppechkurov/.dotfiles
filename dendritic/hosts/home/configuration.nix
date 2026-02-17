@@ -3,15 +3,29 @@ let system = "home";
 in {
   flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" system;
 
-  flake.modules.nixos."${system}-configuration" = {
-    imports = with self.modules.nixos; [
-      home-manager
+  flake.modules.nixos."${system}-configuration" =
+    { pkgs, pkgs-unstable, ... }: {
+      imports = with self.modules.nixos; [
+        home-manager
+        docker
 
-      fonts
-      greetd
-      sound
+        fonts
+        greetd
+        sound
 
-      hyprland
-    ];
-  };
+        hyprland
+      ];
+
+      environment.systemPackages = with pkgs; [
+        docker-credential-helpers
+        pkgs-unstable.flameshot
+        jellyfin-ffmpeg
+        jmtpfs # mount android devices, see https://nixos.wiki/wiki/MTP
+        lazydocker
+        libnotify
+        pkgs-unstable.mattermost-desktop
+        pass-wayland
+        tessen
+      ];
+    };
 }
