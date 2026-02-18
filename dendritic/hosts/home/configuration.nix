@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 let system = "home";
 in {
   flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" system;
@@ -18,11 +18,11 @@ in {
 
       environment.systemPackages = with pkgs; [
         docker-credential-helpers
+        grim
         pkgs-unstable.flameshot
         jellyfin-ffmpeg
         jmtpfs # mount android devices, see https://nixos.wiki/wiki/MTP
         lazydocker
-        libnotify
         pkgs-unstable.mattermost-desktop
         pass-wayland
         tessen

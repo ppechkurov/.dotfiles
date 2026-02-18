@@ -4,9 +4,8 @@
       env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 
       exec-once = [
-        "foot"
         "foot --app-id default --override colors.alpha=0.10 tmux new -A -s default"
-        "sleep 10; foot --app-id ssh --override colors.alpha=0.10 'sleep 10 && tmux new -A -s ssh'"
+        "sleep 10; foot --app-id ssh --override colors.alpha=0.10 tmux new -A -s ssh"
         "firefox"
         "pkill waybar; sleep 0.5; waybar"
         "sleep 1 && exec Telegram"
