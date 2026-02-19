@@ -16,6 +16,8 @@ in {
         hyprland
       ];
 
+      networking.networkmanager.enable = true;
+
       environment.systemPackages = with pkgs; [
         docker-credential-helpers
         grim
