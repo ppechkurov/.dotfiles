@@ -23,6 +23,7 @@
 
       networking.useDHCP = lib.mkDefault true;
 
+      hardware.enableAllFirmware = true;
       hardware.cpu.intel.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
     };

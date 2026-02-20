@@ -12,6 +12,12 @@ in {
         fonts
         greetd
         sound
+        home-networking
+        nvidia
+
+        unfree
+        steam
+        printers
 
         hyprland
       ];
@@ -21,13 +27,15 @@ in {
       programs.nix-ld.enable = true;
 
       environment.systemPackages = with pkgs; [
-        gcc
         docker-credential-helpers
+        gcc
         jellyfin-ffmpeg
         jmtpfs # mount android devices, see https://nixos.wiki/wiki/MTP
         lazydocker
-        pkgs-unstable.mattermost-desktop
         pass-wayland
+        pkgs-unstable.comma
+        pkgs-unstable.jellyfin-media-player
+        pkgs-unstable.mattermost-desktop
         tessen
       ];
     };
