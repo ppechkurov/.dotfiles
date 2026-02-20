@@ -123,7 +123,7 @@
           format = "{:%a %d %b %H:%M:%S}";
           tooltip = false;
           timezone = "Europe/Minsk";
-          #TODO: update this script
+          # TODO: update this script
           on-click-right = "~/.config/mako/scripts/mako_calendar";
         };
 
