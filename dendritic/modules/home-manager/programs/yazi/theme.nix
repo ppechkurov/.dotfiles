@@ -2,36 +2,33 @@
   flake.modules.homeManager.yazi = {
     programs.yazi.theme.filetype = {
       rules = [
-        # Images
+        # Image
         {
           mime = "image/*";
-          fg = "cyan";
-        }
-        # Media
-        {
-          mime = "{audio;video}/*";
           fg = "yellow";
         }
-        # Archives
+        # Video
         {
-          mime = "application/*zip";
+          mime = "{audio,video}/*";
           fg = "magenta";
         }
+        # Empty file
         {
-          mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}";
-          fg = "magenta";
+          mime = "inode/empty";
+          fg = "cyan";
         }
-        # Documents
+        # Orphan symbolic links
         {
-          mime = "application/{pdf,doc,rtf,vnd.*}";
-          fg = "lightyellow";
+          url = "*";
+          is = "orphan";
+          fg = "red";
         }
         # Fallback
-        # { name = "*"; fg = "white" };
         {
-          name = "*/";
+          url = "*/";
           fg = "blue";
         }
+
         # Executables
         {
           name = "*";
@@ -39,6 +36,7 @@
           fg = "lightgreen";
           italic = true;
         }
+
         # Symlinks
         {
           name = "*";
@@ -46,6 +44,7 @@
           fg = "green";
           dim = true;
         }
+
         # Orphaned symlinks
         {
           name = "*";

@@ -1,11 +1,11 @@
 {
-  flake.modules.homeManager.firefox = { pkgs, lib, ... }: {
+  flake.modules.homeManager.firefox = { config, pkgs, ... }: {
     programs.firefox.enable = true;
 
     programs.firefox = {
       # not all of the bellow works. check home-manager.librewolf options.
       # package = pkgs.librewolf;
-      profiles.petrp = {
+      profiles.${config.home.username} = {
         id = 0;
         name = "Petr P.";
         isDefault = true;
