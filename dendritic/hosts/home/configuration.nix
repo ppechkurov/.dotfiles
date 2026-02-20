@@ -18,10 +18,11 @@ in {
 
       networking.networkmanager.enable = true;
 
+      programs.nix-ld.enable = true;
+
       environment.systemPackages = with pkgs; [
+        gcc
         docker-credential-helpers
-        grim
-        pkgs-unstable.flameshot
         jellyfin-ffmpeg
         jmtpfs # mount android devices, see https://nixos.wiki/wiki/MTP
         lazydocker
