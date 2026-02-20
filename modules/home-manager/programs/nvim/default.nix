@@ -14,7 +14,6 @@
         luajitPackages.nvim-nio
       ];
     extraPackages = with pkgs; [
-      ansible-lint
       lua
       lua-language-server
       marksman

@@ -8,7 +8,7 @@
   };
 
   home.sessionPath = [ "$HOME/.npm-global/bin" ];
-  home.packages = with pkgs; [ obsidian zoom-us slack signal-desktop ];
+  home.packages = with pkgs; [ zoom-us slack signal-desktop ];
 
   programs.atuin.enable = true;
   programs.git.extraConfig = {
