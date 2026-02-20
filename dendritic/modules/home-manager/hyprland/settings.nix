@@ -62,7 +62,11 @@
       };
 
       render.direct_scanout = true;
-      cursor = { hide_on_key_press = true; };
+      cursor = {
+        hide_on_key_press = true;
+        no_hardware_cursors = 1;
+        inactive_timeout = 5;
+      };
 
       misc = {
         # disable auto polling for config file changes
