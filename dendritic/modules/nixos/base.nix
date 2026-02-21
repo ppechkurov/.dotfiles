@@ -20,6 +20,7 @@
     console.keyMap = "dvorak";
     console.font = "Lat2-Terminus16";
 
+    services.openssh.enable = true;
     services.openssh.settings.PasswordAuthentication = false;
 
     environment.systemPackages = with pkgs; [ curl git jq ncdu unzip vim ];
