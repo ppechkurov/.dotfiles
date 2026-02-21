@@ -1,58 +1,15 @@
 {
-  flake.modules.homeManager.yazi = {
-    programs.yazi.theme.filetype = {
-      rules = [
-        # Image
-        {
-          mime = "image/*";
-          fg = "yellow";
-        }
-        # Video
-        {
-          mime = "{audio,video}/*";
-          fg = "magenta";
-        }
-        # Empty file
-        {
-          mime = "inode/empty";
-          fg = "cyan";
-        }
-        # Orphan symbolic links
-        {
-          url = "*";
-          is = "orphan";
-          fg = "red";
-        }
-        # Fallback
-        {
-          url = "*/";
-          fg = "blue";
-        }
+  flake.modules.homeManager.yazi = { pkgs-unstable, config, ... }: {
+    home.packages = [ pkgs-unstable.file ];
 
-        # Executables
-        {
-          name = "*";
-          is = "exec";
-          fg = "lightgreen";
-          italic = true;
-        }
-
-        # Symlinks
-        {
-          name = "*";
-          is = "link";
-          fg = "green";
-          dim = true;
-        }
-
-        # Orphaned symlinks
-        {
-          name = "*";
-          is = "orphan";
-          fg = "lightred";
-          crossed = true;
-        }
-      ];
+    xdg.configFile.yazi = let
+      mkLink = config.lib.file.mkOutOfStoreSymlink;
+      dir =
+        "${config.home.homeDirectory}/.dotfiles/dendritic/modules/home-manager/programs/yazi";
+    in {
+      enable = true;
+      source = mkLink "${dir}/config/theme.toml";
+      target = "yazi/theme.toml";
     };
   };
 }
