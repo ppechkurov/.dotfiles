@@ -16,6 +16,7 @@ spec('plugins.telescope')
 spec('plugins.treesitter')
 spec('plugins.whichkey')
 
+spec('plugins.mini-files')
 -- spec('plugins.ui.top.breadcrumbs')
 spec('plugins.colorscheme')
 spec('plugins.ui.alpha')
