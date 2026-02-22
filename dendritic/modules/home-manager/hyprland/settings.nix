@@ -90,6 +90,23 @@
 
       binds = { workspace_center_on = 0; };
     };
+
+    # resize windows
+    wayland.windowManager.hyprland.extraConfig = ''
+      submap=resize
+
+      binde=,l,resizeactive,10 0
+      binde=,h,resizeactive,-10 0
+      binde=,k,resizeactive,0 -10
+      binde=,j,resizeactive,0 10
+
+      bind=,escape,submap,reset
+      bind=$mod,R,submap,reset
+
+      submap=reset
+
+      monitor=Unknown-1,disabled
+    '';
   };
 }
 

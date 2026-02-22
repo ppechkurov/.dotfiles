@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.hyprland = { pkgs, ... }:
+  flake.modules.homeManager.hyprland = { pkgs, lib, ... }:
     let browser = "firefox";
     in {
       wayland.windowManager.hyprland.settings = {
@@ -54,7 +54,7 @@
           "$mod, M, centerwindow"
 
           # '', Print, exec, grim -g "$(slurp)" - | satty --filename=-''
-          ", Print, exec, XDG_CURRENT_DESKTOP=Sway flameshot gui"
+          ", Print, exec, flameshot gui"
           "$mod SHIFT, R, submap, resize"
         ] ++ (
           # workspaces
@@ -74,6 +74,9 @@
           ",XF86AudioRaiseVolume, exec, amixer sset Master 5%+"
           ",XF86AudioLowerVolume, exec, amixer sset Master 5%-"
         ];
+
+        bindr = let wk = lib.getExe pkgs.wlr-which-key;
+        in [ "$mod, SUPER_L, exec, pkill wlr-which-key || ${wk}" ];
       };
     };
 }
