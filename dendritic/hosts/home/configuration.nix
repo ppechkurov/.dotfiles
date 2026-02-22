@@ -11,6 +11,7 @@ in {
         greetd
         home-manager
         home-networking
+        home-services
         hyprland
         nvidia
         printers

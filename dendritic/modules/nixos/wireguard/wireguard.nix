@@ -8,20 +8,23 @@
             exit 1
           fi
 
+          # if it's tty just use sudo
           if [ -t 1 ]; then
             sudo systemctl "${action}" "wg-quick-$1.service"
             exit 0
           fi
 
-          ${lib.getExe pkgs.zenity} --password --title "sudo password" |
-            sudo -S systemctl "${action}" "wg-quick-$1.service"
+          # fancy prompt if run from gui
+          count=1
+          while ! ${lib.getExe pkgs.zenity} --password --title "sudo password" |
+            sudo -S systemctl "${action}" "wg-quick-$1.service" ; do
+            if [ $count -ge 3 ]; then
+              ${lib.getExe pkgs.zenity} --error --text "Unable to proceed"
+              break
+            fi
 
-          if [ $? != 0 ]; then
-            ${lib.getExe pkgs.zenity} --error --text "Unable to proceed"
-            exit 1
-          fi
-
-          ${lib.getExe pkgs.zenity} --info --text "Success!"
+            count=$(expr $count + 1)
+          done
         '';
       wg-start = mkWg "start";
       wg-stop = mkWg "stop";
