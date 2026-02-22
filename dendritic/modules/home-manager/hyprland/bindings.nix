@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.hyprland = { ... }:
+  flake.modules.homeManager.hyprland = { pkgs, ... }:
     let browser = "firefox";
     in {
       wayland.windowManager.hyprland.settings = {
@@ -7,10 +7,9 @@
 
         bindm =
           [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
-
         bind = [
           "$mod SHIFT, E, exec, pkill Hyprland"
-          "$mod SHIFT, C, exec, hyprctl reload && notify-send 'Hyprland reloaded'"
+          "$mod SHIFT, C, exec, hyprctl reload && ${pkgs.libnotify}/bin/notify-send 'Hyprland reloaded'"
           "$mod SHIFT, Q, exec, tofi-powermenu"
           "$mod, B, exec, ${browser}"
           "$mod, Return, exec, foot --override colors.alpha=0.10"

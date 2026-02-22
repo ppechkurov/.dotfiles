@@ -1,6 +1,6 @@
 {
-  flake.modules.homeManager.zsh = { pkgs, config, ... }: {
-    home = { packages = with pkgs; [ bat eza fzf ]; };
+  flake.modules.homeManager.zsh = { pkgs, lib, ... }: {
+    home.packages = with pkgs; [ bat eza fzf ];
 
     programs.direnv.enable = true;
     programs.direnv.enableZshIntegration = true;
@@ -32,8 +32,8 @@
       };
       history = { ignoreAllDups = true; };
       shellAliases = {
-        cat = "bat";
-        ls = "eza --group-directories-first";
+        cat = "${lib.getExe pkgs.bat}";
+        ls = "${lib.getExe pkgs.eza} --group-directories-first";
         ll = "ls -l -g --icons=auto";
         lla = "ll -a";
       };
@@ -44,7 +44,6 @@
           bindkey -s "^F" "tmux-sessionizer\n"
 
           source ~/.p10k.zsh
-          # SF_AC_ZSH_SETUP_PATH=${config.home.homeDirectory}/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
 
           if [ -x "$(command -v kubectl)" ]; then
             source <(kubectl completion zsh)
@@ -69,7 +68,7 @@
             if command "$@"; then
               (pw-play "${sound}" &>/dev/null &)
 
-              notify-send \
+              ${pkgs.libnotify}/bin/notify-send \
                 --app-name "$dir" \
                 "🟢 Success!" \
                 $'cmd: '"$cmd"
@@ -78,7 +77,7 @@
             fi
 
             exit_code=$?
-            notify-send \
+            ${pkgs.libnotify}/bin/notify-send \
               --app-name "$dir" \
               --urgency critical \
               "🔴 Failure!" \

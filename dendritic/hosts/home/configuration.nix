@@ -5,43 +5,26 @@ in {
 
   flake.modules.nixos."${system}-configuration" =
     { lib, pkgs, pkgs-unstable, ... }: {
-
       imports = with self.modules.nixos; [
-        home-manager
         docker
-        wireguard
-
         fonts
         greetd
-        sound
+        home-manager
         home-networking
-        nvidia
-
-        unfree
-        steam
-        printers
-
         hyprland
+        nvidia
+        printers
+        sound
+        steam
+        unfree
+        wireguard
       ];
 
       networking.networkmanager.enable = true;
 
       programs.nix-ld.enable = true;
+      programs.gnupg.agent.enable = true;
 
       time.timeZone = "Europe/Minsk";
-
-      environment.systemPackages = with pkgs; [
-        docker-credential-helpers
-        gcc
-        git-crypt
-        jellyfin-ffmpeg
-        jmtpfs # mount android devices, see https://nixos.wiki/wiki/MTP
-        lazydocker
-        pass-wayland
-        pkgs-unstable.comma
-        pkgs-unstable.jellyfin-media-player
-        pkgs-unstable.mattermost-desktop
-        tessen
-      ];
     };
 }
