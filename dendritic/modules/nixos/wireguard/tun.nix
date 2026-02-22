@@ -1,0 +1,11 @@
+{ self, ... }: {
+  flake.modules.nixos.tun = { config, ... }:
+    let
+      hostname = config.networking.hostName;
+      privateKeyFilename = "wireguard-${hostname}-private-key";
+    in {
+      age.secrets.${privateKeyFilename}.file = ./${privateKeyFilename}.age;
+      networking.firewall.trustedInterfaces = [ "tun" ];
+      networking.wg-quick.interfaces = self.lib.mkWgInterface "tun" config;
+    };
+}

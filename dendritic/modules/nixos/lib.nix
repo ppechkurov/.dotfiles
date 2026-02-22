@@ -24,5 +24,18 @@ in {
         };
       };
     };
+
+    mkWgInterface = peername: config:
+      let
+        hostname = config.networking.hostName;
+        privateKeyFile =
+          config.age.secrets."wireguard-${hostname}-private-key".path;
+
+        wg = self.globals.wg;
+        address = wg.peers.${hostname}.${peername}.ips;
+        peers = with wg.servers.${peername}; [{
+          inherit allowedIPs publicKey endpoint;
+        }];
+      in { ${peername} = { inherit address peers privateKeyFile; }; };
   };
 }

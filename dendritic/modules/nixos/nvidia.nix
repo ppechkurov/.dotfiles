@@ -4,7 +4,8 @@
     services.xserver.videoDrivers = [ "nvidia" ];
 
     # Enable OpenGL
-    hardware.graphics = { enable = true; };
+    hardware.graphics.enable = true;
+
     hardware.nvidia = {
       # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
       # Enable this if you have graphical corruption issues or application crashes after waking

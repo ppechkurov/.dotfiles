@@ -9,13 +9,13 @@ in {
       imports = with self.modules.nixos; [
         home-manager
         docker
+        wireguard
 
         fonts
         greetd
         sound
         home-networking
         nvidia
-        mattermost-send
 
         unfree
         steam
