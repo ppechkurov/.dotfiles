@@ -25,6 +25,8 @@ in {
       programs.nix-ld.enable = true;
       programs.gnupg.agent.enable = true;
 
+      security.polkit.enable = true;
+
       time.timeZone = "Europe/Minsk";
     };
 }

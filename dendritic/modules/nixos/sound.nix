@@ -6,6 +6,5 @@
     services.pipewire.alsa.support32Bit = true;
 
     security.rtkit.enable = true;
-    # security.polkit.enable = true;
   };
 }

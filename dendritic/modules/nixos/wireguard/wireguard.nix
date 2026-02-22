@@ -8,7 +8,20 @@
             exit 1
           fi
 
-          sudo systemctl "${action}" "wg-quick-$1.service"
+          if [ -t 1 ]; then
+            sudo systemctl "${action}" "wg-quick-$1.service"
+            exit 0
+          fi
+
+          ${lib.getExe pkgs.zenity} --password --title "sudo password" |
+            sudo -S systemctl "${action}" "wg-quick-$1.service"
+
+          if [ $? != 0 ]; then
+            ${lib.getExe pkgs.zenity} --error --text "Unable to proceed"
+            exit 1
+          fi
+
+          ${lib.getExe pkgs.zenity} --info --text "Success!"
         '';
       wg-start = mkWg "start";
       wg-stop = mkWg "stop";
