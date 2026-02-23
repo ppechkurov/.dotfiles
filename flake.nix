@@ -19,7 +19,7 @@
     jira.url = "ssh://git@github.com/ppechkurov/jira.git";
     jira = {
       type = "git";
-      ref = "v0.0.5";
+      ref = "refs/tags/v0.0.5";
     };
 
     gostman.url = "github:Halftoothed/gostman";
