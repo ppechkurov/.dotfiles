@@ -22,6 +22,16 @@
       ref = "refs/tags/v0.0.5";
     };
 
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     gostman.url = "github:Halftoothed/gostman";
     gostman.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -80,6 +90,7 @@
             ./hosts/work/configuration.nix
             inputs.home-manager.nixosModules.home-manager
             inputs.agenix.nixosModules.default
+            inputs.dms.nixosModules.dank-material-shell
             ({ ... }: {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

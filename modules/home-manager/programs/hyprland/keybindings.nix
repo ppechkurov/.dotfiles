@@ -13,7 +13,8 @@ in {
 
       "$mod, C, exec, tofi-calc"
       "$mod, P, exec, tofi-pass"
-      "$mod, R, exec, tofi-launcher"
+      "$mod, R, exec, noctalia-shell ipc call launcher toggle"
+      # "$mod, R, exec, tofi-launcher"
       "$mod, S, exec, foot tofi-ssh"
       "$mod, V, exec, tofi-clip"
       "$mod Shift, T, exec, tofi-emoji"

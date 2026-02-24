@@ -31,6 +31,7 @@
         vial
         jellyfin-media-player
         cachix
+        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
     unstable = with pkgs-unstable; [ ghostty hyprland-per-window-layout ];
   in stable ++ unstable;
