@@ -1,4 +1,4 @@
-{
+{ inputs, ... }: {
   flake.modules.nixos.home-configuration = { pkgs, pkgs-unstable, ... }: {
     environment.systemPackages = with pkgs; [
       docker-credential-helpers
@@ -12,6 +12,7 @@
       pkgs-unstable.jellyfin-media-player
       pkgs-unstable.mattermost-desktop
       tessen
+      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
 }

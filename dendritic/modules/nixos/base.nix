@@ -23,7 +23,15 @@
     services.openssh.enable = true;
     services.openssh.settings.PasswordAuthentication = false;
 
-    environment.systemPackages = with pkgs; [ curl git jq ncdu unzip vim ];
+    environment.systemPackages = with pkgs; [
+      curl
+      git
+      jq
+      ncdu
+      systemd-manager-tui
+      unzip
+      vim
+    ];
 
     system.stateVersion = "23.11";
   };

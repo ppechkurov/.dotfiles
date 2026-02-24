@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, ... }:
 let system = "home";
 in {
   flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" system;
@@ -13,17 +13,14 @@ in {
         home-networking
         home-services
         hyprland
+        ns
         nvidia
         printers
         sound
         steam
         unfree
         wireguard
-        inputs.dms.nixosModules.dank-material-shell
       ];
-
-      environment.systemPackages =
-        [ inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
       networking.networkmanager.enable = true;
 
