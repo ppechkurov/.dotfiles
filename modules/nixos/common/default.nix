@@ -156,7 +156,7 @@ in with lib; {
     # User account
     programs.zsh.enable = true;
     users.users.${config.username} = {
-      description = "default nixos user";
+      description = "Petr Pechkurov";
       extraGroups =
         [ "networkmanager" "docker" "wheel" "disk" "power" "video" "forgejo" ];
       isNormalUser = true;
