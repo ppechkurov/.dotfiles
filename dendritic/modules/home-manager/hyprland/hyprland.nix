@@ -32,17 +32,17 @@
       wayland.windowManager.hyprland.settings.workspace = mkDefault [
         # left
         "1, monitor:${HP}, default:true"
-        "2, monitor:${HP}"
-        "3, monitor:${HP}"
-        "4, monitor:${HP}"
-        "5, monitor:${HP}"
+        "2, monitor:${HP}, persistent:true"
+        "3, monitor:${HP}, persistent:true"
+        "4, monitor:${HP}, persistent:true"
+        "5, monitor:${HP}, persistent:true"
 
         # right
         "6, monitor:${samsung}, default:true"
-        "7, monitor:${samsung}"
-        "8, monitor:${samsung}"
-        "9, monitor:${samsung}"
-        "10, monitor:${samsung}"
+        "7, monitor:${samsung}, persistent:true"
+        "8, monitor:${samsung}, persistent:true"
+        "9, monitor:${samsung}, persistent:true"
+        "10, monitor:${samsung}, persistent:true"
       ];
     };
 }

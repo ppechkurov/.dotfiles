@@ -18,7 +18,7 @@ in {
     imports = with self.modules.homeManager;
       [ aerc atuin firefox foot fzf gh git hypridle hyprland hyprpaper ]
       ++ [ mako mycli nvim tmux tofi waybar yazi zoxide zsh screenshots ]
-      ++ [ dconf gpg gtk keyboard qt xdg ];
+      ++ [ dconf gpg gtk keyboard qt xdg noctalia ];
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;

@@ -4,21 +4,28 @@
     in {
       wayland.windowManager.hyprland.settings = {
         "$mod" = "SUPER";
+        "$ipc" = "noctalia-shell ipc call";
 
         bindm =
           [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
+
         bind = [
           "$mod SHIFT, E, exec, pkill Hyprland"
           "$mod SHIFT, C, exec, hyprctl reload && ${pkgs.libnotify}/bin/notify-send 'Hyprland reloaded'"
-          "$mod SHIFT, Q, exec, tofi-powermenu"
+          "$mod SHIFT, Q, exec, $ipc sessionMenu toggle"
+          # "$mod SHIFT, Q, exec, tofi-powermenu"
           "$mod, B, exec, ${browser}"
           "$mod, Return, exec, foot --override colors.alpha=0.10"
 
           "$mod, C, exec, tofi-calc"
           "$mod, P, exec, tofi-pass"
-          "$mod, R, exec, tofi-launcher"
-          "$mod, S, exec, foot tofi-ssh"
-          "$mod, V, exec, tofi-clip"
+          "$mod, comma, exec, $ipc launcher settings"
+          "$mod, R, exec, $ipc launcher toggle"
+          # "$mod, R, exec, tofi-launcher"
+          # "$mod, S, exec, foot tofi-ssh"
+          "$mod, V, exec, $ipc launcher clipboard"
+
+          # "$mod, V, exec, tofi-clip"
           "$mod Shift, T, exec, tofi-emoji"
 
           "$mod, Space, togglesplit"
@@ -48,6 +55,7 @@
           "$mod, dollar, resizewindowpixel, exact 80% 80%, class:scratch"
           "$mod, dollar, centerwindow"
 
+          # music
           "$mod SHIFT, M, movetoworkspace, special:music"
           "$mod, M, togglespecialworkspace, music"
           "$mod, M, resizewindowpixel, exact 80% 80%, class:music"
@@ -68,11 +76,20 @@
               "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
             ]) 10));
 
+        bindl = [
+          ",XF86AudioMute, exec, $ipc volume muteOutput"
+          ",XF86AudioNext, exec, $ipc media next"
+          ",XF86AudioPrev, exec, $ipc media previous"
+          ",XF86AudioPlay, exec, $ipc media playPause"
+          ",XF86Tools, exec, jellyfin-desktop"
+        ];
+
+        # volume
         binde = [
-          "$mod, F11, exec, amixer sset Master 5%+"
-          "$mod, F12, exec, amixer sset Master 5%-"
-          ",XF86AudioRaiseVolume, exec, amixer sset Master 5%+"
-          ",XF86AudioLowerVolume, exec, amixer sset Master 5%-"
+          "$mod, F11, exec, $ipc volume decrease"
+          "$mod, F12, exec, $ipc volume increase"
+          ",XF86AudioRaiseVolume, exec, $ipc volume increase"
+          ",XF86AudioLowerVolume, exec, $ipc volume decrease"
         ];
 
         bindr = let wk = lib.getExe pkgs.wlr-which-key;

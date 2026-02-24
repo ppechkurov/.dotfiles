@@ -4,14 +4,15 @@
       env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 
       exec-once = [
-        "foot --app-id default --override colors.alpha=0.10 tmux new -A -s default"
-        "sleep 10; foot --app-id ssh --override colors.alpha=0.10 tmux new -A -s ssh"
-        "firefox"
-        "pkill waybar; sleep 0.5; waybar"
-        "sleep 1 && exec Telegram"
-        "sleep 1 && exec mattermost-desktop"
-        "sleep 1 && exec slack || echo 'slack is not installed'"
-        "sleep 1 && exec signal-desktop || echo 'signal is not installed'"
+        "exec noctalia-shell"
+        "exec foot --app-id default --override colors.alpha=0.10 tmux new -A -s default"
+        "sleep 10; exec foot --app-id ssh --override colors.alpha=0.10 tmux new -A -s ssh"
+        "exec firefox"
+        # "pkill waybar; sleep 0.5; waybar"
+        "exec Telegram"
+        "exec mattermost-desktop"
+        "exec slack || echo 'slack is not installed'"
+        "exec signal-desktop || echo 'signal is not installed'"
         "exec hyprland-per-window-layout"
       ];
 
@@ -104,8 +105,6 @@
       bind=$mod,R,submap,reset
 
       submap=reset
-
-      monitor=Unknown-1,disabled
     '';
   };
 }

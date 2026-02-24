@@ -6,14 +6,14 @@
       general = {
         # after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
-        lock_cmd =
-          "pidof ${pkgs.hyprlock}/bin/hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+        lock_cmd = "noctalia-shell ipc call sessionMenu lock";
       };
 
       listener = lib.mkDefault [
         {
           timeout = 300;
-          on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+          on-timeout = "noctalia-shell ipc call sessionMenu lock";
+          # on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
         }
         {
           timeout = 600;
