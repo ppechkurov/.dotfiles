@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   imports = [ ../../modules/home-manager ./hyprland ];
 
   xdg.configFile.hypr = {
@@ -14,6 +14,13 @@
   programs.git.extraConfig = {
     user.signingkey = "F7C0B35DA9397DD1";
     commit.gpgsign = true;
+  };
+
+  xdg.configFile.noctalia = {
+    enable = true;
+    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink
+      "${config.home.homeDirectory}/.dotfiles/modules/home-manager/programs/noctalia";
   };
 
   local.zellij.enable = true;
