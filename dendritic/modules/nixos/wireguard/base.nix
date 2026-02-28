@@ -29,14 +29,12 @@
       wg-start = mkWg "start";
       wg-stop = mkWg "stop";
     in {
-      imports = with self.modules.nixos; [ tun vpn ];
-
       environment.systemPackages = [ wg-start wg-stop ];
 
       # Add all peers to /etc/hosts
       networking.hosts = let wg = self.globals.wg;
       in (lib.listToAttrs (lib.mapAttrsToList (name: peer: {
-        name = builtins.elemAt (peer.tun.ips or peer.tun.allowedIPs) 0;
+        name = peer.interfaces.tun.ip;
         value = [ "${name}.wg" ];
       }) (wg.peers // { server = wg.servers; })));
     };

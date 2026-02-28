@@ -10,7 +10,7 @@
         "exec firefox"
         # "pkill waybar; sleep 0.5; waybar"
         "exec Telegram"
-        "exec mattermost-desktop"
+        "sleep 5; exec mattermost-desktop"
         "exec slack || echo 'slack is not installed'"
         "exec signal-desktop || echo 'signal is not installed'"
         "exec hyprland-per-window-layout"

@@ -19,7 +19,7 @@ in {
         sound
         steam
         unfree
-        wireguard
+        wgPeer
       ];
 
       networking.networkmanager.enable = true;

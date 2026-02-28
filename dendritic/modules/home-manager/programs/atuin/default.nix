@@ -1,7 +1,7 @@
 { self, ... }: {
   flake.modules.homeManager.atuin = { osConfig, ... }:
     let
-      ip = builtins.elemAt self.globals.wg.servers.tun.allowedIPs 0;
+      ip = self.globals.wg.servers.interfaces.tun.ip;
       port = toString osConfig.services.atuin.port;
     in {
       programs.atuin.enable = true;

@@ -16,6 +16,7 @@
         "ignoreMouseInput": false,
         "overviewLayer": false,
         "pinnedApps": [
+            "org.jellyfin.JellyfinDesktop"
         ],
         "position": "center",
         "screenshotAnnotationTool": "",
@@ -124,7 +125,7 @@
                     ],
                     "chevronColor": "none",
                     "colorizeIcons": false,
-                    "drawerEnabled": true,
+                    "drawerEnabled": false,
                     "hidePassive": false,
                     "id": "Tray",
                     "pinned": [
@@ -464,12 +465,12 @@
         "wifiEnabled": true
     },
     "nightLight": {
-        "autoSchedule": true,
+        "autoSchedule": false,
         "dayTemp": "6500",
         "enabled": true,
         "forced": false,
         "manualSunrise": "06:30",
-        "manualSunset": "18:30",
+        "manualSunset": "20:30",
         "nightTemp": "4000"
     },
     "notifications": {
