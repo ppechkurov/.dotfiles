@@ -28,6 +28,7 @@ in {
       programs.gnupg.agent.enable = true;
 
       security.polkit.enable = true;
+      security.soteria.enable = true;
 
       time.timeZone = "Europe/Minsk";
     };

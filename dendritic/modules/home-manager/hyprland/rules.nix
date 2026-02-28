@@ -6,6 +6,9 @@
     wayland.windowManager.hyprland.settings.windowrule = [
       "move 0 0,title:^(flameshot)"
       "suppressevent fullscreen,title:^(flameshot)"
+
+      # polkit prompt
+      "pin,class:gay.vaskel.soteria"
     ];
 
     wayland.windowManager.hyprland.settings.windowrulev2 = [
@@ -17,7 +20,6 @@
       "size 50% 50%, ${pavucontrol}"
       "center, floating:1, ${pavucontrol}"
       "stayfocused, ${pavucontrol}"
-
       "float, title:^(flameshot)"
 
       "workspace 1, class:default"

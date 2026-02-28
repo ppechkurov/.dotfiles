@@ -56,7 +56,9 @@
         "monitors": [
             "DP-1",
             "HDMI-A-1",
-            "DP-4"
+            "DP-4",
+            "DVI-D-1",
+            "HDMI-A-4"
         ],
         "outerCorners": true,
         "position": "top",
@@ -68,7 +70,7 @@
                 "position": "right"
             },
             {
-                "enabled": true,
+                "enabled": false,
                 "name": "DVI-D-1",
                 "position": "right"
             }
@@ -377,7 +379,7 @@
         "boxRadiusRatio": 1,
         "clockFormat": "HH:mm",
         "clockStyle": "digital",
-        "compactLockScreen": false,
+        "compactLockScreen": true,
         "dimmerOpacity": 0.3,
         "enableLockScreenCountdown": true,
         "enableShadows": true,
@@ -550,21 +552,21 @@
             },
             {
                 "action": "reboot",
-                "command": "",
+                "command": "hyprshutdown --post-cmd \"reboot\"",
                 "countdownEnabled": true,
                 "enabled": true,
                 "keybind": "R"
             },
             {
                 "action": "logout",
-                "command": "",
+                "command": "hyprshutdown",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": "5"
+                "keybind": "O"
             },
             {
                 "action": "shutdown",
-                "command": "",
+                "command": "hyprshutdown --post-cmd \"shutdown now\"",
                 "countdownEnabled": true,
                 "enabled": true,
                 "keybind": "S"

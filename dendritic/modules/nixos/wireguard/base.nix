@@ -3,28 +3,13 @@
     let
       mkWg = action:
         pkgs.writeShellScriptBin "wg-${action}" ''
-          if [[ -z $1 ]]; then
+          action=$1
+          if [[ -z $action ]]; then
             echo "Usage $(basename $0) <interface_name>"
             exit 1
           fi
 
-          # if it's tty just use sudo
-          if [ -t 1 ]; then
-            sudo systemctl "${action}" "wg-quick-$1.service"
-            exit 0
-          fi
-
-          # fancy prompt if run from gui
-          count=1
-          while ! ${lib.getExe pkgs.zenity} --password --title "sudo password" |
-            sudo -S systemctl "${action}" "wg-quick-$1.service" ; do
-            if [ $count -ge 3 ]; then
-              ${lib.getExe pkgs.zenity} --error --text "Unable to proceed"
-              break
-            fi
-
-            count=$(expr $count + 1)
-          done
+          pkexec systemctl "${action}" "wg-quick-$action.service"
         '';
       wg-start = mkWg "start";
       wg-stop = mkWg "stop";

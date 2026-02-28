@@ -78,7 +78,7 @@
             bind -r H swap-window -d -t -1
             bind -r L swap-window -d -t +1
 
-            bind-key -r f run-shell "tmux neww tmux-sessionizer"
+            bind-key -r f run-shell "tmux-sessionizer"
           '';
       };
     };
