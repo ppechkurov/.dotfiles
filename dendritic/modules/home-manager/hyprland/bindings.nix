@@ -50,17 +50,6 @@
           "$mod SHIFT, k, movewindow, u"
           "$mod SHIFT, j, movewindow, d"
 
-          "$mod SHIFT, dollar, movetoworkspace, special:scratch"
-          "$mod, dollar, togglespecialworkspace, scratch"
-          "$mod, dollar, resizewindowpixel, exact 80% 80%, class:scratch"
-          "$mod, dollar, centerwindow"
-
-          # music
-          "$mod SHIFT, M, movetoworkspace, special:music"
-          "$mod, M, togglespecialworkspace, music"
-          "$mod, M, resizewindowpixel, exact 80% 80%, class:music"
-          "$mod, M, centerwindow"
-
           # '', Print, exec, grim -g "$(slurp)" - | satty --filename=-''
           ", Print, exec, flameshot gui"
           "$mod SHIFT, R, submap, resize"
@@ -82,12 +71,17 @@
           ",XF86AudioPrev, exec, $ipc media previous"
           ",XF86AudioPlay, exec, $ipc media playPause"
           ",XF86Tools, exec, jellyfin-desktop"
+
+          ",XF86AudioNext, exec, $ipc media next"
+          ",XF86AudioPrev, exec, $ipc media previous"
+          ",XF86AudioPlay, exec, $ipc media playPause"
+          ",XF86Tools, exec, jellyfin-desktop"
         ];
 
         # volume
         binde = [
-          "$mod, F11, exec, $ipc volume decrease"
-          "$mod, F12, exec, $ipc volume increase"
+          "$mod, F11, exec, $ipc volume increase"
+          "$mod, F12, exec, $ipc volume decrease"
           ",XF86AudioRaiseVolume, exec, $ipc volume increase"
           ",XF86AudioLowerVolume, exec, $ipc volume decrease"
         ];

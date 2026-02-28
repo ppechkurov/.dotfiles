@@ -1,6 +1,5 @@
 {
   flake.modules.homeManager.hyprland = let
-    scratch = "class:scratch";
     music = "class:music";
     pavucontrol = "class:pavucontrol";
   in {
@@ -10,11 +9,6 @@
     ];
 
     wayland.windowManager.hyprland.settings.windowrulev2 = [
-      "float, ${scratch}"
-      "size 80% 80%, ${scratch}"
-      "center, floating:1, ${scratch}"
-      "noblur, ${scratch}"
-
       "float, ${music}"
       "size 80% 80%, ${music}"
       "center, floating:1, ${music}"

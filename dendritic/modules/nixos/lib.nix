@@ -36,8 +36,8 @@ in {
           autostart = serverIface.autostart or true;
           peers = with serverIface; [{
             inherit allowedIPs publicKey endpoint;
+            persistentKeepalive = 15;
           }];
-          persistentKeepalive = 15;
           privateKeyFile = privateKeyFilePath;
         };
       };

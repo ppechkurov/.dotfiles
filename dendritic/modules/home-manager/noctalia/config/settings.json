@@ -56,8 +56,7 @@
         "monitors": [
             "DP-1",
             "HDMI-A-1",
-            "DP-4",
-            "DVI-D-1"
+            "DP-4"
         ],
         "outerCorners": true,
         "position": "top",
@@ -154,27 +153,6 @@
                     "textColor": "none",
                     "useFixedWidth": false,
                     "visualizerType": "linear"
-                },
-                {
-                    "compactMode": true,
-                    "diskPath": "/",
-                    "iconColor": "none",
-                    "id": "SystemMonitor",
-                    "showCpuFreq": false,
-                    "showCpuTemp": true,
-                    "showCpuUsage": true,
-                    "showDiskAvailable": false,
-                    "showDiskUsage": false,
-                    "showDiskUsageAsPercent": false,
-                    "showGpuTemp": false,
-                    "showLoadAverage": false,
-                    "showMemoryAsPercent": false,
-                    "showMemoryUsage": true,
-                    "showNetworkStats": false,
-                    "showSwapUsage": false,
-                    "textColor": "none",
-                    "useMonospaceFont": true,
-                    "usePadding": false
                 }
             ],
             "right": [
@@ -194,6 +172,27 @@
                     "showMemoryAsPercent": false,
                     "showMemoryUsage": false,
                     "showNetworkStats": true,
+                    "showSwapUsage": false,
+                    "textColor": "none",
+                    "useMonospaceFont": true,
+                    "usePadding": false
+                },
+                {
+                    "compactMode": true,
+                    "diskPath": "/",
+                    "iconColor": "none",
+                    "id": "SystemMonitor",
+                    "showCpuFreq": false,
+                    "showCpuTemp": true,
+                    "showCpuUsage": true,
+                    "showDiskAvailable": false,
+                    "showDiskUsage": false,
+                    "showDiskUsageAsPercent": false,
+                    "showGpuTemp": false,
+                    "showLoadAverage": false,
+                    "showMemoryAsPercent": false,
+                    "showMemoryUsage": true,
+                    "showNetworkStats": false,
                     "showSwapUsage": false,
                     "textColor": "none",
                     "useMonospaceFont": true,
