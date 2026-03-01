@@ -20,7 +20,7 @@
       home.packages = with pkgs; [
         bc
         tofi
-        pass-wayland
+        (pass-wayland.withExtensions (exts: [ exts.pass-otp exts.pass-tomb ]))
         tofi-calc
         tofi-emoji
         tofi-launcher

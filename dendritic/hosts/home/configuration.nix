@@ -15,6 +15,7 @@ in {
         hyprland
         ns
         nvidia
+        pass
         printers
         sound
         steam

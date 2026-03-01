@@ -78,8 +78,9 @@
             bind -r H swap-window -d -t -1
             bind -r L swap-window -d -t +1
 
-            bind-key -r f run-shell "tmux-sessionizer"
-            bind-key -r v display-popup -E "wiremix"
+            bind-key f run-shell "tmux-sessionizer"
+            bind-key v display-popup -E "wiremix"
+            bind-key n display-popup -E -w 80% -h 80% "nvim ~/.today.md"
           '';
       };
     };
