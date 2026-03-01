@@ -12,6 +12,7 @@
       pkgs-unstable.jellyfin-media-player
       pkgs-unstable.mattermost-desktop
       tessen
+      wiremix
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };

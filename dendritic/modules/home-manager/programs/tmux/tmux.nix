@@ -79,6 +79,7 @@
             bind -r L swap-window -d -t +1
 
             bind-key -r f run-shell "tmux-sessionizer"
+            bind-key -r v display-popup -E "wiremix"
           '';
       };
     };
