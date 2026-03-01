@@ -6,7 +6,8 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find ~/projects ~/projects/go ~/ -mindepth 1 -maxdepth 1 -type d | fzf --tmux)
+  selected=$(find ~/projects ~/projects/go ~/ -mindepth 1 -maxdepth 1 -type d |
+    fzf --tmux --layout=reverse --bind=tab:down,shift-tab:up)
 fi
 
 if [[ -z $selected ]]; then
