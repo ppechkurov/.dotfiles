@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.hyprland = let
-    music = "class:music";
+    music = "class:org.jellyfin.JellyfinDesktop";
     pavucontrol = "class:pavucontrol";
   in {
     wayland.windowManager.hyprland.settings.windowrule = [

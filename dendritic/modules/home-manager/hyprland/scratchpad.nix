@@ -14,6 +14,10 @@
         "$mod, dollar, togglespecialworkspace, scratch"
         "$mod, dollar, resizewindowpixel, exact 80% 80%, ${scratch}"
         "$mod, dollar, centerwindow"
+
+        "$mod, M, togglespecialworkspace, music"
+        "$mod, M, resizewindowpixel, exact 80% 80%, org.jellyfin.JellyfinDesktop"
+        "$mod, M, centerwindow"
       ];
 
       wayland.windowManager.hyprland.settings.workspace = let
@@ -23,7 +27,7 @@
           "foot --app-id scratch --override colors.alpha=${opacity} --working-directory ${cwd} tmux new -A -s scratch";
       in [
         "special:scratch, on-created-empty:${scratch_term_cmd}"
-        "special:music, on-created-empty:music"
+        "special:music, on-created-empty:jellyfin-desktop"
       ];
     };
 }
