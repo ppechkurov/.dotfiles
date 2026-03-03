@@ -5,9 +5,11 @@ in {
     services.greetd.settings.default_session.user = user;
 
     home-manager.users.${user} = {
-      imports = [
+      imports = with self.modules.homeManager; [
         self.modules.homeManager.${user}
-        self.modules.homeManager.work-overrides
+        work-overrides
+        cli
+        nvim
       ];
 
       # access pkgs-unstable param in hm modules

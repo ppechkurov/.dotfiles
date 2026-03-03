@@ -1,12 +1,10 @@
 { inputs, ... }: {
-  flake.modules.nixos.home-configuration = { pkgs, pkgs-unstable, ... }: {
+  flake.modules.nixos.work-configuration = { pkgs, pkgs-unstable, ... }: {
     environment.systemPackages = with pkgs; [
       docker-credential-helpers
       gcc
       git-crypt
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-      jellyfin-ffmpeg
-      jmtpfs # mount android devices, see https://nixos.wiki/wiki/MTP
       lazydocker
       pkgs-unstable.comma
       pkgs-unstable.jellyfin-media-player

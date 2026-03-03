@@ -2,7 +2,14 @@
   flake.modules.homeManager.home-overrides = let
     HP = "DP-4";
     samsung = "DVI-D-1";
+    TV = "HDMI-A-4";
   in {
+    wayland.windowManager.hyprland.settings.monitor = [
+      "${HP}, preferred, 0x0, 1"
+      "${samsung}, preferred, 1920x0, 1"
+      "${TV}, preferred, 0x-1080, 1"
+    ];
+
     wayland.windowManager.hyprland.settings.workspace = [
       # left
       "1, monitor:${HP}, default:true"
@@ -18,12 +25,5 @@
       "9, monitor:${samsung}, persistent:true"
       "10, monitor:${samsung}, persistent:true"
     ];
-
-    programs.waybar.settings.mainBar."hyprland/workspaces" = {
-      persistent-workspaces = {
-        ${HP} = [ 1 2 3 4 5 ];
-        ${samsung} = [ 6 7 8 9 10 ];
-      };
-    };
   };
 }

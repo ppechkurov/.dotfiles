@@ -9,19 +9,32 @@ in {
         docker
         fonts
         greetd
-        home-manager
-        home-networking
-        home-services
+        home-manager # The actual HM
         hyprland
         ns
         nvidia
         pass
         printers
+        self.modules.nixos."${system}-networking"
+        self.modules.nixos."${system}-services"
         sound
         steam
-        unfree
         wgPeer
       ];
+
+      nixpkgs.config.allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkg) [
+          "nvidia-x11"
+          "broadcom-bt-firmware"
+          "b43-firmware"
+          "xow_dongle-firmware"
+          "facetimehd-calibration"
+          "facetimehd-firmware"
+
+          "canon-cups-ufr2"
+          "steam"
+          "steam-unwrapped"
+        ];
 
       networking.networkmanager.enable = true;
 

@@ -1,11 +1,22 @@
-{ ... }: {
-  flake.modules.homeManager.hyprland = { lib, config, pkgs, ... }:
-    let
-      HP = "DP-4";
-      samsung = "DVI-D-1";
-      TV = "HDMI-A-4";
-    in with lib; {
-      home.packages = with pkgs; [ wf-recorder wl-clipboard xdg-utils ];
+{ self, ... }: {
+  flake.modules.nixos.hyprland = { pkgs, pkgs-unstable, ... }: {
+    programs.hyprland.enable = true;
+    programs.hyprland.xwayland.enable = true;
+    programs.hyprland.portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
+
+  flake.modules.homeManager.hyprland =
+    { lib, config, pkgs, pkgs-unstable, ... }: {
+      imports = with self.modules.homeManager; [ hypridle hyprpaper ];
+
+      home.packages = with pkgs; [
+        wf-recorder
+        wl-clipboard
+        xdg-utils
+        hyprland-per-window-layout
+        wlr-which-key
+        pkgs-unstable.hyprshutdown
+      ];
 
       wayland.windowManager.hyprland.enable = true;
       wayland.windowManager.hyprland = {
@@ -14,7 +25,7 @@
         portalPackage = pkgs.xdg-desktop-portal-hyprland;
       };
 
-      wayland.windowManager.hyprland.settings.input = {
+      wayland.windowManager.hyprland.settings.input = with lib; {
         kb_layout = mkDefault "us,ru,us";
         kb_variant = mkDefault "dvorak,,basic";
         kb_options =
@@ -22,27 +33,5 @@
         repeat_delay = mkDefault "250";
         repeat_rate = mkDefault "45";
       };
-
-      wayland.windowManager.hyprland.settings.monitor = mkDefault [
-        "${HP}, preferred, 0x0, 1"
-        "${samsung}, preferred, 1920x0, 1"
-        "${TV}, preferred, 0x-1080, 1"
-      ];
-
-      wayland.windowManager.hyprland.settings.workspace = mkDefault [
-        # left
-        "1, monitor:${HP}, default:true"
-        "2, monitor:${HP}, persistent:true"
-        "3, monitor:${HP}, persistent:true"
-        "4, monitor:${HP}, persistent:true"
-        "5, monitor:${HP}, persistent:true"
-
-        # right
-        "6, monitor:${samsung}, default:true"
-        "7, monitor:${samsung}, persistent:true"
-        "8, monitor:${samsung}, persistent:true"
-        "9, monitor:${samsung}, persistent:true"
-        "10, monitor:${samsung}, persistent:true"
-      ];
     };
 }
