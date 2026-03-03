@@ -10,6 +10,7 @@ in {
         home-overrides
         cli
         nvim
+        aws
       ];
 
       # access pkgs-unstable param in hm modules
