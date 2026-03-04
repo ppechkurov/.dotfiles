@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.modules.nixos.home-services = { lib, pkgs, config, ... }:
+  flake.modules.nixos.home = { lib, pkgs, config, ... }:
     let
       mkSyncNotifyService = status: message: {
         enable = true;

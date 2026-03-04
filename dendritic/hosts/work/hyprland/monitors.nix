@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.work-overrides = { pkgs, ... }: {
+  flake.modules.homeManager.work = { pkgs, ... }: {
     home.packages = with pkgs; [ zoom-us slack signal-desktop ];
 
     wayland.windowManager.hyprland.settings.workspace = let

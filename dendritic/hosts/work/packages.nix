@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.work-configuration = { pkgs, pkgs-unstable, ... }: {
+  flake.modules.nixos.work = { pkgs, pkgs-unstable, ... }: {
     environment.systemPackages = with pkgs; [
       docker-credential-helpers
       gcc

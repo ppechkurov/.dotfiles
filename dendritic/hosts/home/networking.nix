@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.home-networking = {
+  flake.modules.nixos.home = {
     networking.hosts = {
       "192.168.100.9" = [ "home.lan" ];
       "192.168.100.14" = [ "mini.lan" ];

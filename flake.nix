@@ -16,11 +16,9 @@
     mailserver.url =
       "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
 
-    jira = {
-      url = "git+ssh://git@github.com/ppechkurov/jira.git";
-      type = "git";
-      ref = "refs/tags/v0.0.5";
-    };
+    jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
+    jira.type = "git";
+    jira.ref = "refs/tags/v0.0.5";
 
     gostman.url = "github:Halftoothed/gostman";
     gostman.inputs.nixpkgs.follows = "nixpkgs";
@@ -31,10 +29,8 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = { flake-parts, ... }@inputs:

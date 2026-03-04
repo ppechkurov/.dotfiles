@@ -1,49 +1,45 @@
 { self, ... }:
-let system = "home";
+let host = "home";
 in {
-  flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" system;
+  flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" host;
 
-  flake.modules.nixos."${system}-configuration" =
-    { lib, pkgs, pkgs-unstable, ... }: {
-      imports = with self.modules.nixos; [
-        docker
-        fonts
-        greetd
-        home-manager # The actual HM
-        hyprland
-        ns
-        nvidia
-        pass
-        printers
-        self.modules.nixos."${system}-networking"
-        self.modules.nixos."${system}-services"
-        sound
-        steam
-        wgPeer
+  flake.modules.nixos."${host}" = { lib, pkgs, pkgs-unstable, ... }: {
+    imports = with self.modules.nixos; [
+      fonts
+      greetd
+      home-manager # The actual HM module
+      hyprland
+      ns
+      nvidia
+      pass
+      printers
+      sound
+      steam
+      wgPeer
+    ];
+
+    nixpkgs.config.allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "nvidia-x11"
+        "broadcom-bt-firmware"
+        "b43-firmware"
+        "xow_dongle-firmware"
+        "facetimehd-calibration"
+        "facetimehd-firmware"
+
+        "canon-cups-ufr2"
+        "steam"
+        "steam-unwrapped"
       ];
 
-      nixpkgs.config.allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [
-          "nvidia-x11"
-          "broadcom-bt-firmware"
-          "b43-firmware"
-          "xow_dongle-firmware"
-          "facetimehd-calibration"
-          "facetimehd-firmware"
+    networking.networkmanager.enable = true;
 
-          "canon-cups-ufr2"
-          "steam"
-          "steam-unwrapped"
-        ];
+    programs.nix-ld.enable = true;
+    programs.gnupg.agent.enable = true;
 
-      networking.networkmanager.enable = true;
+    security.polkit.enable = true;
+    security.soteria.enable = true;
 
-      programs.nix-ld.enable = true;
-      programs.gnupg.agent.enable = true;
-
-      security.polkit.enable = true;
-      security.soteria.enable = true;
-
-      time.timeZone = "Europe/Minsk";
-    };
+    time.timeZone = "Europe/Minsk";
+  };
 }

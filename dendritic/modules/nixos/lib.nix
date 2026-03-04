@@ -11,8 +11,7 @@ in {
       ${name} = inputs.nixpkgs.lib.nixosSystem {
         modules = [
           modules.nixos.base
-          modules.nixos."${name}-configuration"
-          modules.nixos."${name}-hardware-configuration"
+          modules.nixos."${name}"
           inputs.agenix.nixosModules.default
           {
             networking.hostName = name;

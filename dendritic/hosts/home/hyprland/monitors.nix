@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.home-overrides = let
+  flake.modules.homeManager.home = let
     HP = "DP-4";
     samsung = "DVI-D-1";
     TV = "HDMI-A-4";
