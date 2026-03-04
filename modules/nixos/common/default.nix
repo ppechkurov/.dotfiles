@@ -66,7 +66,7 @@ in with lib; {
 
       # TTY login
       greetd = {
-        enable = true;
+        enable = mkDefault true;
         settings.default_session = {
           user = config.username;
           command =
