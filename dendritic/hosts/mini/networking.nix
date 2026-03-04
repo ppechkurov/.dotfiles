@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.home = { pkgs, ... }: {
+  flake.modules.nixos.mini = { pkgs, ... }: {
     networking.networkmanager.enable = true;
 
     networking.hosts = {
@@ -9,7 +9,7 @@
     };
 
     environment.systemPackages = with pkgs; [ wakeonlan ];
-    networking.interfaces.enp5s0.wakeOnLan = {
+    networking.interfaces.enp4s0.wakeOnLan = {
       enable = true;
       policy = [ "magic" ];
     };

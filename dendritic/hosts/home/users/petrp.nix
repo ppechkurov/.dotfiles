@@ -7,7 +7,7 @@ in {
     home-manager.users.${user} = {
       imports = with self.modules.homeManager; [
         aws
-        cli
+        # cli
         dconf
         firefox
         gpg
@@ -23,7 +23,7 @@ in {
       ];
 
       # provides pkgs-unstable param in hm modules
-      _module.args = { inherit pkgs-unstable; };
+      # _module.args = { inherit pkgs-unstable; };
 
       # Let Home Manager install and manage itself.
       programs.home-manager.enable = true;

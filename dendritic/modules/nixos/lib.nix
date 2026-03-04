@@ -24,6 +24,16 @@ in {
       };
     };
 
+    mkHomeManagerUser = system: name: {
+      ${name} =
+        let pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+        in {
+          _module.args = { inherit pkgs-unstable; };
+
+          imports = [ inputs.self.modules.homeManager.cli ];
+        };
+    };
+
     mkWgInterface = name: hostname: privateKeyFilePath:
       let
         wg = self.globals.wg;
