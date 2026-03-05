@@ -11,8 +11,8 @@
         # "pkill waybar; sleep 0.5; waybar"
         "exec Telegram"
         "sleep 5; exec mattermost-desktop"
-        "exec slack || echo 'slack is not installed'"
-        "exec signal-desktop || echo 'signal is not installed'"
+        "sleep 5; exec slack"
+        "exec signal-desktop"
         "exec hyprland-per-window-layout"
       ];
 

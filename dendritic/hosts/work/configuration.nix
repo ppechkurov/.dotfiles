@@ -13,6 +13,7 @@ in {
       ns
       pass
       sound
+      wgPeer
     ];
 
     nixpkgs.config.allowUnfreePredicate = pkg:

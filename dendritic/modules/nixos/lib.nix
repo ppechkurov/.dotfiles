@@ -25,13 +25,7 @@ in {
     };
 
     mkHomeManagerUser = system: name: {
-      ${name} =
-        let pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
-        in {
-          _module.args = { inherit pkgs-unstable; };
-
-          imports = [ inputs.self.modules.homeManager.cli ];
-        };
+      ${name} = { imports = [ inputs.self.modules.homeManager.cli ]; };
     };
 
     mkWgInterface = name: hostname: privateKeyFilePath:
@@ -42,7 +36,7 @@ in {
       in {
         ${name} = {
           address = [ peerIface.ip ];
-          autostart = serverIface.autostart or true;
+          autostart = lib.mkDefault serverIface.autostart or true;
           peers = with serverIface; [{
             inherit allowedIPs publicKey endpoint;
             persistentKeepalive = 15;

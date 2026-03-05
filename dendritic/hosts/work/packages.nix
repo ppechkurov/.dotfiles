@@ -1,16 +1,28 @@
 { inputs, ... }: {
   flake.modules.nixos.work = { pkgs, pkgs-unstable, ... }: {
-    environment.systemPackages = with pkgs; [
-      docker-credential-helpers
-      gcc
-      git-crypt
-      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-      lazydocker
-      pkgs-unstable.comma
-      pkgs-unstable.jellyfin-media-player
-      pkgs-unstable.mattermost-desktop
-      tessen
-      wiremix
-    ];
+    # needed for a custom keyboard
+    services.udev.packages = with pkgs; [ qmk-udev-rules vial ];
+
+    networking.wg-quick.interfaces.bluevps.autostart = false;
+    networking.wg-quick.interfaces.webdock.autostart = false;
+
+    environment.systemPackages = with pkgs;
+      let
+        system = pkgs.stdenv.hostPlatform.system;
+        noctalia = inputs.noctalia.packages.${system}.default;
+        jira = inputs.jira.packages.${system}.default;
+      in [
+        docker-credential-helpers
+        gcc
+        git-crypt
+        jira
+        lazydocker
+        noctalia
+        pkgs-unstable.comma
+        pkgs-unstable.jellyfin-media-player
+        pkgs-unstable.mattermost-desktop
+        tessen
+        wiremix
+      ];
   };
 }
