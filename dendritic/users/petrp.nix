@@ -1,4 +1,4 @@
-{ ... }:
+{ self, ... }:
 let user = "petrp";
 in {
   flake.modules.nixos.${user} = { pkgs, lib, ... }: {
@@ -9,7 +9,7 @@ in {
         mkDefault [ "docker" "networkmanager" "wheel" "disk" "power" ];
       isNormalUser = mkDefault true;
       shell = pkgs.zsh;
-      # openssh.authorizedKeys.keys = publicKeys;
+      openssh.authorizedKeys.keys = self.globals.publicKeys.users.${user};
     };
 
     programs.ssh.extraConfig = # bash
