@@ -58,6 +58,12 @@
         };
 
         settings = {
+          "browser.ai.control.default" = "blocked";
+          "browser.ai.control.linkPreviewKeyPoints" = "blocked";
+          "browser.ai.control.pdfjsAltText" = "blocked";
+          "browser.ai.control.sidebarChatbot" = "blocked";
+          "browser.ai.control.smartTabGroups" = "blocked";
+
           "devtools.toolbox.host" = "right";
           "general.useragent.locale" = "en-US";
 

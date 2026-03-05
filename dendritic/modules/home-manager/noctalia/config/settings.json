@@ -85,7 +85,7 @@
                 {
                     "clockColor": "none",
                     "customFont": "Fira Code",
-                    "formatHorizontal": "HH:mm ddd, MMM dd",
+                    "formatHorizontal": "HH:mm:ss ddd, MMM dd",
                     "formatVertical": "HH mm - dd MM",
                     "id": "Clock",
                     "tooltipFormat": "HH:mm ddd, MMM dd",
@@ -162,13 +162,13 @@
                     "compactMode": false,
                     "compactShowAlbumArt": true,
                     "compactShowVisualizer": false,
-                    "hideMode": "hidden",
+                    "hideMode": "transparent",
                     "hideWhenIdle": false,
                     "id": "MediaMini",
                     "maxWidth": 200,
                     "panelShowAlbumArt": true,
                     "panelShowVisualizer": true,
-                    "scrollingMode": "hover",
+                    "scrollingMode": "always",
                     "showAlbumArt": true,
                     "showArtistFirst": true,
                     "showProgressRing": true,
@@ -358,9 +358,14 @@
                 "name": "DP-4",
                 "widgets": [
                 ]
+            },
+            {
+                "name": "DVI-D-1",
+                "widgets": [
+                ]
             }
         ],
-        "overviewEnabled": true
+        "overviewEnabled": false
     },
     "dock": {
         "animationSpeed": 1,
