@@ -1,9 +1,9 @@
-{ config, pkgs-unstable, ... }:
+{ self, ... }:
 let
-  dns = "git.slonverse.xyz";
+  dns = self.globals.dns.forgejo;
   cleanupService = "forgejo-dump-cleanup";
 in {
-  flake.modules.nixos.forgejo = {
+  flake.modules.nixos.forgejo = { pkgs-unstable, config, ... }: {
     environment.systemPackages = [ pkgs-unstable.forgejo ];
 
     services.forgejo.enable = true;

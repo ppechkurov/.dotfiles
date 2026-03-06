@@ -3,7 +3,7 @@ let host = "mini";
 in {
   flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" host;
 
-  flake.modules.nixos."${host}" = { lib, pkgs, pkgs-unstable, ... }: {
+  flake.modules.nixos."${host}" = { lib, pkgs, ... }: {
     imports = with self.modules.nixos; [
       forgejo
       home-manager # The actual HM module

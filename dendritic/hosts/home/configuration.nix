@@ -32,6 +32,9 @@ in {
         "steam-unwrapped"
       ];
 
+    networking.wg-quick.interfaces.bluevps.autostart = true;
+    networking.wg-quick.interfaces.webdock.autostart = false;
+
     networking.networkmanager.enable = true;
 
     programs.nix-ld.enable = true;
