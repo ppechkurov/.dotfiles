@@ -24,14 +24,5 @@
         systemd.variables = [ "--all" ];
         portalPackage = pkgs.xdg-desktop-portal-hyprland;
       };
-
-      wayland.windowManager.hyprland.settings.input = with lib; {
-        kb_layout = mkDefault "us,ru,us";
-        kb_variant = mkDefault "dvorak,,basic";
-        kb_options =
-          mkDefault "grp:alt_shift_toggle,caps:escape"; # switch layout
-        repeat_delay = mkDefault "250";
-        repeat_rate = mkDefault "45";
-      };
     };
 }

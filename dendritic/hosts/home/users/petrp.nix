@@ -30,6 +30,11 @@ in {
 
       programs.zathura.enable = true;
 
+      wayland.windowManager.hyprland.settings.input = {
+        kb_layout = "us,ru,us";
+        kb_variant = "dvorak,,basic";
+      };
+
       home.packages = with pkgs; [ telegram-desktop ];
       home.stateVersion = "24.05";
     };
