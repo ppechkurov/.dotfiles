@@ -5,17 +5,14 @@ in {
 
   flake.modules.nixos."${host}" = { pkgs, pkgs-unstable, lib, ... }: {
     imports = with self.modules.nixos; [
-      aerc
       docker
       fonts
-      gh
       greetd
       home-manager # The actual HM module
       hyprland
       ns
       pass
       sound
-      tofi
       wgPeer
     ];
 

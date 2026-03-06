@@ -6,6 +6,7 @@ in {
 
     home-manager.users.${user} = {
       imports = with self.modules.homeManager; [
+        aerc
         aws
         dconf
         firefox
@@ -19,6 +20,8 @@ in {
         screenshots
         work
         xdg
+        gh
+        tofi
       ];
 
       programs.git.settings = {

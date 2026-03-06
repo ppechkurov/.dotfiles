@@ -5,7 +5,6 @@ in {
 
   flake.modules.nixos."${host}" = { lib, pkgs, pkgs-unstable, ... }: {
     imports = with self.modules.nixos; [
-      cli
       forgejo
       home-manager # The actual HM module
       wgPeer

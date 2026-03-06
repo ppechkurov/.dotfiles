@@ -5,8 +5,7 @@ in {
     programs.zsh.enable = true;
     users.users.${user} = with lib; {
       description = mkDefault "Petr Pechkurov";
-      extraGroups =
-        mkDefault [ "docker" "networkmanager" "wheel" "disk" "power" ];
+      extraGroups = [ "docker" "networkmanager" "wheel" "disk" "power" ];
       isNormalUser = mkDefault true;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = self.globals.publicKeys.users.${user};

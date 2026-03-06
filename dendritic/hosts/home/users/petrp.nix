@@ -6,10 +6,11 @@ in {
 
     home-manager.users.${user} = {
       imports = with self.modules.homeManager; [
+        aerc
         aws
-        # cli
         dconf
         firefox
+        gh
         gpg
         gtk
         home # home it's a hostname in this case
@@ -19,6 +20,7 @@ in {
         nvim
         qt
         screenshots
+        tofi
         xdg
       ];
 
