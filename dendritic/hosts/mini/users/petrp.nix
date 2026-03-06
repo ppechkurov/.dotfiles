@@ -6,6 +6,7 @@ in {
       imports = with self.modules.homeManager; [
         cli
         mini # mini it's a hostname in this case
+        nvim
         xdg
       ];
 
