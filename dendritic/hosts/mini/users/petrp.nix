@@ -9,6 +9,8 @@ in {
       ];
     };
 
+    nix.settings.trusted-users = [ user ];
+
     home-manager.users.${user} = {
       imports = with self.modules.homeManager; [
         cli

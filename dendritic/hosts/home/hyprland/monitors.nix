@@ -12,14 +12,14 @@
 
     wayland.windowManager.hyprland.settings.workspace = [
       # left
-      "1, monitor:${HP}, default:true"
+      "1, monitor:${HP}, persistent:true, default:true"
       "2, monitor:${HP}, persistent:true"
       "3, monitor:${HP}, persistent:true"
       "4, monitor:${HP}, persistent:true"
       "5, monitor:${HP}, persistent:true"
 
       # right
-      "6, monitor:${samsung}, default:true"
+      "6, monitor:${samsung}, persistent:true, default:true"
       "7, monitor:${samsung}, persistent:true"
       "8, monitor:${samsung}, persistent:true"
       "9, monitor:${samsung}, persistent:true"

@@ -15,7 +15,7 @@
           "$mod SHIFT, Q, exec, $ipc sessionMenu toggle"
           # "$mod SHIFT, Q, exec, tofi-powermenu"
           "$mod, B, exec, ${browser}"
-          "$mod, Return, exec, foot --override colors.alpha=0.10"
+          "$mod, Return, exec, foot --override colors.alpha=0.10 tmux new -A -s default"
 
           "$mod, C, exec, tofi-calc"
           "$mod, P, exec, tofi-pass"

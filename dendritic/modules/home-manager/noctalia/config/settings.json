@@ -16,7 +16,6 @@
         "ignoreMouseInput": false,
         "overviewLayer": false,
         "pinnedApps": [
-            "org.jellyfin.JellyfinDesktop"
         ],
         "position": "center",
         "screenshotAnnotationTool": "",
@@ -113,11 +112,11 @@
                     "hideUnoccupied": false,
                     "iconScale": 0.6,
                     "id": "Workspace",
-                    "labelMode": "index",
+                    "labelMode": "none",
                     "occupiedColor": "secondary",
                     "pillSize": 0.6,
                     "showApplications": true,
-                    "showBadge": false,
+                    "showBadge": true,
                     "showLabelsOnlyWhenOccupied": true,
                     "unfocusedIconsOpacity": 1
                 },
@@ -157,25 +156,6 @@
                         "No unread messages",
                         "Signal Desktop"
                     ]
-                },
-                {
-                    "compactMode": false,
-                    "compactShowAlbumArt": true,
-                    "compactShowVisualizer": false,
-                    "hideMode": "transparent",
-                    "hideWhenIdle": false,
-                    "id": "MediaMini",
-                    "maxWidth": 200,
-                    "panelShowAlbumArt": true,
-                    "panelShowVisualizer": true,
-                    "scrollingMode": "always",
-                    "showAlbumArt": true,
-                    "showArtistFirst": true,
-                    "showProgressRing": true,
-                    "showVisualizer": true,
-                    "textColor": "none",
-                    "useFixedWidth": false,
-                    "visualizerType": "linear"
                 }
             ],
             "right": [
@@ -351,16 +331,47 @@
         }
     },
     "desktopWidgets": {
-        "enabled": false,
+        "enabled": true,
         "gridSnap": true,
         "monitorWidgets": [
             {
                 "name": "DP-4",
                 "widgets": [
+                    {
+                        "hideMode": "visible",
+                        "id": "MediaPlayer",
+                        "roundedCorners": true,
+                        "scale": 4.783868334346326,
+                        "showAlbumArt": false,
+                        "showBackground": false,
+                        "showButtons": false,
+                        "showVisualizer": true,
+                        "visualizerType": "linear",
+                        "x": 0,
+                        "y": 800
+                    }
                 ]
             },
             {
                 "name": "DVI-D-1",
+                "widgets": [
+                    {
+                        "hideMode": "visible",
+                        "id": "MediaPlayer",
+                        "roundedCorners": true,
+                        "scale": 4.1902485086924,
+                        "showAlbumArt": false,
+                        "showBackground": false,
+                        "showButtons": false,
+                        "showVisualizer": true,
+                        "visualizerType": "linear",
+                        "x": 0,
+                        "y": 693
+                    }
+                ]
+            },
+            {
+                "name": "HDMI-A-4",
                 "widgets": [
                 ]
             }

@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.hyprland = { config, ... }: {
-    programs.hyprlock.enable = true;
+    programs.hyprlock.enable = false;
     programs.hyprlock.settings = {
       general = {
         grace = 60;

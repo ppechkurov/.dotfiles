@@ -8,7 +8,7 @@
         description = "Notify on restic backup ${status}";
         serviceConfig = {
           Type = "oneshot";
-          User = owner;
+          User = "petrp";
         };
         script = "${lib.getExe pkgs.mattermost-send} '${message}' ${status} ";
       };

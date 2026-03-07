@@ -4,16 +4,16 @@
       env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 
       exec-once = [
-        "exec noctalia-shell"
-        "exec foot --app-id default --override colors.alpha=0.10 tmux new -A -s default"
-        "sleep 10; exec foot --app-id ssh --override colors.alpha=0.10 tmux new -A -s ssh"
-        "exec firefox"
-        # "pkill waybar; sleep 0.5; waybar"
-        "exec Telegram"
+        "noctalia-shell"
+        "tmux new-session -Ads 'default' -c ~/"
+        "[workspace 1] foot --override colors.alpha=0.10"
+        "[workspace 6 silent] foot --override colors.alpha=0.10"
+        "firefox"
+        "Telegram"
+        "signal-desktop"
+        "hyprland-per-window-layout"
         "sleep 5; exec mattermost-desktop"
         "sleep 5; exec slack"
-        "exec signal-desktop"
-        "exec hyprland-per-window-layout"
       ];
 
       general = {
@@ -66,7 +66,10 @@
       cursor = {
         hide_on_key_press = true;
         no_hardware_cursors = 1;
-        inactive_timeout = 5;
+        inactive_timeout = 10;
+        persistent_warps = true;
+        warp_on_change_workspace = true;
+        warp_back_after_non_mouse_input = false;
       };
 
       misc = {
