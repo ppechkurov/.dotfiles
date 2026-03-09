@@ -10,6 +10,10 @@ in {
       wgPeer
     ];
 
+    services.immich.enable = true;
+    services.immich.openFirewall = true;
+    services.immich.host = "0.0.0.0";
+
     i18n.defaultLocale = "en_US.UTF-8";
     time.timeZone = "Europe/Minsk";
   };
