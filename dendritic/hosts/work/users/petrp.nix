@@ -10,18 +10,19 @@ in {
         aws
         dconf
         firefox
+        gh
         gpg
         gtk
         hyprland
         keyboard
+        mycli
         noctalia
         nvim
         qt
         screenshots
+        tofi
         work
         xdg
-        gh
-        tofi
       ];
 
       programs.git.settings = {
