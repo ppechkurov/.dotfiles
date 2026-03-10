@@ -24,6 +24,8 @@ in {
         xdg
       ];
 
+      programs.smug.enable = true;
+
       # provides pkgs-unstable param in hm modules
       _module.args = { inherit pkgs-unstable; };
 
