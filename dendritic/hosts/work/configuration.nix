@@ -13,6 +13,7 @@ in {
       ns
       pass
       sound
+      taws
       wgPeer
     ];
 
