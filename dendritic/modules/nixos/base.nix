@@ -24,6 +24,7 @@
     services.openssh.settings.PasswordAuthentication = false;
 
     environment.systemPackages = with pkgs; [
+      btop
       curl
       git
       jq
