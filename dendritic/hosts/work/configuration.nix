@@ -5,6 +5,7 @@ in {
 
   flake.modules.nixos."${host}" = { pkgs, pkgs-unstable, lib, ... }: {
     imports = with self.modules.nixos; [
+      boot
       docker
       fonts
       greetd
