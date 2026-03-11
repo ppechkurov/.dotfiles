@@ -9,6 +9,9 @@
     boot.kernelPackages = pkgs.linuxPackages_latest;
     boot.extraModulePackages = [ ];
 
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
+
     fileSystems."/" = {
       device = "/dev/disk/by-label/nixos";
       fsType = "ext4";

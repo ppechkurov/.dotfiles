@@ -7,6 +7,11 @@
     boot.kernelModules = [ "kvm-intel" "btusb" ];
     boot.kernelPackages = pkgs.linuxPackages_6_6; # the kernel
 
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
+    # Fix artifacts on boot: [link](https://github.com/NixOS/nixpkgs/issues/328972#issuecomment-3665270723)
+    boot.loader.systemd-boot.consoleMode = "auto";
+
     fileSystems."/" = {
       device = "/dev/disk/by-label/big";
       fsType = "ext4";
