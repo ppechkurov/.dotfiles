@@ -1,65 +1,60 @@
 { self, ... }: {
-  flake.modules.nixos.mini = { config, lib, pkgs, ... }:
-    let
-      owner = "restic";
-      group = config.users.users.${owner}.group;
-      mkBackupNotifyService = status: message: {
-        enable = true;
-        description = "Notify on restic backup ${status}";
-        serviceConfig = {
-          Type = "oneshot";
-          User = "petrp";
-        };
-        script = "${lib.getExe pkgs.mattermost-send} '${message}' ${status} ";
-      };
-    in {
-      imports = with self.modules.nixos; [ mattermost-send ];
+  flake.modules.nixos.mini = { config, pkgs, lib, ... }: {
+    imports = with self.modules.nixos; [ restic ];
 
-      age.secrets.restic-password-file = {
-        file = ./restic-password-file.age;
-        inherit owner group;
-      };
+    services.restic.backups.daily = {
+      initialize = true;
+      passwordFile = config.age.secrets.restic-password-file.path;
+      repository = "/mnt/hdd/restic";
+      user = "restic";
 
-      # see [link](https://wiki.nixos.org/wiki/Restic)
-      users.users.restic = {
-        isNormalUser = true;
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMrby7Og0kSdysnQKj54rCzJirVZqLFD8MYMV6pZRA2K restic@webdock"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM/8sFXfWRrIE+n4TtvawXjd1QKIYadM2OR9PGOxHKrP petrp@home"
-        ];
-      };
+      package = pkgs.writeShellScriptBin "restic" ''
+        exec /run/wrappers/bin/restic "$@"
+      '';
 
-      environment.systemPackages = [ pkgs.restic ];
-      security.wrappers.restic = {
-        inherit owner group;
-        source = "${pkgs.restic.out}/bin/restic";
-        permissions = "u=rwx,g=,o=";
-        capabilities = "cap_dac_read_search=+ep";
-      };
-
-      systemd.services.notify-backup-success = let
-        message = ''
-          **Backup Job Successful**
-
-          Host: `${config.networking.hostName}`.
-
-          Backup job completed successfuly!
-        '';
-      in mkBackupNotifyService "success" message;
-
-      systemd.services.notify-backup-failure = let
-        message = ''
-          **Backup Job Failed**
-
-          Host: `${config.networking.hostName}`.
-
-          Backup job completed has been failed!
-        '';
-      in mkBackupNotifyService "failure" message;
-
-      systemd.services.restic-backups-daily.unitConfig = {
-        OnSuccess = "notify-backup-success.service";
-        OnFailure = "notify-backup-failure.service";
+      paths = let
+        jellyfin = lib.mkIf config.services.jellyfin.enable
+          config.services.jellyfin.dataDir;
+        forgejo = lib.mkIf config.services.forgejo.enable
+          config.services.forgejo.dump.backupDir;
+      in [ jellyfin forgejo ];
+      pruneOpts = [ "--keep-daily 7" ];
+      timerConfig = {
+        OnCalendar = "5:00";
+        Persistent = true;
       };
     };
+
+    systemd.services.copy-daily-backup =
+      let repo = config.services.restic.backups.daily.repository;
+      in {
+        enable = true;
+        description = "Make second copy of a daily backup";
+        serviceConfig = {
+          Type = "oneshot";
+          User = "restic";
+        };
+        path = [ pkgs.rsync ];
+        script = # bash
+          ''
+            rsync -az --delete ${repo} /mnt/backup/
+          '';
+
+        unitConfig = {
+          OnSuccess = "notify-backup-success.service";
+          OnFailure = "notify-backup-failure.service";
+        };
+      };
+
+    systemd.timers.copy-daily-backup = {
+      enable = true;
+      description = "Make second copy of a daily backup";
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "5:30";
+        Persistent = true;
+        Unit = "copy-daily-backup.service";
+      };
+    };
+  };
 }
