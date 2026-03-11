@@ -30,6 +30,12 @@ in {
         commit.gpgsign = true;
       };
 
+      programs.firefox = {
+        package = pkgs.firefox.override {
+          nativeMessagingHosts = [ pkgs.passff-host ];
+        };
+      };
+
       # access pkgs-unstable param in hm modules
       _module.args = { inherit pkgs-unstable; };
 
