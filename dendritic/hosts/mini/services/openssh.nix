@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.nixos.modules.mini = {
+  flake.modules.nixos.mini = {
     services.openssh.enable = true;
     services.openssh.allowSFTP = true;
     services.openssh.settings.PasswordAuthentication = false;

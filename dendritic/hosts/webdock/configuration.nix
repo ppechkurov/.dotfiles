@@ -3,8 +3,9 @@ let host = "webdock";
 in {
   flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" host;
 
-  flake.modules.nixos."${host}" = { lib, pkgs, ... }: {
+  flake.modules.nixos.${host} = { lib, pkgs, ... }: {
     imports = with self.modules.nixos; [
+      fail2ban
       home-manager # The actual HM module
       wgServer
     ];
