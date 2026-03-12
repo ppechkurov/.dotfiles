@@ -38,5 +38,5 @@
 
   outputs = { flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
-    (inputs.import-tree [ ./dendritic ]);
+    (inputs.import-tree [ ./dendritic ./deploy ]);
 }
