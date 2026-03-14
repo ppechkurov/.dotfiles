@@ -2,6 +2,8 @@
 let user = "petrp";
 in {
   flake.modules.nixos.kirillp = { pkgs, pkgs-unstable, ... }: {
+    nix.settings.trusted-users = [ user ];
+
     home-manager.users.${user} = {
       imports = with self.modules.homeManager; [ cli dconf nvim xdg ];
 

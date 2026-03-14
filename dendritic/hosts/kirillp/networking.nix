@@ -9,7 +9,7 @@
     };
 
     environment.systemPackages = with pkgs; [ wakeonlan ];
-    networking.interfaces.enp5s0.wakeOnLan = {
+    networking.interfaces.enp1s0.wakeOnLan = {
       enable = true;
       policy = [ "magic" ];
     };
