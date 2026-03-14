@@ -13,9 +13,9 @@ function M.load_latest_session(opts)
   local dir = M.get_root_dir()
   require('resession').load(dir, opts)
 
-  if vim.api.nvim_win_get_width(0) >= 120 then
-    require('neo-tree.command').execute({ action = 'show', dir = dir })
-  end
+  -- if vim.api.nvim_win_get_width(0) >= 120 then
+  --   require('neo-tree.command').execute({ action = 'show', dir = dir })
+  -- end
 end
 
 return M

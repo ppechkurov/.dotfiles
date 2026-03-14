@@ -14,7 +14,7 @@ return {
       resession.add_hook('pre_save', function()
         -- Need to close neo-tree before saving session, because it's not
         -- possible to restore it properly when closing with :q
-        require('neo-tree.command').execute({ action = 'close' })
+        -- require('neo-tree.command').execute({ action = 'close' })
       end)
 
       vim.api.nvim_create_autocmd('VimLeavePre', {
@@ -29,7 +29,7 @@ return {
 
       vim.keymap.set('n', '<leader>ls', function(_, opts)
         exec_action(resession.load, opts)
-        require('neo-tree.command').execute({ action = 'show' })
+        -- require('neo-tree.command').execute({ action = 'show' })
       end)
 
       vim.keymap.set('n', '<leader>sd', resession.delete)

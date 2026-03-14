@@ -20,7 +20,6 @@ in {
         gtk
         hyprland
         keyboard
-        noctalia
         nvim
         qt
         screenshots
@@ -35,10 +34,10 @@ in {
 
       programs.zathura.enable = true;
 
-      wayland.windowManager.hyprland.settings.input = {
-        kb_layout = "ru,us";
-        kb_variant = ",basic";
-      };
+      # wayland.windowManager.hyprland.settings.input = {
+      #   kb_layout = "ru,us";
+      #   kb_variant = ",basic";
+      # };
 
       home.stateVersion = "24.05";
     };
