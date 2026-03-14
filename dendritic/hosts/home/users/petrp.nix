@@ -39,6 +39,22 @@ in {
         kb_variant = "dvorak,,basic";
       };
 
+      # [see](https://codeberg.org/PassFF/passff-host#preferences)
+      programs.firefox = {
+        package = pkgs.firefox.override {
+          nativeMessagingHosts = [
+            (pkgs.passff-host.overrideAttrs (old: {
+              dontStrip = true;
+              patchPhase = ''
+                sed -i 's#COMMAND = "pass"#COMMAND = "${
+                  pkgs.pass-wayland.withExtensions (ext: with ext; [ pass-otp ])
+                }/bin/pass"#' src/passff.py
+              '';
+            }))
+          ];
+        };
+      };
+
       home.packages = with pkgs; [ telegram-desktop ];
       home.stateVersion = "24.05";
     };
