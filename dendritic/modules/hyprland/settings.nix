@@ -1,9 +1,9 @@
-{
+{ lib, ... }: {
   flake.modules.homeManager.hyprland = { ... }: {
     wayland.windowManager.hyprland.settings = {
       env = [ "QT_WAYLAND_DISABLE_WINDOWDECORATION,1" ];
 
-      exec-once = [
+      exec-once = lib.mkDefault [
         "noctalia-shell"
         "tmux new-session -Ads 'default' -c ~/"
         "[workspace 1] foot --override colors.alpha=0.10"

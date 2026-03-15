@@ -9,7 +9,6 @@
       jmtpfs # mount android devices, see https://nixos.wiki/wiki/MTP
       pkgs-unstable.jellyfin-media-player
       pkgs-unstable.mattermost-desktop
-      wiremix
     ];
   };
 }

@@ -15,6 +15,8 @@ in {
       steam
     ];
 
+    console.keyMap = "us";
+
     nixpkgs.config.allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
         "b43-firmware"

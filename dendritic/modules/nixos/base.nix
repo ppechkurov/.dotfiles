@@ -1,4 +1,4 @@
-{ inputs, self, ... }: {
+{ inputs, self, lib, ... }: {
   systems = [ "x86_64-linux" ];
 
   imports = [
@@ -15,10 +15,10 @@
       #
     ];
 
-    i18n.defaultLocale = "en_US.UTF-8";
+    i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
 
-    console.keyMap = "dvorak";
-    console.font = "Lat2-Terminus16";
+    console.keyMap = lib.mkDefault "dvorak";
+    console.font = lib.mkDefault "Lat2-Terminus16";
 
     services.openssh.enable = true;
     services.openssh.settings.PasswordAuthentication = false;

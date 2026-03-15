@@ -2,8 +2,6 @@
 let user = "kirillp";
 in {
   flake.modules.nixos.kirillp = { pkgs, pkgs-unstable, ... }: {
-    services.greetd.settings.default_session.user = user;
-
     programs.zsh.enable = true;
     users.users.${user} = {
       description = "Kirill Pechkurov";
@@ -19,10 +17,7 @@ in {
         firefox
         gtk
         hyprland
-        keyboard
-        nvim
         qt
-        screenshots
         xdg
       ];
 
@@ -34,10 +29,18 @@ in {
 
       programs.zathura.enable = true;
 
-      # wayland.windowManager.hyprland.settings.input = {
-      #   kb_layout = "ru,us";
-      #   kb_variant = ",basic";
-      # };
+      wayland.windowManager.hyprland.settings.exec-once = [
+        "noctalia-shell"
+        "firefox"
+        "[workspace 1] foot --override colors.alpha=0.10"
+        "sleep 5; exec mattermost-desktop"
+        #
+      ];
+
+      wayland.windowManager.hyprland.settings.input = {
+        kb_layout = "us,ru";
+        kb_variant = "basic,";
+      };
 
       home.stateVersion = "24.05";
     };

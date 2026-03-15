@@ -1,10 +1,6 @@
 {
-  # TODO: Take this from his machine
   flake.modules.nixos.kirillp = { config, lib, pkgs, modulesPath, ... }: {
     imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
-    services.blueman.enable = true;
-    environment.systemPackages = [ pkgs.bluez ];
 
     hardware.enableAllFirmware = true;
     hardware.bluetooth.enable = true;
