@@ -19,6 +19,8 @@ in {
       builtins.elem (lib.getName pkg) [
         "b43-firmware"
         "broadcom-bt-firmware"
+        "facetimehd-calibration"
+        "facetimehd-firmware"
         "steam"
         "steam-unwrapped"
         "xow_dongle-firmware"
