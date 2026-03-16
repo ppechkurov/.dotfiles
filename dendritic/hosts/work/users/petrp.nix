@@ -18,6 +18,7 @@ in {
         mycli
         noctalia
         nvim
+        passff
         qt
         screenshots
         tofi
@@ -28,12 +29,6 @@ in {
       programs.git.settings = {
         user.signingkey = "F7C0B35DA9397DD1";
         commit.gpgsign = true;
-      };
-
-      programs.firefox = {
-        package = pkgs.firefox.override {
-          nativeMessagingHosts = [ pkgs.passff-host ];
-        };
       };
 
       # access pkgs-unstable param in hm modules

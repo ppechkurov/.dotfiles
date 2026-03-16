@@ -66,10 +66,8 @@
       cursor = {
         hide_on_key_press = true;
         no_hardware_cursors = 1;
-        inactive_timeout = 10;
-        persistent_warps = false;
-        warp_on_change_workspace = false;
-        warp_back_after_non_mouse_input = true;
+        persistent_warps = true;
+        warp_on_change_workspace = true;
       };
 
       misc = {
