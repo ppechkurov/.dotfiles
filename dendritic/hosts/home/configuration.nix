@@ -17,6 +17,7 @@ in {
       resterm
       sound
       steam
+      # pam
       taws
       wgPeer
     ];

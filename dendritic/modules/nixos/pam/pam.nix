@@ -1,26 +1,17 @@
 {
-  flake.modules.nixos.pam = {
-    security.pam.services.greetd.oathAuth = true;
+  flake.modules.nixos.pam = { pkgs, lib, config, ... }: {
+    environment.systemPackages = [ pkgs.pamtester ];
+
+    # generate a secret with `openssl rand -hex 20`
+    # in a file: HOTP/T30/6 <user> - <secret>
     age.secrets."users.oath" = {
       file = ./users.oath.age;
       path = "/etc/users.oath";
-      owner = "root";
       group = "root";
       mode = "600";
     };
-    # security.pam.services.greetd = {
-    #   oathAuth = true;
-    #   rules.auth.oath.control = "sufficient";
-    #   rules.auth.oath.order = 11100;
-    #
-    #   # Skip oath for everyone except petrp
-    #   rules.auth.skipOathForOthers = {
-    #     enable = true;
-    #     control = "[success=1 default=ignore]";
-    #     modulePath = "pam_succeed_if.so";
-    #     order = 11099; # just before oath
-    #     args = [ "user" "!=" "petrp" ];
-    #   };
-    # };
+
+    security.pam.services.greetd.unixAuth = true;
+    security.pam.services.greetd.oathAuth = true;
   };
 }
