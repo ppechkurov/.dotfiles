@@ -1,5 +1,7 @@
 { self, ... }:
-let host = "webdock";
+let
+  host = "webdock";
+  atuinHost = self.globals.wg.servers.interfaces.tun.ip;
 in {
   flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" host;
 
@@ -9,6 +11,9 @@ in {
       home-manager # The actual HM module
       wgServer
     ];
+
+    services.atuin.enable = true;
+    services.atuin.host = atuinHost;
 
     boot.tmp.cleanOnBoot = true;
     boot.loader.timeout = 1;
