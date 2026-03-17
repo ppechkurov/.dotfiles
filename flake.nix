@@ -23,9 +23,6 @@
     jira.ref = "refs/tags/v0.0.5";
     jira.inputs.nixpkgs.follows = "nixpkgs";
 
-    gostman.url = "github:Halftoothed/gostman";
-    gostman.inputs.nixpkgs.follows = "nixpkgs";
-
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
@@ -34,6 +31,10 @@
 
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    noctalia.inputs.noctalia-qs.follows = "noctalia-qs";
+
+    noctalia-qs.url = "github:noctalia-dev/noctalia-qs";
+    noctalia-qs.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = { flake-parts, ... }@inputs:
