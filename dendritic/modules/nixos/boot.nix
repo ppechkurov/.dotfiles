@@ -1,6 +1,6 @@
 {
-  flake.modules.nixos.boot = { pkgs, ... }: {
-    boot.loader.timeout = 1;
+  flake.modules.nixos.boot = { pkgs, lib, ... }: {
+    boot.loader.timeout = lib.mkDefault 1;
     boot.tmp.cleanOnBoot = true;
   };
 }

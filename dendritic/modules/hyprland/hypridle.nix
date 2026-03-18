@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.hypridle = { pkgs, lib, ... }: {
-    services.hypridle.enable = true;
+    services.hypridle.enable = lib.mkDefault true;
 
     services.hypridle.settings = {
       general = {

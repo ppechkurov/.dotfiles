@@ -2,8 +2,6 @@
 let user = "petrp";
 in {
   flake.modules.nixos.home = { pkgs, pkgs-unstable, ... }: {
-    services.greetd.settings.default_session.user = user;
-
     home-manager.users.${user} = {
       imports = with self.modules.homeManager; [
         aerc
