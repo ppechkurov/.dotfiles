@@ -1,2 +1,0 @@
-{ imports = [ ./workspaces.nix ]; }
-
