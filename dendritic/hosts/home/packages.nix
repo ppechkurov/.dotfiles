@@ -4,6 +4,7 @@
       system = pkgs.stdenv.hostPlatform.system;
       noctalia = inputs.noctalia.packages.${system}.default;
     in with pkgs; [
+      chromium
       gcc
       git-crypt
       noctalia

@@ -9,7 +9,6 @@
   flake.modules.nixos.base = { pkgs, ... }: {
     imports = with self.modules.nixos; [
       boot
-      data
       nix
       petrp
       #
