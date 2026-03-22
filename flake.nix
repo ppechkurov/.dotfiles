@@ -29,7 +29,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
-    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.0";
     noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
     noctalia.inputs.noctalia-qs.follows = "noctalia-qs";
 
