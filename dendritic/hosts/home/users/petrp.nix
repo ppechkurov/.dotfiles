@@ -19,6 +19,7 @@ in {
         passff
         qt
         screenshots
+        sesh
         tofi
         xdg
       ];

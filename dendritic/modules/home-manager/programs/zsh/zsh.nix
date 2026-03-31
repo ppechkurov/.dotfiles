@@ -45,14 +45,6 @@
 
           source ~/.p10k.zsh
 
-          if [ -x "$(command -v kubectl)" ]; then
-            source <(kubectl completion zsh)
-          fi
-
-          if [ -x "$(command -v minikube)" ]; then
-            source <(minikube completion zsh)
-          fi
-
           if [ -x "$(command -v aws)" ]; then
             complete -C "$(which aws_completer)" aws
           fi
