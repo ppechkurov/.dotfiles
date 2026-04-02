@@ -21,6 +21,7 @@ in {
         passff
         qt
         screenshots
+        sesh
         tofi
         work
         xdg
