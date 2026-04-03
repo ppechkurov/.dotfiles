@@ -24,6 +24,9 @@ in {
 
     networking.networkmanager.enable = true;
 
+    # for kind kubernetes cluster
+    networking.firewall.checkReversePath = "loose";
+
     programs.nix-ld.enable = true;
     programs.gnupg.agent.enable = true;
 
