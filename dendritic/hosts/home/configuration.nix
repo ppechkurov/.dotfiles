@@ -36,6 +36,17 @@ in {
         "steam-unwrapped"
       ];
 
+    # for kind kubernetes cluster
+    networking.firewall.checkReversePath = "loose";
+
+    # networking.firewall.enable = false;
+    networking.hosts = {
+      "172.18.0.100" = [
+        "login.flosum.local" # #
+        "gs.flosum.local"
+      ];
+    };
+
     networking.wg-quick.interfaces.bluevps.autostart = true;
     networking.wg-quick.interfaces.webdock.autostart = false;
 
