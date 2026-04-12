@@ -203,3 +203,35 @@ end, {
     return { 'eslint' }
   end,
 })
+
+--- Auto reload files via watchers
+local function watch_file(bufnr)
+  local filepath = vim.api.nvim_buf_get_name(bufnr)
+  if filepath == '' then
+    return
+  end
+
+  local w = vim.uv.new_fs_event()
+  w:start(
+    filepath,
+    {},
+    vim.schedule_wrap(function()
+      vim.api.nvim_buf_call(bufnr, function()
+        vim.cmd('checktime')
+      end)
+    end)
+  )
+
+  vim.api.nvim_create_autocmd('BufUnload', {
+    buffer = bufnr,
+    callback = function()
+      w:stop()
+    end,
+  })
+end
+
+vim.api.nvim_create_autocmd('BufReadPost', {
+  callback = function(args)
+    watch_file(args.buf)
+  end,
+})

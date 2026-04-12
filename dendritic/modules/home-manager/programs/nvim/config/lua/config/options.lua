@@ -97,3 +97,5 @@ if vim.g.neovide then
   vim.g.neovide_text_contrast = 1.0
   vim.g.neovide_transparency = 0.70
 end
+
+vim.opt.autoread = true
