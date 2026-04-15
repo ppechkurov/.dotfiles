@@ -14,7 +14,6 @@
         wl-clipboard
         xdg-utils
         hyprland-per-window-layout
-        wlr-which-key
         pkgs-unstable.hyprshutdown
       ];
 

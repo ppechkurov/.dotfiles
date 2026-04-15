@@ -85,9 +85,6 @@
           ",XF86AudioRaiseVolume, exec, $ipc volume increase"
           ",XF86AudioLowerVolume, exec, $ipc volume decrease"
         ];
-
-        bindr = let wk = lib.getExe pkgs.wlr-which-key;
-        in [ "$mod, SUPER_L, exec, pkill wlr-which-key || ${wk}" ];
       };
     };
 }
