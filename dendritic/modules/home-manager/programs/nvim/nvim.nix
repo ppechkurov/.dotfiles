@@ -39,5 +39,17 @@
       recursive = true;
       source = config.lib.file.mkOutOfStoreSymlink "${nvim_config_dir}/config";
     };
+
+    programs.git.settings = {
+      merge.tool = "codediff";
+      mergetool.codediff.cmd = ''
+        nvim "$MERGED" -c "CodeDiff merge "$MERGED"
+      '';
+
+      diff.tool = "codediff";
+      difftool.codediff.cmd = ''
+        nvim "$LOCAL" "$REMOTE" +"CodeDiff file $LOCAL $REMOTE"
+      '';
+    };
   };
 }

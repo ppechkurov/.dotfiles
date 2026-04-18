@@ -11,11 +11,6 @@ in {
       init.defaultBranch = "main";
       credential.helper = "store";
       push.autosetupremote = true;
-      merge.tool = "codediff";
-      diff.tool = "codediff";
-      difftool.codediff.cmd = ''
-        nvim "$LOCAL" "$REMOTE" +"CodeDiff file $LOCAL $REMOTE"
-      '';
     };
   };
 }
