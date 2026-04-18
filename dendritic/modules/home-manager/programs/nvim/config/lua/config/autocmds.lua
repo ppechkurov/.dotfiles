@@ -60,12 +60,6 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- vim.api.nvim_create_autocmd('User', {
---   desc = 'close outline when opening telescope because it will open in the outline window',
---   pattern = 'TelescopeFindPre',
---   command = 'OutlineClose',
--- })
-
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   desc = 'Fix conceallevel for json files',
   group = augroup('json_conceal'),
@@ -87,60 +81,12 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   end,
 })
 
--- go to last loc when opening a buffer
--- vim.api.nvim_create_autocmd('BufRead', {
---   callback = function(opts)
---     vim.api.nvim_create_autocmd('BufWinEnter', {
---       once = true,
---       buffer = opts.buf,
---       callback = function()
---         local ft = vim.bo[opts.buf].filetype
---         local last_known_line = vim.api.nvim_buf_get_mark(opts.buf, '"')[1]
---         if
---           not (ft:match('commit') and ft:match('rebase'))
---           and last_known_line > 1
---           and last_known_line <= vim.api.nvim_buf_line_count(opts.buf)
---         then
---           vim.api.nvim_feedkeys([[g`"]], 'nx', false)
---         end
---       end,
---     })
---   end,
--- })
-
 -- disable autocomment on new line
 vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
   callback = function()
     vim.cmd('set formatoptions-=cro')
   end,
 })
-
--- persistent folds
-vim.api.nvim_create_autocmd({ 'BufWinLeave' }, {
-  pattern = { '*.*' },
-  desc = 'save view (folds), when closing file',
-  command = 'mkview',
-})
-vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
-  pattern = { '*.*' },
-  desc = 'load view (folds), when opening file',
-  command = 'silent! loadview',
-})
-
-function leave_snippet()
-  if
-    ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-    and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-    and not require('luasnip').session.jump_active
-  then
-    require('luasnip').unlink_current()
-  end
-end
-
--- stop snippets when you leave to normal mode
-vim.api.nvim_command([[
-    autocmd ModeChanged * lua leave_snippet()
-]])
 
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   desc = 'Fix indentation in asm files',
@@ -149,19 +95,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   callback = function()
     vim.opt_local.shiftwidth = 8
   end,
-})
-
--- autodetect ansible files
-vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
-  pattern = {
-    '*/ansible/**/*.yml',
-    '*/ansible/**/*.yaml',
-    '*/playbooks/*.yml',
-    '*/playbooks/*.yaml',
-    '*/roles/**/*/*.yml',
-  },
-  desc = 'autodetect ansible',
-  command = 'set filetype=yaml.ansible',
 })
 
 vim.api.nvim_create_user_command('LspLogClear', function()

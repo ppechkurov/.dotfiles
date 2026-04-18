@@ -32,6 +32,7 @@
         ],
         "preferredPlayer": "jellyfin",
         "spectrumFrameRate": 30,
+        "spectrumMirrored": true,
         "visualizerType": "wave",
         "volumeFeedback": true,
         "volumeFeedbackSoundFile": "",
@@ -49,7 +50,6 @@
         "density": "comfortable",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
-        "floating": false,
         "fontScale": 1,
         "frameRadius": 12,
         "frameThickness": 8,
@@ -295,6 +295,7 @@
         "monitorForColors": "",
         "predefinedScheme": "Gruvbox",
         "schedulingMode": "off",
+        "syncGsettings": true,
         "useWallpaperColors": false
     },
     "controlCenter": {
@@ -501,6 +502,7 @@
         "showHibernateOnLockScreen": false,
         "showScreenCorners": false,
         "showSessionButtonsOnLockScreen": true,
+        "smoothScrollEnabled": true,
         "telemetryEnabled": true
     },
     "hooks": {
@@ -544,7 +546,6 @@
         "weatherShowEffects": true
     },
     "network": {
-        "airplaneModeEnabled": false,
         "bluetoothAutoConnect": true,
         "bluetoothDetailsViewMode": "grid",
         "bluetoothHideUnnamedDevices": false,
@@ -552,13 +553,12 @@
         "bluetoothRssiPollingEnabled": true,
         "disableDiscoverability": false,
         "networkPanelView": "ethernet",
-        "wifiDetailsViewMode": "grid",
-        "wifiEnabled": true
+        "wifiDetailsViewMode": "grid"
     },
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "6500",
-        "enabled": true,
+        "enabled": false,
         "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "20:30",
@@ -737,7 +737,23 @@
         "fillColor": "#000000",
         "fillMode": "crop",
         "hideWallpaperFilenames": false,
+        "linkLightAndDarkWallpapers": true,
         "monitorDirectories": [
+            {
+                "directory": "/home/petrp/Pictures/Wallpapers",
+                "name": "DVI-D-1",
+                "wallpaper": ""
+            },
+            {
+                "directory": "/home/petrp/Pictures/Wallpapers",
+                "name": "HDMI-A-4",
+                "wallpaper": ""
+            },
+            {
+                "directory": "/home/petrp/Pictures/Wallpapers",
+                "name": "DP-4",
+                "wallpaper": ""
+            }
         ],
         "overviewBlur": 0.4,
         "overviewEnabled": false,
@@ -759,6 +775,7 @@
             "pixelate",
             "honeycomb"
         ],
+        "useOriginalImages": false,
         "useSolidColor": false,
         "useWallhaven": true,
         "viewMode": "recursive",
