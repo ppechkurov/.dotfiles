@@ -41,6 +41,10 @@ in {
 
       home.packages = with pkgs; [ telegram-desktop ];
       home.stateVersion = "24.05";
+
+      programs.git.settings = {
+        user.signingkey = "petr pechkurov (home) <petr.pechkurov@gmail.com>";
+      };
     };
   };
 }

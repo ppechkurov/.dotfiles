@@ -11,6 +11,8 @@ in {
       init.defaultBranch = "main";
       credential.helper = "store";
       push.autosetupremote = true;
+      commit.gpgSign = true;
+      tag.gpgSign = true;
     };
   };
 }
