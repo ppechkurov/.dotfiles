@@ -9,13 +9,13 @@
     environment.systemPackages = let
       system = pkgs.stdenv.hostPlatform.system;
       noctalia = inputs.noctalia.packages.${system}.default;
-      # jira = inputs.jira.packages.${system}.default;
+      jira = inputs.jira.packages.${system}.default;
     in with pkgs; [
       chromium
       docker-credential-helpers
       gcc
       git-crypt
-      # jira
+      jira
       lazydocker
       noctalia
       pkgs-unstable.comma

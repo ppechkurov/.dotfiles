@@ -18,10 +18,10 @@
       "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
     mailserver.inputs.nixpkgs.follows = "nixpkgs";
 
-    # jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
-    # jira.type = "git";
-    # jira.ref = "refs/tags/v0.0.5";
-    # jira.inputs.nixpkgs.follows = "nixpkgs";
+    jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
+    jira.type = "git";
+    jira.ref = "refs/tags/v0.0.5";
+    jira.inputs.nixpkgs.follows = "nixpkgs";
 
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs-unstable";
