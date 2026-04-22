@@ -28,7 +28,7 @@ in {
       ];
 
       programs.git.settings = {
-        user.signingkey = "F7C0B35DA9397DD1";
+        user.signingkey = "2B456328DD5DC07D";
         commit.gpgsign = true;
       };
 
