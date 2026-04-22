@@ -40,7 +40,11 @@ in {
 
       programs.zathura.enable = true;
 
-      home.packages = with pkgs; [ signal-desktop slack telegram-desktop ];
+      home.packages = with pkgs; [
+        signal-desktop
+        slack
+        pkgs-unstable.telegram-desktop
+      ];
       home.stateVersion = "24.05";
     };
   };
