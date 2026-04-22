@@ -1,7 +1,7 @@
 { self, ... }:
 let user = "petrp";
 in {
-  flake.modules.nixos.work = { pkgs, pkgs-unstable, ... }: {
+  flake.modules.nixos.work = { lib, pkgs, pkgs-unstable, ... }: {
     services.greetd.settings.default_session.user = user;
 
     home-manager.users.${user} = {
@@ -28,6 +28,7 @@ in {
       ];
 
       programs.git.settings = {
+        user.email = self.globals.emails.work;
         user.signingkey = "2B456328DD5DC07D";
         commit.gpgsign = true;
       };

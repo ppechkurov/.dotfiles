@@ -6,7 +6,7 @@ in {
 
     programs.git.enable = true;
     programs.git.settings = {
-      user.email = email;
+      user.email = lib.mkDefault email;
       user.name = "Petr Pechkurov";
       init.defaultBranch = "main";
       credential.helper = "store";
