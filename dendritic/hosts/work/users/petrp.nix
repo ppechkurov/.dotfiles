@@ -32,6 +32,9 @@ in {
         commit.gpgsign = true;
       };
 
+      services.ssh-agent.enable = true;
+      services.ssh-agent.defaultMaximumIdentityLifetime = 300;
+
       # access pkgs-unstable param in hm modules
       _module.args = { inherit pkgs-unstable; };
 
