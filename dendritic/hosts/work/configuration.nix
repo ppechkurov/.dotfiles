@@ -30,6 +30,10 @@ in {
     programs.nix-ld.enable = true;
     programs.gnupg.agent.enable = true;
 
+    services.gnome.gnome-keyring.enable = true;
+    security.pam.services.login.enableGnomeKeyring = true;
+    security.pam.services.greetd.enableGnomeKeyring = true; # adjust to your DM
+
     security.polkit.enable = true;
     security.soteria.enable = true;
   };

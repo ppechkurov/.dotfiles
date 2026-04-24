@@ -6,13 +6,12 @@ in {
 
     programs.git.enable = true;
     programs.git.settings = {
+      commit.gpgSign = true;
+      init.defaultBranch = "main";
+      push.autosetupremote = true;
+      tag.gpgSign = true;
       user.email = lib.mkDefault email;
       user.name = "Petr Pechkurov";
-      init.defaultBranch = "main";
-      credential.helper = "store";
-      push.autosetupremote = true;
-      commit.gpgSign = true;
-      tag.gpgSign = true;
     };
   };
 }

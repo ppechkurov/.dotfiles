@@ -18,6 +18,7 @@
       jira
       lazydocker
       noctalia
+      nodejs_24
       pkgs-unstable.comma
       pkgs-unstable.jellyfin-media-player
       pkgs-unstable.mattermost-desktop
