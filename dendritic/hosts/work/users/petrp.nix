@@ -17,6 +17,7 @@ in {
         keyboard
         mycli
         noctalia
+        nodejs
         nvim
         passff
         qt

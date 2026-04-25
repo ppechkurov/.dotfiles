@@ -15,6 +15,7 @@ in {
         hyprland
         keyboard
         noctalia
+        nodejs
         nvim
         passff
         qt
