@@ -1,7 +1,13 @@
 {
   perSystem = { config, pkgs, lib, inputs', ... }: {
     devShells.default = pkgs.mkShell {
-      packages = [ inputs'.agenix.packages.agenix pkgs.nh pkgs.deploy-rs ];
+      packages = with pkgs; [
+        inputs'.agenix.packages.agenix
+        nh
+        deploy-rs
+        nodejs_24
+        uv
+      ];
     };
   };
 }

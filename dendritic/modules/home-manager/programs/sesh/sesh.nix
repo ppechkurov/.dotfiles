@@ -10,26 +10,10 @@
 
     # this binds prefix+s to a default sesh
     programs.sesh.enableTmuxIntegration = false;
-    programs.tmux.extraConfig = # tmux
-      ''
-        bind-key f run-shell "sesh connect \"$(
-          sesh list --icons | fzf-tmux -p 80%,70% \
-            --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
-            --header '  ^a all ^t tmux ^g configs ^x tmux kill ^f find' \
-            --bind 'tab:down,btab:up' \
-            --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
-            --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
-            --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
-            --bind 'ctrl-x:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
-            --bind 'ctrl-u:preview-half-page-up' \
-            --bind 'ctrl-d:preview-half-page-down' \
-            --preview-window 'right:55%' \
-            --preview 'sesh preview {}'
-        )\""
-      '';
 
     programs.zsh.initContent = # bash
       ''
+        source <(sesh completion zsh)
         function sesh-sessions() {
           {
             exec </dev/tty
@@ -55,11 +39,6 @@
             sesh connect $session
           }
         }
-
-        zle -N sesh-sessions
-        bindkey -M emacs '\es' sesh-sessions
-        bindkey -M vicmd '\es' sesh-sessions
-        bindkey -M viins '\es' sesh-sessions
       '';
   };
 }
