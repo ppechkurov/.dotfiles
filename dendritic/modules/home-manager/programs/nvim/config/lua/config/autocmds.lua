@@ -168,3 +168,10 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     watch_file(args.buf)
   end,
 })
+
+vim.api.nvim_create_user_command('McpClearHighlights', function()
+  local ns = vim.api.nvim_create_namespace('mcp_highlight')
+  for _, b in ipairs(vim.api.nvim_list_bufs()) do
+    vim.api.nvim_buf_clear_namespace(b, ns, 0, -1)
+  end
+end, {})
