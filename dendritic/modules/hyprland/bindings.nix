@@ -13,19 +13,15 @@
           "$mod SHIFT, E, exec, pkill Hyprland"
           "$mod SHIFT, C, exec, hyprctl reload && ${pkgs.libnotify}/bin/notify-send 'Hyprland reloaded'"
           "$mod SHIFT, Q, exec, $ipc sessionMenu toggle"
-          # "$mod SHIFT, Q, exec, tofi-powermenu"
           "$mod, B, exec, ${browser}"
-          "$mod, Return, exec, foot --override colors.alpha=0.10 tmux new -A -s default"
+          "$mod, Return, exec, foot --override colors.alpha=0.10"
 
           "$mod, C, exec, tofi-calc"
           "$mod, P, exec, tofi-pass"
           "$mod, comma, exec, $ipc launcher settings"
           "$mod, R, exec, $ipc launcher toggle"
-          # "$mod, R, exec, tofi-launcher"
-          # "$mod, S, exec, foot tofi-ssh"
           "$mod, V, exec, $ipc launcher clipboard"
 
-          # "$mod, V, exec, tofi-clip"
           "$mod Shift, T, exec, tofi-emoji"
 
           "$mod, Space, togglesplit"

@@ -15,7 +15,7 @@
         historyLimit = 10000;
         keyMode = "vi";
         mouse = true;
-        newSession = true;
+        newSession = false;
         resizeAmount = 2;
         terminal = "tmux-256color";
         plugins = with pkgs; [

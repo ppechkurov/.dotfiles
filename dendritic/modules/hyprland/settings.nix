@@ -5,7 +5,6 @@
 
       exec-once = lib.mkDefault [
         "noctalia-shell"
-        "tmux new-session -Ads 'default' -c ~/"
         "[workspace 1] foot --override colors.alpha=0.10"
         "[workspace 6 silent] foot --override colors.alpha=0.10"
         "firefox"
@@ -109,4 +108,3 @@
     '';
   };
 }
-
