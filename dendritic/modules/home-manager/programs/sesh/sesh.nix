@@ -9,7 +9,7 @@
     programs.fzf.tmux.enableShellIntegration = true;
 
     # this binds prefix+s to a default sesh
-    programs.sesh.enableTmuxIntegration = false;
+    programs.sesh.enableTmuxIntegration = true;
 
     programs.zsh.initContent = # bash
       ''
