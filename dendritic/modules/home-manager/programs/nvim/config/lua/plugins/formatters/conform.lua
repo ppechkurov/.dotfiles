@@ -34,8 +34,9 @@ return {
       hcl = { 'hcl' },
       ['terraform-vars'] = { 'tofu_fmt' },
       zsh = { 'shfmt' },
-      zig = { 'zls' },
+      zig = { 'zigfmt' },
       asm = { 'nasmfmt' },
+      rs = { 'rustfmt' },
     },
   },
 }

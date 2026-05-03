@@ -102,6 +102,8 @@ function M.config()
     -- 'denols',
     'buf_ls',
     'biome',
+    'rust_analyzer',
+    'zls',
   }
 
   for _, server in pairs(servers) do
