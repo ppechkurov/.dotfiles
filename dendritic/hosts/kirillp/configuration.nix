@@ -11,6 +11,7 @@ in {
       home-manager # The actual HM module
       hyprland
       ns
+      pam
       sound
       steam
     ];
