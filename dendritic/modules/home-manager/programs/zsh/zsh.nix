@@ -3,6 +3,7 @@
     home.packages = with pkgs; [ bat eza fzf ];
 
     programs.direnv.enable = true;
+    programs.direnv.silent = true;
     programs.direnv.enableZshIntegration = true;
 
     programs.zsh = let

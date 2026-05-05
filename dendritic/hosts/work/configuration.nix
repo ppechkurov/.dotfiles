@@ -23,6 +23,8 @@ in {
       builtins.elem (lib.getName pkg) [ "zoom" "slack" ];
 
     networking.networkmanager.enable = true;
+    # for vpn
+    networking.enableIPv6 = false;
 
     # for kind kubernetes cluster
     networking.firewall.checkReversePath = "loose";

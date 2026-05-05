@@ -77,7 +77,7 @@
         "screenOverrides": [
             {
                 "density": "comfortable",
-                "enabled": true,
+                "enabled": false,
                 "name": "HDMI-A-1",
                 "position": "right"
             },
