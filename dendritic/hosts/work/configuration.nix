@@ -12,6 +12,7 @@ in {
       home-manager # The actual HM module
       hyprland
       ns
+      opencode
       pass
       sound
       taws
