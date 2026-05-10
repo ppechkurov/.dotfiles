@@ -36,7 +36,7 @@ return {
       zsh = { 'shfmt' },
       zig = { 'zigfmt' },
       asm = { 'nasmfmt' },
-      rs = { 'rustfmt' },
+      rust = { 'rustfmt' },
     },
   },
 }
