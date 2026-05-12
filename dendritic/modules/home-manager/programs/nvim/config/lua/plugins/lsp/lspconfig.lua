@@ -2,10 +2,7 @@ local M = {
   'neovim/nvim-lspconfig',
   event = { 'VeryLazy' },
   dependencies = {
-    {
-      'folke/neodev.nvim',
-      'folke/which-key.nvim',
-    },
+    'folke/which-key.nvim',
   },
 }
 
@@ -115,10 +112,6 @@ function M.config()
     local require_ok, settings = pcall(require, 'lspsettings.' .. server)
     if require_ok then
       opts = vim.tbl_deep_extend('force', settings, opts)
-    end
-
-    if server == 'lua_ls' then
-      require('neodev').setup({})
     end
 
     vim.lsp.config(server, opts)
