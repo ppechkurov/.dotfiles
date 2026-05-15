@@ -18,6 +18,7 @@ return {
       return { timeout_ms = 1000, lsp_format = 'fallback' }
     end,
     formatters_by_ft = {
+      kdl = { 'kdlfmt' },
       go = { 'goimports', 'gofumpt' },
       javascript = { 'prettierd' },
       json = { 'prettierd' },

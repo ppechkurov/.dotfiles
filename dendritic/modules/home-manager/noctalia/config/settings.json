@@ -406,7 +406,7 @@
                 ]
             }
         ],
-        "overviewEnabled": false
+        "overviewEnabled": true
     },
     "dock": {
         "animationSpeed": 1,
@@ -452,7 +452,7 @@
         "clockFormat": "HH:mm",
         "clockStyle": "digital",
         "compactLockScreen": true,
-        "dimmerOpacity": 0.3,
+        "dimmerOpacity": 0.2,
         "enableBlurBehind": true,
         "enableLockScreenCountdown": true,
         "enableLockScreenMediaControls": false,
@@ -486,7 +486,7 @@
         "language": "",
         "lockOnSuspend": true,
         "lockScreenAnimations": true,
-        "lockScreenBlur": 0,
+        "lockScreenBlur": 0.2,
         "lockScreenCountdownDuration": 10000,
         "lockScreenMonitors": [
         ],
@@ -609,7 +609,8 @@
         "enabled": true,
         "enabledTypes": [
             0,
-            1
+            1,
+            3
         ],
         "location": "top_right",
         "monitors": [
@@ -759,7 +760,7 @@
             }
         ],
         "overviewBlur": 0.4,
-        "overviewEnabled": false,
+        "overviewEnabled": true,
         "overviewTint": 0.6,
         "panelPosition": "follow_bar",
         "randomIntervalSec": 300,
