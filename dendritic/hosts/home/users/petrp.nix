@@ -14,6 +14,7 @@ in {
         home # home it's a hostname in this case
         hyprland
         keyboard
+        niri
         noctalia
         nodejs
         nvim

@@ -11,6 +11,7 @@ in {
       greetd
       home-manager # The actual HM module
       hyprland
+      niri
       ns
       nvidia
       pass

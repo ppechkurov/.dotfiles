@@ -3,8 +3,15 @@
     services.greetd.enable = true;
     services.greetd.settings = {
       default_session = {
-        command =
-          "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+        command = # bash
+          ''
+            ${pkgs.tuigreet}/bin/tuigreet \
+              --time \
+              --remember \
+              --remember-session \
+              --cmd Hyprland \
+              --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions
+          '';
       };
     };
 
