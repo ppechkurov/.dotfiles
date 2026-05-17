@@ -14,6 +14,7 @@ function M.config()
       'html',
       'astro',
       'lua',
+      'kdl',
     },
     user_default_options = {
       names = false,

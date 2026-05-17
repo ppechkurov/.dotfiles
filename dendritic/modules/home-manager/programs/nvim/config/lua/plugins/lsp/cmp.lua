@@ -56,6 +56,7 @@ function M.config()
     },
     completion = {
       autocomplete = false,
+      -- completeopt = 'menu,menuone',
     },
     mapping = cmp.mapping.preset.insert({
       -- ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),

@@ -23,6 +23,7 @@ in {
         screenshots
         sesh
         tofi
+        vicinae
         xdg
       ];
 
