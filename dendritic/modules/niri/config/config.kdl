@@ -366,7 +366,7 @@ binds {
         focus-column-right
     }
     Mod+H {
-        focus-column-left
+        focus-column-or-monitor-left
     }
     Mod+J {
         focus-window-or-workspace-down
@@ -375,7 +375,7 @@ binds {
         focus-window-or-workspace-up
     }
     Mod+L {
-        focus-column-right
+        focus-column-or-monitor-right
     }
     Mod+Ctrl+Left {
         move-column-left
