@@ -25,7 +25,7 @@ in {
 
     networking.networkmanager.enable = true;
     # for vpn
-    networking.enableIPv6 = false;
+    # networking.enableIPv6 = false;
 
     # for kind kubernetes cluster
     networking.firewall.checkReversePath = "loose";

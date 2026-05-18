@@ -29,7 +29,7 @@ return {
       nix = { 'nixfmt' },
       sh = { 'shfmt' },
       sql = { 'sql_formatter' },
-      typescript = { 'biome' },
+      typescript = { 'biome', 'prettierd' },
       -- typescript = { 'prettierd' },
       terraform = { 'tofu_fmt' },
       hcl = { 'hcl' },
