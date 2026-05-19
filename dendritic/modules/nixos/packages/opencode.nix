@@ -5,6 +5,10 @@
       autoStart = true;
 
       bindMounts = {
+        "/run/docker.sock" = {
+          hostPath = "/run/user/1000/docker.sock";
+          isReadOnly = false;
+        };
         "/home/petrp/projects" = {
           hostPath = "/home/petrp/projects";
           isReadOnly = false;
@@ -15,7 +19,7 @@
         };
       };
 
-      config = { config, pkgs, ... }: {
+      config = { config, ... }: {
         users.users.petrp = {
           isNormalUser = true;
           shell = pkgs.zsh;
@@ -24,29 +28,35 @@
           group = "users";
         };
 
-        networking = {
-          nameservers = [
-            "1.1.1.1" # Cloudflare DNS
-            "8.8.8.8" # Google DNS
-          ];
-        };
-
-        programs.zsh.enable = true;
-
         services.gnome.gnome-keyring.enable = true;
         security.pam.services.login.enableGnomeKeyring = true;
 
+        environment.sessionVariables = {
+          DOCKER_HOST = "unix:///run/docker.sock";
+          DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1000/bus";
+        };
+
+        systemd.tmpfiles.rules = [
+          "d /run/user/1000 0755 petrp users -"
+          "f+ /home/petrp/.docker/config.json 0644 petrp users - {}"
+        ];
+
+        programs.zsh.enable = true;
+
         environment.systemPackages = with pkgs-unstable; [
           direnv
+          tmux
+          docker
+          gh
           git
           nodejs_24
           opencode
           pi-coding-agent
           vim
         ];
+
         system.stateVersion = "25.11";
       };
     };
   };
 }
-
