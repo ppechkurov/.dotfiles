@@ -4,6 +4,9 @@ return {
   opts = {
     -- log_level = vim.log.levels.DEBUG,
     formatters = {
+      sql_formatter = {
+        prepend_args = { '--language', 'mysql' },
+      },
       nasmfmt = {
         inherit = false,
         command = 'nasmfmt',

@@ -72,6 +72,7 @@ return {
       'nix',
       'query',
       'regex',
+      'sql',
       'toml',
       'tsx',
       'typescript',
