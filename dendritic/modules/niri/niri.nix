@@ -1,6 +1,7 @@
 { self, ... }: {
   flake.modules.nixos.niri = { pkgs, pkgs-unstable, ... }: {
     imports = with self.modules.nixos; [ oniri ];
+
     programs.niri.enable = true;
     programs.niri.package = pkgs-unstable.niri;
     environment.systemPackages = with pkgs; [ xwayland-satellite ];

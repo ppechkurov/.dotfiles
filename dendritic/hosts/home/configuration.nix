@@ -26,9 +26,11 @@ in {
     nixpkgs.config.allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [
         "nvidia-x11"
+        "nvidia-kernel-modules"
         "broadcom-bt-firmware"
         "b43-firmware"
         "xow_dongle-firmware"
+        "xone-dongle-firmware"
         "facetimehd-calibration"
         "facetimehd-firmware"
 

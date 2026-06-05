@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.zsh = { pkgs, lib, ... }: {
+  flake.modules.homeManager.zsh = { pkgs, config, lib, ... }: {
     home.packages = with pkgs; [ bat eza fzf ];
 
     programs.direnv.enable = true;
@@ -15,6 +15,7 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       defaultKeymap = "viins";
+      dotDir = "${config.xdg.configHome}/zsh";
       plugins = [
         {
           name = "vi-mode";

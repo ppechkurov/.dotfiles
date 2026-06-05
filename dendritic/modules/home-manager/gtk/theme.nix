@@ -6,6 +6,8 @@
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
     };
+
+    gtk.gtk4.theme = null;
   };
 }
 

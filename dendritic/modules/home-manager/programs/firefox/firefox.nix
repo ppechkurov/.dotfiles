@@ -7,6 +7,7 @@
       programs.firefox.enable = true;
 
       programs.firefox = {
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
         # not all of the bellow works. check home-manager.librewolf options.
         # package = pkgs.librewolf;
         profiles.${username} = {

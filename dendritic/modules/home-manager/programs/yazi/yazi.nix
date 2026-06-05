@@ -1,9 +1,11 @@
 {
   flake.modules.homeManager.yazi = { pkgs-unstable, ... }: {
     programs.yazi.enable = true;
+
     programs.yazi = {
       package = pkgs-unstable.yazi;
       enableZshIntegration = true;
+      shellWrapperName = "yy";
       settings = {
         mgr = {
           linemode = "mtime";

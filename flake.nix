@@ -2,10 +2,10 @@
   description = "My NixOS config flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.11";
+    nixpkgs.url = "nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
@@ -15,7 +15,7 @@
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
 
     mailserver.url =
-      "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
+      "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-26.05";
     mailserver.inputs.nixpkgs.follows = "nixpkgs";
 
     jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
@@ -29,7 +29,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
-    noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.6";
+    noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.7";
     noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 

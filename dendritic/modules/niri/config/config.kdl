@@ -13,7 +13,9 @@ window-rule {
     clip-to-geometry true
     background-effect {
         blur true
-        xray true
+    }
+    default-column-width {
+        proportion 0.525
     }
 }
 window-rule {
@@ -38,6 +40,7 @@ window-rule {
     match app-id="^org\\.telegram\\.desktop$"
     exclude title="^Media viewer$"
     open-on-workspace "chats"
+    open-focused false
     default-column-width {
         proportion 0.5
     }
@@ -45,6 +48,7 @@ window-rule {
 window-rule {
     match app-id="Mattermost"
     open-on-workspace "chats"
+    open-focused false
     default-column-width {
         proportion 0.5
     }
@@ -131,8 +135,8 @@ cursor {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     gaps 10
-    center-focused-column "never"
-    always-center-single-column false
+    // center-focused-column "on-overflow"
+    always-center-single-column true
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
         // Proportion sets the width as a fraction of the output width, taking gaps into account.
@@ -194,8 +198,8 @@ layout {
         // inactive-color "#505050"
         // Color of the border around windows that request your attention.
         urgent-color "#9b0000"
- // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        // active-gradient from="#7fc8ff" to="#7fc80f" angle=45 relative-to="workspace-view"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
     // You can enable drop shadows for windows.
     shadow {
@@ -244,13 +248,14 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
-spawn-at-startup "Telegram"
-spawn-at-startup "firefox"
-spawn-at-startup "foot" "--app-id" "foot-term_l" "--override" "colors.alpha=0.60" "sesh" "connect" "dots"
+spawn-at-startup "sh" "-c" "sleep 5 && exec Telegram"
+spawn-at-startup "sh" "-c" "sleep 5 && exec mattermost-desktop"
+spawn-at-startup "sh" "-c" "sleep 5 && exec firefox"
+// spawn-at-startup "foot" "--app-id" "foot-term_l" "--override" "colors.alpha=0.60" "sesh" "connect" "dots"
+spawn-at-startup "sesh" "connect" "dots"
 spawn-at-startup "foot" "--app-id" "foot-term_r" "--override" "colors.alpha=0.60"
 spawn-at-startup "noctalia-shell"
-spawn-at-startup "oniri"
-spawn-at-startup "sh" "-c" "sleep 5 && exec mattermost-desktop"
+spawn-at-startup "oniri" "--tiling-layout"
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
@@ -296,6 +301,9 @@ blur {
     offset 3
     noise 0.01
     saturation 1
+}
+hotkey-overlay {
+    skip-at-startup
 }
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
@@ -366,7 +374,7 @@ binds {
         focus-column-right
     }
     Mod+H {
-        focus-column-or-monitor-left
+        focus-column-left
     }
     Mod+J {
         focus-window-or-workspace-down
@@ -375,7 +383,7 @@ binds {
         focus-window-or-workspace-up
     }
     Mod+L {
-        focus-column-or-monitor-right
+        focus-column-right
     }
     Mod+Ctrl+Left {
         move-column-left
@@ -407,18 +415,6 @@ binds {
     // Mod+K     { focus-window-or-workspace-up; }
     // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
     // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
-    Mod+Home {
-        focus-column-first
-    }
-    Mod+End {
-        focus-column-last
-    }
-    Mod+Ctrl+Home {
-        move-column-to-first
-    }
-    Mod+Ctrl+End {
-        move-column-to-last
-    }
     Mod+Shift+Left {
         focus-monitor-left
     }
@@ -473,12 +469,6 @@ binds {
     // And you can also move a whole workspace to another monitor:
     // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
     // ...
-    Mod+Page_Down {
-        focus-workspace-down
-    }
-    Mod+Page_Up {
-        focus-workspace-up
-    }
     Mod+U {
         focus-workspace-down
     }
@@ -496,15 +486,6 @@ binds {
     }
     Mod+Ctrl+I {
         move-column-to-workspace-up
-    }
-    // Alternatively, there are commands to move just a single window:
-    // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
-    // ...
-    Mod+Shift+Page_Down {
-        move-workspace-down
-    }
-    Mod+Shift+Page_Up {
-        move-workspace-up
     }
     Mod+Shift+U {
         move-workspace-down
@@ -603,22 +584,22 @@ binds {
         focus-workspace 10
     }
     Mod+Ctrl+1 {
-        move-column-to-workspace 1
+        move-column-to-workspace "term_l"
     }
     Mod+Ctrl+2 {
-        move-column-to-workspace 2
+        move-column-to-workspace "browser"
     }
     Mod+Ctrl+3 {
-        move-column-to-workspace 3
+        move-column-to-workspace "chats"
     }
     Mod+Ctrl+4 {
-        move-column-to-workspace 4
+        move-column-to-workspace "media"
     }
     Mod+Ctrl+5 {
         move-column-to-workspace 5
     }
     Mod+Ctrl+6 {
-        move-column-to-workspace 6
+        move-column-to-workspace "term_r"
     }
     Mod+Ctrl+7 {
         move-column-to-workspace 7

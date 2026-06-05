@@ -9,24 +9,24 @@
       vimAlias = true;
       withNodeJs = true;
       withPython3 = true;
+      withRuby = false;
 
       extraPackages = with pkgs; [
+        bash-language-server
         gh # needed for octo.nvim
         lua
         lua-language-server
         marksman
         nil
-        nixfmt-classic
-        nodePackages.bash-language-server
-        nodePackages.sql-formatter
-        nodePackages.typescript-language-server
-        nodePackages.vscode-langservers-extracted
+        nixfmt
         prettierd
         ripgrep
         shfmt
+        sql-formatter
         stylua
         typescript
         typescript-language-server
+        vscode-langservers-extracted
         yaml-language-server
       ];
     };

@@ -16,7 +16,7 @@
         };
       };
       userDirs = {
-        enable = true;
+        enable = false;
         createDirectories = true;
       };
     };
