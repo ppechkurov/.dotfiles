@@ -30,6 +30,7 @@ in {
         "mattermost@${domain}" = "petr.pechkurov@${domain}";
         "no-reply@${domain}" = "petr.pechkurov@${domain}";
         "support@${domain}" = "petr.pechkurov@${domain}";
+        "kirill.pechkurov@${domain}" = "petr.pechkurov@${domain}";
       };
 
       # Use Let's Encrypt certificates. Note that this needs to set up a stripped
