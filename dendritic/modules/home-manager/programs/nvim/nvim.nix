@@ -6,7 +6,10 @@
       package = pkgs.neovim-unwrapped;
 
       defaultEditor = true;
+      sideloadInitLua = true; # required to manage config via symlink
+      viAlias = true;
       vimAlias = true;
+      vimdiffAlias = true;
       withNodeJs = true;
       withPython3 = true;
       withRuby = false;
