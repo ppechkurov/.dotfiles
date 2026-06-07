@@ -246,11 +246,11 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1780836115,
-        "narHash": "sha256-KVXr2EWhwTtKA7nepGfkjCrGYRi1SR1zbTJFO4zqHNc=",
+        "lastModified": 1780839782,
+        "narHash": "sha256-x5ZSeZa6OTQxeFETVVq1iRk/uvMbVok6JTA6VgAUsmY=",
         "ref": "refs/heads/main",
-        "rev": "85a77cc65cd5bdefe297ad8622be856d01aaeff4",
-        "revCount": 31,
+        "rev": "fcb87ea456d9c757d0979939cd12df98bb2aef21",
+        "revCount": 32,
         "type": "git",
         "url": "ssh://git@github.com/PafuPlex/crawl-rs.git"
       },
