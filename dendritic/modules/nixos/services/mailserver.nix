@@ -2,7 +2,8 @@
 let
   domain = self.globals.dns.domain;
   email = self.globals.emails.gmail;
-in {
+in
+{
   flake.modules.nixos.mailserver = { config, ... }: {
     imports = [ inputs.mailserver.nixosModule ];
 
@@ -10,6 +11,7 @@ in {
 
     security.acme.acceptTerms = true;
     security.acme.defaults.email = email;
+    security.acme.certs."mail.${domain}".listenHTTP = "0.0.0.0:80";
 
     mailserver = {
       enable = true;
@@ -20,12 +22,12 @@ in {
       enableSubmissionSsl = true; # open port 465
 
       # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
-      loginAccounts = {
+      accounts = {
         "petr.pechkurov@${domain}" = {
           hashedPasswordFile = config.age.secrets.mailserver-password.path;
         };
       };
-      extraVirtualAliases = {
+      aliases = {
         "info@${domain}" = "petr.pechkurov@${domain}";
         "mattermost@${domain}" = "petr.pechkurov@${domain}";
         "no-reply@${domain}" = "petr.pechkurov@${domain}";
@@ -35,8 +37,8 @@ in {
 
       # Use Let's Encrypt certificates. Note that this needs to set up a stripped
       # down nginx and opens port 80.
-      certificateScheme = "acme-nginx";
+      # certificateScheme = "acme-nginx";
+      x509.useACMEHost = "mail.${domain}";
     };
   };
 }
-
