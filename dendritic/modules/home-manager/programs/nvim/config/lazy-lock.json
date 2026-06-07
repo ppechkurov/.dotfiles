@@ -69,7 +69,7 @@
   "tabby.nvim": { "branch": "main", "commit": "b3affa6db7eab80fca2a2db5b73b473144507039" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "1f08ed60cafc8f6168b72b80be2b2ea149813e55" },
   "telescope.nvim": { "branch": "master", "commit": "c41b36d646c9d78fae9f1d64e0e86cdeeeb8a066" },
-  "timber.nvim": { "branch": "main", "commit": "aac3a12753652a60955d3178b75fdb6c247b9f7d" },
+  "timber.nvim": { "branch": "main", "commit": "feb2a84a6806fa336f153a9f627d8da80f033555" },
   "todo-comments.nvim": { "branch": "main", "commit": "411503d3bedeff88484de572f2509c248e499b38" },
   "triforce.nvim": { "branch": "main", "commit": "3f147545b9c0e01c01fa8ab244c4abe4f0c412e5" },
   "typescript-tools.nvim": { "branch": "master", "commit": "c2f5910074103705661e9651aa841e0d7eea9932" },
