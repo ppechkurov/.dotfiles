@@ -230,12 +230,12 @@
         "rev": "019e358b9d7fe1ee3fae9965655b6faa872610e7",
         "revCount": 61,
         "type": "git",
-        "url": "git+ssh://git@github.com/ppechkurov/jira.git"
+        "url": "ssh://git@github.com/ppechkurov/jira.git"
       },
       "original": {
         "ref": "refs/tags/v0.0.5",
         "type": "git",
-        "url": "git+ssh://git@github.com/ppechkurov/jira.git"
+        "url": "ssh://git@github.com/ppechkurov/jira.git"
       }
     },
     "lexyai": {
@@ -246,11 +246,11 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1780829462,
-        "narHash": "sha256-Xrn8nydspRcfR3iUVn9yqQfsCXuj3ec2bzErV73iJ7M=",
+        "lastModified": 1780836115,
+        "narHash": "sha256-KVXr2EWhwTtKA7nepGfkjCrGYRi1SR1zbTJFO4zqHNc=",
         "ref": "refs/heads/main",
-        "rev": "f940e3b17ab55dd3d79ff323910d47a83271613a",
-        "revCount": 30,
+        "rev": "85a77cc65cd5bdefe297ad8622be856d01aaeff4",
+        "revCount": 31,
         "type": "git",
         "url": "ssh://git@github.com/PafuPlex/crawl-rs.git"
       },
