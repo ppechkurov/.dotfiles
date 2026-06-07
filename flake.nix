@@ -31,6 +31,9 @@
 
     noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.7";
     noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    lexyai.url = "git+ssh://git@github.com/PafuPlex/crawl-rs.git";
+    lexyai.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = { flake-parts, ... }@inputs:

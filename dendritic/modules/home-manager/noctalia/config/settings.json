@@ -24,7 +24,7 @@
         "showCategories": false,
         "showIconBackground": false,
         "sortByMostUsed": true,
-        "terminalCommand": "foot --override colors.alpha=0.10 --",
+        "terminalCommand": "foot --override colors-dark.alpha=0.10 --",
         "viewMode": "list"
     },
     "audio": {

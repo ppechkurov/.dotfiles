@@ -251,9 +251,9 @@ layout {
 spawn-at-startup "sh" "-c" "sleep 5 && exec Telegram"
 spawn-at-startup "sh" "-c" "sleep 5 && exec mattermost-desktop"
 spawn-at-startup "sh" "-c" "sleep 5 && exec firefox"
-// spawn-at-startup "foot" "--app-id" "foot-term_l" "--override" "colors.alpha=0.60" "sesh" "connect" "dots"
+// spawn-at-startup "foot" "--app-id" "foot-term_l" "--override" "colors-dark.alpha=0.60" "sesh" "connect" "dots"
 spawn-at-startup "sesh" "connect" "dots"
-spawn-at-startup "foot" "--app-id" "foot-term_r" "--override" "colors.alpha=0.60"
+spawn-at-startup "foot" "--app-id" "foot-term_r" "--override" "colors-dark.alpha=0.60"
 spawn-at-startup "noctalia-shell"
 spawn-at-startup "oniri" "--tiling-layout"
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -321,7 +321,7 @@ binds {
         show-hotkey-overlay
     }
     Mod+T hotkey-overlay-title="Open a Terminal: foot" {
-        spawn "foot" "--app-id" "foot" "--override" "colors.alpha=0.60"
+        spawn "foot" "--app-id" "foot" "--override" "colors-dark.alpha=0.60"
     }
     Mod+Space hotkey-overlay-title="Vicinae" {
         spawn "vicinae" "toggle"

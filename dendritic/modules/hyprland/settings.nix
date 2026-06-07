@@ -5,8 +5,8 @@
 
       exec-once = lib.mkDefault [
         "noctalia-shell"
-        "[workspace 1] foot --override colors.alpha=0.10"
-        "[workspace 6 silent] foot --override colors.alpha=0.10"
+        "[workspace 1] foot --override colors-dark.alpha=0.10"
+        "[workspace 6 silent] foot --override colors-dark.alpha=0.10"
         "firefox"
         "Telegram"
         "signal-desktop"

@@ -1,13 +1,21 @@
 {
-  flake.modules.homeManager.firefox = { config, osConfig, pkgs, ... }:
+  flake.modules.homeManager.firefox =
+    {
+      config,
+      osConfig,
+      pkgs,
+      ...
+    }:
     let
       username = config.home.username;
       description = osConfig.users.users.${username}.description;
-    in {
+    in
+    {
       programs.firefox.enable = true;
 
       programs.firefox = {
-        configPath = "${config.xdg.configHome}/mozilla/firefox";
+        # TODO: 26.05 changed default config path to xdg. Maybe change this someday.
+        configPath = ".mozilla/firefox";
         # not all of the bellow works. check home-manager.librewolf options.
         # package = pkgs.librewolf;
         profiles.${username} = {
@@ -18,34 +26,35 @@
           #https://github.com/montchr/dotfield/blob/78de8ff316ccb2d34fd98cd9bfd3bfb5ad775b0e/home/profiles/firefox/search/default.nix
           search.force = true;
           search.default = "ddg";
-          search.engines = let
-            engine = alias: template: icon: {
-              definedAliases = [ "@${alias}" ];
-              urls = [{ inherit template; }];
-              inherit icon;
+          search.engines =
+            let
+              engine = alias: template: icon: {
+                definedAliases = [ "@${alias}" ];
+                urls = [ { inherit template; } ];
+                inherit icon;
+              };
+            in
+            {
+              "Github Code" =
+                engine "github" "https://github.com/search?q={searchTerms}&type=code"
+                  "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+              "NixOS packages" =
+                engine "np" "https://search.nixos.org/packages?type=packages&query={searchTerms}"
+                  "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+              "NixOS options" =
+                engine "no" "https://search.nixos.org/options?query={searchTerms}"
+                  "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+              "Home Manager - Option Search" =
+                engine "hm" "https://home-manager-options.extranix.com/?query={searchTerms}"
+                  "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+              "bing".metaData.hidden = true;
+              "wikipedia".metaData.hidden = true;
+              "google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
             };
-          in {
-            "Github Code" = engine "github"
-              "https://github.com/search?q={searchTerms}&type=code"
-              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-
-            "NixOS packages" = engine "np"
-              "https://search.nixos.org/packages?type=packages&query={searchTerms}"
-              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-
-            "NixOS options" =
-              engine "no" "https://search.nixos.org/options?query={searchTerms}"
-              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-
-            "Home Manager - Option Search" = engine "hm"
-              "https://home-manager-options.extranix.com/?query={searchTerms}"
-              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-
-            "bing".metaData.hidden = true;
-            "wikipedia".metaData.hidden = true;
-            "google".metaData.alias =
-              "@g"; # builtin engines only support specifying one additional alias
-          };
 
           containers = {
             personal = {
@@ -102,10 +111,8 @@
             # https://github.com/gingkapls/dotnix/blob/f2b912b992708bc05e478c78725eb18c1038f790/hm/programs/firefox/default.nix#L4
             # turn of google safebrowsing (it literally sends a sha sum of everything you download to google)
             "browser.safebrowsing.downloads.remote.block_dangerous" = false;
-            "browser.safebrowsing.downloads.remote.block_dangerous_host" =
-              false;
-            "browser.safebrowsing.downloads.remote.block_potentially_unwanted" =
-              false;
+            "browser.safebrowsing.downloads.remote.block_dangerous_host" = false;
+            "browser.safebrowsing.downloads.remote.block_potentially_unwanted" = false;
             "browser.safebrowsing.downloads.remote.block_uncommon" = false;
             "browser.safebrowsing.downloads.remote.url" = false;
             "browser.safebrowsing.downloads.remote.enabled" = false;
@@ -125,17 +132,12 @@
             "browser.search.suggest.enabled.private" = false;
             "browser.urlbar.suggest.searches" = false;
             "browser.urlbar.showSearchSuggestionsFirst" = false;
-            "browser.newtabpage.activity-stream.feeds.section.topstories" =
-              false;
+            "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
             "browser.newtabpage.activity-stream.feeds.snippets" = false;
-            "browser.newtabpage.activity-stream.section.highlights.includePocket" =
-              false;
-            "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" =
-              false;
-            "browser.newtabpage.activity-stream.section.highlights.includeDownloads" =
-              false;
-            "browser.newtabpage.activity-stream.section.highlights.includeVisited" =
-              false;
+            "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+            "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = false;
+            "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = false;
+            "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
             "browser.newtabpage.activity-stream.showSponsored" = false;
             "browser.newtabpage.activity-stream.system.showSponsored" = false;
             "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
@@ -178,26 +180,22 @@
           # Valid strings for installation_mode are "allowed", "blocked",
           # "force_installed" and "normal_installed".
           ExtensionSettings = {
-            "*".installation_mode =
-              "allowed"; # blocks all addons except the ones specified below
+            "*".installation_mode = "allowed"; # blocks all addons except the ones specified below
             # uBlock Origin:
             "uBlock0@raymondhill.net" = {
-              install_url =
-                "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
               installation_mode = "force_installed";
             };
 
             # Surfingkeys
             "{a8332c60-5b6d-41ee-bfc8-e9bb331d34ad}" = {
-              install_url =
-                "https://addons.mozilla.org/firefox/downloads/latest/{a8332c60-5b6d-41ee-bfc8-e9bb331d34ad}/latest.xpi";
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/{a8332c60-5b6d-41ee-bfc8-e9bb331d34ad}/latest.xpi";
               installation_mode = "force_installed";
             };
 
             # github-refined
             "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = {
-              install_url =
-                "https://addons.mozilla.org/firefox/downloads/latest/{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}/latest.xpi";
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}/latest.xpi";
               installation_mode = "force_installed";
             };
           };

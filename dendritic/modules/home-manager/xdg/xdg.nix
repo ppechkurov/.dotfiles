@@ -16,8 +16,9 @@
         };
       };
       userDirs = {
-        enable = false;
+        enable = true;
         createDirectories = true;
+        setSessionVariables = true;
       };
     };
   };

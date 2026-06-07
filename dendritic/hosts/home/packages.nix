@@ -3,7 +3,9 @@
     environment.systemPackages = let
       system = pkgs.stdenv.hostPlatform.system;
       noctalia = inputs.noctalia.packages.${system}.default;
+      server = inputs.lexyai.packages.${system}.default;
     in with pkgs; [
+      server
       chromium
       gcc
       git-crypt
