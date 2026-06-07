@@ -2,7 +2,8 @@
 let
   host = "webdock";
   atuinHost = self.globals.wg.servers.interfaces.tun.ip;
-in {
+in
+{
   flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" host;
 
   flake.modules.nixos.${host} = { lib, pkgs, ... }: {

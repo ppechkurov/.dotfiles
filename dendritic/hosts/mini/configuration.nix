@@ -1,6 +1,8 @@
 { self, ... }:
-let host = "mini";
-in {
+let
+  host = "mini";
+in
+{
   flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" host;
 
   flake.modules.nixos."${host}" = { lib, pkgs, ... }: {
@@ -8,6 +10,7 @@ in {
       boot
       forgejo
       home-manager # The actual HM module
+      lexyai
       wgPeer
     ];
 

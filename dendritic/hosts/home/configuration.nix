@@ -20,7 +20,6 @@ in
         greetd
         home-manager # The actual HM module
         hyprland
-        lexyai
         niri
         ns
         nvidia
