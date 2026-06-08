@@ -1,6 +1,13 @@
-{ inputs, self, lib, ... }:
-let modules = self.modules;
-in {
+{
+  inputs,
+  self,
+  lib,
+  ...
+}:
+let
+  modules = self.modules;
+in
+{
   options.flake.lib = lib.mkOption {
     type = lib.types.attrsOf lib.types.unspecified;
     default = { };
@@ -25,22 +32,28 @@ in {
     };
 
     mkHomeManagerUser = system: name: {
-      ${name} = { imports = [ inputs.self.modules.homeManager.cli ]; };
+      ${name} = {
+        imports = [ inputs.self.modules.homeManager.cli ];
+      };
     };
 
-    mkWgInterface = name: hostname: privateKeyFilePath:
+    mkWgInterface =
+      name: hostname: privateKeyFilePath:
       let
         wg = self.globals.wg;
         peerIface = wg.peers.${hostname}.interfaces.${name};
         serverIface = wg.servers.interfaces.${name};
-      in {
+      in
+      {
         ${name} = {
           address = [ peerIface.ip ];
           autostart = lib.mkDefault serverIface.autostart or true;
-          peers = with serverIface; [{
-            inherit allowedIPs publicKey endpoint;
-            persistentKeepalive = 15;
-          }];
+          peers = with serverIface; [
+            {
+              inherit allowedIPs publicKey endpoint;
+              persistentKeepalive = 15;
+            }
+          ];
           privateKeyFile = privateKeyFilePath;
         };
       };
