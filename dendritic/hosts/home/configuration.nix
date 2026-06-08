@@ -16,7 +16,6 @@ in {
       nvidia
       pass
       printers
-      resterm
       sound
       steam
       taws

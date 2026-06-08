@@ -16,7 +16,6 @@ in {
       pass
       sound
       taws
-      resterm
       wgPeer
     ];
 
