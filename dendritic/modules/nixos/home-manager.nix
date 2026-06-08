@@ -11,9 +11,7 @@ let
     };
   };
 in {
-  flake.modules.nixos.home-manager = {
-    imports =
-      [ inputs.home-manager.nixosModules.home-manager homeManagerConfig ];
+  flake.modules.nixos.home-manager = { hmInput ? inputs.home-manager, ... }: {
+    imports = [ hmInput.nixosModules.home-manager homeManagerConfig ];
   };
 }
-

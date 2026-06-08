@@ -1,39 +1,52 @@
 { self, ... }:
-let host = "kirillp";
-in {
-  flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" host;
+let
+  host = "kirillp";
+in
+{
+  flake.nixosConfigurations = self.lib.mkNixos {
+    system = "x86_64-linux";
+    name = host;
+  };
 
-  flake.modules.nixos."${host}" = { lib, pkgs, pkgs-unstable, ... }: {
-    imports = with self.modules.nixos; [
-      boot
-      fonts
-      greetd
-      home-manager # The actual HM module
-      hyprland
-      ns
-      pam
-      sound
-      steam
-    ];
-
-    console.keyMap = "us";
-
-    nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [
-        "b43-firmware"
-        "broadcom-bt-firmware"
-        "facetimehd-calibration"
-        "facetimehd-firmware"
-        "steam"
-        "steam-unwrapped"
-        "xow_dongle-firmware"
+  flake.modules.nixos."${host}" =
+    {
+      lib,
+      pkgs,
+      pkgs-unstable,
+      ...
+    }:
+    {
+      imports = with self.modules.nixos; [
+        boot
+        fonts
+        greetd
+        home-manager # The actual HM module
+        hyprland
+        ns
+        pam
+        sound
+        steam
       ];
 
-    programs.nix-ld.enable = true;
+      console.keyMap = "us";
 
-    security.polkit.enable = true;
-    security.soteria.enable = true;
+      nixpkgs.config.allowUnfreePredicate =
+        pkg:
+        builtins.elem (lib.getName pkg) [
+          "b43-firmware"
+          "broadcom-bt-firmware"
+          "facetimehd-calibration"
+          "facetimehd-firmware"
+          "steam"
+          "steam-unwrapped"
+          "xow_dongle-firmware"
+        ];
 
-    time.timeZone = "Europe/Minsk";
-  };
+      programs.nix-ld.enable = true;
+
+      security.polkit.enable = true;
+      security.soteria.enable = true;
+
+      time.timeZone = "Europe/Minsk";
+    };
 }

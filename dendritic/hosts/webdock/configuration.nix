@@ -1,10 +1,15 @@
-{ self, ... }:
+{ self, inputs, ... }:
 let
   host = "webdock";
   atuinHost = self.globals.wg.servers.interfaces.tun.ip;
 in
 {
-  flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" host;
+  flake.nixosConfigurations = self.lib.mkNixos {
+    system = "x86_64-linux";
+    name = host;
+    nixpkgs = inputs.nixpkgs-25_11;
+    hmInput = inputs.home-manager-25_11;
+  };
 
   flake.modules.nixos.${host} = { lib, pkgs, ... }: {
     imports = with self.modules.nixos; [

@@ -3,7 +3,10 @@ let
   host = "mini";
 in
 {
-  flake.nixosConfigurations = self.lib.mkNixos "x86_64-linux" host;
+  flake.nixosConfigurations = self.lib.mkNixos {
+    system = "x86_64-linux";
+    name = host;
+  };
 
   flake.modules.nixos."${host}" = { lib, pkgs, ... }: {
     imports = with self.modules.nixos; [

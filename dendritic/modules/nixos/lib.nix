@@ -14,22 +14,35 @@ in
   };
 
   config.flake.lib = {
-    mkNixos = system: name: {
-      ${name} = inputs.nixpkgs.lib.nixosSystem {
-        modules = [
-          modules.nixos.base
-          modules.nixos."${name}"
-          inputs.agenix.nixosModules.default
-          {
-            networking.hostName = name;
-            nixpkgs.hostPlatform = lib.mkDefault system;
-          }
-        ];
-        specialArgs = {
+    mkNixos =
+      {
+        system,
+        name,
+        nixpkgs ? inputs.nixpkgs,
+        hmInput ? null,
+      }:
+      let
+        baseSpecialArgs = {
           pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
         };
+        specialArgs = if hmInput != null
+          then baseSpecialArgs // { inherit hmInput; }
+          else baseSpecialArgs;
+      in
+      {
+        ${name} = nixpkgs.lib.nixosSystem {
+          modules = [
+            modules.nixos.base
+            modules.nixos."${name}"
+            inputs.agenix.nixosModules.default
+            {
+              networking.hostName = name;
+              nixpkgs.hostPlatform = lib.mkDefault system;
+            }
+          ];
+          inherit specialArgs;
+        };
       };
-    };
 
     mkHomeManagerUser = system: name: {
       ${name} = {
