@@ -8,6 +8,9 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    lexyai.url = "git+ssh://git@github.com/PafuPlex/crawl-rs.git";
+    lexyai.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.darwin.follows = "";
