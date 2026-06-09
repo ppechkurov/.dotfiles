@@ -39,6 +39,21 @@
         "type": "gitlab"
       }
     },
+    "crane": {
+      "locked": {
+        "lastModified": 1780532242,
+        "narHash": "sha256-D+BsdpxmtUwtqGoY0IXPhHgTlmqgcZKCEo1oMyn7ep0=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "59a82a1222dd3b2080b5cc52a1a2e8d5f1b77f37",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "deploy-rs": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -240,17 +255,18 @@
     },
     "lexyai": {
       "inputs": {
+        "crane": "crane",
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1780865120,
-        "narHash": "sha256-kulF6ZdI/XsG83qbwVl9GcnPfTUMoKxqZZIQy4Z0Kfs=",
+        "lastModified": 1781042495,
+        "narHash": "sha256-cLf8XLyn5vA59Vbfm0Fp+suNHNyloupUixm6R9wS2yU=",
         "ref": "refs/heads/main",
-        "rev": "41309d9b12d6b31a318724c8782a0f476462837b",
-        "revCount": 34,
+        "rev": "ec09747db77398debbe73bd75eaecbe374bc9293",
+        "revCount": 47,
         "type": "git",
         "url": "ssh://git@github.com/PafuPlex/crawl-rs.git"
       },
