@@ -1,95 +1,23 @@
 { inputs, self, ... }: {
   flake.modules.nixos.development = { lib, pkgs, pkgs-unstable, ... }:
     let
+      user = "petrp";
       libnotify = "${pkgs.libnotify}/bin/notify-send";
       sound =
         "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga";
 
       codex-notify-watch = pkgs.writeShellApplication {
         name = "codex-notify-watch";
-        runtimeInputs = [ pkgs.libnotify ];
-        text = ''
-          set -eu
-
-          queue_file=''${CODEX_NOTIFY_FILE:-/tmp/codex-notify}
-
-          if ! command -v ${libnotify} >/dev/null 2>&1; then
-            echo "notify-send was not found" >&2
-            exit 127
-          fi
-
-          sanitize_text() {
-            printf '%s' "$1" | LC_ALL=C tr -d '\001-\010\013\014\016-\037\177'
-          }
-
-          play_sound() {
-            [ "''${CODEX_NOTIFY_SOUND:-1}" != "0" ] || return 0
-            command -v pw-play >/dev/null 2>&1 || return 0
-            [ -r ${sound} ] || return 0
-            pw-play ${sound} >/dev/null 2>&1 &
-          }
-
-          touch "$queue_file"
-
-          tail -n 0 -F "$queue_file" | while IFS='	' read -r title body urgency; do
-            [ -n "$title$body" ] || continue
-            title=$(sanitize_text "''${title:-Codex}")
-            body=$(sanitize_text "''${body:-Done}")
-
-            case "''${urgency:-normal}" in
-            critical)
-              color='\033[31m'
-              urgency='critical'
-              ;;
-            low)
-              color='\033[2m'
-              urgency='low'
-              ;;
-            *)
-              color='\033[32m'
-              urgency='normal'
-              ;;
-            esac
-
-            reset='\033[0m'
-            timestamp=$(date '+%H:%M:%S')
-
-            printf '%b[%s] %s%b %s\n' "$color" "$timestamp" "$title" "$reset" "$body"
-            ${libnotify} --urgency="$urgency" -- "$title" "$body"
-            play_sound
-          done
-        '';
+        runtimeInputs = [ pkgs.libnotify pkgs.jq ];
+        text = builtins.replaceStrings [ "@libnotify@" "@sound@" ] [
+          libnotify
+          sound
+        ] (builtins.readFile ./scripts/codex-notify-watch.sh);
       };
 
       codex-notify-send = pkgs.writeShellApplication {
         name = "codex-notify-send";
-        text = ''
-          set -eu
-
-          event=''${1:-stop}
-          project_name=''${CODEX_NOTIFY_PROJECT:-$(basename "$PWD")}
-          queue_file=''${CODEX_NOTIFY_FILE:-/tmp/codex-notify}
-          branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || printf 'unknown')
-
-          case "$event" in
-            permission)
-              title="Codex approval"
-              body="$project_name is waiting for approval on $branch"
-              urgency="critical"
-              ;;
-            *)
-              title="Codex"
-              body="$project_name turn finished on $branch"
-              urgency="normal"
-              ;;
-          esac
-
-          title=$(printf '%s' "$title" | tr '\t\n' '  ')
-          body=$(printf '%s' "$body" | tr '\t\n' '  ')
-          urgency=$(printf '%s' "$urgency" | tr '\t\n' '  ')
-
-          printf '%s\t%s\t%s\n' "$title" "$body" "$urgency" >> "$queue_file"
-        '';
+        text = builtins.readFile ./scripts/codex-notify-send.sh;
       };
 
       hmModule = inputs.home-manager.nixosModules.home-manager;
@@ -106,9 +34,10 @@
         zsh
       ];
     in {
-      systemd.tmpfiles.rules = [ "f+ /tmp/codex-notify 0644 petrp users - -" ];
+      systemd.tmpfiles.rules =
+        [ "f+ /tmp/codex-notify 0644 ${user} users - -" ];
 
-      home-manager.users.petrp.systemd.user.services.codex-notify-watch = {
+      home-manager.users.${user}.systemd.user.services.codex-notify-watch = {
         Unit.Description = "Codex notification watcher";
         Service.ExecStart = "${codex-notify-watch}/bin/codex-notify-watch";
         Service.Restart = "on-failure";
@@ -116,7 +45,6 @@
         Install.WantedBy = [ "default.target" ];
       };
 
-      # ══ CONTAINER ══
       containers.development = {
         ephemeral = false;
         autoStart = true;
@@ -127,24 +55,24 @@
             hostPath = "/run/user/1000/docker.sock";
             isReadOnly = false;
           };
-          "/home/petrp/projects" = {
-            hostPath = "/home/petrp/projects";
+          "/home/${user}/projects" = {
+            hostPath = "/home/${user}/projects";
             isReadOnly = false;
           };
-          "/home/petrp/.dotfiles" = {
-            hostPath = "/home/petrp/.dotfiles";
+          "/home/${user}/.dotfiles" = {
+            hostPath = "/home/${user}/.dotfiles";
             isReadOnly = true;
           };
-          "/home/petrp/.claude" = {
-            hostPath = "/home/petrp/.claude";
+          "/home/${user}/.claude" = {
+            hostPath = "/home/${user}/.claude";
             isReadOnly = false;
           };
-          "/home/petrp/.codex" = {
-            hostPath = "/home/petrp/.codex";
+          "/home/${user}/.codex" = {
+            hostPath = "/home/${user}/.codex";
             isReadOnly = false;
           };
-          "/home/petrp/.npmrc" = {
-            hostPath = "/home/petrp/.npmrc";
+          "/home/${user}/.npmrc" = {
+            hostPath = "/home/${user}/.npmrc";
             isReadOnly = true;
           };
           "/tmp/codex-notify" = {
@@ -157,23 +85,24 @@
           imports = [ hmModule ];
 
           nixpkgs.config.allowUnfreePredicate = pkg:
-            builtins.elem (lib.getName pkg) [ "claude-code" "codex" ];
+            builtins.elem (lib.getName pkg) [ "claude-code" ];
 
           home-manager = {
             useUserPackages = true;
             useGlobalPkgs = true;
             backupFileExtension = "backup";
-            users.petrp = {
+            users.${user} = {
               imports = hmUserModules;
               _module.args = { inherit pkgs-unstable; };
-              home.stateVersion = "24.05";
+              home.enableNixpkgsReleaseCheck = false;
+              home.stateVersion = "25.11";
             };
           };
 
-          users.users.petrp = {
+          users.users.${user} = {
             isNormalUser = true;
             shell = pkgs.zsh;
-            home = "/home/petrp";
+            home = "/home/${user}";
             description = "Petr Pechkurov";
             group = "users";
           };
@@ -188,8 +117,8 @@
           };
 
           systemd.tmpfiles.rules = [
-            "d /run/user/1000 0755 petrp users -"
-            "f+ /home/petrp/.docker/config.json 0644 petrp users - {}"
+            "d /run/user/1000 0755 ${user} users -"
+            "f+ /home/${user}/.docker/config.json 0644 ${user} users - {}"
           ];
 
           programs.zsh.enable = true;
