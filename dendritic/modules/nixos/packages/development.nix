@@ -87,6 +87,8 @@
           nixpkgs.config.allowUnfreePredicate = pkg:
             builtins.elem (lib.getName pkg) [ "claude-code" ];
 
+          nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
           home-manager = {
             useUserPackages = true;
             useGlobalPkgs = true;
@@ -138,6 +140,19 @@
 
           system.stateVersion = "25.11";
         };
+      };
+
+      systemd.services."container@development" = {
+        preStart = ''
+          for i in $(seq 1 30); do
+            if [ -e /run/user/1000/docker.sock ]; then
+              exit 0
+            fi
+            echo "Waiting for Docker socket (''${i}/30)..."
+            sleep 2
+          done
+          echo "Docker socket not available after 60s, continuing anyway"
+        '';
       };
     };
 }
