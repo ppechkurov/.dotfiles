@@ -2,6 +2,16 @@
 include optional=true "colors.kdl"
 // Host-specific: work
 // DP-1 = primary (left), HDMI-A-1 = secondary (right)
+
+input {
+    keyboard {
+        xkb {
+            layout "us,ru"
+            variant "dvorak,"
+            options "grp:alt_shift_toggle,caps:escape"
+        }
+    }
+}
 workspace "term_l" {
     open-on-output "DP-1"
 }

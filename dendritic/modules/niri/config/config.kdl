@@ -58,11 +58,6 @@ window-rule {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
     keyboard {
-        xkb {
-            layout "us,ru,us"
-            variant "dvorak,,basic"
-            options "grp:alt_shift_toggle,caps:escape"
-        }
         repeat-delay 250
         repeat-rate 45
         track-layout "window"
