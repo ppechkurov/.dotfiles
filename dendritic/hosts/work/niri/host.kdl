@@ -1,0 +1,31 @@
+// formatter strips quotes without this
+include optional=true "colors.kdl"
+// Host-specific: work
+// DP-1 = primary (left), HDMI-A-1 = secondary (right)
+workspace "term_l" {
+    open-on-output "DP-1"
+}
+workspace "browser" {
+    open-on-output "DP-1"
+}
+workspace "chats" {
+    open-on-output "DP-1"
+}
+workspace "media" {
+    open-on-output "DP-1"
+}
+workspace "term_r" {
+    open-on-output "HDMI-A-1"
+}
+spawn-at-startup "sh" "-c" "sleep 5 && exec signal-desktop"
+spawn-at-startup "sh" "-c" "sleep 5 && exec slack"
+output "DP-1" {
+    focus-at-startup
+    transform "normal"
+    position x=0 y=0
+}
+output "HDMI-A-1" {
+    transform "normal"
+    position x=1920 y=0
+}
+

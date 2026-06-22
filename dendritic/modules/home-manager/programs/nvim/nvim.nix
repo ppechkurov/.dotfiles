@@ -12,6 +12,7 @@
 
       extraPackages = with pkgs; [
         gh # needed for octo.nvim
+        kdlfmt
         lua
         lua-language-server
         marksman

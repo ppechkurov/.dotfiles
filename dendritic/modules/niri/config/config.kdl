@@ -3,9 +3,7 @@ include optional=true "colors.kdl"
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
-workspace "term_l" {
-    open-on-output "DP-4"
-}
+include optional=true "host.kdl"
 window-rule {
     match app-id="^foot$"
     opacity 1.0
@@ -22,9 +20,6 @@ window-rule {
     match at-startup=true app-id="^foot-term_l$"
     open-on-workspace "term_l"
 }
-workspace "browser" {
-    open-on-output "DP-4"
-}
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
@@ -32,9 +27,6 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id="firefox$" title="^Picture-in-Picture$"
     open-floating true
-}
-workspace "chats" {
-    open-on-output "DP-4"
 }
 window-rule {
     match app-id="^org\\.telegram\\.desktop$"
@@ -53,15 +45,9 @@ window-rule {
         proportion 0.5
     }
 }
-workspace "media" {
-    open-on-output "DP-4"
-}
 window-rule {
     match app-id="org.jellyfin.JellyfinDesktop"
     open-on-workspace "media"
-}
-workspace "term_r" {
-    open-on-output "DVI-D-1"
 }
 window-rule {
     match at-startup=true app-id="^foot-term_r$"
@@ -106,24 +92,6 @@ window-rule {
         active-color "#f38ba8"
         inactive-color "#7d0d2d"
     }
-}
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
-output "DP-4" {
-    focus-at-startup
-    transform "normal"
-    position x=0 y=0
-}
-output "DVI-D-1" {
-    transform "normal"
-    position x=1920 y=0
-}
-output "HDMI-A-4" {
-    transform "normal"
-    position x=0 y=-1080
 }
 // cursor
 cursor {

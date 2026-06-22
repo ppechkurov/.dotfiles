@@ -16,6 +16,7 @@ in {
         hyprland
         keyboard
         mycli
+        niri
         noctalia
         nodejs
         nvim
@@ -24,6 +25,7 @@ in {
         screenshots
         sesh
         tofi
+        vicinae
         work
         xdg
       ];
