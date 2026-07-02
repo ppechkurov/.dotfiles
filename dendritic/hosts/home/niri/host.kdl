@@ -1,17 +1,15 @@
 include optional=true "colors.kdl"
 // Host-specific: home
 // Outputs: DP-4 (left, primary), DVI-D-1 (right), HDMI-A-4 (top)
-
 input {
     keyboard {
         xkb {
-            layout "us,ru,us"
-            variant "dvorak,,basic"
+            layout "us,ru"
+            variant "dvorak,"
             options "grp:alt_shift_toggle,caps:escape"
         }
     }
 }
-
 workspace "term_l" {
     open-on-output "DP-4"
 }
@@ -27,7 +25,6 @@ workspace "media" {
 workspace "term_r" {
     open-on-output "DVI-D-1"
 }
-
 output "DP-4" {
     focus-at-startup
     transform "normal"
@@ -41,3 +38,4 @@ output "HDMI-A-4" {
     transform "normal"
     position x=0 y=-1080
 }
+
