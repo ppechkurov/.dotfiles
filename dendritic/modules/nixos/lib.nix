@@ -22,12 +22,10 @@ in
         hmInput ? null,
       }:
       let
-        baseSpecialArgs = {
+        specialArgs = {
           pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+          hmInput = if hmInput != null then hmInput else inputs.home-manager;
         };
-        specialArgs = if hmInput != null
-          then baseSpecialArgs // { inherit hmInput; }
-          else baseSpecialArgs;
       in
       {
         ${name} = nixpkgs.lib.nixosSystem {

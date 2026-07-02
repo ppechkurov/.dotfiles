@@ -52,6 +52,7 @@
         extraConfig = # tmux
           ''
             set -g detach-on-destroy off  # don't exit from tmux when closing a session
+            set -g allow-passthrough on # for agent container
 
             set -g pane-border-style fg=blue
             set -g pane-active-border-style "bg=default fg=blue"

@@ -1,5 +1,7 @@
 {
   flake.modules.nixos.docker = { lib, pkgs, ... }: {
+    nixpkgs.overlays = [ (final: prev: { docker = prev.docker_29; }) ];
+
     virtualisation.docker = {
       enable = true;
       rootless = {

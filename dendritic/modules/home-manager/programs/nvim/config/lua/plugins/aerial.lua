@@ -1,5 +1,6 @@
 return {
   'stevearc/aerial.nvim',
+  commit = 'c5e56945d9703f7079ccff484b35d0e4c231dd6c', -- nvim-0.11 branch
   opts = {},
   -- Optional dependencies
   dependencies = {

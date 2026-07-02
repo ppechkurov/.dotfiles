@@ -9,7 +9,7 @@
               --time \
               --remember \
               --remember-session \
-              --cmd niri \
+              --cmd niri-session \
               --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions
           '';
       };
