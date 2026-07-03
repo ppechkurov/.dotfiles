@@ -28,6 +28,7 @@
         shfmt
         sql-formatter
         stylua
+        tree-sitter
         typescript
         typescript-language-server
         vscode-langservers-extracted

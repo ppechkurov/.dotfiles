@@ -13,7 +13,7 @@ in
       boot
       forgejo
       home-manager # The actual HM module
-      lexyai
+      # lexyai
       wgPeer
     ];
 
