@@ -5,7 +5,7 @@ return {
     -- log_level = vim.log.levels.DEBUG,
     formatters = {
       sql_formatter = {
-        prepend_args = { '--language', 'mysql' },
+        prepend_args = { '--language', 'postgresql' },
       },
       nasmfmt = {
         inherit = false,
@@ -18,7 +18,7 @@ return {
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         return
       end
-      return { timeout_ms = 1000, lsp_format = 'fallback' }
+      return { timeout_ms = 2000, lsp_format = 'fallback' }
     end,
     formatters_by_ft = {
       kdl = { 'kdlfmt' },
@@ -32,7 +32,7 @@ return {
       nix = { 'nixfmt' },
       sh = { 'shfmt' },
       sql = { 'sql_formatter' },
-      typescript = { 'biome', 'prettierd' },
+      typescript = { 'biome' },
       -- typescript = { 'prettierd' },
       terraform = { 'tofu_fmt' },
       hcl = { 'hcl' },

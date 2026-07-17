@@ -9,13 +9,13 @@ return {
         -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
         url = '',
       },
-      -- schemas = require('schemastore').yaml.schemas(),
-      schemas = {
-        ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*',
-        -- ['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
-        ['http://json.schemastore.org/kustomization'] = 'kustomization.{yml,yaml}',
-        kubernetes = '*.yaml',
-      },
+      schemas = require('schemastore').yaml.schemas(),
+      -- schemas = {
+      --   ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*',
+      --   -- ['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
+      --   ['http://json.schemastore.org/kustomization'] = 'kustomization.{yml,yaml}',
+      --   kubernetes = '*.yaml',
+      -- },
       format = { enable = true },
     },
   },

@@ -29,6 +29,11 @@ window-rule {
     open-floating true
 }
 window-rule {
+    match app-id="^org\\.telegram\\.desktop$" title="^Media viewer$"
+    open-on-workspace "chats"
+    open-floating true
+}
+window-rule {
     match app-id="^org\\.telegram\\.desktop$"
     exclude title="^Media viewer$"
     open-on-workspace "chats"
@@ -363,12 +368,12 @@ binds {
     Mod+Ctrl+H {
         move-column-left
     }
-    Mod+Ctrl+J {
-        move-window-down
-    }
-    Mod+Ctrl+K {
-        move-window-up
-    }
+    // Mod+Ctrl+J {
+    //     move-window-down
+    // }
+    // Mod+Ctrl+K {
+    //     move-window-up
+    // }
     Mod+Ctrl+L {
         move-column-right
     }
@@ -444,10 +449,10 @@ binds {
     Mod+Ctrl+Page_Up {
         move-column-to-workspace-up
     }
-    Mod+Ctrl+U {
+    Mod+Ctrl+J {
         move-column-to-workspace-down
     }
-    Mod+Ctrl+I {
+    Mod+Ctrl+K {
         move-column-to-workspace-up
     }
     Mod+Shift+U {
