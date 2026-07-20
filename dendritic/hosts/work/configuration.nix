@@ -18,13 +18,14 @@ in
     {
       imports = with self.modules.nixos; [
         boot
+        development
         docker
         fonts
         greetd
         home-manager # The actual HM module
         hyprland
+        niri
         ns
-        opencode
         pass
         sound
         taws

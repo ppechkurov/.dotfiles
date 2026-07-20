@@ -48,7 +48,16 @@
       containers.development = {
         ephemeral = false;
         autoStart = true;
-        nixpkgs = "${inputs.nixpkgs-unstable}";
+        nixpkgs = inputs.nixpkgs-unstable;
+        specialArgs = {
+          pkgs = import inputs.nixpkgs-unstable {
+            localSystem = {
+              inherit (pkgs.stdenv.hostPlatform) system;
+            };
+            config.allowUnfreePredicate =
+              pkg: builtins.elem (lib.getName pkg) [ "claude-code" ];
+          };
+        };
 
         bindMounts = {
           "/run/docker.sock" = {

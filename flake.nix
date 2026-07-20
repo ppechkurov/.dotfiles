@@ -23,7 +23,7 @@
 
     jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
     jira.type = "git";
-    jira.ref = "refs/tags/v0.0.5";
+    jira.ref = "refs/tags/v0.0.6";
     jira.inputs.nixpkgs.follows = "nixpkgs";
 
     deploy-rs.url = "github:serokell/deploy-rs";

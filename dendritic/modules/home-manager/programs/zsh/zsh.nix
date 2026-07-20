@@ -55,6 +55,10 @@
             complete -o nospace -C $(which tfschema) tfschema
           fi
 
+          dev() {
+            machinectl shell ''$USER@development /bin/sh -c "cd ''${PWD} 2>/dev/null || cd ~ && exec \''$SHELL"
+          }
+
           notify() {
             local dir=$(basename "$PWD")
             local cmd="$*"

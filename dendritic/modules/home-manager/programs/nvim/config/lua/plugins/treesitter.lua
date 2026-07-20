@@ -12,30 +12,44 @@ return {
         if not ft or ft == '' or ft:find('^[A-Z]') then
           return
         end
-        pcall(function()
-          vim.treesitter.start(args.buf)
-          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        end)
+        local lang = vim.treesitter.language.get_lang(ft) or ft
+        local ok, has_parser = pcall(vim.treesitter.language.inspect, lang)
+        if not ok or not has_parser then
+          return
+        end
+        vim.treesitter.start(args.buf)
+        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       end,
     })
   end,
   config = function()
     require('nvim-treesitter').setup()
 
-    local ensureInstalled = {
-      'bash', 'c', 'diff', 'html', 'http', 'javascript',
-      'jsdoc', 'json', 'just', 'lua', 'markdown',
-      'markdown_inline', 'nix', 'query', 'regex', 'sql',
-      'toml', 'tsx', 'typescript', 'vim', 'vimdoc', 'yaml', 'zig',
-    }
-    local alreadyInstalled = require('nvim-treesitter.config').get_installed()
-    local parsersToInstall = vim.iter(ensureInstalled)
-      :filter(function(parser)
-        return not vim.tbl_contains(alreadyInstalled, parser)
-      end)
-      :totable()
-    if #parsersToInstall > 0 then
-      require('nvim-treesitter').install(parsersToInstall)
-    end
+    require('nvim-treesitter').install({
+      'bash',
+      'c',
+      'diff',
+      'html',
+      'http',
+      'javascript',
+      'jsdoc',
+      'json',
+      'just',
+      'lua',
+      'markdown',
+      'markdown_inline',
+      'nix',
+      'query',
+      'regex',
+      'sql',
+      'terraform',
+      'toml',
+      'tsx',
+      'typescript',
+      'vim',
+      'vimdoc',
+      'yaml',
+      'zig',
+    })
   end,
 }

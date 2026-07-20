@@ -245,18 +245,18 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1750870578,
-        "narHash": "sha256-w+yVDm/A54j6ZaZmM6FWvAjI2bUH0jFHMNxaqOUQqlk=",
-        "ref": "refs/tags/v0.0.5",
-        "rev": "019e358b9d7fe1ee3fae9965655b6faa872610e7",
-        "revCount": 61,
+        "lastModified": 1784295479,
+        "narHash": "sha256-RZ1b1S1zUCMJ8OS303p+pmCyq//4lQsKuierV5g4ZLs=",
+        "ref": "refs/tags/v0.0.6",
+        "rev": "a795044810259caf9fe2ac4cf115121ef1748fee",
+        "revCount": 71,
         "type": "git",
-        "url": "git+ssh://git@github.com/ppechkurov/jira.git"
+        "url": "ssh://git@github.com/ppechkurov/jira.git"
       },
       "original": {
-        "ref": "refs/tags/v0.0.5",
+        "ref": "refs/tags/v0.0.6",
         "type": "git",
-        "url": "git+ssh://git@github.com/ppechkurov/jira.git"
+        "url": "ssh://git@github.com/ppechkurov/jira.git"
       }
     },
     "mailserver": {
@@ -349,11 +349,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1782723713,
-        "narHash": "sha256-T6OhkwGyyGHer1lr4GkbOp//7ii23xLE7HuMmjrdkXI=",
-        "rev": "b5aa0fbd538984f6e3d201be0005b4463d8b09f8",
+        "lastModified": 1784497964,
+        "narHash": "sha256-WhdsTtaih3DgTPP/PX023b36UNQyMzEoi6GkPyGx0y4=",
+        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1024265.b5aa0fbd5389/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1037713.241313f4e8e5/nixexprs.tar.xz"
       },
       "original": {
         "id": "nixpkgs",
