@@ -17,8 +17,7 @@
 
     minimal-tmux.url = "github:niksingh710/minimal-tmux-status";
 
-    mailserver.url =
-      "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-26.05";
+    mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-26.05";
     mailserver.inputs.nixpkgs.follows = "nixpkgs";
 
     jira.url = "git+ssh://git@github.com/ppechkurov/jira.git";
@@ -34,9 +33,17 @@
 
     noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.7";
     noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    tuicr.url = "github:agavra/tuicr/v0.19.1";
+    tuicr.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = { flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; }
-    (inputs.import-tree [ ./dendritic ./deploy ]);
+  outputs =
+    { flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      inputs.import-tree [
+        ./dendritic
+        ./deploy
+      ]
+    );
 }

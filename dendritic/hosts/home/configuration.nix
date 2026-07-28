@@ -31,6 +31,7 @@ in
         sound
         steam
         taws
+        tuicr
         wgPeer
       ];
 
