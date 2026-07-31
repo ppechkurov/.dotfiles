@@ -29,6 +29,7 @@ in
         pass
         sound
         taws
+        tuicr
         vi-sql
         wgPeer
       ];
