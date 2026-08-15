@@ -1,6 +1,8 @@
 { self, ... }:
-let user = "petrp";
-in {
+let
+  user = "petrp";
+in
+{
   flake.modules.nixos.home = { pkgs, pkgs-unstable, ... }: {
     home-manager.users.${user} = {
       imports = with self.modules.homeManager; [
@@ -27,8 +29,6 @@ in {
         xdg
       ];
 
-      programs.smug.enable = true;
-
       # provides pkgs-unstable param in hm modules
       _module.args = { inherit pkgs-unstable; };
 
@@ -48,6 +48,9 @@ in {
       programs.git.settings = {
         user.signingkey = "petr pechkurov (home) <petr.pechkurov@gmail.com>";
       };
+
+      services.gpg-agent.defaultCacheTtlSsh = 1800; # 30m idle
+      services.gpg-agent.maxCacheTtlSsh = 7200; # 2h max
     };
   };
 }
