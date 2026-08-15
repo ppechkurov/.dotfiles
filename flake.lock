@@ -274,12 +274,12 @@
         "rev": "a795044810259caf9fe2ac4cf115121ef1748fee",
         "revCount": 71,
         "type": "git",
-        "url": "ssh://git@github.com/ppechkurov/jira.git"
+        "url": "git+ssh://git@github.com/ppechkurov/jira.git"
       },
       "original": {
         "ref": "refs/tags/v0.0.6",
         "type": "git",
-        "url": "ssh://git@github.com/ppechkurov/jira.git"
+        "url": "git+ssh://git@github.com/ppechkurov/jira.git"
       }
     },
     "mailserver": {
