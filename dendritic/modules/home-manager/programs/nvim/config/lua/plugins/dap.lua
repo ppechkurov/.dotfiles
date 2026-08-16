@@ -27,13 +27,104 @@ return {
     },
   },
   config = function()
-    require('dap').adapters['pwa-node'] = {
+    local dap = require('dap')
+    local dapui = require('dapui')
+
+    dap.defaults.fallback.terminal_win_cmd = 'tabnew'
+
+    -- Custom breakpoint glyphs (Nerd Font codicons)
+    vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DiagnosticSignError' })
+    vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DiagnosticSignWarn' })
+    vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'SignColumn' })
+    vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DiagnosticSignInfo' })
+    vim.fn.sign_define('DapStopped', { text = '', texthl = 'SignColumn', linehl = 'debugPC' })
+
+    dap.adapters['pwa-node'] = {
       type = 'server',
       host = 'localhost',
       port = '${port}',
       executable = {
         command = 'node',
         args = { vim.fn.stdpath('data') .. '/lazy/vscode-js-debug' .. '/out/src/dapDebugServer.js', '${port}' },
+      },
+    }
+
+    dap.adapters.lldb = {
+      type = 'server',
+      host = '127.0.0.1',
+      port = '${port}',
+      executable = {
+        command = 'lldb-dap',
+        args = { '--connection', 'listen://127.0.0.1:${port}' },
+      },
+    }
+
+    local splitStr = function(inputstr)
+      local t = {}
+      for str in string.gmatch(inputstr, '([^%s]+)') do
+        table.insert(t, str)
+      end
+      return t
+    end
+
+    dap.configurations.zig = {
+      {
+        name = 'Run Program',
+        type = 'lldb',
+        request = 'launch',
+        program = function()
+          local co = coroutine.running()
+          if co then
+            local resume = vim.schedule_wrap(function(item)
+              coroutine.resume(co, item)
+            end)
+            vim.ui.select(vim.fn.glob(vim.fn.getcwd() .. '**/zig-out/**/*', false, true), {
+              prompt = 'Select executable',
+              kind = 'file',
+            }, resume)
+            return coroutine.yield()
+          end
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = function()
+          return splitStr(vim.fn.input('Args: '))
+        end,
+      },
+      {
+        name = 'Debug test binary',
+        type = 'lldb',
+        request = 'launch',
+        program = function()
+          local co = coroutine.running()
+          if co then
+            local resume = vim.schedule_wrap(function(item)
+              coroutine.resume(co, item)
+            end)
+            local tests = vim.fn.glob(vim.fn.getcwd() .. '/.zig-cache/o/**/test', false, true)
+            table.sort(tests, function(a, b)
+              return vim.fn.getftime(a) > vim.fn.getftime(b)
+            end)
+            local recent = {}
+            for i = 1, math.min(10, #tests) do
+              recent[#recent + 1] = tests[i]
+            end
+            table.insert(recent, 1, 'Paste path...')
+            vim.ui.select(recent, {
+              prompt = 'Select test binary (newest first)',
+              kind = 'file',
+            }, function(item)
+              if item == 'Paste path...' then
+                resume(vim.fn.input('Path to binary: '))
+              else
+                resume(item)
+              end
+            end)
+            return coroutine.yield()
+          end
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
       },
     }
 
@@ -71,24 +162,19 @@ return {
           },
         },
         -- only if language is javascript, offer this debug action
-        language == 'javascript'
-            and {
-              -- use nvim-dap-vscode-js's pwa-node debug adapter
-              type = 'pwa-node',
-              -- launch a new process to attach the debugger to
-              request = 'launch',
-              -- name of the debug action you have to select for this config
-              name = 'Launch file in new node process',
-              -- launch current file
-              program = '${file}',
-              cwd = '${workspaceFolder}',
-            }
-          or nil,
+        language == 'javascript' and {
+          -- use nvim-dap-vscode-js's pwa-node debug adapter
+          type = 'pwa-node',
+          -- launch a new process to attach the debugger to
+          request = 'launch',
+          -- name of the debug action you have to select for this config
+          name = 'Launch file in new node process',
+          -- launch current file
+          program = '${file}',
+          cwd = '${workspaceFolder}',
+        } or nil,
       }
     end
-
-    local dap = require('dap')
-    local dapui = require('dapui')
 
     dapui.setup({
       -- Set icons to characters that are more likely to work in every terminal.

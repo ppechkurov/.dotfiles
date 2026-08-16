@@ -49,8 +49,8 @@ in
         user.signingkey = "petr pechkurov (home) <petr.pechkurov@gmail.com>";
       };
 
-      services.gpg-agent.defaultCacheTtlSsh = 1800; # 30m idle
-      services.gpg-agent.maxCacheTtlSsh = 7200; # 2h max
+      services.gpg-agent.defaultCacheTtlSsh = 3600; # 1h idle
+      services.gpg-agent.maxCacheTtlSsh = 14400; # 4h max
     };
   };
 }
