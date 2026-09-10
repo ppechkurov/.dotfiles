@@ -24,6 +24,8 @@ in
         greetd
         home-manager # The actual HM module
         hyprland
+        incus
+        e1s
         niri
         ns
         pass
@@ -43,10 +45,10 @@ in
 
       networking.networkmanager.enable = true;
       # for vpn
-      # networking.enableIPv6 = false;
+      networking.enableIPv6 = false;
 
       # for kind kubernetes cluster
-      networking.firewall.checkReversePath = "loose";
+      # networking.firewall.checkReversePath = "loose";
 
       programs.nix-ld.enable = true;
       programs.gnupg.agent.enable = true;
