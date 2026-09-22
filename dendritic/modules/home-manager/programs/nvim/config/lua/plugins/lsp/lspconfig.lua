@@ -101,6 +101,7 @@ function M.config()
     'biome',
     'rust_analyzer',
     'zls',
+    'ols',
   }
 
   for _, server in pairs(servers) do

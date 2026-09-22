@@ -41,6 +41,7 @@ return {
       zig = { 'zigfmt' },
       asm = { 'nasmfmt' },
       rust = { 'rustfmt' },
+      odin = { 'odinfmt' },
     },
   },
 }
