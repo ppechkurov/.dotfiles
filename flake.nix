@@ -2,14 +2,11 @@
   description = "My NixOS config flake";
 
   inputs = {
-    nixpkgs-25_11.url = "nixpkgs/nixos-25.11";
     nixpkgs.url = "nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager-25_11.url = "github:nix-community/home-manager/release-25.11";
-    home-manager-25_11.inputs.nixpkgs.follows = "nixpkgs-25_11";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
