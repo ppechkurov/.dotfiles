@@ -13,8 +13,8 @@ in
       boot
       forgejo
       home-manager # The actual HM module
-      # lexyai
       wgPeer
+      awgServer
     ];
 
     i18n.defaultLocale = "en_US.UTF-8";

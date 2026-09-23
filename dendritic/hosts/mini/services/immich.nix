@@ -1,10 +1,10 @@
 {
   flake.modules.nixos.mini = { pkgs, ... }: {
-    services.immich.enable = true;
+    services.immich.enable = false;
     services.immich.openFirewall = true;
     services.immich.host = "0.0.0.0";
 
-    environment.systemPackages = [ pkgs.immich ];
+    # environment.systemPackages = [ pkgs.immich ];
 
     # INFO: to change an admin password:
     # sudo -u immich \

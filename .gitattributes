@@ -1,5 +1,6 @@
 modules/home-manager/programs/aws/default.nix filter=git-crypt diff=git-crypt
 dendritic/modules/home-manager/programs/aws/aws.nix filter=git-crypt diff=git-crypt
+dendritic/modules/nixos/wireguard/awg-server.nix filter=git-crypt diff=git-crypt
 
 **/*.secret.nix filter=git-crypt diff=git-crypt
 secrets.nix filter=git-crypt diff=git-crypt
