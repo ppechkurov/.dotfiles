@@ -14,7 +14,6 @@ in
       forgejo
       home-manager # The actual HM module
       wgPeer
-      awgServer
     ];
 
     i18n.defaultLocale = "en_US.UTF-8";
