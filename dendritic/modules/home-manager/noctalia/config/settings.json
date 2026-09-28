@@ -520,15 +520,15 @@
     },
     "idle": {
         "customCommands": "[]",
-        "enabled": false,
+        "enabled": true,
         "fadeDuration": 5,
         "lockCommand": "",
-        "lockTimeout": 10,
+        "lockTimeout": 210,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
         "screenOffCommand": "",
-        "screenOffTimeout": 15,
+        "screenOffTimeout": 180,
         "suspendCommand": "",
         "suspendTimeout": 86400
     },

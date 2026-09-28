@@ -4,16 +4,16 @@
     let
       e1s = pkgs.buildGo126Module rec {
         pname = "e1s";
-        version = "v2.0.0-rc.5";
+        version = "v2.0.0";
 
         src = pkgs.fetchFromGitHub {
           owner = "keidarcy";
           repo = "e1s";
           tag = version;
-          hash = "sha256-nA6xQtW9qpBF0F9ayPPWl8KdQYKKM5m3bMeXF7gS8NE=";
+          hash = "sha256-bOG6txoreiP/buYO3rvcxhL1yAxlECkbwf9FqvWLz9k=";
         };
 
-        vendorHash = "sha256-97s919zXWlYhjz7beQOaU7Plm3QtBpn1QFbVXlinnDs=";
+        vendorHash = "sha256-vVUuoAsoxVKDGxLOQBjOx56IiPWBbtYBJbJNq+kPV7A=";
       };
     in
     {
