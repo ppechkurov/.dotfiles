@@ -2,6 +2,12 @@ return {
   'pmizio/typescript-tools.nvim',
   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
   enabled = true,
+  ft = {
+    'javascript',
+    'javascriptreact',
+    'typescript',
+    'typescriptreact',
+  },
   opts = {
     root_dir = require('lspconfig.util').root_pattern('.git'),
     on_attach = function()

@@ -1,6 +1,7 @@
 return {
   'mistricky/codesnap.nvim',
   build = 'make',
+  cmd = { 'CodeSnap', 'CodeSnapSave', 'CodeSnapHighlight' },
   opts = {
     save_path = '~/Pictures/screenshot/snap.png',
     bg_x_padding = 10,

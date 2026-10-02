@@ -1,5 +1,8 @@
 return {
   'nvim-mini/mini.files',
+  keys = {
+    { '<leader>e' },
+  },
   config = function()
     local wk = require('which-key')
     wk.register({

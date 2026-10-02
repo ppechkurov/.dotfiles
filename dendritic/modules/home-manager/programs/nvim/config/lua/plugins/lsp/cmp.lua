@@ -1,15 +1,24 @@
 local M = {
   'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
+  keys = {
+    {
+      '<C-Space>',
+      function()
+        require('cmp').complete()
+      end,
+      mode = { 'i', 'c' },
+      desc = 'Complete',
+    },
+  },
   dependencies = {
     {
       'hrsh7th/cmp-nvim-lsp',
       event = 'InsertEnter',
     },
-    {
-      'hrsh7th/cmp-emoji',
-      event = 'InsertEnter',
-    },
+    -- {
+    --   'hrsh7th/cmp-emoji',
+    --   event = 'InsertEnter',
+    -- },
     {
       'hrsh7th/cmp-buffer',
       event = 'InsertEnter',

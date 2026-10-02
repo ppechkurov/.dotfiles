@@ -7,6 +7,20 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-tree/nvim-web-devicons',
   },
+  cmd = {
+    'AerialToggle',
+    'AerialOpen',
+    'AerialClose',
+    'AerialNext',
+    'AerialPrev',
+    'AerialNavToggle',
+  },
+
+  -- to lazy load the plugin
+  keys = {
+    { '<leader>a' },
+  },
+
   config = function()
     require('aerial').setup({
       layout = {

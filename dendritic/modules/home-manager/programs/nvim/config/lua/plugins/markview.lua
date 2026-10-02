@@ -1,6 +1,7 @@
 return {
   'OXY2DEV/markview.nvim',
-  lazy = false, -- Recommended
+  -- lazy = false, -- Recommended
+  ft = { 'markdown' },
 
   dependencies = {
     -- You will not need this if you installed the

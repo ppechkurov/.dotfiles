@@ -1,5 +1,6 @@
 return {
   'ldelossa/gh.nvim',
+  cmd = 'GH',
   dependencies = {
     {
       'ldelossa/litee.nvim',
