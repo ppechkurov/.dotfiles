@@ -17,7 +17,6 @@ in
     }:
     {
       imports = with self.modules.nixos; [
-        amnezia
         boot
         docker
         fonts
