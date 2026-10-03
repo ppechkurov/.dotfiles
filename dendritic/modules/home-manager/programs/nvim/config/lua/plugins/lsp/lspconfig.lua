@@ -102,6 +102,7 @@ function M.config()
     'rust_analyzer',
     'zls',
     'ols',
+    'clangd',
   }
 
   for _, server in pairs(servers) do

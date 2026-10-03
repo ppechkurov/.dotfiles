@@ -268,6 +268,9 @@ return {
             return coroutine.yield()
           end
         end,
+        args = function()
+          return splitStr(vim.fn.input('Args: '))
+        end,
         cwd = '${workspaceFolder}',
         -- Direct launch, no shell wrapper: the entry stop lands in
         -- your _start, as it should.
