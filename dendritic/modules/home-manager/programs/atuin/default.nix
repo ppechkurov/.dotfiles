@@ -1,9 +1,11 @@
 { self, ... }: {
-  flake.modules.homeManager.atuin = { osConfig, ... }:
+  flake.modules.homeManager.atuin =
+    { osConfig, ... }:
     let
       ip = self.globals.wg.servers.interfaces.tun.ip;
       port = toString osConfig.services.atuin.port;
-    in {
+    in
+    {
       programs.atuin.enable = true;
 
       programs.atuin = {
@@ -15,11 +17,12 @@
           inline_height = 30;
           invert = true;
           keymap_mode = "vim-insert";
-          keys = { scroll_exits = false; };
+          keys.scroll_exits = false;
           max_preview_height = 10;
           show_preview = true;
           style = "full";
           sync_address = "http://${ip}:${port}";
+          tmux.enabled = true; # show as tmux pop-up
           update_check = false;
         };
       };
