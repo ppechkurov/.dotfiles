@@ -31,3 +31,21 @@
       (string_fragment) @injection.content)
   ]
   (#set! injection.language "sql"))
+
+(call_expression
+  function: (member_expression
+    object: (member_expression
+      object: (identifier) @_obj
+      property: (property_identifier) @_sequelize
+      (#eq? @_obj "queryInterface")
+      (#eq? @_sequelize "sequelize"))
+    property: (property_identifier) @_query
+    (#eq? @_query "query"))
+  arguments: (arguments
+    [
+      (string) @injection.content
+      (template_string) @injection.content
+    ])
+  (#offset! @injection.content 0 1 0 -1)
+  (#set! injection.include-children)
+  (#set! injection.language "sql"))

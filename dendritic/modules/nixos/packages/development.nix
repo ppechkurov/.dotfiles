@@ -1,18 +1,30 @@
 { inputs, self, ... }: {
-  flake.modules.nixos.development = { lib, pkgs, pkgs-unstable, ... }:
+  flake.modules.nixos.development =
+    {
+      lib,
+      pkgs,
+      pkgs-unstable,
+      ...
+    }:
     let
       user = "petrp";
       libnotify = "${pkgs.libnotify}/bin/notify-send";
-      sound =
-        "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga";
+      sound = "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga";
 
       codex-notify-watch = pkgs.writeShellApplication {
         name = "codex-notify-watch";
-        runtimeInputs = [ pkgs.libnotify pkgs.jq ];
-        text = builtins.replaceStrings [ "@libnotify@" "@sound@" ] [
-          libnotify
-          sound
-        ] (builtins.readFile ./scripts/codex-notify-watch.sh);
+        runtimeInputs = [
+          pkgs.libnotify
+          pkgs.jq
+        ];
+        text =
+          builtins.replaceStrings
+            [ "@libnotify@" "@sound@" ]
+            [
+              libnotify
+              sound
+            ]
+            (builtins.readFile ./scripts/codex-notify-watch.sh);
       };
 
       codex-notify-send = pkgs.writeShellApplication {
@@ -33,9 +45,9 @@
         zoxide
         zsh
       ];
-    in {
-      systemd.tmpfiles.rules =
-        [ "f+ /tmp/codex-notify 0644 ${user} users - -" ];
+    in
+    {
+      systemd.tmpfiles.rules = [ "f+ /tmp/codex-notify 0644 ${user} users - -" ];
 
       home-manager.users.${user}.systemd.user.services.codex-notify-watch = {
         Unit.Description = "Codex notification watcher";
@@ -54,8 +66,6 @@
             localSystem = {
               inherit (pkgs.stdenv.hostPlatform) system;
             };
-            config.allowUnfreePredicate =
-              pkg: builtins.elem (lib.getName pkg) [ "claude-code" ];
           };
         };
 
@@ -93,10 +103,10 @@
         config = { config, pkgs, ... }: {
           imports = [ hmModule ];
 
-          nixpkgs.config.allowUnfreePredicate = pkg:
-            builtins.elem (lib.getName pkg) [ "claude-code" ];
-
-          nix.settings.experimental-features = [ "nix-command" "flakes" ];
+          nix.settings.experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
 
           home-manager = {
             useUserPackages = true;
@@ -135,15 +145,14 @@
           programs.zsh.enable = true;
 
           environment.systemPackages = with pkgs; [
+            codex
             codex-notify-send
             direnv
-            jq
             docker
             gh
             git
+            jq
             nodejs_24
-            claude-code
-            codex
             vim
           ];
 

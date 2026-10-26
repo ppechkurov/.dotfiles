@@ -1,6 +1,6 @@
 local M = {
   'williamboman/mason-lspconfig.nvim',
-  cmd = { 'Mason', 'MasonInstall', 'MasonUninstall', 'MasonLog' },
+  event = 'VeryLazy',
   dependencies = {
     'williamboman/mason.nvim',
   },

@@ -33,6 +33,7 @@ in
         taws
         tuicr
         vi-sql
+        sqlmux
         wgPeer
       ];
 
