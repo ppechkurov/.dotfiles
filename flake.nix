@@ -33,6 +33,9 @@
 
     tuicr.url = "github:agavra/tuicr/v0.19.1";
     tuicr.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    fievel.url = "github:MontyTheSoftwareEngineer/fievel";
+    fievel.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs =

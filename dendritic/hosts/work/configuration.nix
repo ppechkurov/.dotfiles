@@ -20,20 +20,21 @@ in
         boot
         development
         docker
+        e1s
+        fievel
         fonts
         greetd
         home-manager # The actual HM module
         hyprland
         incus
-        e1s
         niri
         ns
         pass
         sound
+        sqlmux
         taws
         tuicr
         vi-sql
-        sqlmux
         wgPeer
       ];
 

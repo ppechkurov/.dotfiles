@@ -49,3 +49,19 @@
   (#offset! @injection.content 0 1 0 -1)
   (#set! injection.include-children)
   (#set! injection.language "sql"))
+
+; this.connection.query<T>(`...`)
+(call_expression
+  function: (await_expression
+    (member_expression
+      object: (member_expression
+        object: (this)
+        property: (property_identifier) @_connection
+        (#eq? @_connection "connection"))
+      property: (property_identifier) @_method
+      (#eq? @_method "query")))
+  arguments: (arguments
+    (template_string) @injection.content)
+  (#offset! @injection.content 0 1 0 -1)
+  (#set! injection.include-children)
+  (#set! injection.language "sql"))

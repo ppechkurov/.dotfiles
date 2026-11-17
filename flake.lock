@@ -84,6 +84,26 @@
         "type": "github"
       }
     },
+    "fievel": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794789490,
+        "narHash": "sha256-tiHtuNSM4xDisNU4Mmrj8CpPlrwVBqM+/uehLtT8sAE=",
+        "owner": "MontyTheSoftwareEngineer",
+        "repo": "fievel",
+        "rev": "09989b4a4e0ecddcf0559bb753f37d391d0c1ac7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MontyTheSoftwareEngineer",
+        "repo": "fievel",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -434,6 +454,7 @@
       "inputs": {
         "agenix": "agenix",
         "deploy-rs": "deploy-rs",
+        "fievel": "fievel",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",
         "import-tree": "import-tree",
