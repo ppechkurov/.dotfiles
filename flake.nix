@@ -29,7 +29,7 @@
     import-tree.url = "github:vic/import-tree";
 
     noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.7";
-    noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
     tuicr.url = "github:agavra/tuicr/v0.19.1";
     tuicr.inputs.nixpkgs.follows = "nixpkgs-unstable";

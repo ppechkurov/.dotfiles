@@ -29,6 +29,12 @@ return {
         'DressingSelect',
         'TelescopePrompt',
       },
+
+      filetype_overrides = {
+        go = {
+          providers = { 'treesitter', 'regex' },
+        },
+      },
     })
   end,
 }

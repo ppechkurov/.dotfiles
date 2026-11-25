@@ -103,6 +103,7 @@ function M.config()
     'zls',
     'ols',
     'clangd',
+    'templ',
   }
 
   for _, server in pairs(servers) do
