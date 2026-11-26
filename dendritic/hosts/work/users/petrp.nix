@@ -56,7 +56,7 @@ in
         programs.zathura.enable = true;
 
         home.packages = with pkgs; [
-          signal-desktop
+          pkgs-unstable.signal-desktop
           slack
           pkgs-unstable.telegram-desktop
         ];
