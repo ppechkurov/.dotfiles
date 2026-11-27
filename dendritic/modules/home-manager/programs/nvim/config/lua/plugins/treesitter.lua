@@ -21,6 +21,17 @@ return {
         vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       end,
     })
+
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client and client.name == 'gopls' then
+          vim.lsp.semantic_tokens.enable(false, {
+            client_id = client.id,
+          })
+        end
+      end,
+    })
   end,
   config = function()
     require('nvim-treesitter').setup()
@@ -29,6 +40,7 @@ return {
       'bash',
       'c',
       'diff',
+      'go',
       'html',
       'http',
       'javascript',

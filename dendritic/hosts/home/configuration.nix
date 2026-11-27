@@ -35,6 +35,13 @@ in
         wgPeer
       ];
 
+      services.udev.extraRules = ''
+        # DualShock 4 (PS4) - USB and Bluetooth
+        KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="05c4", MODE="0660", TAG+="uaccess"
+        KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="09cc", MODE="0660", TAG+="uaccess"
+        KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ba0", MODE="0660", TAG+="uaccess"
+      '';
+
       nixpkgs.config.allowUnfreePredicate =
         pkg:
         builtins.elem (lib.getName pkg) [

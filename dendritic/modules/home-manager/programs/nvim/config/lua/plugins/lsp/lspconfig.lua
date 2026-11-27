@@ -24,6 +24,9 @@ end
 
 function M.common_capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
   capabilities.textDocument.completion.completionItem.snippetSupport = true
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
@@ -80,30 +83,29 @@ function M.config()
   })
 
   local servers = {
-    'lua_ls',
-    'html',
-    -- 'tsserver', // configured in typescript-tools
-    'eslint',
+    'asm_lsp',
     'bashls',
+    'biome',
+    'buf_ls',
+    'clangd',
+    'clangd',
+    'docker_compose_language_service',
+    'eslint',
+    'golangci_lint_ls',
+    'gopls',
+    'html',
     'jsonls',
-    'yamlls',
-    'ansiblels',
+    'lua_ls',
     'marksman',
     'nil_ls',
-    'gopls',
-    'golangci_lint_ls',
-    'terraformls',
-    'docker_compose_language_service',
-    -- 'clangd',
-    'asm_lsp',
-    -- 'denols',
-    'buf_ls',
-    'biome',
-    'rust_analyzer',
-    'zls',
     'ols',
-    'clangd',
+    'rust_analyzer',
     'templ',
+    'templ',
+    'terraformls',
+    'yamlls',
+    'zls',
+    -- 'tsserver', // configured in typescript-tools
   }
 
   for _, server in pairs(servers) do
